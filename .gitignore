@@ -3,3 +3,6 @@ dist/
 .tmp/
 test-results/
 *.log
+# Local Python caches are not release sources.
+__pycache__/
+*.pyc
