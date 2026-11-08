@@ -1,0 +1,180 @@
+{
+  "profiles": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1024,
+      600
+    ],
+    [
+      915,
+      412
+    ],
+    [
+      740,
+      360
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "screens": 14,
+  "pageErrors": [],
+  "checks": [
+    {
+      "name": "1920-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1366-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1280-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1024-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 956,
+      "footer": {
+        "top": 860,
+        "bottom": 940
+      }
+    },
+    {
+      "name": "1024-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 787,
+      "footer": {
+        "top": 691,
+        "bottom": 771
+      }
+    },
+    {
+      "name": "915-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 949,
+      "footer": {
+        "top": 853,
+        "bottom": 933
+      }
+    },
+    {
+      "name": "915-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 780,
+      "footer": {
+        "top": 684,
+        "bottom": 764
+      }
+    },
+    {
+      "name": "740-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1533,
+      "footer": {
+        "top": 1432,
+        "bottom": 1517
+      }
+    },
+    {
+      "name": "740-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 903,
+      "footer": {
+        "top": 802,
+        "bottom": 887
+      }
+    },
+    {
+      "name": "390-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1645,
+      "footer": {
+        "top": 1544,
+        "bottom": 1629
+      }
+    },
+    {
+      "name": "390-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1063,
+      "footer": {
+        "top": 962,
+        "bottom": 1047
+      }
+    }
+  ],
+  "limitations": [
+    "Real iPad/Android hardware not measured",
+    "Scrollable content is checked separately from viewport clipping"
+  ]
+}

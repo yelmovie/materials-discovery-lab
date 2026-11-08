@@ -1,0 +1,43 @@
+{
+  "cache": {
+    "count": 75,
+    "media": 28
+  },
+  "normalAutoplay": true,
+  "endFocus": true,
+  "bgmQuietDuringVideo": true,
+  "muteSwitch": true,
+  "rangeResponses": [
+    {
+      "range": "bytes=0-1023",
+      "status": 206,
+      "bytes": 1024,
+      "contentRange": "bytes 0-1023/64714"
+    },
+    {
+      "range": "bytes=1024-2047",
+      "status": 206,
+      "bytes": 1024,
+      "contentRange": "bytes 1024-2047/64714"
+    },
+    {
+      "range": "bytes=-16",
+      "status": 206,
+      "bytes": 16,
+      "contentRange": "bytes 64698-64713/64714"
+    },
+    {
+      "range": "bytes=999999999-",
+      "status": 416,
+      "bytes": 0,
+      "contentRange": "bytes */64714"
+    }
+  ],
+  "offlineAudio": {
+    "status": 200,
+    "bytes": 3596
+  },
+  "offlineVideoPlayback": true,
+  "offlineReload": true,
+  "pageErrors": []
+}

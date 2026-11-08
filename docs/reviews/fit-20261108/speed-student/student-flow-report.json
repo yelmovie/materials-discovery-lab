@@ -1,0 +1,639 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "events": [
+    "Concept video pause/resume preserves its playback position",
+    "S01: lab, two manual transfer tasks, concept, continuation",
+    "Video failure preserves three concept captions and continuation",
+    "S02: lab, two manual transfer tasks, concept, continuation",
+    "S03: lab, two manual transfer tasks, concept, continuation",
+    "S04: lab, two manual transfer tasks, concept, continuation",
+    "S05: lab, two manual transfer tasks, concept, continuation",
+    "S06: lab, two manual transfer tasks, concept, continuation",
+    "S07: lab, two manual transfer tasks, concept, continuation",
+    "S08: lab, two manual transfer tasks, concept, continuation",
+    "S09: lab, two manual transfer tasks, concept, continuation",
+    "S10: lab, two manual transfer tasks, concept, continuation",
+    "Report, core, certificate, nickname, original predictions, archive and reload persisted"
+  ],
+  "playbackChecks": [
+    {
+      "name": "S03 interrupted experiment returns to ready",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S05 three vessel moves",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S06 explicit stop",
+      "judgmentsPreserved": true,
+      "waterStopped": true,
+      "volumes": [
+        "90%",
+        "10%",
+        "0%"
+      ]
+    },
+    {
+      "name": "S06 manual slider input stops playback",
+      "judgmentsPreserved": true,
+      "waterStopped": true,
+      "volumes": [
+        "80%",
+        "20%",
+        "0%"
+      ]
+    },
+    {
+      "name": "S06 real transfer through all three vessels",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S07 dry tissue and closed-cup observation",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 open vent and record observations",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 interrupted pumping remains manually resumable",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 pump three times",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S10 stopping cancels pending test result",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S10 current-design rain, light and impact tests",
+      "judgmentsPreserved": true
+    }
+  ],
+  "layoutChecks": [
+    {
+      "name": "S01 lab final",
+      "screen": "S01",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S01-a selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-a result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02 initial",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02 lab final",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02-a selected",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-a result",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-b selected",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-b result",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03 initial",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback elastic_return/rubber_soft completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "elastic_return/rubber_soft recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "elastic_return/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/glass_clear recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/plastic_clear recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/wood_raw recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/wood_raw recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/plastic_opaque recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "compression_recovery/rubber_soft recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "compression_recovery/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 lab final",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03-a selected",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-a result",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-b selected",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-b result",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04 initial",
+      "screen": "S04",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S04 lab final",
+      "screen": "S04",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S04-a selected",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-a result",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-b selected",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-b result",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05 initial",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05 three vessel moves completed",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05 lab final",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05-a selected",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-a result",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-b selected",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-b result",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06 initial",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06 real transfer through all three vessels completed",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06 lab final",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06-a selected",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06-a result",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06-b selected",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06-b result",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07 initial",
+      "screen": "S07",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S07 dry tissue and closed-cup observation completed",
+      "screen": "S07",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S07 lab final",
+      "screen": "S07",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S07-a selected",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07-a result",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07-b selected",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07-b result",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08 initial",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08 open vent and record observations completed",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08 pump three times completed",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08 lab final",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08-a selected",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08-a result",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08-b selected",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08-b result",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S09 initial",
+      "screen": "S09",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S09 lab final",
+      "screen": "S09",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S09-a selected",
+      "screen": "S09",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S09-a result",
+      "screen": "S09",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S09-b selected",
+      "screen": "S09",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S09-b result",
+      "screen": "S09",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S10 initial",
+      "screen": "S10",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S10 current-design rain, light and impact tests completed",
+      "screen": "S10",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S10 lab final",
+      "screen": "S10",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S10-a selected",
+      "screen": "S10",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S10-a result",
+      "screen": "S10",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S10-b selected",
+      "screen": "S10",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S10-b result",
+      "screen": "S10",
+      "view": "challenge",
+      "issues": []
+    }
+  ],
+  "pageErrors": [],
+  "status": "passed",
+  "viewport": [
+    1280,
+    800
+  ],
+  "completedScreens": 10,
+  "observations": 10,
+  "evidence": 5,
+  "challenges": 20,
+  "archives": 1
+}

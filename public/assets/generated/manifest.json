@@ -1,0 +1,109 @@
+[
+  {
+    "id": "workshop-island",
+    "source": "references/generated/workshop-island.png",
+    "destination": "public/assets/generated/workshop-island.webp",
+    "width": 1536,
+    "height": 1024,
+    "hasAlpha": false,
+    "created": "2026-10-22",
+    "provider": "OpenAI image generation",
+    "purpose": "2.5D pixel RPG map"
+  },
+  {
+    "id": "researcher",
+    "source": "references/generated/researcher.png",
+    "destination": "public/assets/generated/researcher.webp",
+    "width": 256,
+    "height": 384,
+    "hasAlpha": true,
+    "created": "2026-10-22",
+    "provider": "OpenAI image generation",
+    "purpose": "2D concept / future 3D reference"
+  },
+  {
+    "id": "companion",
+    "source": "references/generated/companion.png",
+    "destination": "public/assets/generated/companion.webp",
+    "width": 256,
+    "height": 384,
+    "hasAlpha": true,
+    "created": "2026-10-22",
+    "provider": "OpenAI image generation",
+    "purpose": "2D concept / future 3D reference"
+  },
+  {
+    "id": "umbrella",
+    "source": "references/generated/umbrella.png",
+    "destination": "public/assets/generated/umbrella.webp",
+    "width": 900,
+    "height": 900,
+    "hasAlpha": true,
+    "created": "2026-10-22",
+    "provider": "OpenAI image generation",
+    "purpose": "2D concept / future 3D reference"
+  },
+  {
+    "id": "invention",
+    "source": "references/generated/invention.png",
+    "destination": "public/assets/generated/invention.webp",
+    "width": 900,
+    "height": 900,
+    "hasAlpha": true,
+    "created": "2026-10-22",
+    "provider": "OpenAI image generation",
+    "purpose": "2D concept / future 3D reference"
+  },
+  {
+    "id": "title-keyart",
+    "source": "references/generated/title-keyart/keyart-b.png",
+    "destination": "public/assets/generated/title-keyart.webp",
+    "width": 1344,
+    "height": 752,
+    "hasAlpha": false,
+    "created": "2026-10-29",
+    "provider": "Higgsfield GPT Image 2.5 (references: chatgpt_generated_055, chatgpt_generated_051, workshop-island)",
+    "purpose": "Title screen key art"
+  },
+  {
+    "id": "researcher-walk",
+    "source": "references/generated/walk/researcher-sheet.png",
+    "destination": "public/assets/generated/walk/researcher/",
+    "hasAlpha": true,
+    "created": "2026-11-07",
+    "provider": "Canva image generation",
+    "purpose": "연구원 지도 4방향 걷기 프레임"
+  },
+  {
+    "id": "companion-walk",
+    "source": "references/generated/walk/companion-sheet.png",
+    "destination": "public/assets/generated/walk/companion/",
+    "hasAlpha": true,
+    "created": "2026-11-07",
+    "provider": "Canva image generation",
+    "purpose": "모루 지도 4방향 걷기 프레임"
+  },
+  {
+    "id": "sand-observation",
+    "source": "references/generated/overnight-20261108/sand-original.png",
+    "destination": "public/assets/generated/sand-observation.webp",
+    "width": 1200,
+    "height": 600,
+    "hasAlpha": true,
+    "created": "2026-11-08",
+    "provider": "OpenAI built-in image_gen (not Imagen)",
+    "purpose": "S06 sand mound and same-image magnifying observation"
+  },
+  {
+    "id": "wood-sample",
+    "source": "references/generated/overnight-20261108/wood-original.png",
+    "destination": "public/assets/generated/wood-sample.webp",
+    "width": 1000,
+    "height": 350,
+    "hasAlpha": true,
+    "created": "2026-11-08",
+    "provider": "OpenAI built-in image_gen (not Imagen)",
+    "purpose": "Raw dry wood specimen surface; moisture, light and trial state remain code-driven",
+    "operation": "Crop transparent margin then resize to existing 20:7 sample frame"
+  }
+]

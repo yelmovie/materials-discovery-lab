@@ -1,0 +1,16 @@
+[
+ {
+  "id": "researcher",
+  "source": "references/generated/walk/researcher-sheet.png",
+  "width": 109,
+  "height": 208,
+  "frames": 16
+ },
+ {
+  "id": "companion",
+  "source": "references/generated/walk/companion-sheet.png",
+  "width": 172,
+  "height": 208,
+  "frames": 16
+ }
+]

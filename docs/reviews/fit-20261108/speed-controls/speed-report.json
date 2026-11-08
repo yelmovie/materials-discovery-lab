@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "name": "four real playback rates",
+      "seconds": {
+        "0.5": 6.835,
+        "1": 3.344,
+        "1.5": 2.246,
+        "2": 1.697
+      },
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "change speed during the current wait",
+      "seconds": 1.914
+    },
+    {
+      "name": "stop cancels pending part transitions"
+    },
+    {
+      "name": "manual input takes over from playback"
+    },
+    {
+      "name": "backgrounding stops playback"
+    }
+  ],
+  "pageErrors": [],
+  "passed": false,
+  "error": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-playback-speed.py\", line 121, in <module>\n    assert page.locator('.sample-answer-options[data-next-action=true]').count() == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

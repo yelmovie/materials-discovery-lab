@@ -1,0 +1,1027 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "events": [
+    "Concept video pause/resume preserves its playback position",
+    "S01: lab, two manual transfer tasks, concept, continuation",
+    "Video failure preserves three concept captions and continuation",
+    "S02: lab, two manual transfer tasks, concept, continuation",
+    "S03: lab, two manual transfer tasks, concept, continuation",
+    "S04: lab, two manual transfer tasks, concept, continuation",
+    "S05: lab, two manual transfer tasks, concept, continuation",
+    "S06: lab, two manual transfer tasks, concept, continuation",
+    "S07: lab, two manual transfer tasks, concept, continuation",
+    "S08: lab, two manual transfer tasks, concept, continuation"
+  ],
+  "playbackChecks": [
+    {
+      "name": "S03 interrupted experiment returns to ready",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S05 three vessel moves",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S06 explicit stop",
+      "judgmentsPreserved": true,
+      "waterStopped": true,
+      "volumes": [
+        "90%",
+        "10%",
+        "0%"
+      ]
+    },
+    {
+      "name": "S06 manual slider input stops playback",
+      "judgmentsPreserved": true,
+      "waterStopped": true,
+      "volumes": [
+        "80%",
+        "20%",
+        "0%"
+      ]
+    },
+    {
+      "name": "S06 real transfer through all three vessels",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S06 automatic sand magnification stops before conclusion",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S07 dry tissue and closed-cup observation",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 open vent and record observations",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 interrupted pumping remains manually resumable",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 pump three times",
+      "judgmentsPreserved": true
+    }
+  ],
+  "layoutChecks": [
+    {
+      "name": "S01 lab final",
+      "screen": "S01",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S01-a selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-a result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02 initial",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02 lab final",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02-a selected",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-a result",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-b selected",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-b result",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03 initial",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback elastic_return/rubber_soft completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "elastic_return/rubber_soft recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "elastic_return/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/glass_clear recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/plastic_clear recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/wood_raw recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/wood_raw recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/plastic_opaque recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "compression_recovery/rubber_soft recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "compression_recovery/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 lab final",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03-a selected",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-a result",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-b selected",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-b result",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04 initial",
+      "screen": "S04",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S04 lab final",
+      "screen": "S04",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S04-a selected",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-a result",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-b selected",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-b result",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05 initial",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05 three vessel moves completed",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05 lab final",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05-a selected",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-a result",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-b selected",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-b result",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06 initial",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06 real transfer through all three vessels completed",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06 automatic sand magnification stops before conclusion completed",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06 lab final",
+      "screen": "S06",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S06-a selected",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06-a result",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06-b selected",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06-b result",
+      "screen": "S06",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07 initial",
+      "screen": "S07",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S07 dry tissue and closed-cup observation completed",
+      "screen": "S07",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S07 lab final",
+      "screen": "S07",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S07-a selected",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07-a result",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07-b selected",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S07-b result",
+      "screen": "S07",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08 initial",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08 open vent and record observations completed",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08 pump three times completed",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08 lab final",
+      "screen": "S08",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S08-a selected",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08-a result",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08-b selected",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S08-b result",
+      "screen": "S08",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S09 initial",
+      "screen": "S09",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": [
+        {
+          "kind": "control-covered",
+          "label": "설계로 돌아가기 →",
+          "selector": "secondary",
+          "x": 9,
+          "y": 101,
+          "w": 132,
+          "h": 44,
+          "by": "learning-rail"
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "status": "failed",
+  "failedAt": "S03 playback water_absorption/metal_plate",
+  "error": "S03 playback water_absorption/metal_plate completed: screen needs scrolling or hides controls: [{\"kind\": \"control-covered\", \"label\": \"설계로 돌아가기 →\", \"selector\": \"secondary\", \"x\": 9, \"y\": 101, \"w\": 132, \"h\": 44, \"by\": \"learning-rail\"}]",
+  "traceback": "Traceback (most recent call last):\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 457, in main\n    state = run_flow(page)\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 383, in run_flow\n    observe(page, 'water_absorption', 'metal_plate')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 242, in observe\n    auto(page, f'S03 playback {experiment}/{sample}')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 109, in auto\n    fit_page(page,label+' completed')\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 75, in fit_page\n    assert not data['issues'],f'{label}: screen needs scrolling or hides controls: {json.dumps(data[\"issues\"],ensure_ascii=False)}'\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: S03 playback water_absorption/metal_plate completed: screen needs scrolling or hides controls: [{\"kind\": \"control-covered\", \"label\": \"설계로 돌아가기 →\", \"selector\": \"secondary\", \"x\": 9, \"y\": 101, \"w\": 132, \"h\": 44, \"by\": \"learning-rail\"}]\n",
+  "failureState": {
+    "url": "http://127.0.0.1:5319/#S03",
+    "save": {
+      "schemaVersion": 1,
+      "contentVersion": "mvp-1",
+      "origin": "student",
+      "lastRoute": "S03",
+      "lastPhase": "activity",
+      "completedScreens": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "observations": [
+        {
+          "id": "elastic_return:rubber_soft:standard",
+          "experiment": "elastic_return",
+          "sampleId": "rubber_soft",
+          "conditionId": "standard",
+          "result": "늘어났다가 원래 모습으로 돌아왔어",
+          "origin": "student"
+        },
+        {
+          "id": "elastic_return:metal_plate:standard",
+          "experiment": "elastic_return",
+          "sampleId": "metal_plate",
+          "conditionId": "standard",
+          "result": "눈에 띄게 늘어나지 않았어",
+          "origin": "student"
+        },
+        {
+          "id": "light_transmission:glass_clear:standard",
+          "experiment": "light_transmission",
+          "sampleId": "glass_clear",
+          "conditionId": "standard",
+          "result": "빛이 통과해 뒤쪽 표시가 보였어",
+          "origin": "student"
+        },
+        {
+          "id": "light_transmission:plastic_clear:standard",
+          "experiment": "light_transmission",
+          "sampleId": "plastic_clear",
+          "conditionId": "standard",
+          "result": "빛이 통과해 뒤쪽 표시가 보였어",
+          "origin": "student"
+        },
+        {
+          "id": "light_transmission:wood_raw:standard",
+          "experiment": "light_transmission",
+          "sampleId": "wood_raw",
+          "conditionId": "standard",
+          "result": "빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어",
+          "origin": "student"
+        },
+        {
+          "id": "water_absorption:wood_raw:standard",
+          "experiment": "water_absorption",
+          "sampleId": "wood_raw",
+          "conditionId": "standard",
+          "result": "물이 스며들어 젖은 자리가 생겼어",
+          "origin": "student"
+        },
+        {
+          "id": "water_absorption:plastic_opaque:standard",
+          "experiment": "water_absorption",
+          "sampleId": "plastic_opaque",
+          "conditionId": "standard",
+          "result": "물이 쉽게 스며들지 않았어",
+          "origin": "student"
+        },
+        {
+          "id": "compression_recovery:rubber_soft:standard",
+          "experiment": "compression_recovery",
+          "sampleId": "rubber_soft",
+          "conditionId": "standard",
+          "result": "눌렸다가 놓으니 원래 모습으로 돌아왔어",
+          "origin": "student"
+        },
+        {
+          "id": "compression_recovery:metal_plate:standard",
+          "experiment": "compression_recovery",
+          "sampleId": "metal_plate",
+          "conditionId": "standard",
+          "result": "같은 힘으로 눌러도 모양이 거의 그대로였어",
+          "origin": "student"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E01",
+          "origin": "student",
+          "observationIds": []
+        },
+        {
+          "id": "E02",
+          "origin": "student",
+          "observationIds": [
+            "elastic_return:rubber_soft:standard",
+            "elastic_return:metal_plate:standard",
+            "light_transmission:glass_clear:standard",
+            "light_transmission:plastic_clear:standard",
+            "light_transmission:wood_raw:standard",
+            "water_absorption:wood_raw:standard",
+            "water_absorption:plastic_opaque:standard",
+            "compression_recovery:rubber_soft:standard",
+            "compression_recovery:metal_plate:standard"
+          ]
+        },
+        {
+          "id": "E03",
+          "origin": "student",
+          "observationIds": [
+            "elastic_return:rubber_soft:standard",
+            "elastic_return:metal_plate:standard",
+            "light_transmission:glass_clear:standard",
+            "light_transmission:plastic_clear:standard",
+            "light_transmission:wood_raw:standard",
+            "water_absorption:wood_raw:standard",
+            "water_absorption:plastic_opaque:standard",
+            "compression_recovery:rubber_soft:standard",
+            "compression_recovery:metal_plate:standard"
+          ]
+        },
+        {
+          "id": "E04",
+          "origin": "student",
+          "observationIds": [
+            "elastic_return:rubber_soft:standard",
+            "elastic_return:metal_plate:standard",
+            "light_transmission:glass_clear:standard",
+            "light_transmission:plastic_clear:standard",
+            "light_transmission:wood_raw:standard",
+            "water_absorption:wood_raw:standard",
+            "water_absorption:plastic_opaque:standard",
+            "compression_recovery:rubber_soft:standard",
+            "compression_recovery:metal_plate:standard"
+          ]
+        }
+      ],
+      "challengeResults": [
+        {
+          "id": "S01-a",
+          "answer": [
+            "parts"
+          ]
+        },
+        {
+          "id": "S01-b",
+          "answer": [
+            "whole",
+            "record",
+            "compare"
+          ]
+        },
+        {
+          "id": "S02-a",
+          "answer": [
+            "umbrella:object",
+            "wood:material",
+            "cup:object",
+            "metal:material"
+          ]
+        },
+        {
+          "id": "S02-b",
+          "answer": [
+            "grain",
+            "record"
+          ]
+        },
+        {
+          "id": "S03-a",
+          "answer": [
+            "water",
+            "time"
+          ]
+        },
+        {
+          "id": "S03-b",
+          "answer": [
+            "transparent:light",
+            "restore:press",
+            "absorb:drop"
+          ]
+        },
+        {
+          "id": "S04-a",
+          "answer": [
+            "both"
+          ]
+        },
+        {
+          "id": "S04-b",
+          "answer": [
+            "need",
+            "compare",
+            "pick"
+          ]
+        },
+        {
+          "id": "S05-a",
+          "answer": [
+            "place"
+          ]
+        },
+        {
+          "id": "S05-b",
+          "answer": [
+            "outline:same",
+            "place:change",
+            "amount:same"
+          ]
+        },
+        {
+          "id": "S06-a",
+          "answer": [
+            "return"
+          ]
+        },
+        {
+          "id": "S06-b",
+          "answer": [
+            "grain",
+            "zoom"
+          ]
+        },
+        {
+          "id": "S07-a",
+          "answer": [
+            "air"
+          ]
+        },
+        {
+          "id": "S07-b",
+          "answer": [
+            "prepare",
+            "lower",
+            "observe"
+          ]
+        },
+        {
+          "id": "S08-a",
+          "answer": [
+            "open",
+            "air",
+            "water"
+          ]
+        },
+        {
+          "id": "S08-b",
+          "answer": [
+            "depth",
+            "direction"
+          ]
+        }
+      ],
+      "checkpoints": {
+        "inspected": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "matched": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "assignments": [
+          "window",
+          "bumper"
+        ],
+        "solid": [
+          0,
+          1,
+          2
+        ],
+        "liquidStep": 3,
+        "sand": true,
+        "closed": {
+          "cupId": "cup-1",
+          "depth": 80,
+          "orientation": "inverted",
+          "ventOpen": false,
+          "waterInside": 12,
+          "tissueWet": false
+        },
+        "open": {
+          "cupId": "cup-1",
+          "depth": 80,
+          "orientation": "inverted",
+          "ventOpen": true,
+          "waterInside": 90,
+          "tissueWet": true
+        },
+        "inflated": true,
+        "airCompared": true
+      },
+      "initialPredictions": {
+        "S05": "change",
+        "S06": "change"
+      },
+      "predictions": {
+        "S05": "change",
+        "solidConclusion": "same",
+        "S06": "change",
+        "liquidConclusion": "same",
+        "sandConclusion": "solid"
+      },
+      "design": {
+        "attemptId": "4b96d287-86e4-49d6-823c-564e42d41761",
+        "revision": 4,
+        "needs": [
+          "body",
+          "window",
+          "bumper"
+        ],
+        "parts": {
+          "body": {
+            "sampleId": "metal_plate",
+            "observationIds": []
+          },
+          "window": {
+            "sampleId": "plastic_clear",
+            "observationIds": []
+          },
+          "bumper": {
+            "sampleId": "rubber_soft",
+            "observationIds": []
+          }
+        }
+      },
+      "testResults": [],
+      "reportedRevision": null,
+      "coreComplete": false,
+      "completionArchive": [],
+      "name": "",
+      "settings": {
+        "muted": false,
+        "bgm": 0.18,
+        "sfx": 0.4,
+        "reducedMotion": false
+      }
+    },
+    "buttons": [
+      {
+        "text": "",
+        "ariaLabel": "홈",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "이전",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "소리 끄기",
+        "pressed": "true",
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "설정",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "설계로 돌아가기 →",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "1",
+        "ariaLabel": "1 직접 탐구",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "2",
+        "ariaLabel": "2 새 의뢰 2/2",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "3",
+        "ariaLabel": "3 9초 개념 보기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "자동재생",
+        "ariaLabel": "자동재생",
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "당기고 놓기 ✓",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "빛 비추기 ✓",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "물방울 떨어뜨리기 ✓",
+        "ariaLabel": null,
+        "pressed": "true",
+        "disabled": false
+      },
+      {
+        "text": "누르고 놓기 ✓",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "물이 쉽게 스며들지 않았어",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "물이 스며들어 젖은 자리가 생겼어",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "관찰 기록하기",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": true
+      },
+      {
+        "text": "다른 시료와 비교 →",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "다람쥐 모루에게 힌트 묻기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "개념 보고 다음 활동\n→",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      }
+    ],
+    "bodyText": "직접 시험해 증거를 모아라\n설계로 돌아가기 →\n1\n→\n2\n→\n3\n자동재생\n0.5배\n1배\n1.5배\n2배\n당기고 놓기 ✓\n빛 비추기 ✓\n물방울 떨어뜨리기 ✓\n누르고 놓기 ✓\n같은 크기의 물방울을 떨어뜨려요.\n관찰\n금속의 반응\n물이 쉽게 스며들지 않았어\n물이 스며들어 젖은 자리가 생겼어\n관찰 기록하기\n다른 시료와 비교 →\n모든 의뢰 완료! 개념을 보고 이어 가.\n개념 보고 다음 활동\n→"
+  }
+}

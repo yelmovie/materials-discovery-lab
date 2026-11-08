@@ -1,0 +1,87 @@
+[
+  {
+    "from": "references/images/chatgpt_generated_034.png",
+    "to": "public/assets/backgrounds/stage-1.webp",
+    "operation": "resize 1440px, WebP quality 80"
+  },
+  {
+    "from": "references/images/chatgpt_generated_041.png",
+    "to": "public/assets/backgrounds/stage-2.webp",
+    "operation": "resize 1440px, WebP quality 80"
+  },
+  {
+    "from": "references/images/chatgpt_generated_038.png",
+    "to": "public/assets/backgrounds/stage-3.webp",
+    "operation": "resize 1440px, WebP quality 80"
+  },
+  {
+    "from": "references/images/chatgpt_generated_042.png",
+    "to": "public/assets/backgrounds/stage-4.webp",
+    "operation": "resize 1440px, WebP quality 80"
+  },
+  {
+    "from": "references/images/chatgpt_generated_043.png",
+    "to": "public/assets/backgrounds/stage-5.webp",
+    "operation": "resize 1440px, WebP quality 80"
+  },
+  {
+    "from": "references/images/chatgpt_generated_051.png",
+    "to": "public/assets/characters/moru.webp",
+    "operation": "portrait crop",
+    "region": {
+      "left": 535,
+      "top": 14,
+      "width": 284,
+      "height": 301
+    }
+  },
+  {
+    "from": "references/images/chatgpt_generated_052.png",
+    "to": "public/assets/characters/dandani.webp",
+    "operation": "portrait crop",
+    "region": {
+      "left": 560,
+      "top": 51,
+      "width": 242,
+      "height": 263
+    }
+  },
+  {
+    "from": "references/images/chatgpt_generated_053.png",
+    "to": "public/assets/characters/banguli.webp",
+    "operation": "portrait crop",
+    "region": {
+      "left": 551,
+      "top": 14,
+      "width": 267,
+      "height": 329
+    }
+  },
+  {
+    "from": "references/images/chatgpt_generated_054.png",
+    "to": "public/assets/characters/barami.webp",
+    "operation": "portrait crop",
+    "region": {
+      "left": 551,
+      "top": 37,
+      "width": 284,
+      "height": 272
+    }
+  },
+  {
+    "from": "references/images/chatgpt_generated_055.png",
+    "to": "public/assets/characters/tori.webp",
+    "operation": "portrait crop",
+    "region": {
+      "left": 476,
+      "top": 9,
+      "width": 250,
+      "height": 348
+    }
+  },
+  {
+    "from": "references/images/chatgpt_generated_050.png",
+    "to": "public/assets/logo.webp",
+    "operation": "transparent trim, 900px WebP"
+  }
+]

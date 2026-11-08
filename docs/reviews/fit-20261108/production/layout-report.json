@@ -1,0 +1,4059 @@
+{
+  "startedAt": "2026-11-08T12:26:53.405172+00:00",
+  "base": "http://127.0.0.1:5320",
+  "label": "production",
+  "profiles": [
+    [
+      1280,
+      800
+    ],
+    [
+      740,
+      360
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "views": [
+    "lab",
+    "challenge"
+  ],
+  "checks": [
+    {
+      "name": "1280x800-S01-lab",
+      "screen": "S01",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid umbrella-stage ",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 22,
+      "disabledChecked": 2,
+      "textNodesChecked": 29,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 20,
+          "y": 191,
+          "w": 742,
+          "h": 519
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S01-lab.jpg"
+    },
+    {
+      "name": "1280x800-S01-challenge",
+      "screen": "S01",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 2,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S02-lab",
+      "screen": "S02",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid umbrella-stage material-placement-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 29,
+      "disabledChecked": 1,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 20,
+          "y": 280,
+          "w": 419,
+          "h": 293
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S02-lab.jpg"
+    },
+    {
+      "name": "1280x800-S02-challenge",
+      "screen": "S02",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 33,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S03-lab",
+      "screen": "S03",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid samples-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 0,
+      "textNodesChecked": 41,
+      "diagrams": [
+        {
+          "selector": "experiment-scene",
+          "x": 31,
+          "y": 231,
+          "w": 720,
+          "h": 436
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S03-lab.jpg"
+    },
+    {
+      "name": "1280x800-S03-challenge",
+      "screen": "S03",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 29,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S04-lab",
+      "screen": "S04",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid assignment-stage material-placement-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace request-workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 23,
+      "disabledChecked": 1,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "assignment-visual",
+          "x": 16,
+          "y": 130,
+          "w": 427,
+          "h": 546
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S04-lab.jpg"
+    },
+    {
+      "name": "1280x800-S04-challenge",
+      "screen": "S04",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S05-lab",
+      "screen": "S05",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid solid-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 0,
+      "textNodesChecked": 35,
+      "diagrams": [
+        {
+          "selector": "matter-scene solid-scene",
+          "x": 16,
+          "y": 160,
+          "w": 750,
+          "h": 528
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S05-lab.jpg"
+    },
+    {
+      "name": "1280x800-S05-challenge",
+      "screen": "S05",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S06-lab",
+      "screen": "S06",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid liquid-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 17,
+      "disabledChecked": 1,
+      "textNodesChecked": 41,
+      "diagrams": [
+        {
+          "selector": "liquid-vessels",
+          "x": 31,
+          "y": 173,
+          "w": 720,
+          "h": 480
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S06-lab.jpg"
+    },
+    {
+      "name": "1280x800-S06-challenge",
+      "screen": "S06",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S07-lab",
+      "screen": "S07",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 17,
+      "disabledChecked": 1,
+      "textNodesChecked": 29,
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 16,
+          "y": 160,
+          "w": 750,
+          "h": 472
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S07-lab.jpg"
+    },
+    {
+      "name": "1280x800-S07-challenge",
+      "screen": "S07",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S08-lab",
+      "screen": "S08",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 19,
+      "disabledChecked": 2,
+      "textNodesChecked": 33,
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 16,
+          "y": 160,
+          "w": 750,
+          "h": 472
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S08-lab.jpg"
+    },
+    {
+      "name": "1280x800-S08-challenge",
+      "screen": "S08",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 31,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S09-lab",
+      "screen": "S09",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid invention-stage material-placement-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 31,
+      "disabledChecked": 0,
+      "textNodesChecked": 40,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 20,
+          "y": 280,
+          "w": 419,
+          "h": 293
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S09-lab.jpg"
+    },
+    {
+      "name": "1280x800-S09-challenge",
+      "screen": "S09",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 34,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S10-lab",
+      "screen": "S10",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid invention-stage ",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 750,
+          "scrollWidth": 750,
+          "clientHeight": 594,
+          "scrollHeight": 594
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 486,
+          "scrollWidth": 486,
+          "clientHeight": 598,
+          "scrollHeight": 598
+        }
+      ],
+      "controlsChecked": 27,
+      "disabledChecked": 0,
+      "textNodesChecked": 41,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 20,
+          "y": 191,
+          "w": 742,
+          "h": 519
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/1280x800-S10-lab.jpg"
+    },
+    {
+      "name": "1280x800-S10-challenge",
+      "screen": "S10",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 596,
+          "scrollHeight": 596
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S01-lab",
+      "screen": "S01",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid umbrella-stage ",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 21,
+      "disabledChecked": 2,
+      "textNodesChecked": 28,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 165,
+          "w": 409,
+          "h": 127
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S01-lab.jpg"
+    },
+    {
+      "name": "740x360-S01-challenge",
+      "screen": "S01",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 2,
+      "textNodesChecked": 23,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S02-lab",
+      "screen": "S02",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid umbrella-stage material-placement-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 25,
+      "disabledChecked": 1,
+      "textNodesChecked": 34,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 140,
+          "w": 222,
+          "h": 104
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S02-lab.jpg"
+    },
+    {
+      "name": "740x360-S02-challenge",
+      "screen": "S02",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S03-lab",
+      "screen": "S03",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid samples-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 0,
+      "textNodesChecked": 34,
+      "diagrams": [
+        {
+          "selector": "experiment-scene",
+          "x": 20,
+          "y": 183,
+          "w": 401,
+          "h": 108
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S03-lab.jpg"
+    },
+    {
+      "name": "740x360-S03-challenge",
+      "screen": "S03",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 24,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S04-lab",
+      "screen": "S04",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid assignment-stage material-placement-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace request-workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 23,
+      "disabledChecked": 1,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "assignment-visual",
+          "x": 12,
+          "y": 113,
+          "w": 230,
+          "h": 135
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S04-lab.jpg"
+    },
+    {
+      "name": "740x360-S04-challenge",
+      "screen": "S04",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S05-lab",
+      "screen": "S05",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid solid-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 0,
+      "textNodesChecked": 31,
+      "diagrams": [
+        {
+          "selector": "matter-scene solid-scene",
+          "x": 12,
+          "y": 137,
+          "w": 417,
+          "h": 132
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S05-lab.jpg"
+    },
+    {
+      "name": "740x360-S05-challenge",
+      "screen": "S05",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S06-lab",
+      "screen": "S06",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid liquid-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 17,
+      "disabledChecked": 1,
+      "textNodesChecked": 40,
+      "diagrams": [
+        {
+          "selector": "liquid-vessels",
+          "x": 20,
+          "y": 140,
+          "w": 401,
+          "h": 98
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S06-lab.jpg"
+    },
+    {
+      "name": "740x360-S06-challenge",
+      "screen": "S06",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S07-lab",
+      "screen": "S07",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 17,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 12,
+          "y": 135,
+          "w": 417,
+          "h": 79
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S07-lab.jpg"
+    },
+    {
+      "name": "740x360-S07-challenge",
+      "screen": "S07",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S08-lab",
+      "screen": "S08",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 19,
+      "disabledChecked": 2,
+      "textNodesChecked": 32,
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 12,
+          "y": 135,
+          "w": 417,
+          "h": 79
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S08-lab.jpg"
+    },
+    {
+      "name": "740x360-S08-challenge",
+      "screen": "S08",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 26,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S09-lab",
+      "screen": "S09",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid invention-stage material-placement-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 28,
+      "disabledChecked": 0,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 140,
+          "w": 222,
+          "h": 104
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S09-lab.jpg"
+    },
+    {
+      "name": "740x360-S09-challenge",
+      "screen": "S09",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 29,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S10-lab",
+      "screen": "S10",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid invention-stage ",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 417,
+          "scrollWidth": 417,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 291,
+          "scrollWidth": 291,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 26,
+      "disabledChecked": 0,
+      "textNodesChecked": 39,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 165,
+          "w": 409,
+          "h": 127
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/740x360-S10-lab.jpg"
+    },
+    {
+      "name": "740x360-S10-challenge",
+      "screen": "S10",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S01-lab",
+      "screen": "S01",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid umbrella-stage ",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 22,
+      "disabledChecked": 2,
+      "textNodesChecked": 29,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 50,
+          "y": 220,
+          "w": 290,
+          "h": 203
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S01-lab.jpg"
+    },
+    {
+      "name": "390x844-S01-challenge",
+      "screen": "S01",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 2,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S02-lab",
+      "screen": "S02",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid umbrella-stage material-placement-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 28,
+      "disabledChecked": 1,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 15,
+          "y": 261,
+          "w": 201,
+          "h": 114
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S02-lab.jpg"
+    },
+    {
+      "name": "390x844-S02-challenge",
+      "screen": "S02",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 33,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S03-lab",
+      "screen": "S03",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid samples-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 0,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "experiment-scene",
+          "x": 17,
+          "y": 251,
+          "w": 356,
+          "h": 133
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S03-lab.jpg"
+    },
+    {
+      "name": "390x844-S03-challenge",
+      "screen": "S03",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 29,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S04-lab",
+      "screen": "S04",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid assignment-stage material-placement-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace request-workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 23,
+      "disabledChecked": 1,
+      "textNodesChecked": 37,
+      "diagrams": [
+        {
+          "selector": "assignment-visual",
+          "x": 11,
+          "y": 168,
+          "w": 209,
+          "h": 211
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S04-lab.jpg"
+    },
+    {
+      "name": "390x844-S04-challenge",
+      "screen": "S04",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S05-lab",
+      "screen": "S05",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid solid-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 0,
+      "textNodesChecked": 35,
+      "diagrams": [
+        {
+          "selector": "matter-scene solid-scene",
+          "x": 11,
+          "y": 198,
+          "w": 368,
+          "h": 194
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S05-lab.jpg"
+    },
+    {
+      "name": "390x844-S05-challenge",
+      "screen": "S05",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S06-lab",
+      "screen": "S06",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid liquid-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 17,
+      "disabledChecked": 1,
+      "textNodesChecked": 41,
+      "diagrams": [
+        {
+          "selector": "liquid-vessels",
+          "x": 17,
+          "y": 197,
+          "w": 356,
+          "h": 178
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S06-lab.jpg"
+    },
+    {
+      "name": "390x844-S06-challenge",
+      "screen": "S06",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S07-lab",
+      "screen": "S07",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 17,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 11,
+          "y": 192,
+          "w": 368,
+          "h": 156
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S07-lab.jpg"
+    },
+    {
+      "name": "390x844-S07-challenge",
+      "screen": "S07",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S08-lab",
+      "screen": "S08",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 19,
+      "disabledChecked": 2,
+      "textNodesChecked": 32,
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 11,
+          "y": 192,
+          "w": 368,
+          "h": 156
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S08-lab.jpg"
+    },
+    {
+      "name": "390x844-S08-challenge",
+      "screen": "S08",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 31,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S09-lab",
+      "screen": "S09",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid invention-stage material-placement-stage",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 31,
+      "disabledChecked": 0,
+      "textNodesChecked": 40,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 15,
+          "y": 243,
+          "w": 201,
+          "h": 133
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S09-lab.jpg"
+    },
+    {
+      "name": "390x844-S09-challenge",
+      "screen": "S09",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 34,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "390x844-S10-lab",
+      "screen": "S10",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "activity-grid invention-stage ",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 565,
+          "scrollHeight": 565
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 368,
+          "scrollWidth": 368,
+          "clientHeight": 259,
+          "scrollHeight": 259
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        }
+      ],
+      "controlsChecked": 27,
+      "disabledChecked": 0,
+      "textNodesChecked": 41,
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 50,
+          "y": 220,
+          "w": 290,
+          "h": 203
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production/390x844-S10-lab.jpg"
+    },
+    {
+      "name": "390x844-S10-challenge",
+      "screen": "S10",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "body",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 390,
+          "scrollWidth": 390,
+          "clientHeight": 844,
+          "scrollHeight": 844
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 372,
+          "scrollWidth": 372,
+          "clientHeight": 673,
+          "scrollHeight": 673
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 370,
+          "scrollWidth": 370,
+          "clientHeight": 563,
+          "scrollHeight": 563
+        }
+      ],
+      "controlsChecked": 15,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    }
+  ],
+  "dialogEvents": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "network404": [],
+  "requestFailures": [],
+  "fatalErrors": [],
+  "runtime": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/.tmp/fit-runtime",
+  "evidenceDirectory": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/production",
+  "rules": {
+    "overflowTolerancePx": 2,
+    "disabledControlsMustFit": true,
+    "scrollingAllowed": false,
+    "intentionalOverlap": "wood block inside its vessel only"
+  },
+  "limitations": [
+    "Headless Chrome only; real iPad/Android hardware is not measured."
+  ],
+  "browserProfile": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/.tmp/fit-runtime/chrome-profile-srbk7bez",
+  "studentCompletedScreens": 0,
+  "finishedAt": "2026-11-08T12:27:14.476506+00:00",
+  "summary": {
+    "views": 60,
+    "issues": 0,
+    "issuesByKind": {},
+    "failedViews": [],
+    "pageErrors": 0,
+    "consoleErrors": 0,
+    "network404": 0,
+    "requestFailures": 0,
+    "fatalErrors": 0
+  },
+  "passed": true
+}

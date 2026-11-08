@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-22",
+  "common": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read.",
+  "assets": [
+    {
+      "id": "M01",
+      "name": "숲속 공방 지도",
+      "now": true,
+      "file": "workshop-island.webp",
+      "screen": "홈·스테이지 선택",
+      "parts": "배경 그림; 문·길 좌표는 코드와 대조",
+      "prompt": "Create a polished cozy 2.5D pixel-art RPG island map for a materials-science learning adventure. Landscape 1536 x 1024. Oblique top-down view, consistent crisp pixel scale. Five distinct small science workshops arranged around a central crystal core plaza, each front door clearly visible. Warm winding sand paths connect every doorway to the plaza, with readable bridges over a small stream, lush forest edges, flowers, stones and lamps. Preserve broad clear walking routes and space around doors for DOM name labels. Distinct navy, teal, blue, green and warm copper workshop accents. No text, letters, numbers, labels, interface, people, animals or logos. No perspective camera tilt within the same scene."
+    },
+    {
+      "id": "C01",
+      "name": "메인 연구원",
+      "now": true,
+      "file": "researcher.webp",
+      "screen": "스테이지 선택",
+      "parts": "발 아래 pivot; 모루와 같은 픽셀 밀도",
+      "prompt": "One full-body chibi child field researcher sprite for the same cozy 2.5D pixel RPG science village. Single character, front three-quarter standing pose, complete visible feet on one baseline. Keep the approved identity: yellow beret with small turquoise goggles, short brown hair, cream shirt, turquoise suspender shorts, brown boots, tan satchel, and a small notebook. Friendly curious expression. Crisp deliberate pixel art with consistent pixels and a readable silhouette at 64-pixel display height. Transparent background with true alpha. No scenery, floor, shadow plane, text, weapon, extra person or sprite sheet. Square 1024 x 1024 with ten percent margin."
+    },
+    {
+      "id": "C02",
+      "name": "따라오는 모루",
+      "now": true,
+      "file": "companion.webp",
+      "screen": "스테이지 선택",
+      "parts": "기존 모루 정체성; 연구원 발 기준 동행",
+      "prompt": "One full-body friendly brown squirrel apprentice companion named Moru, matching the provided character reference identity: large curled bushy tail, cream muzzle and belly, round brass goggles, a sage-green vest, and a magnifying glass. Adapt to crisp cozy 2.5D pixel RPG sprite art, the same pixel density and three-quarter view as the child researcher. Single standing pose, full feet and tail visible, clear silhouette at small game size. Transparent true-alpha background. No text, character sheet, props separated from body, second animal, scenery or ground plane. Square 1024 x 1024 with ten percent margin."
+    },
+    {
+      "id": "U01",
+      "name": "펼친 우산 마스터",
+      "now": true,
+      "file": "umbrella.webp",
+      "screen": "S01·S02",
+      "parts": "canopy / frame / handle",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Design one fully open navy umbrella. Eight broad woven opaque fabric canopy panels, eight readable silver metal ribs connected to a straight central metal shaft, warm wooden J-shaped handle. Angle gently so both canopy and some underside structure are visible. All components connected, ribs sufficiently thick for small-screen readability. No rain, stars, patterns or stand. The fabric must read as cloth, not plastic."
+    },
+    {
+      "id": "B01",
+      "name": "보관함 마스터",
+      "now": true,
+      "file": "invention.webp",
+      "screen": "S09·S10·엔딩",
+      "parts": "body / lid / window / handle / bumper",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. One portable rectangular research storage box, closed and assembled. Muted turquoise opaque body, matching turquoise hinged lid with shallow overhang, broad rounded rectangular front observation window, warm brown arch handle attached to lid, coral pink rubber corner bumpers. Front and right side visible. Readable rounded functional part boundaries, window thickness and subtle blue tint, a small yellow star-shaped sample inside. No extra contents, floating parts, symbols or extra decoration."
+    },
+    {
+      "id": "U02",
+      "name": "우산 천",
+      "now": false,
+      "screen": "후속3D: S01·S02",
+      "parts": "canopy",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved U01 as reference. Isolate only the navy fabric canopy in exactly the same open eight-panel dome. Preserve proportions, edge contour and seams; subtle woven texture, small central attachment opening. Remove all metal ribs, shaft, handle and stand. One continuous cloth shell, readable edge thickness. Do not redesign."
+    },
+    {
+      "id": "U03",
+      "name": "우산 살·중심 봉",
+      "now": false,
+      "screen": "후속3D: S01·S02",
+      "parts": "frame",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved U01. Isolate its connected silver metal frame in the fully open state: one straight central shaft connected to eight evenly spaced curved ribs following the approved canopy. Keep ribs separate from neighbors yet connected at center and thick enough to read. Remove cloth and wooden handle. No detached rods, extra rings or impossible joints."
+    },
+    {
+      "id": "U04",
+      "name": "우산 나무 손잡이",
+      "now": false,
+      "screen": "후속3D: S01·S02",
+      "parts": "handle",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved U01. Isolate the warm wooden J-shaped handle, preserving curvature, thickness, length and wood tone. Show the top socket for the separate metal shaft, subtle lengthwise wood grain, softly rounded edges. One connected piece. No varnish glare, logo, shaft or cloth."
+    },
+    {
+      "id": "B02",
+      "name": "보관함 몸체",
+      "now": false,
+      "screen": "후속3D: S09·S10",
+      "parts": "body",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved B01. Isolate only the opaque turquoise body. Preserve width, depth, height, rounded corners and rim. Show open top, visible inner cavity, practical wall thickness and one empty rounded rectangular front opening for a separate observation window. Remove lid, handle, window insert and bumpers. Single connected body, no floating parts."
+    },
+    {
+      "id": "B03",
+      "name": "보관함 뚜껑",
+      "now": false,
+      "screen": "후속3D: S09·S10",
+      "parts": "lid; body와 재질 연동",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved B01. Isolate the turquoise lid with exact footprint, rounded corners, shallow height and overhanging rim. One connected solid piece with a readable edge profile and two simple sockets for the separate arch handle. Remove handle and all other parts. No hinges, symbols or exploded assembly."
+    },
+    {
+      "id": "B04",
+      "name": "보관함 관찰창",
+      "now": false,
+      "screen": "후속3D: S09·S10",
+      "parts": "window",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved B01. Isolate the one flat rounded rectangular front window insert. Preserve its exact aspect ratio and corner radius. Readable thickness, softly beveled edge, subtle blue tint and gentle translucency, ensuring the entire panel silhouette is visible. No box or second pane. No strong reflection, mirror effect or opaque paint. Final physical transparency is authored separately in the 3D material."
+    },
+    {
+      "id": "B05",
+      "name": "보관함 손잡이",
+      "now": false,
+      "screen": "후속3D: S09·S10",
+      "parts": "handle; 기본형 고정",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved B01. Isolate the warm brown rounded inverted-U arch handle with exact span, curvature, grip thickness and two short mounting ends. Opening under the grip stays clear, both mounting ends visible, smooth matte rounded geometry. No lid, metal fixtures, finger grooves or additional attachments."
+    },
+    {
+      "id": "B06",
+      "name": "모서리 보호대 1개",
+      "now": false,
+      "screen": "후속3D: S09·S10",
+      "parts": "bumper; 모델에서 복제",
+      "prompt": "Create one clean single-object reference for a friendly educational game. Near-orthographic front three-quarter view, mild elevation, even diffuse studio lighting, restrained navy / turquoise / warm wood / cream palette. Complete silhouette centered with ten percent clear margin. Transparent background, true alpha, no ground plane and no cast background shadow. No text, labels, logo, interface, hands, characters, collage, multiple views, motion blur or dramatic reflections. Square 1024 x 1024 or larger. Keep functional part boundaries easy to read. Use approved B01. Isolate one coral pink rubber lower corner bumper, a thick compact three-sided protector wrapping two perpendicular vertical walls and a short bottom edge. Show rounded outside corner and enough interior contact faces to explain mounting. Exact approved thickness and proportions, matte rubber. One piece only, no box, screws or copies."
+    }
+  ]
+}

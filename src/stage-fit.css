@@ -1,0 +1,317 @@
+/* One activity occupies one viewport. Only the scientific picture flexes;
+   decisions and experiment controls keep their own, visible rows. */
+.app:has(>.live-activity) { height:100dvh; overflow:hidden; }
+.activity-shell.live-activity {
+ --stage-gap:10px;
+ --text-body:clamp(16px,1.25vw,24px);
+ --space-panel:12px;
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ gap:8px;
+ height:100dvh!important;
+ min-height:0!important;
+ max-height:100dvh;
+ padding:8px 14px!important;
+ overflow:hidden;
+ container-type:size;
+ container-name:stage;
+}
+.app:has(>.live-activity)>.topbar { position:absolute; inset:12px 14px auto; }
+.app:has(>.live-activity)>.topbar .global-controls { gap:6px; }
+.app:has(>.live-activity)>.topbar .icon-button { width:44px; min-width:44px; height:44px; min-height:44px; padding:9px; border-radius:12px; }
+.app:has(>.live-activity)>.topbar .icon-button svg { width:23px; height:23px; }
+.app:has(>.live-activity)>.demo-ribbon { display:none; }
+.live-activity>.activity-heading { flex:0 0 52px; flex-wrap:nowrap; align-items:center; width:100%; max-width:none; height:52px; min-height:0; margin:0; padding:0 108px; gap:8px; }
+.live-activity>.activity-heading>div:first-child { min-width:0; max-height:52px; padding:5px 9px; gap:5px 9px; flex-wrap:wrap; border-radius:12px; }
+.live-activity .activity-heading h1 { min-width:0; margin:0; font-size:clamp(20px,1.75vw,32px); line-height:1.18; }
+.live-activity .stage-badge { display:inline-block; font-size:clamp(13px,.95vw,18px); padding:4px 6px; }
+.live-activity .activity-number { font-size:clamp(13px,.95vw,18px); white-space:nowrap; }
+.demo-mode .live-activity .activity-number::after { content:' · 시연'; }
+.live-activity .activity-heading>.secondary { flex:none; min-height:44px; font-size:15px; padding:6px 9px; }
+.live-activity .activity-heading:has(>.secondary) h1 { font-size:clamp(16px,1.5vw,28px); }
+.live-activity>.stage-body { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr) auto; justify-content:stretch; flex:1 1 0; min-width:0; min-height:0; width:100%; max-width:none; height:auto; margin:0; padding:0; gap:var(--stage-gap); overflow:hidden; }
+.live-activity .activity-toolbar { display:flex; align-items:stretch; gap:8px; min-width:0; min-height:0; }
+.live-activity .learning-rail { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); flex:1 1 auto; width:auto; max-width:none; min-width:0; padding:2px 5px; margin:0; gap:3px; }
+.live-activity .learning-rail button { min-width:0; min-height:44px; margin:0; padding:4px 7px; gap:6px; font-size:clamp(15px,1.15vw,22px); line-height:1.2; flex-wrap:nowrap; white-space:normal; }
+.live-activity .learning-rail b { flex:none; width:24px; height:24px; font-size:15px; }
+.live-activity .learning-rail>span { align-self:center; font-size:16px; }
+.live-activity .activity-grid { display:grid; grid-template-columns:minmax(0,1fr) clamp(300px,29vw,480px); grid-template-rows:minmax(0,1fr); align-items:stretch; flex:none; width:100%; height:100%; min-width:0; min-height:0; max-height:none; gap:12px; overflow:hidden; container-type:size; container-name:activity; }
+.live-activity .activity-grid>.workspace,.live-activity .activity-grid>.tools { min-width:0; min-height:0; height:100%; max-height:100%; padding:0; margin:0; overflow:hidden; align-self:stretch; }
+.live-activity .activity-grid>.workspace { flex-direction:column; align-items:stretch; justify-content:flex-start; border-radius:18px; }
+.live-activity .activity-grid>.tools { display:flex; flex-direction:column; gap:8px; }
+.live-activity .workspace>.object-area.learning-object,.live-activity .workspace>.direct-experiment { flex:1 1 0; min-height:0; min-width:0; height:auto; }
+.live-activity .workspace>.matter-lab { flex:1 1 0; min-height:0; height:auto; }
+.live-activity .workspace>.experiment-canvas { flex:1 1 0; min-height:0; height:auto; }
+.live-activity .direct-experiment { display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+.live-activity .direct-experiment>.experiment-canvas { flex:1 1 0; min-height:0; height:auto; }
+.live-activity .experiment-trigger { flex:none; min-height:44px; margin:4px 10px 8px; padding:7px 12px; font-size:clamp(16px,1.2vw,23px); line-height:1.25; }
+.live-activity .workspace-note { flex:none; margin:0; padding:5px 9px; font-size:clamp(14px,1vw,19px); line-height:1.25; }
+.live-activity .workspace:has(.sample-simulation)>.workspace-note { display:none; }
+.live-activity .experiment-tabs { flex:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; padding:7px; }
+.live-activity .experiment-tabs button { min-width:0; min-height:44px; padding:5px; gap:4px; font-size:clamp(14px,1vw,19px); line-height:1.25; }
+.live-activity .experiment-tabs button>span { width:22px; height:22px; font-size:13px; }
+.live-activity .tab-row:not(.experiment-tabs) { flex:none; display:flex; gap:5px; margin:0; padding:6px; }
+.live-activity .tab-row:not(.experiment-tabs) button { min-width:0; min-height:44px; padding:5px 7px; font-size:clamp(14px,1vw,20px); line-height:1.2; }
+.live-activity .tool-panel { display:flex; flex-direction:column; flex:1 1 0; min-width:0; min-height:0; margin:0; padding:12px; gap:8px; border-radius:16px; overflow:hidden; }
+.live-activity .tool-panel h3 { flex:none; margin:0; padding:0 0 7px; font-size:clamp(19px,1.45vw,29px); line-height:1.2; }
+.live-activity .tool-panel p { flex:none; margin:0; font-size:var(--text-body); line-height:1.35; }
+.live-activity .tool-panel .small-note { font-size:clamp(14px,1vw,19px); line-height:1.3; }
+.live-activity .tool-panel .field { flex:none; min-width:0; margin:0; gap:3px; font-size:var(--text-body); line-height:1.2; }
+.live-activity .tool-panel select,.live-activity .tool-panel input[type=range] { width:100%; min-width:0; min-height:44px; padding:6px 8px; font-size:var(--text-body); }
+.live-activity .choice { min-width:0; min-height:44px; margin:0; padding:8px 10px; font-size:var(--text-body); line-height:1.3; }
+.live-activity .choice.selected { padding:7px 9px; }
+.live-activity .stack { gap:6px; min-height:0; }
+.live-activity .tool-panel .primary,.live-activity .tool-panel .secondary,.live-activity .tools>.secondary { flex:none; min-height:44px; margin:0; padding:7px 10px; font-size:var(--text-body); line-height:1.25; }
+.live-activity .progress-chips { flex:none; gap:5px; margin:0; }
+.live-activity .progress-chips span { padding:4px 7px; font-size:clamp(14px,1vw,19px); line-height:1.2; }
+.live-activity .comparison-progress { flex:none; gap:4px; margin:0; padding:5px 0 0; font-size:clamp(14px,1vw,19px); line-height:1.2; }
+.live-activity .comparison-progress span { padding:3px 6px; }
+.live-activity .water-balance { flex:none; justify-content:center; gap:4px; margin:0; padding:4px 6px; font-size:clamp(14px,1vw,20px); line-height:1.2; }
+.live-activity .water-balance span,.live-activity .water-balance strong { padding:3px 5px; }
+.live-activity .journey { flex:none; margin:0; padding:3px 6px; gap:4px; font-size:clamp(14px,1vw,19px); line-height:1.2; }
+.live-activity .activity-footer { position:relative; display:grid; grid-template-columns:auto minmax(0,1fr) minmax(190px,auto); align-items:center; min-width:0; min-height:56px; height:56px; margin:0; padding:0; gap:8px; bottom:auto; background:none; border:0; border-radius:0; box-shadow:none; }
+.live-activity .activity-footer>.next-step { display:block; max-width:none; padding:5px 9px; font-size:clamp(14px,1.05vw,20px); line-height:1.25; }
+.live-activity .activity-footer>.primary { display:flex; min-width:0; max-width:none; width:auto; min-height:48px; height:auto; margin:0; padding:8px 13px; gap:8px; font-size:clamp(17px,1.25vw,25px); line-height:1.2; }
+.live-activity .companion-button { min-width:44px; min-height:48px; height:48px; padding:3px 8px 3px 2px; gap:4px; }
+.live-activity .companion-button img { width:32px; height:42px; margin:0; }
+.live-activity .companion-button b { font-size:clamp(14px,1vw,19px); }
+.live-activity .companion-button small { display:none; }
+.live-activity>.demo-toolbar { position:absolute; inset:auto 14px 12px; display:flex; justify-content:space-between; gap:8px; width:auto; height:48px; margin:0; z-index:18; }
+.live-activity>.demo-toolbar>.demo-step-pad { position:static; display:flex; align-items:center; height:48px; padding:2px; gap:3px; box-shadow:none; border-radius:12px; }
+.live-activity>.demo-toolbar>.demo-step-pad button { width:44px; height:44px; min-width:44px; min-height:44px; }
+.live-activity>.demo-toolbar>.demo-step-pad span { min-width:42px; font-size:14px; }
+.live-activity>.demo-toolbar>.demo-step-pad small { display:none; }
+.live-activity>.demo-toolbar>.demo-next-stage { position:static; display:flex; flex:none; justify-content:center; min-width:116px; max-width:132px; min-height:48px; height:48px; padding:6px 9px; font-size:15px; gap:4px; box-shadow:none; }
+.live-activity>.demo-toolbar>.demo-next-stage svg { width:20px; height:20px; }
+.demo-mode .live-activity .activity-footer { padding-left:146px; padding-right:140px; }
+.demo-mode .live-activity .activity-footer>.next-step { display:none; }
+.demo-mode .live-activity .activity-footer { grid-template-columns:auto minmax(0,1fr); }
+.live-activity .transfer-workspace { position:relative; width:100%; height:100%; min-width:0; min-height:0; max-height:100%; margin:0; padding:14px 18px; overflow:hidden; }
+.live-activity .challenge-heading { margin:0 0 7px; gap:8px; }
+.live-activity .challenge-heading .eyebrow { display:none; }
+.live-activity .challenge-heading h2 { font-size:clamp(20px,1.55vw,30px); line-height:1.2; }
+.live-activity .challenge-count { padding:4px 8px; font-size:clamp(14px,1vw,19px); }
+.live-activity .challenge-prompt { margin:0 0 6px; font-size:clamp(18px,1.4vw,28px); line-height:1.3; }
+.live-activity .challenge-instruction { margin:0 0 8px; font-size:clamp(14px,1vw,20px); line-height:1.25; }
+.live-activity .challenge-options { gap:7px; }
+.live-activity .challenge-options .choice { padding:8px 10px; min-height:48px; }
+.live-activity .challenge-feedback { margin:8px 0 0; padding:7px 10px; font-size:var(--text-body); line-height:1.3; }
+.live-activity .challenge-classify .drag-board { padding:5px 0; }
+.live-activity .sequence-preview { margin-top:6px; padding:5px; gap:5px; font-size:clamp(14px,1vw,19px); }
+.live-activity .classification-result article { padding:8px; }
+.live-activity .loading { min-height:0; }
+.live-activity .next-step:empty { padding:0; background:none; }
+.live-activity .sample-simulation .experiment-eyebrow { display:none; }
+.live-activity .activity-grid .object-area.learning-object .object-control-deck>.view-controls button { width:44px; min-width:44px; height:44px; min-height:44px; }
+.live-activity .object-area.learning-object .object-canvas { container-name:object-view; }
+.live-activity .object-area.learning-object .object-marker { width:44px; min-width:44px; height:44px; min-height:44px; }
+.live-activity .stage-info-button,.live-activity .prediction-launch { min-height:44px; }
+.live-activity .prediction-launch { margin:0; }
+.live-activity .object-test-caption { display:none; }
+.live-activity .samples-stage .sample-grid .choice { min-height:44px; }
+.live-activity .samples-stage .sample-answer-options { margin:0; }
+.live-activity .samples-stage .inline-feedback { margin:0; padding:0; font-size:14px; line-height:1.2; }
+.live-activity .compact-test-row>button { min-height:44px; }
+.live-activity .matter-lab .air-cup { min-height:48px; }
+.live-activity .matter-lab .cup-drag-handle { min-height:44px; }
+.live-activity .material-placement-stage .drag-token { min-height:44px; }
+.live-activity .material-placement-stage .drag-tokens { gap:2px; padding:0; }
+.live-activity .material-placement-stage .drag-token { font-size:clamp(14px,1.05vw,21px); }
+.live-activity .stage-info-button { font-size:clamp(14px,1vw,20px); }
+.live-activity .stage-conclusion-options .choice,.live-activity .sample-answer-options .choice { font-size:var(--text-body); }
+.live-activity .umbrella-stage .part-observation-card p { font-size:var(--text-body); }
+.live-activity .test-name-short { display:none; }
+.app:has(>.live-activity):has(>.toast) .activity-heading>div:first-child,body:has(>.offline-status:not([hidden])) .live-activity .activity-heading>div:first-child { visibility:hidden; }
+.app:has(>.live-activity)>.toast { top:8px; bottom:auto; left:122px; right:122px; width:auto; max-width:none; min-height:44px; height:48px; padding:0 8px; transform:none; gap:6px; font-size:15px; line-height:1.2; border-radius:11px; }
+.app:has(>.live-activity)>.toast button { flex:none; width:44px; min-width:44px; height:44px; min-height:44px; font-size:22px; }
+body:has(.live-activity)>.offline-status { top:8px!important; bottom:auto!important; left:122px!important; right:122px!important; width:auto!important; max-width:none!important; min-height:44px; padding:8px!important; transform:none!important; border-radius:11px!important; font-size:15px!important; line-height:1.2!important; }
+.live-activity .tool-panel { position:relative; }
+.live-activity .umbrella-stage .compact-panel-top { position:absolute; right:7px; top:5px; margin:0; z-index:2; }
+.live-activity .umbrella-stage .compact-panel-top>.stage-count { display:none; }
+.live-activity .umbrella-stage .tool-panel h3 { display:flex; align-items:center; min-height:44px; padding:0 94px 5px 0; }
+.live-activity .umbrella-stage.material-placement-stage .selected-material { display:none; }
+.live-activity .solid-stage>.tools,.live-activity .liquid-stage>.tools { position:relative; }
+.live-activity .prediction-launch.recorded { position:absolute; top:7px; right:7px; z-index:3; width:auto; max-width:100px; min-height:44px; margin:0; padding:5px 7px; font-size:14px; }
+.live-activity .tools:has(>.prediction-launch.recorded)>.tool-panel h3 { display:flex; align-items:center; min-height:44px; padding:0 92px 4px 0; }
+.live-activity .assignment-stage .selected-material { margin:0; padding:3px 6px; }
+.live-activity .challenge-classify .drop-slot { min-height:44px; padding:4px 6px; gap:3px; }
+.live-activity .challenge-classify .drop-slot b,.live-activity .challenge-classify .drop-slot span { font-size:clamp(14px,1.1vw,21px); line-height:1.2; }
+.live-activity .challenge-classify .manipulation-instruction { display:none; }
+.live-activity .classification-result { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.live-activity .transfer-workspace:has(.challenge-feedback)>.challenge-instruction { display:none; }
+.live-activity .transfer-workspace:has(.challenge-feedback.success) .challenge-options>.choice:not(.selected) { display:none; }
+.live-activity .transfer-workspace:has(.challenge-feedback.success) .choice.selected { opacity:1; }
+.live-activity .single-conclusion { grid-template-columns:minmax(0,1fr); }
+.live-activity button[data-next-action=true]:not(:disabled),.live-activity .activity-footer>.primary[data-next-action=true] { box-shadow:0 0 0 2px #f0cd70,0 3px 0 #295e4855; }
+.live-activity:not(:has([data-next-action=true])) .experiment-playback-button:not(:disabled):not(.is-playing) { box-shadow:0 0 0 2px #f0cd70,0 2px 0 #8ea989; }
+body:has(.live-activity)>.offline-status { z-index:90!important; }
+@media (max-width:1100px) {
+ .live-activity .stage-badge { display:none; }
+ .live-activity .activity-grid { grid-template-columns:minmax(0,1fr) minmax(280px,32%); gap:8px; }
+ .live-activity .companion-button>span { display:none; }
+ .live-activity .companion-button { padding:2px 4px; }
+ .live-activity .tool-panel { padding:9px; gap:6px; }
+ .live-activity .experiment-tabs button>span { display:none; }
+}
+@media (max-height:650px) and (min-width:700px) {
+ .activity-shell.live-activity { --stage-gap:6px; --text-body:16px; gap:5px; padding:6px 10px!important; }
+ .app:has(>.live-activity)>.topbar { inset:8px 10px auto; }
+ .live-activity>.activity-heading { flex-basis:48px; height:48px; padding-inline:104px; }
+ .live-activity .activity-heading h1 { font-size:20px; }
+ .live-activity .activity-heading>div:first-child { padding:4px 7px; max-height:48px; }
+ .live-activity .activity-number { display:none; }
+ .live-activity .learning-rail { padding:0 3px; }
+ .live-activity .learning-rail button { font-size:14px; padding:3px; gap:4px; }
+ .live-activity .learning-rail b { width:21px; height:21px; font-size:14px; }
+ .live-activity .activity-grid { grid-template-columns:minmax(0,1fr) minmax(260px,32%); gap:8px; }
+ .live-activity .tool-panel { padding:7px; gap:5px; border-radius:12px; }
+ .live-activity .tool-panel h3 { font-size:18px; padding-bottom:4px; }
+ .live-activity .tool-panel p,.live-activity .choice,.live-activity .field,.live-activity .field select { font-size:15px; line-height:1.25; }
+ .live-activity .tool-panel .small-note,.live-activity .workspace-note { font-size:14px; }
+ .live-activity .choice { padding:5px 7px; }
+ .live-activity .choice.selected { padding:4px 6px; }
+ .live-activity .tool-panel .primary,.live-activity .tool-panel .secondary { font-size:15px; padding:5px 7px; }
+ .live-activity .activity-footer { height:50px; min-height:50px; }
+ .live-activity .activity-footer>.primary { min-height:44px; padding:6px 9px; font-size:16px; }
+ .live-activity .companion-button { height:44px; min-height:44px; }
+ .live-activity .companion-button img { height:38px; width:30px; }
+ .live-activity>.demo-toolbar { bottom:9px; left:10px; right:10px; height:44px; }
+ .live-activity>.demo-toolbar>.demo-next-stage { min-height:44px; height:44px; }
+ .live-activity>.demo-toolbar>.demo-step-pad { height:44px; border-width:1px; padding:0; }
+ .live-activity .water-balance,.live-activity .journey { font-size:14px; }
+ .live-activity .journey { display:none; }
+ .live-activity .workspace:has(.liquid-simulation)>.workspace-note { display:none; }
+ .live-activity .transfer-workspace { padding:8px 10px; }
+ .live-activity .challenge-heading h2 { font-size:19px; }
+ .live-activity .challenge-prompt { font-size:16px; line-height:1.25; margin-bottom:4px; }
+ .live-activity .challenge-instruction { font-size:14px; margin-bottom:5px; }
+ .live-activity .challenge-options .choice { min-height:44px; padding:5px 7px; font-size:15px; }
+ .live-activity .challenge-feedback { padding:5px 7px; margin-top:5px; font-size:14px; }
+ .live-activity .invention-stage:not(.material-placement-stage) .compact-panel-top>.stage-info-button { display:none; }
+ .live-activity .invention-stage:not(.material-placement-stage) .compact-panel-top { margin:0; min-height:20px; }
+ .live-activity .invention-stage:not(.material-placement-stage) .tool-panel h3 { display:none; }
+ .live-activity .compact-test-list { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .live-activity .compact-test-row { flex-direction:column; gap:4px; }
+ .live-activity .compact-test-row>button { flex:none; flex-direction:column; justify-content:center; width:100%; min-height:44px; padding:4px; gap:2px; font-size:14px; }
+ .live-activity .compact-test-row>.stage-info-button { min-height:44px; }
+ .live-activity .test-name-long { display:none; }
+ .live-activity .test-name-short { display:block; }
+ .live-activity .revision-button { margin:0!important; }
+}
+@media (max-height:450px) and (min-width:700px) {
+ .app:has(>.live-activity)>.toast { top:6px; height:44px; left:116px; right:116px; font-size:14px; }
+ body:has(.live-activity)>.offline-status { top:6px!important; left:116px!important; right:116px!important; font-size:14px!important; }
+ .live-activity .challenge-heading { display:none; }
+ .live-activity .challenge-options { gap:5px; }
+ .live-activity .challenge-classify .drag-board { padding:3px 0; }
+ .live-activity .challenge-classify .drop-slots { margin-top:4px; }
+ .live-activity .challenge-classify .drag-token { min-height:44px; padding:4px 7px; font-size:14px; }
+ .live-activity .challenge-classify .drop-slot b,.live-activity .challenge-classify .drop-slot span { font-size:14px; }
+ .live-activity .classification-result article { padding:6px; font-size:14px; line-height:1.25; }
+ .live-activity .classification-result p { margin:4px 0 0; line-height:1.25; }
+ .live-activity .challenge-feedback { padding:2px 4px; margin-top:2px; line-height:1.2; }
+ .live-activity .umbrella-stage .tool-panel h3 { font-size:17px; }
+ .live-activity .umbrella-stage .part-observation-card { margin:0; padding:5px; }
+ .live-activity .umbrella-stage .part-observation-card h4 { display:none; }
+ .live-activity .umbrella-stage .part-observation-card p { font-size:14px; }
+ .live-activity .samples-stage { grid-template-columns:minmax(0,1fr) minmax(300px,42%); }
+ .live-activity .samples-stage .tool-panel h3 { padding-bottom:0; }
+ .live-activity .material-placement-stage .object-control-deck { display:none; }
+ .live-activity .material-placement-stage .object-study-heading { grid-column:1/-1; padding:1px 5px; }
+ .live-activity .material-placement-stage .object-selected-badge { padding:2px; font-size:13px; white-space:nowrap; }
+ .live-activity .stage-conclusion-options .choice,.live-activity .sample-answer-options .choice { font-size:14px; }
+}
+@container object-view (max-height:180px) {
+ .live-activity .learning-object .object-scene { width:100cqw; height:100cqh; }
+ .live-activity .learning-object .object-model-layer { inset:0 0 48px; }
+ .live-activity .learning-object .object-hotspots { inset:auto 0 0; display:flex; height:44px; align-items:center; justify-content:space-evenly; gap:4px; padding:0; }
+ .live-activity .learning-object .object-marker { position:relative; left:auto!important; top:auto!important; transform:none!important; flex:none; border-radius:10px; }
+ .live-activity .learning-object .inspection-lens { display:none; }
+}
+@media (max-width:699px) {
+ .app:has(>.live-activity)>.toast { top:58px; left:9px; right:9px; height:48px; font-size:14px; }
+ body:has(.live-activity)>.offline-status { top:58px!important; left:9px!important; right:9px!important; font-size:14px!important; }
+ .activity-shell.live-activity { --stage-gap:7px; --text-body:16px; gap:7px; padding:58px 9px 7px!important; }
+ .app:has(>.live-activity)>.topbar { inset:7px 9px auto; }
+ .live-activity>.activity-heading { flex-basis:48px; height:48px; padding:0; }
+ .live-activity>.activity-heading>div:first-child { display:flex; width:100%; padding:5px 8px; flex-wrap:nowrap; gap:6px; }
+ .live-activity .activity-heading h1 { flex-basis:auto; font-size:20px; line-height:1.15; }
+ .live-activity .activity-number { display:none; }
+ .live-activity .activity-grid { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) minmax(0,1.12fr); gap:7px; }
+ .live-activity .activity-toolbar { gap:5px; }
+ .live-activity .learning-rail { padding:0 2px; }
+ .live-activity .learning-rail button { font-size:13px; padding:2px; gap:2px; flex-wrap:wrap; }
+ .live-activity .learning-rail b { width:20px; height:20px; font-size:13px; }
+ .live-activity .learning-rail>span { font-size:12px; }
+ .live-activity .activity-grid>.workspace { border-radius:14px; }
+ .live-activity .tool-panel { padding:9px; gap:6px; border-radius:14px; }
+ .live-activity .tool-panel h3 { font-size:19px; padding-bottom:5px; }
+ .live-activity .tool-panel p { font-size:16px; }
+ .live-activity .companion-button { width:44px; min-height:44px; height:44px; padding:2px; }
+ .live-activity .companion-button>span { display:none; }
+ .live-activity .companion-button img { width:30px; height:38px; }
+ .live-activity .activity-footer { min-height:48px; height:48px; grid-template-columns:44px minmax(0,1fr); padding:0; }
+ .live-activity .activity-footer>.next-step { display:none; }
+ .live-activity .activity-footer>.primary { width:100%; min-height:44px; font-size:16px; padding:6px 9px; }
+ .demo-mode .live-activity .activity-footer { padding:0; }
+ .live-activity>.demo-toolbar { position:relative; order:3; inset:auto; width:100%; flex:none; height:44px; margin:0; }
+ .live-activity>.stage-body { order:2; }
+ .live-activity>.demo-toolbar>.demo-step-pad { height:44px; padding:0; border-width:1px; }
+ .live-activity>.demo-toolbar>.demo-next-stage { max-width:none; min-height:44px; height:44px; font-size:14px; }
+ .live-activity .experiment-tabs { gap:4px; padding:5px; }
+ .live-activity .experiment-tabs button { font-size:13px; padding:3px; }
+ .live-activity .tab-row:not(.experiment-tabs) { padding:4px; }
+ .live-activity .tab-row:not(.experiment-tabs) button { font-size:13px; }
+ .live-activity .journey,.live-activity .workspace-note { display:none; }
+ .live-activity .water-balance { font-size:13px; gap:3px; padding:3px; }
+ .live-activity .water-balance span,.live-activity .water-balance strong { padding:2px 3px; }
+ .live-activity .challenge-heading { gap:4px; margin-bottom:5px; }
+ .live-activity .challenge-heading h2 { font-size:19px; }
+ .live-activity .challenge-count { font-size:13px; padding:3px 6px; }
+ .live-activity .challenge-prompt { font-size:17px; line-height:1.3; }
+ .live-activity .challenge-instruction { font-size:14px; }
+ .live-activity .challenge-options { grid-template-columns:minmax(0,1fr); gap:6px; }
+ .live-activity .challenge-options .choice { min-height:44px; padding:7px 9px; font-size:16px; }
+ .live-activity .challenge-feedback { font-size:15px; }
+}
+
+/* One contextual instruction and one highlighted next action per activity. */
+.live-activity [data-next-action=true]:not(button) {
+ border-radius:12px;
+ outline:2px solid #be9442;
+ outline-offset:3px;
+}
+.live-activity .activity-footer>.next-step { color:#315b44; background:#fffbeded; border-left:4px solid #bf963f; }
+.live-activity .matter-lab { grid-template-rows:minmax(0,1fr) auto; }
+.live-activity .matter-lab .lab-instruction { display:none; }
+.live-activity .matter-lab .wood-block { transition-duration:calc(.3s / var(--experiment-rate,1)); }
+.live-activity .matter-lab .air-cup { transition-duration:calc(.65s / var(--experiment-rate,1)); }
+.live-activity .matter-lab .cup-water { transition-duration:calc(.8s / var(--experiment-rate,1)); }
+.live-activity .experiment-stage .sim-sample rect,.live-activity .experiment-stage .sim-pressure-tool { transition-duration:calc(.35s / var(--experiment-rate,1)); }
+.live-activity .test-overlay { animation-duration:calc(1s / var(--experiment-rate,1)); }
+.demo-mode .live-activity .activity-footer { height:auto; min-height:80px; grid-template-rows:auto 48px; gap:4px 8px; }
+.demo-mode .live-activity .activity-footer>.next-step { display:block; grid-column:1/-1; grid-row:1; font-size:clamp(14px,1vw,20px); padding:4px 8px; }
+.demo-mode .live-activity .activity-footer>.companion-dock,.demo-mode .live-activity .activity-footer>.primary { grid-row:2; }
+@media (max-width:699px) {
+ .live-activity .activity-toolbar:has(.experiment-playback-control) .learning-rail .rail-label { display:none; }
+ .live-activity .learning-rail button { min-width:44px; padding:2px; }
+ .live-activity .experiment-playback-button { min-width:104px; padding:6px 8px; font-size:15px; }
+ .live-activity .experiment-playback-speed { width:72px; padding:6px; font-size:15px; }
+ .live-activity .experiment-playback-control { gap:4px; }
+ .live-activity .activity-footer { height:auto; min-height:80px; grid-template-rows:auto 44px; gap:4px 8px; }
+ .live-activity .activity-footer>.next-step { display:block; grid-column:1/-1; grid-row:1; padding:4px 8px; font-size:14px; line-height:1.2; }
+ .live-activity .activity-footer>.companion-dock,.live-activity .activity-footer>.primary { grid-row:2; }
+ .live-activity .activity-grid { grid-template-rows:minmax(0,1fr) minmax(0,1fr); }
+ .live-activity .invention-stage:not(.material-placement-stage) .compact-test-list { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .live-activity .invention-stage:not(.material-placement-stage) .tool-panel h3 { display:none; }
+ .live-activity .compact-test-row { flex-direction:column; gap:4px; }
+ .live-activity .compact-test-row>button { flex:none; flex-direction:column; justify-content:center; width:100%; padding:4px; gap:2px; font-size:14px; }
+ .live-activity .test-name-long { display:none; }
+ .live-activity .test-name-short { display:block; }
+}
+@media (max-height:450px) and (min-width:700px) {
+ .demo-mode .live-activity .activity-footer { height:50px; min-height:50px; grid-template-rows:1fr; }
+ .demo-mode .live-activity .activity-footer>.next-step { display:none; }
+ .demo-mode .live-activity .activity-footer>.companion-dock,.demo-mode .live-activity .activity-footer>.primary { grid-row:1; }
+}

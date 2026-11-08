@@ -1,0 +1,15 @@
+{
+  "author": "Kenney",
+  "license": "CC0 1.0",
+  "source": "https://kenney.nl/assets/interface-sounds",
+  "files": {
+    "select": "click_003",
+    "drop": "drop_003",
+    "success": "confirmation_002",
+    "hint": "question_002",
+    "experiment": "switch_003",
+    "pour": "scroll_001",
+    "air": "maximize_003",
+    "retry": "pluck_001"
+  }
+}

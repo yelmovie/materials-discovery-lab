@@ -1,0 +1,783 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "events": [
+    "Concept video pause/resume preserves its playback position",
+    "S01: lab, two manual transfer tasks, concept, continuation",
+    "Video failure preserves three concept captions and continuation",
+    "S02: lab, two manual transfer tasks, concept, continuation",
+    "S03: lab, two manual transfer tasks, concept, continuation",
+    "S04: lab, two manual transfer tasks, concept, continuation",
+    "S05: lab, two manual transfer tasks, concept, continuation"
+  ],
+  "playbackChecks": [
+    {
+      "name": "S03 interrupted experiment returns to ready",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S05 three vessel moves",
+      "judgmentsPreserved": true
+    }
+  ],
+  "layoutChecks": [
+    {
+      "name": "S01 lab final",
+      "screen": "S01",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S01-a selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-a result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02 initial",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02 lab final",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02-a selected",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-a result",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-b selected",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02-b result",
+      "screen": "S02",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03 initial",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback elastic_return/rubber_soft completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "elastic_return/rubber_soft recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "elastic_return/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/glass_clear recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/plastic_clear recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "light_transmission/wood_raw recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/wood_raw recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "water_absorption/plastic_opaque recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "compression_recovery/rubber_soft recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate completed",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "compression_recovery/metal_plate recorded",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03 lab final",
+      "screen": "S03",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S03-a selected",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-a result",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-b selected",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S03-b result",
+      "screen": "S03",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04 initial",
+      "screen": "S04",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S04 lab final",
+      "screen": "S04",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S04-a selected",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-a result",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-b selected",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S04-b result",
+      "screen": "S04",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05 initial",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05 three vessel moves completed",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05 lab final",
+      "screen": "S05",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S05-a selected",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-a result",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-b selected",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S05-b result",
+      "screen": "S05",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S06 initial",
+      "screen": "S06",
+      "view": "lab",
+      "issues": [
+        {
+          "kind": "control-clipped",
+          "label": "누르는 동안 붓기",
+          "selector": "primary full",
+          "x": 447,
+          "y": 258,
+          "w": 134,
+          "h": 44,
+          "disabled": true,
+          "clippedBy": [
+            {
+              "by": "tool-panel",
+              "axes": "y",
+              "bounds": {
+                "left": 440,
+                "top": 170,
+                "right": 729,
+                "bottom": 297
+              }
+            },
+            {
+              "by": "tools",
+              "axes": "y",
+              "bounds": {
+                "left": 439,
+                "top": 111,
+                "right": 730,
+                "bottom": 298
+              }
+            },
+            {
+              "by": "activity-grid liquid-stage",
+              "axes": "y",
+              "bounds": {
+                "left": 10,
+                "top": 111,
+                "right": 730,
+                "bottom": 298
+              }
+            }
+          ]
+        },
+        {
+          "kind": "control-clipped",
+          "label": "조금씩 붓기",
+          "selector": "secondary full",
+          "x": 588,
+          "y": 258,
+          "w": 134,
+          "h": 44,
+          "disabled": true,
+          "clippedBy": [
+            {
+              "by": "tool-panel",
+              "axes": "y",
+              "bounds": {
+                "left": 440,
+                "top": 170,
+                "right": 729,
+                "bottom": 297
+              }
+            },
+            {
+              "by": "tools",
+              "axes": "y",
+              "bounds": {
+                "left": 439,
+                "top": 111,
+                "right": 730,
+                "bottom": 298
+              }
+            },
+            {
+              "by": "activity-grid liquid-stage",
+              "axes": "y",
+              "bounds": {
+                "left": 10,
+                "top": 111,
+                "right": 730,
+                "bottom": 298
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "status": "failed",
+  "failedAt": "open S06",
+  "error": "S06 initial: screen needs scrolling or hides controls: [{\"kind\": \"control-clipped\", \"label\": \"누르는 동안 붓기\", \"selector\": \"primary full\", \"x\": 447, \"y\": 258, \"w\": 134, \"h\": 44, \"disabled\": true, \"clippedBy\": [{\"by\": \"tool-panel\", \"axes\": \"y\", \"bounds\": {\"left\": 440, \"top\": 170, \"right\": 729, \"bottom\": 297}}, {\"by\": \"tools\", \"axes\": \"y\", \"bounds\": {\"left\": 439, \"top\": 111, \"right\": 730, \"bottom\": 298}}, {\"by\": \"activity-grid liquid-stage\", \"axes\": \"y\", \"bounds\": {\"left\": 10, \"top\": 111, \"right\": 730, \"bottom\": 298}}]}, {\"kind\": \"control-clipped\", \"label\": \"조금씩 붓기\", \"selector\": \"secondary full\", \"x\": 588, \"y\": 258, \"w\": 134, \"h\": 44, \"disabled\": true, \"clippedBy\": [{\"by\": \"tool-panel\", \"axes\": \"y\", \"bounds\": {\"left\": 440, \"top\": 170, \"right\": 729, \"bottom\": 297}}, {\"by\": \"tools\", \"axes\": \"y\", \"bounds\": {\"left\": 439, \"top\": 111, \"right\": 730, \"bottom\": 298}}, {\"by\": \"activity-grid liquid-stage\", \"axes\": \"y\", \"bounds\": {\"left\": 10, \"top\": 111, \"right\": 730, \"bottom\": 298}}]}]",
+  "traceback": "Traceback (most recent call last):\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 456, in main\n    state = run_flow(page)\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 323, in run_flow\n    go(page, 'S06')\n    ~~^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 119, in go\n    fit_page(page,screen+' initial')\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 75, in fit_page\n    assert not data['issues'],f'{label}: screen needs scrolling or hides controls: {json.dumps(data[\"issues\"],ensure_ascii=False)}'\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: S06 initial: screen needs scrolling or hides controls: [{\"kind\": \"control-clipped\", \"label\": \"누르는 동안 붓기\", \"selector\": \"primary full\", \"x\": 447, \"y\": 258, \"w\": 134, \"h\": 44, \"disabled\": true, \"clippedBy\": [{\"by\": \"tool-panel\", \"axes\": \"y\", \"bounds\": {\"left\": 440, \"top\": 170, \"right\": 729, \"bottom\": 297}}, {\"by\": \"tools\", \"axes\": \"y\", \"bounds\": {\"left\": 439, \"top\": 111, \"right\": 730, \"bottom\": 298}}, {\"by\": \"activity-grid liquid-stage\", \"axes\": \"y\", \"bounds\": {\"left\": 10, \"top\": 111, \"right\": 730, \"bottom\": 298}}]}, {\"kind\": \"control-clipped\", \"label\": \"조금씩 붓기\", \"selector\": \"secondary full\", \"x\": 588, \"y\": 258, \"w\": 134, \"h\": 44, \"disabled\": true, \"clippedBy\": [{\"by\": \"tool-panel\", \"axes\": \"y\", \"bounds\": {\"left\": 440, \"top\": 170, \"right\": 729, \"bottom\": 297}}, {\"by\": \"tools\", \"axes\": \"y\", \"bounds\": {\"left\": 439, \"top\": 111, \"right\": 730, \"bottom\": 298}}, {\"by\": \"activity-grid liquid-stage\", \"axes\": \"y\", \"bounds\": {\"left\": 10, \"top\": 111, \"right\": 730, \"bottom\": 298}}]}]\n",
+  "failureState": {
+    "url": "http://127.0.0.1:5319/#S06",
+    "save": {
+      "schemaVersion": 1,
+      "contentVersion": "mvp-1",
+      "origin": "student",
+      "lastRoute": "S06",
+      "lastPhase": "activity",
+      "completedScreens": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05"
+      ],
+      "observations": [
+        {
+          "id": "elastic_return:rubber_soft:standard",
+          "experiment": "elastic_return",
+          "sampleId": "rubber_soft",
+          "conditionId": "standard",
+          "result": "늘어났다가 원래 모습으로 돌아왔어",
+          "origin": "student"
+        },
+        {
+          "id": "elastic_return:metal_plate:standard",
+          "experiment": "elastic_return",
+          "sampleId": "metal_plate",
+          "conditionId": "standard",
+          "result": "눈에 띄게 늘어나지 않았어",
+          "origin": "student"
+        },
+        {
+          "id": "light_transmission:glass_clear:standard",
+          "experiment": "light_transmission",
+          "sampleId": "glass_clear",
+          "conditionId": "standard",
+          "result": "빛이 통과해 뒤쪽 표시가 보였어",
+          "origin": "student"
+        },
+        {
+          "id": "light_transmission:plastic_clear:standard",
+          "experiment": "light_transmission",
+          "sampleId": "plastic_clear",
+          "conditionId": "standard",
+          "result": "빛이 통과해 뒤쪽 표시가 보였어",
+          "origin": "student"
+        },
+        {
+          "id": "light_transmission:wood_raw:standard",
+          "experiment": "light_transmission",
+          "sampleId": "wood_raw",
+          "conditionId": "standard",
+          "result": "빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어",
+          "origin": "student"
+        },
+        {
+          "id": "water_absorption:wood_raw:standard",
+          "experiment": "water_absorption",
+          "sampleId": "wood_raw",
+          "conditionId": "standard",
+          "result": "물이 스며들어 젖은 자리가 생겼어",
+          "origin": "student"
+        },
+        {
+          "id": "water_absorption:plastic_opaque:standard",
+          "experiment": "water_absorption",
+          "sampleId": "plastic_opaque",
+          "conditionId": "standard",
+          "result": "물이 쉽게 스며들지 않았어",
+          "origin": "student"
+        },
+        {
+          "id": "compression_recovery:rubber_soft:standard",
+          "experiment": "compression_recovery",
+          "sampleId": "rubber_soft",
+          "conditionId": "standard",
+          "result": "눌렸다가 놓으니 원래 모습으로 돌아왔어",
+          "origin": "student"
+        },
+        {
+          "id": "compression_recovery:metal_plate:standard",
+          "experiment": "compression_recovery",
+          "sampleId": "metal_plate",
+          "conditionId": "standard",
+          "result": "같은 힘으로 눌러도 모양이 거의 그대로였어",
+          "origin": "student"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E01",
+          "origin": "student",
+          "observationIds": []
+        },
+        {
+          "id": "E02",
+          "origin": "student",
+          "observationIds": [
+            "elastic_return:rubber_soft:standard",
+            "elastic_return:metal_plate:standard",
+            "light_transmission:glass_clear:standard",
+            "light_transmission:plastic_clear:standard",
+            "light_transmission:wood_raw:standard",
+            "water_absorption:wood_raw:standard",
+            "water_absorption:plastic_opaque:standard",
+            "compression_recovery:rubber_soft:standard",
+            "compression_recovery:metal_plate:standard"
+          ]
+        }
+      ],
+      "challengeResults": [
+        {
+          "id": "S01-a",
+          "answer": [
+            "parts"
+          ]
+        },
+        {
+          "id": "S01-b",
+          "answer": [
+            "whole",
+            "record",
+            "compare"
+          ]
+        },
+        {
+          "id": "S02-a",
+          "answer": [
+            "umbrella:object",
+            "wood:material",
+            "cup:object",
+            "metal:material"
+          ]
+        },
+        {
+          "id": "S02-b",
+          "answer": [
+            "grain",
+            "record"
+          ]
+        },
+        {
+          "id": "S03-a",
+          "answer": [
+            "water",
+            "time"
+          ]
+        },
+        {
+          "id": "S03-b",
+          "answer": [
+            "transparent:light",
+            "restore:press",
+            "absorb:drop"
+          ]
+        },
+        {
+          "id": "S04-a",
+          "answer": [
+            "both"
+          ]
+        },
+        {
+          "id": "S04-b",
+          "answer": [
+            "need",
+            "compare",
+            "pick"
+          ]
+        },
+        {
+          "id": "S05-a",
+          "answer": [
+            "place"
+          ]
+        },
+        {
+          "id": "S05-b",
+          "answer": [
+            "outline:same",
+            "place:change",
+            "amount:same"
+          ]
+        }
+      ],
+      "checkpoints": {
+        "inspected": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "matched": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "assignments": [
+          "window",
+          "bumper"
+        ],
+        "solid": [
+          0,
+          1,
+          2
+        ],
+        "liquidStep": 0,
+        "sand": false,
+        "closed": null,
+        "open": null,
+        "inflated": false,
+        "airCompared": false
+      },
+      "initialPredictions": {
+        "S05": "change"
+      },
+      "predictions": {
+        "S05": "change",
+        "solidConclusion": "same"
+      },
+      "design": {
+        "attemptId": "07ee0b62-6046-418b-b387-fed36ab81d0a",
+        "revision": 1,
+        "needs": [],
+        "parts": {
+          "body": {
+            "sampleId": "metal_plate",
+            "observationIds": []
+          },
+          "window": {
+            "sampleId": "plastic_clear",
+            "observationIds": []
+          },
+          "bumper": {
+            "sampleId": "rubber_soft",
+            "observationIds": []
+          }
+        }
+      },
+      "testResults": [],
+      "reportedRevision": null,
+      "coreComplete": false,
+      "completionArchive": [],
+      "name": "",
+      "settings": {
+        "muted": false,
+        "bgm": 0.18,
+        "sfx": 0.4,
+        "reducedMotion": false
+      }
+    },
+    "buttons": [
+      {
+        "text": "",
+        "ariaLabel": "홈",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "이전",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "소리 끄기",
+        "pressed": "true",
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "설정",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "1\n탐구",
+        "ariaLabel": "1 직접 탐구",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "2\n새 의뢰 0/2",
+        "ariaLabel": "2 새 의뢰 0/2",
+        "pressed": null,
+        "disabled": true
+      },
+      {
+        "text": "3\n개념 보기",
+        "ariaLabel": "3 9초 개념 보기",
+        "pressed": null,
+        "disabled": true
+      },
+      {
+        "text": "자동재생",
+        "ariaLabel": "자동재생",
+        "pressed": "false",
+        "disabled": true
+      },
+      {
+        "text": "1. 먼저 예상해 보자\n↗",
+        "ariaLabel": "1. 먼저 예상해 보자",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "누르는 동안 붓기",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": true
+      },
+      {
+        "text": "조금씩 붓기",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": true
+      },
+      {
+        "text": "",
+        "ariaLabel": "다람쥐 모루에게 힌트 묻기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "탐구를 먼저 해 봐\n→",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": true
+      },
+      {
+        "text": "×",
+        "ariaLabel": "알림 닫기",
+        "pressed": null,
+        "disabled": false
+      }
+    ],
+    "bodyText": "1\n탐구\n→\n2\n새 의뢰 0/2\n→\n3\n개념 보기\n자동재생\n물높이와 용기에 담긴 모양을 살펴봐요.\n처음 컵\n넓은 용기\n길쭉한 용기\n\n갈색 점선은 처음 컵에 담겼던 물높이예요.\n\n처음 컵 100%\n넓은 용기 0%\n길쭉한 용기 0%\n총량 100%\n1. 먼저 예상해 보자\n↗\n1/3 넓은 용기로 따르기\n기울기 45°\n누르는 동안 붓기\n조금씩 붓기\n먼저 물의 모양과 양이 어떻게 될지 예상해.\n탐구를 먼저 해 봐\n→\n쓰임에 맞는 재료와 근거를 찾았어!\n×"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "name": "0.5x and 2x change experiment duration",
+      "passed": true
+    },
+    {
+      "name": "wrong observation feedback stays visible without clipping",
+      "issues": [],
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "speedSeconds": {
+    "2": 0.9648225410492159,
+    "0.5": 2.7386906250030734
+  }
+}

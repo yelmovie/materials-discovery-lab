@@ -1,0 +1,184 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "events": [],
+  "playbackChecks": [],
+  "layoutChecks": [
+    {
+      "name": "S01 lab final",
+      "screen": "S01",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S01-a selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-a result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": [
+        {
+          "kind": "scroll-y",
+          "label": "관찰한 것을 새 상황에 써 보자새 물체도 조사해요적용 의뢰 1 / 2연필을 조사해요. 재료를 알아보려면 어떻게 해야 할까요?알맞은 설명 하나를 골라요.연필이라는 물체 이름만 적어요",
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 191
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "status": "failed",
+  "failedAt": "S01 manual transfer tasks",
+  "error": "S01-a result: screen needs scrolling or hides controls: [{\"kind\": \"scroll-y\", \"label\": \"관찰한 것을 새 상황에 써 보자새 물체도 조사해요적용 의뢰 1 / 2연필을 조사해요. 재료를 알아보려면 어떻게 해야 할까요?알맞은 설명 하나를 골라요.연필이라는 물체 이름만 적어요\", \"selector\": \"transfer-workspace\", \"clientWidth\": 718, \"scrollWidth\": 718, \"clientHeight\": 185, \"scrollHeight\": 191}]",
+  "traceback": "Traceback (most recent call last):\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 433, in main\n    state = run_flow(page)\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 281, in run_flow\n    finish(page, 'S01')\n    ~~~~~~^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 187, in finish\n    solve(page, screen)\n    ~~~~~^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 180, in solve\n    fit_page(page,task['id']+' result')\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 75, in fit_page\n    assert not data['issues'],f'{label}: screen needs scrolling or hides controls: {json.dumps(data[\"issues\"],ensure_ascii=False)}'\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: S01-a result: screen needs scrolling or hides controls: [{\"kind\": \"scroll-y\", \"label\": \"관찰한 것을 새 상황에 써 보자새 물체도 조사해요적용 의뢰 1 / 2연필을 조사해요. 재료를 알아보려면 어떻게 해야 할까요?알맞은 설명 하나를 골라요.연필이라는 물체 이름만 적어요\", \"selector\": \"transfer-workspace\", \"clientWidth\": 718, \"scrollWidth\": 718, \"clientHeight\": 185, \"scrollHeight\": 191}]\n",
+  "failureState": {
+    "url": "http://127.0.0.1:5319/#S01",
+    "save": {
+      "schemaVersion": 1,
+      "contentVersion": "mvp-1",
+      "origin": "student",
+      "lastRoute": "S01",
+      "lastPhase": "activity",
+      "completedScreens": [],
+      "observations": [],
+      "evidence": [],
+      "challengeResults": [
+        {
+          "id": "S01-a",
+          "answer": [
+            "parts"
+          ]
+        }
+      ],
+      "checkpoints": {
+        "inspected": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "matched": [],
+        "assignments": [],
+        "solid": [],
+        "liquidStep": 0,
+        "sand": false,
+        "closed": null,
+        "open": null,
+        "inflated": false,
+        "airCompared": false
+      },
+      "initialPredictions": {},
+      "predictions": {},
+      "design": {
+        "attemptId": "9be36b50-bcdb-4bc7-9a1c-70b096957ac2",
+        "revision": 1,
+        "needs": [],
+        "parts": {
+          "body": {
+            "sampleId": "metal_plate",
+            "observationIds": []
+          },
+          "window": {
+            "sampleId": "plastic_clear",
+            "observationIds": []
+          },
+          "bumper": {
+            "sampleId": "rubber_soft",
+            "observationIds": []
+          }
+        }
+      },
+      "testResults": [],
+      "reportedRevision": null,
+      "coreComplete": false,
+      "completionArchive": [],
+      "name": "",
+      "settings": {
+        "muted": false,
+        "bgm": 0.18,
+        "sfx": 0.4,
+        "reducedMotion": false
+      }
+    },
+    "buttons": [
+      {
+        "text": "",
+        "ariaLabel": "홈",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "이전",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "소리 끄기",
+        "pressed": "true",
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "설정",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "1\n탐구 ✓",
+        "ariaLabel": "1 직접 탐구",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "2\n새 의뢰 1/2",
+        "ariaLabel": "2 새 의뢰 1/2",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "3\n개념 보기",
+        "ariaLabel": "3 9초 개념 보기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "연필이라는 물체 이름만 적어요",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": true
+      },
+      {
+        "text": "노란색이니 모두 같은 재료라고 해요",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": true
+      },
+      {
+        "text": "겉의 나무·가운데 심·지우개를 나누어 살펴봐요\n✓",
+        "ariaLabel": null,
+        "pressed": "true",
+        "disabled": true
+      },
+      {
+        "text": "",
+        "ariaLabel": "다람쥐 모루에게 힌트 묻기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "다음 의뢰로\n→",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      }
+    ],
+    "bodyText": "물체의 부분을 조사하라\n1\n탐구 ✓\n→\n2\n새 의뢰 1/2\n→\n3\n개념 보기\n\n연필을 조사해요. 재료를 알아보려면 어떻게 해야 할까요?\n\n알맞은 설명 하나를 골라요.\n\n연필이라는 물체 이름만 적어요\n노란색이니 모두 같은 재료라고 해요\n겉의 나무·가운데 심·지우개를 나누어 살펴봐요\n✓\n한 물체를 부분별로 살펴보면 여러 재료를 발견할 수 있어요.\n다음 의뢰로\n→"
+  }
+}

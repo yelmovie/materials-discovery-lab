@@ -1,0 +1,246 @@
+{
+  "created": "2026-10-22",
+  "source": "Original SVG → sharp → FFmpeg; no text, no audio",
+  "clips": [
+    {
+      "id": "S01",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S01.mp4",
+          "bytes": 96678,
+          "sha256": "debc1270c0e21e02dfb86ec39a5e2bb8d4e17a6075548fab14bf7959b1d5764c"
+        },
+        {
+          "name": "S01.webm",
+          "bytes": 89779,
+          "sha256": "d2e8d1bb5d8530af73ff10650c3bdc134d790018d2756955764ba7e48716a848"
+        },
+        {
+          "name": "S01.webp",
+          "bytes": 9918,
+          "sha256": "e4af52699762a316421570ca4d895b13a317ef85e9ecfd8ac57a059edb79b4ae"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S02.mp4",
+          "bytes": 93245,
+          "sha256": "a1fdbf7780d9a74adef3651cbc4a2925ea930a74dccd1221f34405f2a11cc0a7"
+        },
+        {
+          "name": "S02.webm",
+          "bytes": 83066,
+          "sha256": "7764863a29e42410191c6ed68fa3eb556efb7ecd4bf0ad0ad52749c50fb06d69"
+        },
+        {
+          "name": "S02.webp",
+          "bytes": 9918,
+          "sha256": "e4af52699762a316421570ca4d895b13a317ef85e9ecfd8ac57a059edb79b4ae"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S03.mp4",
+          "bytes": 24071,
+          "sha256": "92e6c671706d996a5069e4059ea700999d30f912d7df746a269fd464830021a3"
+        },
+        {
+          "name": "S03.webm",
+          "bytes": 25647,
+          "sha256": "64ba871add8c8f4dc7e49f2d18117786d56201c2fe350edab29e641010b38020"
+        },
+        {
+          "name": "S03.webp",
+          "bytes": 5164,
+          "sha256": "e5ce8663eb04a82c3f9d88cf98ecf46fd2da8d42be47b1fe9a9e050f5c76523d"
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S04.mp4",
+          "bytes": 28329,
+          "sha256": "426ad63a3aca7ba991f0824b9251183ad63a859d3522b6f0778fa0242239cf6c"
+        },
+        {
+          "name": "S04.webm",
+          "bytes": 28472,
+          "sha256": "78fb0731f5b18c22583a7751bdb591be7cef63a2ac37f74f006713360dba59ef"
+        },
+        {
+          "name": "S04.webp",
+          "bytes": 6052,
+          "sha256": "9f60a8e37aff1b91f9bc077692a9e23fcce55fd7d1843cb4f1edc74ef2e19a04"
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S05.mp4",
+          "bytes": 31750,
+          "sha256": "b6874b6556c5a67cd27a38d2c76c79efb5f46bd7e975c590816c643f63c16df4"
+        },
+        {
+          "name": "S05.webm",
+          "bytes": 34482,
+          "sha256": "240dabfa05571f102e57395ee0ab884307e7453634677402dce3928a4017a010"
+        },
+        {
+          "name": "S05.webp",
+          "bytes": 5072,
+          "sha256": "18c6688aaafd0024fe6493dd5c5ab36f4f742e4a7c95bcd3dcf9a68c07bb5847"
+        }
+      ]
+    },
+    {
+      "id": "S06",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S06.mp4",
+          "bytes": 64714,
+          "sha256": "170c03351694a34f80334161bf739cda4a26419112863199c0de924b3daf63e8"
+        },
+        {
+          "name": "S06.webm",
+          "bytes": 63814,
+          "sha256": "e906195d1fa10a401a97bf4a5fdc5411aaa2fe871539a0d920d32e003afd96a3"
+        },
+        {
+          "name": "S06.webp",
+          "bytes": 4242,
+          "sha256": "db56e7a5e50f9ee24dafe712183ab9deed873378e3319f7da8bf20a64686cb5e"
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S07.mp4",
+          "bytes": 24861,
+          "sha256": "d2fca5fcf46f07da8dfac702fb7a469e0716ba5c30e7890843001861de6641d9"
+        },
+        {
+          "name": "S07.webm",
+          "bytes": 26519,
+          "sha256": "66c055e5b5cbddb847e101c0f2b34f21aa69e12d87f1423a32cf830e6c5cef6b"
+        },
+        {
+          "name": "S07.webp",
+          "bytes": 3888,
+          "sha256": "327ccced0bad142f0dcfe3bfea38cfda5992526f3bbaf200008b4b1257b216e9"
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S08.mp4",
+          "bytes": 41660,
+          "sha256": "060dc410e1be3a8419994a9edb4c21d615ea0cd3e01680ee62daab2f4dd76790"
+        },
+        {
+          "name": "S08.webm",
+          "bytes": 40558,
+          "sha256": "15e89bdb6363b2dad6cf9962c242ddc0d554a9dfa123778b9f8e361bfdcca6be"
+        },
+        {
+          "name": "S08.webp",
+          "bytes": 4796,
+          "sha256": "dfb568148f805f40829c1ff58def33e3b09930fffcc01afdbc9ea1de000236e0"
+        }
+      ]
+    },
+    {
+      "id": "S09",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S09.mp4",
+          "bytes": 34865,
+          "sha256": "6de124e61da90eb8d12887e2b0d6a7f8232dd4a50a1f66f3042438a0e315c778"
+        },
+        {
+          "name": "S09.webm",
+          "bytes": 35163,
+          "sha256": "6bc14e5b3dd9a6da76e05d8c7bb1e9e68ef9ba0ead72a9bc0788724908a062ee"
+        },
+        {
+          "name": "S09.webp",
+          "bytes": 4770,
+          "sha256": "26f74513db91af94d829d8f2ab8892928c290460d8a037df1e6790ab0c396ca9"
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "seconds": 9,
+      "fps": 24,
+      "width": 960,
+      "height": 540,
+      "files": [
+        {
+          "name": "S10.mp4",
+          "bytes": 72892,
+          "sha256": "948be10aa16d8ab1b40a147b03073d722ff03ad06df510fb384331e276422a5b"
+        },
+        {
+          "name": "S10.webm",
+          "bytes": 67483,
+          "sha256": "fd121a57a6d12fcf1ce1b67843d70813dca271aa00a185079673e41d8884ebd6"
+        },
+        {
+          "name": "S10.webp",
+          "bytes": 5214,
+          "sha256": "3f3d3231a9d642eb2c003f89e0c1ceba32b6b19093a763fb50fbdbcb8e092cfa"
+        }
+      ]
+    }
+  ]
+}

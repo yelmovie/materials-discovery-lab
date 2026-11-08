@@ -1,0 +1,2473 @@
+{
+  "profiles": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1024,
+      600
+    ],
+    [
+      915,
+      412
+    ],
+    [
+      740,
+      360
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "screens": 140,
+  "pageErrors": [],
+  "checks": [
+    {
+      "name": "1920-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S02-lab",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 42,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S02-challenge",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 42,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S05-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S09-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "1몸체",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "2관찰창",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "3모서리 보호대",
+          "by": "manipulation-instruction"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1920-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 884,
+        "bottom": 976
+      }
+    },
+    {
+      "name": "1366-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S02-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "손잡이 살펴보기",
+          "by": "drag-board"
+        },
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": "drop-slot filled "
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "drop-slot filled "
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": "drop-slot filled "
+        },
+        {
+          "kind": "covered",
+          "label": "1우산 천",
+          "by": "drop-slot filled "
+        },
+        {
+          "kind": "covered",
+          "label": "2금속 살",
+          "by": "drop-slots"
+        },
+        {
+          "kind": "covered",
+          "label": "3손잡이",
+          "by": "drop-slot filled "
+        },
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 38,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S02-challenge",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 38,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S05-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "길쭉한 용기에 나무토막 옮기기",
+          "by": ""
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S09-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "모서리 보호대 살펴보기",
+          "by": "manipulation-instruction"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1366-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 586,
+        "bottom": 664
+      }
+    },
+    {
+      "name": "1280-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S02-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "손잡이 살펴보기",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "1우산 천",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "2금속 살",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "3손잡이",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 38,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S02-challenge",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 38,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S05-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "길쭉한 용기에 나무토막 옮기기",
+          "by": ""
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S09-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "모서리 보호대 살펴보기",
+          "by": "manipulation-instruction"
+        },
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "drag-tokens"
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": "drag-token  "
+        },
+        {
+          "kind": "covered",
+          "label": "1몸체",
+          "by": "drag-token  "
+        },
+        {
+          "kind": "covered",
+          "label": "2관찰창",
+          "by": "drag-token  "
+        },
+        {
+          "kind": "covered",
+          "label": "3모서리 보호대",
+          "by": "drag-tokens"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1280-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 618,
+        "bottom": 696
+      }
+    },
+    {
+      "name": "1024-S01-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "손잡이 살펴보기",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "1우산 천",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "관찰할 때 기억해",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 792,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S01-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "연필이라는 물체 이름만 적어요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 813,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S02-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "손잡이 살펴보기",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "1우산 천",
+          "by": ""
+        },
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 31,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "금속",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "나무",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "covered",
+          "label": "연결할 관찰 기록",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 950,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S02-challenge",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "우산",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "covered",
+          "label": "우산",
+          "by": "primary"
+        },
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 31,
+          "h": 48
+        },
+        {
+          "kind": "covered",
+          "label": "컵",
+          "by": "primary"
+        },
+        {
+          "kind": "target",
+          "label": "금속",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "covered",
+          "label": "금속",
+          "by": "primary"
+        },
+        {
+          "kind": "target",
+          "label": "나무",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "covered",
+          "label": "나무",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 845,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 951,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S03-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "나타나는 결과",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "비교하는 재료까지 같은 것",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 813,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S04-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "코팅하지 않은 나무",
+          "by": "demo-step-pad"
+        },
+        {
+          "kind": "covered",
+          "label": "내가 기록한 관찰",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 946,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S04-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "유리만 언제나 정답이에요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 813,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S05-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "길쭉한 용기에 나무토막 옮기기",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "처음 컵에 옮기기 ✓",
+          "by": ""
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 792,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S05-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "담긴 곳은 달라져도 구슬의 모양과 양은 같아요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 813,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S06-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "모래알 확대 관찰하기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "모래는 흘러도, 알갱이 하나하나는 모양을 유지하는 고체야.✓",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "다시 옮겨 보기",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 839,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S06-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "높아졌으니 양이 늘었다고 해요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 813,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 792,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S07-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "컵 속 공기가 공간을 차지해 물이 위쪽까지 들어오지 못했어요",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 831,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S08-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "공기 위치 표시 켜기",
+          "by": ""
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 792,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S08-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "·공기가 기포가 되어 빠져나와요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 884,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S09-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "몸체 살펴보기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "관찰창 살펴보기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "모서리 보호대 살펴보기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "checkbox",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1076,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S09-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "보호대: 모서리 접촉 충격 줄이기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "관찰창: 안쪽 표시 확인",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "몸체: 비로부터 내용물 보호",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 845,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S10-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "몸체 살펴보기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "관찰창 살펴보기",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "재료·근거 수정하기",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 967,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "1024-S10-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "현재 설계로 비·빛·충격 시험을 다시 확인해요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 813,
+      "footer": {
+        "top": 416,
+        "bottom": 496
+      }
+    },
+    {
+      "name": "915-S01-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "우산 천 살펴보기",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 789,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 806,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S02-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "우산 천 살펴보기",
+          "by": "primary"
+        },
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 31,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "금속",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "나무",
+          "w": 44,
+          "h": 48
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 947,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S02-challenge",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "우산",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 31,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "금속",
+          "w": 44,
+          "h": 48
+        },
+        {
+          "kind": "target",
+          "label": "나무",
+          "w": 44,
+          "h": 48
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 838,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S03-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "3물방울 떨어뜨리기 ✓",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "4누르고 놓기 ✓",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "금속 ✓",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "부드러운 고무 ✓✓",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 949,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 806,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S04-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "필요한 성질",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 944,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 806,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S05-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "나무토막의 모양과 크기는 그대로야.✓",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 789,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 806,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S06-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "용기에 따라 모양은 바뀌지만, 돌아온 물의 양은 같아.✓",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 835,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 824,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S07-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "마른 휴지 확인 ✓",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 789,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 824,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S08-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "컵의 공기 배출구 열기",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 789,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 877,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S09-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1073,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 838,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S10-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "비 시험 통과 ✓",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 964,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "915-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 806,
+      "footer": {
+        "top": 228,
+        "bottom": 308
+      }
+    },
+    {
+      "name": "740-S01-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1264,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 929,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S02-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        },
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 38,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1500,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S02-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "우산",
+          "by": "primary demo-next-stage"
+        },
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 38,
+          "h": 50
+        },
+        {
+          "kind": "covered",
+          "label": "컵",
+          "by": "primary demo-next-stage"
+        },
+        {
+          "kind": "covered",
+          "label": "금속",
+          "by": "primary demo-next-stage"
+        },
+        {
+          "kind": "covered",
+          "label": "나무",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 967,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S03-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "1당기고 놓기 ✓",
+          "by": "primary demo-next-stage"
+        },
+        {
+          "kind": "covered",
+          "label": "2빛 비추기 ✓",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1369,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 911,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S04-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1527,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 929,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S05-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1171,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 948,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S06-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1377,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 929,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S07-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1116,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 948,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S08-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1242,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 999,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S09-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1648,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S09-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "보호대: 모서리 접촉 충격 줄이기",
+          "by": "primary demo-next-stage"
+        },
+        {
+          "kind": "covered",
+          "label": "관찰창: 안쪽 표시 확인",
+          "by": "primary demo-next-stage"
+        },
+        {
+          "kind": "covered",
+          "label": "몸체: 비로부터 내용물 보호",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 991,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "740-S10-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1 직접 탐구 ✓",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2 새 의뢰 0/2",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "3 9초 개념 보기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1456,
+      "footer": {
+        "top": 232,
+        "bottom": 317
+      }
+    },
+    {
+      "name": "740-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 948,
+      "footer": {
+        "top": 171,
+        "bottom": 256
+      }
+    },
+    {
+      "name": "390-S01-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1우산 천",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2금속 살",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "3손잡이",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1304,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S01-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "연필이라는 물체 이름만 적어요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1071,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S02-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "1우산 천",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "2금속 살",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "3손잡이",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "target",
+          "label": "천",
+          "w": 38,
+          "h": 50
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1572,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S02-challenge",
+      "issues": [
+        {
+          "kind": "target",
+          "label": "컵",
+          "w": 38,
+          "h": 50
+        },
+        {
+          "kind": "covered",
+          "label": "물체에 놓기",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "재료에 놓기",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1059,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S03-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "당기고 놓기 →",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1380,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S03-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "나타나는 결과",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1096,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S04-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "코팅하지 않은 나무",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "금속",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "투명 유리",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "투명 플라스틱",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1654,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S04-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "유리만 언제나 정답이에요",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1089,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S05-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "길쭉한 용기에 나무토막 옮기기",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "처음 컵에 옮기기 ✓",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "넓은 용기에 옮기기 ✓",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "길쭉한 용기에 옮기기 ✓",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "내 예상 기록 ✓ · 다시 보기",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1182,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1107,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1436,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S06-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "높아졌으니 양이 늘었다고 해요",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1089,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S07-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "공기 위치 표시 켜기",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "마른 휴지 확인 ✓",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1126,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S07-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "컵 속 공기가 공간을 차지해 물이 위쪽까지 들어오지 못했어요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1089,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S08-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "공기 위치 표시 켜기",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "공기 주머니 보기",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1253,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S08-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "·공기가 있던 자리에 물이 더 들어와요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1187,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S09-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "primary"
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": ""
+        },
+        {
+          "kind": "covered",
+          "label": "1몸체",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "2관찰창",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "3모서리 보호대",
+          "by": "activity-footer"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1854,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S09-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "관찰창: 안쪽 표시 확인",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "몸체: 비로부터 내용물 보호",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1266,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S10-lab",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "확대",
+          "by": "companion-button"
+        },
+        {
+          "kind": "covered",
+          "label": "축소",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "처음 크기",
+          "by": "activity-footer"
+        },
+        {
+          "kind": "covered",
+          "label": "1몸체",
+          "by": "demo-step-pad"
+        },
+        {
+          "kind": "covered",
+          "label": "2관찰창",
+          "by": "demo-step-pad"
+        },
+        {
+          "kind": "covered",
+          "label": "3모서리 보호대",
+          "by": "primary demo-next-stage"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1595,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    },
+    {
+      "name": "390-S10-challenge",
+      "issues": [
+        {
+          "kind": "covered",
+          "label": "현재 설계로 비·빛·충격 시험을 다시 확인해요",
+          "by": "primary"
+        }
+      ],
+      "horizontalOverflow": false,
+      "bodyHeight": 1089,
+      "footer": {
+        "top": 655,
+        "bottom": 740
+      }
+    }
+  ],
+  "limitations": [
+    "Real iPad/Android hardware not measured",
+    "Scrollable content is checked separately from viewport clipping"
+  ]
+}

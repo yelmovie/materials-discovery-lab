@@ -1,0 +1,286 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "events": [
+    "Concept video pause/resume preserves its playback position",
+    "S01: lab, two manual transfer tasks, concept, continuation"
+  ],
+  "playbackChecks": [],
+  "layoutChecks": [
+    {
+      "name": "S01 lab final",
+      "screen": "S01",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S01-a selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-a result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b selected",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S01-b result",
+      "screen": "S01",
+      "view": "challenge",
+      "issues": []
+    },
+    {
+      "name": "S02 initial",
+      "screen": "S02",
+      "view": "lab",
+      "issues": []
+    },
+    {
+      "name": "S02 lab final",
+      "screen": "S02",
+      "view": "lab",
+      "issues": [
+        {
+          "kind": "control-covered",
+          "label": "손잡이: 나무에 놓기",
+          "selector": "drop-slot filled ",
+          "x": 293,
+          "y": 251,
+          "w": 136,
+          "h": 45,
+          "by": "toast"
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "status": "failed",
+  "failedAt": "S02 manual transfer tasks",
+  "error": "S02 lab final: screen needs scrolling or hides controls: [{\"kind\": \"control-covered\", \"label\": \"손잡이: 나무에 놓기\", \"selector\": \"drop-slot filled \", \"x\": 293, \"y\": 251, \"w\": 136, \"h\": 45, \"by\": \"toast\"}]",
+  "traceback": "Traceback (most recent call last):\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 456, in main\n    state = run_flow(page)\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 296, in run_flow\n    finish(page, 'S02', video_failure=True)\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 187, in finish\n    solve(page, screen)\n    ~~~~~^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 153, in solve\n    fit_page(page,screen+' lab final')\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Volumes/T7 Shield/iscreammedia_sc34/9 things/tools/check-student-flow-fit.py\", line 75, in fit_page\n    assert not data['issues'],f'{label}: screen needs scrolling or hides controls: {json.dumps(data[\"issues\"],ensure_ascii=False)}'\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: S02 lab final: screen needs scrolling or hides controls: [{\"kind\": \"control-covered\", \"label\": \"손잡이: 나무에 놓기\", \"selector\": \"drop-slot filled \", \"x\": 293, \"y\": 251, \"w\": 136, \"h\": 45, \"by\": \"toast\"}]\n",
+  "failureState": {
+    "url": "http://127.0.0.1:5319/#S02",
+    "save": {
+      "schemaVersion": 1,
+      "contentVersion": "mvp-1",
+      "origin": "student",
+      "lastRoute": "S02",
+      "lastPhase": "activity",
+      "completedScreens": [
+        "S01"
+      ],
+      "observations": [],
+      "evidence": [],
+      "challengeResults": [
+        {
+          "id": "S01-a",
+          "answer": [
+            "parts"
+          ]
+        },
+        {
+          "id": "S01-b",
+          "answer": [
+            "whole",
+            "record",
+            "compare"
+          ]
+        }
+      ],
+      "checkpoints": {
+        "inspected": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "matched": [
+          "canopy",
+          "frame",
+          "handle"
+        ],
+        "assignments": [],
+        "solid": [],
+        "liquidStep": 0,
+        "sand": false,
+        "closed": null,
+        "open": null,
+        "inflated": false,
+        "airCompared": false
+      },
+      "initialPredictions": {},
+      "predictions": {},
+      "design": {
+        "attemptId": "90d2b225-1d39-473c-8c5a-36c721d8a512",
+        "revision": 1,
+        "needs": [],
+        "parts": {
+          "body": {
+            "sampleId": "metal_plate",
+            "observationIds": []
+          },
+          "window": {
+            "sampleId": "plastic_clear",
+            "observationIds": []
+          },
+          "bumper": {
+            "sampleId": "rubber_soft",
+            "observationIds": []
+          }
+        }
+      },
+      "testResults": [],
+      "reportedRevision": null,
+      "coreComplete": false,
+      "completionArchive": [],
+      "name": "",
+      "settings": {
+        "muted": false,
+        "bgm": 0.18,
+        "sfx": 0.4,
+        "reducedMotion": false
+      }
+    },
+    "buttons": [
+      {
+        "text": "",
+        "ariaLabel": "홈",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "이전",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "소리 끄기",
+        "pressed": "true",
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "설정",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "1\n탐구 ✓",
+        "ariaLabel": "1 직접 탐구",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "2\n새 의뢰 0/2",
+        "ariaLabel": "2 새 의뢰 0/2",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "3\n개념 보기",
+        "ariaLabel": "3 9초 개념 보기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "자동재생",
+        "ariaLabel": "자동재생",
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "1",
+        "ariaLabel": "우산 천 살펴보기",
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "2",
+        "ariaLabel": "금속 살 살펴보기",
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "3",
+        "ariaLabel": "손잡이 살펴보기",
+        "pressed": "true",
+        "disabled": false
+      },
+      {
+        "text": "천",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "금속",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "나무",
+        "ariaLabel": null,
+        "pressed": "false",
+        "disabled": false
+      },
+      {
+        "text": "우산 천\n천",
+        "ariaLabel": "우산 천: 천에 놓기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "금속 살\n금속",
+        "ariaLabel": "금속 살: 금속에 놓기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "손잡이\n나무",
+        "ariaLabel": "손잡이: 나무에 놓기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "관찰·확대",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "근거와 함께 연결",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "ariaLabel": "다람쥐 모루에게 힌트 묻기",
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "새 의뢰 풀기\n→",
+        "ariaLabel": null,
+        "pressed": null,
+        "disabled": false
+      },
+      {
+        "text": "×",
+        "ariaLabel": "알림 닫기",
+        "pressed": null,
+        "disabled": false
+      }
+    ],
+    "bodyText": "부품과 재료를 연결하라\n1\n탐구 ✓\n→\n2\n새 의뢰 0/2\n→\n3\n개념 보기\n자동재생\n손잡이 관찰 중\n1\n2\n3\n천\n금속\n나무\n우산 천\n천\n금속 살\n금속\n손잡이\n나무\n나무 → 손잡이\n재료와 근거를 연결해\n관찰·확대\n연결할 관찰 기록\n우산 천 — 얇은 천이 넓게 펼쳐져 있어\n금속 살 — 가늘고 단단한 살이 천 아래를 받치고 있어\n손잡이 — 나뭇결이 보이고 손으로 잡기 편하게 구부러져 있어\n근거와 함께 연결\n새 의뢰 풀기\n→\n관찰 특징과 재료를 연결했어!\n×"
+  }
+}

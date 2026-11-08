@@ -1,0 +1,23 @@
+{
+  "events": [
+    "Video pause/resume preserves time",
+    "S01 lab + 2 transfer tasks + concept + continuation",
+    "Video failure keeps captions and continuation available",
+    "S02 lab + 2 transfer tasks + concept + continuation",
+    "S03 lab + 2 transfer tasks + concept + continuation",
+    "S04 lab + 2 transfer tasks + concept + continuation",
+    "S05 lab + 2 transfer tasks + concept + continuation",
+    "S06 lab + 2 transfer tasks + concept + continuation",
+    "S07 lab + 2 transfer tasks + concept + continuation",
+    "S08 lab + 2 transfer tasks + concept + continuation",
+    "S09 lab + 2 transfer tasks + concept + continuation",
+    "S10 lab + 2 transfer tasks + concept + continuation",
+    "Report, core, certificate, nickname, archive and reload persisted"
+  ],
+  "pageErrors": [],
+  "completedScreens": 10,
+  "observations": 10,
+  "evidence": 5,
+  "challenges": 20,
+  "archives": 1
+}

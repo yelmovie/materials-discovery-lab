@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "inspectedParts": [
+    "canopy",
+    "frame",
+    "handle"
+  ],
+  "completedScreens": 0,
+  "challengeAnswers": 0,
+  "predictions": 0,
+  "pageErrors": []
+}

@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 1,
+  "status": "implementation_design",
+  "updatedAt": "2026-10-15",
+  "project": "material-workshop-mission",
+  "scope": {
+    "stages": 5,
+    "coreScreens": 10,
+    "commonRoutes": [
+      "home",
+      "world"
+    ],
+    "threeObjectScreens": [
+      "S01",
+      "S02",
+      "S09",
+      "S10"
+    ],
+    "worldRenderer": "phaser-isometric-2d",
+    "interiorStyle": "2d-background-and-dom-ui",
+    "backend": false
+  },
+  "globalUi": {
+    "topLeft": [
+      "home",
+      "back"
+    ],
+    "topRight": [
+      "sound",
+      "settings"
+    ],
+    "minTouchPx": 48,
+    "settings": [
+      "bgmVolume",
+      "sfxVolume",
+      "reducedMotion",
+      "adminUnlockAll"
+    ],
+    "admin": {
+      "singleToggle": true,
+      "unlockTargets": [
+        "allScreens",
+        "allFinalPhases"
+      ],
+      "progressMode": "isolated_demo",
+      "persistToggle": false
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "name": "재료 감정실",
+      "npc": "moru",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "summaryEvidence": "E01",
+      "worldEffect": "재료 선반과 간판 점등",
+      "progress": 20
+    },
+    {
+      "id": 2,
+      "name": "성질 시험실",
+      "npc": "dandani",
+      "screens": [
+        "S03",
+        "S04"
+      ],
+      "summaryEvidence": "E02",
+      "worldEffect": "시험 장치와 공방 조명 복구",
+      "progress": 40
+    },
+    {
+      "id": 3,
+      "name": "상태 실험실",
+      "npc": "banguli",
+      "screens": [
+        "S05",
+        "S06"
+      ],
+      "summaryEvidence": "E03",
+      "worldEffect": "이송 배관에 물 흐름",
+      "progress": 60
+    },
+    {
+      "id": 4,
+      "name": "공기 추적실",
+      "npc": "barami",
+      "screens": [
+        "S07",
+        "S08"
+      ],
+      "summaryEvidence": "E04",
+      "worldEffect": "펌프와 환기팬 가동",
+      "progress": 80
+    },
+    {
+      "id": 5,
+      "name": "발명 제작소",
+      "npc": "tori",
+      "screens": [
+        "S09",
+        "S10"
+      ],
+      "summaryEvidence": "E05",
+      "worldEffect": "제작 설비 가동",
+      "progress": 95
+    }
+  ],
+  "screens": [
+    {
+      "id": "S01",
+      "stage": 1,
+      "title": "물체의 부분을 조사하라",
+      "npc": "moru",
+      "renderer": "three-object",
+      "prerequisites": [],
+      "actions": [
+        "우산 회전·확대",
+        "천·금속 살·나무 손잡이 선택",
+        "부분별 관찰 기록"
+      ],
+      "completion": [
+        "canopy, frame, handle 모두 조사",
+        "부분별 관찰 기록 저장"
+      ],
+      "evidence": [],
+      "next": "S02",
+      "fallback": "앞·뒤·측면 이미지와 부품 확대"
+    },
+    {
+      "id": "S02",
+      "stage": 1,
+      "title": "부품과 재료를 연결하라",
+      "npc": "moru",
+      "renderer": "three-object",
+      "prerequisites": [
+        "S01"
+      ],
+      "actions": [
+        "부품 벌리기 슬라이더",
+        "재료 후보 비교",
+        "부품마다 관찰 근거 연결"
+      ],
+      "completion": [
+        "3개 부품에 맞는 재료와 관찰 근거 연결"
+      ],
+      "evidence": [
+        "E01"
+      ],
+      "next": "world",
+      "fallback": "분리된 2D 부품과 관찰 카드"
+    },
+    {
+      "id": "S03",
+      "stage": 2,
+      "title": "직접 시험해 증거를 모아라",
+      "npc": "dandani",
+      "renderer": "phaser-2d",
+      "prerequisites": [
+        "S02"
+      ],
+      "actions": [
+        "같은 조건에서 시료 비교",
+        "당기기·놓기",
+        "빛 비추기",
+        "물방울 관찰",
+        "누르기·복원 비교"
+      ],
+      "completion": [
+        "4개 비교 실험 기록 완료",
+        "실험 후 관찰 선택 완료"
+      ],
+      "evidence": [
+        "elastic_return",
+        "light_transmission",
+        "water_absorption",
+        "compression_recovery"
+      ],
+      "next": "S04"
+    },
+    {
+      "id": "S04",
+      "stage": 2,
+      "title": "쓰임에 맞는 재료를 결정하라",
+      "npc": "dandani",
+      "renderer": "dom-2d",
+      "prerequisites": [
+        "S03"
+      ],
+      "actions": [
+        "요구 조건 확인",
+        "필요한 성질 선택",
+        "재료와 실제 관찰 근거 제출"
+      ],
+      "completion": [
+        "관찰창과 모서리 보호대 의뢰 2개 해결"
+      ],
+      "evidence": [
+        "E02"
+      ],
+      "next": "world"
+    },
+    {
+      "id": "S05",
+      "stage": 3,
+      "title": "고체를 다른 용기에 옮겨 보자",
+      "npc": "banguli",
+      "renderer": "phaser-2d",
+      "prerequisites": [
+        "S04"
+      ],
+      "actions": [
+        "결과 예상",
+        "고체를 3개 용기에 옮기기",
+        "전후 윤곽 비교"
+      ],
+      "completion": [
+        "3개 서로 다른 용기에서 관찰",
+        "관찰에 맞는 모양·크기 결론"
+      ],
+      "evidence": [],
+      "next": "S06"
+    },
+    {
+      "id": "S06",
+      "stage": 3,
+      "title": "액체를 따르고 다시 비교하자",
+      "npc": "banguli",
+      "renderer": "phaser-2d",
+      "prerequisites": [
+        "S05"
+      ],
+      "actions": [
+        "결과 예상",
+        "기울여 따르기",
+        "2개 다른 용기를 거쳐 처음 용기로 복귀",
+        "기준선 비교",
+        "모래알 확대"
+      ],
+      "completion": [
+        "액체를 흘리지 않고 원래 용기로 복귀",
+        "모양과 양 구분",
+        "모래알 관찰과 고체 판단"
+      ],
+      "evidence": [
+        "E03"
+      ],
+      "next": "world"
+    },
+    {
+      "id": "S07",
+      "stage": 4,
+      "title": "빈 컵 속 공간을 관찰하라",
+      "npc": "barami",
+      "renderer": "phaser-2d",
+      "prerequisites": [
+        "S06"
+      ],
+      "actions": [
+        "마른 휴지 확인",
+        "컵을 뒤집어 수직으로 잠그기",
+        "공기 보기 켜기·끄기",
+        "공기 공간과 휴지 상태 기록"
+      ],
+      "completion": [
+        "정해진 깊이에서 닫힌 조건 관찰 기록"
+      ],
+      "evidence": [],
+      "next": "S08"
+    },
+    {
+      "id": "S08",
+      "stage": 4,
+      "title": "공기가 나가면 무엇이 달라질까",
+      "npc": "barami",
+      "renderer": "phaser-2d",
+      "prerequisites": [
+        "S07"
+      ],
+      "actions": [
+        "같은 깊이에서 밸브 열기",
+        "기포와 물 유입 관찰",
+        "닫힘·열림 결과 비교",
+        "공기 주머니 적용"
+      ],
+      "completion": [
+        "두 조건 기록 비교",
+        "공간 점유·이동 설명",
+        "공기 주머니 팽창 관찰"
+      ],
+      "evidence": [
+        "E04"
+      ],
+      "next": "world"
+    },
+    {
+      "id": "S09",
+      "stage": 5,
+      "title": "증거를 이용해 보관함을 설계하라",
+      "npc": "tori",
+      "renderer": "three-object",
+      "prerequisites": [
+        "S08"
+      ],
+      "actions": [
+        "의뢰와 필요한 성질 선택",
+        "몸체·관찰창·보호대 재료 적용",
+        "관찰 증거 연결",
+        "3D 회전·설계 저장"
+      ],
+      "completion": [
+        "필수 부품 3개에 재료와 관련 관찰 기록 연결",
+        "쓰임에 필요한 성질 선택"
+      ],
+      "evidence": [],
+      "next": "S10",
+      "fallback": "부품 선택 가능한 정면·측면 도식"
+    },
+    {
+      "id": "S10",
+      "stage": 5,
+      "title": "시험하고 개선해 공방을 재가동하라",
+      "npc": "tori",
+      "renderer": "three-object",
+      "prerequisites": [
+        "S09"
+      ],
+      "actions": [
+        "비·빛·모서리 충격 시험",
+        "문제 부품 관찰",
+        "재료 수정·재시험",
+        "증거 보고",
+        "코어 레버 조작",
+        "인증서 확인"
+      ],
+      "completion": [
+        "현재 설계 버전의 3개 시험 모두 통과"
+      ],
+      "evidence": [
+        "E05"
+      ],
+      "next": "world",
+      "fallback": "동일 판정 규칙의 2D 시험·완성품 보기"
+    }
+  ],
+  "finalFlow": {
+    "hostScreen": "S10",
+    "phases": [
+      "report",
+      "core",
+      "ending",
+      "certificate"
+    ],
+    "requires": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05"
+    ],
+    "worldReportEntry": true,
+    "coreRequiresCurrentDesignPass": true,
+    "coreAction": "lever_drag_or_hold_button",
+    "coreProgress": 100
+  },
+  "materials": [
+    {
+      "id": "wood_raw",
+      "family": "wood",
+      "label": "코팅하지 않은 나무 시료",
+      "rigid": true,
+      "transparent": false,
+      "waterResistant": false,
+      "cushioning": false
+    },
+    {
+      "id": "metal_plate",
+      "family": "metal",
+      "label": "금속 판 시료",
+      "rigid": true,
+      "transparent": false,
+      "waterResistant": true,
+      "cushioning": false
+    },
+    {
+      "id": "glass_clear",
+      "family": "glass",
+      "label": "투명한 유리 시료",
+      "rigid": true,
+      "transparent": true,
+      "waterResistant": true,
+      "cushioning": false
+    },
+    {
+      "id": "plastic_clear",
+      "family": "plastic",
+      "label": "투명한 플라스틱 시료",
+      "rigid": true,
+      "transparent": true,
+      "waterResistant": true,
+      "cushioning": false
+    },
+    {
+      "id": "plastic_opaque",
+      "family": "plastic",
+      "label": "불투명한 플라스틱 시료",
+      "rigid": true,
+      "transparent": false,
+      "waterResistant": true,
+      "cushioning": false
+    },
+    {
+      "id": "rubber_soft",
+      "family": "rubber",
+      "label": "부드러운 고무 시료",
+      "rigid": false,
+      "transparent": false,
+      "waterResistant": true,
+      "cushioning": true
+    }
+  ],
+  "materialLimits": [
+    "모든 물질에 대한 보편 법칙이 아닌 지정 시료의 수업용 관찰 모델",
+    "천은 S01/S02 조사 전용",
+    "몸체의 접합 구조는 동일하게 통제",
+    "내구성·가격·질량은 이번 의뢰의 판정 항목이 아님"
+  ],
+  "finalRequest": {
+    "id": "visible_protected_box",
+    "requirements": [
+      {
+        "id": "dry_contents",
+        "part": "body",
+        "properties": [
+          "rigid",
+          "waterResistant"
+        ],
+        "test": "rain"
+      },
+      {
+        "id": "visible_contents",
+        "part": "window",
+        "properties": [
+          "transparent"
+        ],
+        "test": "light"
+      },
+      {
+        "id": "soft_corner_contact",
+        "part": "bumper",
+        "properties": [
+          "cushioning"
+        ],
+        "test": "impact"
+      }
+    ],
+    "editableParts": [
+      "body",
+      "window",
+      "bumper"
+    ],
+    "fixedParts": [
+      "handle"
+    ],
+    "coupledParts": {
+      "lid": "body"
+    },
+    "tests": [
+      "rain",
+      "light",
+      "impact"
+    ],
+    "evidenceLinks": {
+      "body": [
+        "water_absorption",
+        "compression_recovery"
+      ],
+      "window": [
+        "light_transmission"
+      ],
+      "bumper": [
+        "elastic_return",
+        "compression_recovery"
+      ]
+    },
+    "allowIncorrectPredictions": true,
+    "allowIncorrectDesignsWithRelevantEvidence": true,
+    "forcedFailure": false,
+    "revisionRequired": true
+  },
+  "save": {
+    "schemaVersion": 1,
+    "contentVersion": "mvp-1",
+    "storage": "localStorage",
+    "key": "material-workshop-mission.student.v1",
+    "checkpointPolicy": "stable_step",
+    "demoStorage": "memory_only"
+  },
+  "budgets": {
+    "initialCompressedMB": 8,
+    "perSceneAdditionalCompressedMB": 6,
+    "minimumSupportedFps": 30,
+    "targetFps": 60,
+    "threeObjectTotalTriangles": 20000,
+    "targetTextureEdgePx": 1024
+  },
+  "qa": [
+    "normal_flow",
+    "admin_direct_access",
+    "demo_student_isolation",
+    "resume_and_storage_failure",
+    "liquid_volume_conservation",
+    "air_comparison_conditions",
+    "design_revision_invalidation",
+    "gesture_alternatives",
+    "three_context_loss",
+    "layout_1280x720_1024x768_1920x1080"
+  ]
+}

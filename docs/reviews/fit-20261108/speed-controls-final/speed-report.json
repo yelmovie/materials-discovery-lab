@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "four real playback rates",
+      "seconds": {
+        "0.5": 6.804,
+        "1": 3.339,
+        "1.5": 2.245,
+        "2": 1.695
+      },
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "change speed during the current wait",
+      "seconds": 1.915
+    },
+    {
+      "name": "stop cancels pending part transitions"
+    },
+    {
+      "name": "manual input takes over from playback"
+    },
+    {
+      "name": "backgrounding stops playback"
+    },
+    {
+      "name": "speed remembered across stages; stops for a manual observation"
+    },
+    {
+      "name": "material and evidence decisions are manual"
+    }
+  ],
+  "pageErrors": [],
+  "passed": true
+}

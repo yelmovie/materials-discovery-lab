@@ -1,0 +1,126 @@
+{
+  "navigation": {
+    "name": "http://127.0.0.1:5320/",
+    "entryType": "navigation",
+    "startTime": 0,
+    "duration": 22.30000001192093,
+    "navigationId": 6884,
+    "initiatorType": "navigation",
+    "deliveryType": "",
+    "nextHopProtocol": "http/1.1",
+    "renderBlockingStatus": "non-blocking",
+    "contentType": "text/html",
+    "contentEncoding": "",
+    "workerStart": 0,
+    "workerRouterEvaluationStart": 0,
+    "workerCacheLookupStart": 0,
+    "workerMatchedSourceType": "",
+    "workerFinalSourceType": "",
+    "redirectStart": 0,
+    "redirectEnd": 0,
+    "fetchStart": 0.19999998807907104,
+    "domainLookupStart": 0.19999998807907104,
+    "domainLookupEnd": 0.19999998807907104,
+    "connectStart": 0.19999998807907104,
+    "secureConnectionStart": 0,
+    "connectEnd": 0.19999998807907104,
+    "requestStart": 0.5999999940395355,
+    "responseStart": 1.800000011920929,
+    "firstInterimResponseStart": 0,
+    "finalResponseHeadersStart": 1.800000011920929,
+    "responseEnd": 2.0999999940395355,
+    "transferSize": 928,
+    "encodedBodySize": 628,
+    "decodedBodySize": 628,
+    "responseStatus": 200,
+    "serverTiming": [],
+    "unloadEventStart": 0,
+    "unloadEventEnd": 0,
+    "domInteractive": 5.199999988079071,
+    "domContentLoadedEventStart": 22.19999998807907,
+    "domContentLoadedEventEnd": 22.19999998807907,
+    "domComplete": 22.30000001192093,
+    "loadEventStart": 22.30000001192093,
+    "loadEventEnd": 22.30000001192093,
+    "type": "navigate",
+    "redirectCount": 0,
+    "activationStart": 0,
+    "criticalCHRestart": 0,
+    "notRestoredReasons": null,
+    "confidence": {
+      "randomizedTriggerRate": 0.4994798,
+      "value": "high"
+    }
+  },
+  "paint": [
+    {
+      "name": "first-paint",
+      "entryType": "paint",
+      "startTime": 24,
+      "duration": 0,
+      "navigationId": 6884,
+      "paintTime": 11,
+      "presentationTime": 24
+    },
+    {
+      "name": "first-contentful-paint",
+      "entryType": "paint",
+      "startTime": 60,
+      "duration": 0,
+      "navigationId": 6884,
+      "paintTime": 40.099999994039536,
+      "presentationTime": 60
+    }
+  ],
+  "resources": [
+    {
+      "name": "http://127.0.0.1:5320/assets/index-Bo4_EkKB.js",
+      "transferSize": 112026,
+      "decodedBodySize": 350197,
+      "duration": 10.799999982118607
+    },
+    {
+      "name": "http://127.0.0.1:5320/assets/index-D4bmESgf.css",
+      "transferSize": 17181,
+      "decodedBodySize": 74005,
+      "duration": 6.199999988079071
+    },
+    {
+      "name": "http://127.0.0.1:5320/assets/logo.webp",
+      "transferSize": 76442,
+      "decodedBodySize": 76142,
+      "duration": 2.899999976158142
+    },
+    {
+      "name": "http://127.0.0.1:5320/assets/generated/title-keyart.webp",
+      "transferSize": 264914,
+      "decodedBodySize": 264614,
+      "duration": 2.7000000178813934
+    },
+    {
+      "name": "http://127.0.0.1:5320/assets/fonts/jua-korean-400.woff2",
+      "transferSize": 368472,
+      "decodedBodySize": 368172,
+      "duration": 14.599999994039536
+    },
+    {
+      "name": "http://127.0.0.1:5320/assets/fonts/jua-latin-400.woff2",
+      "transferSize": 16920,
+      "decodedBodySize": 16620,
+      "duration": 12.100000023841858
+    },
+    {
+      "name": "http://127.0.0.1:5320/favicon.ico",
+      "transferSize": 300,
+      "decodedBodySize": 0,
+      "duration": 2.5
+    },
+    {
+      "name": "http://127.0.0.1:5320/favicon.ico",
+      "transferSize": 300,
+      "decodedBodySize": 0,
+      "duration": 2.0999999940395355
+    }
+  ],
+  "conditions": "localhost Chrome headless cold context, no throttling, service worker blocked to isolate first screen; not a school/tablet speed claim"
+}

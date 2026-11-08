@@ -1,0 +1,20 @@
+
+> material-workshop-mission@1.0.0 build
+> tsc --noEmit && vite build && node scripts/prepare-offline.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 60 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               0.63 kB │ gzip:   0.43 kB
+dist/assets/index-Bh0TqU2n.css               74.02 kB │ gzip:  16.89 kB
+dist/assets/phaser-B8TbtbYl.js                0.09 kB │ gzip:   0.10 kB
+dist/assets/ObjectViewport-Cs_WHy6f.js        6.91 kB │ gzip:   3.04 kB
+dist/assets/FinalPanels-C2Fh1sad.js           7.14 kB │ gzip:   3.00 kB
+dist/assets/ExperimentCanvas-fLKvv4oZ.js      7.54 kB │ gzip:   3.68 kB
+dist/assets/WorldCanvas-OF50XKNJ.js          14.21 kB │ gzip:   5.79 kB
+dist/assets/index-B-RBsd9n.js               350.20 kB │ gzip: 111.73 kB
+dist/assets/phaser-DFK5Ua9d.js            1,208.06 kB │ gzip: 332.17 kB
+✓ built in 2.40s
+Offline precache: 109 files, 5.74 MiB, version 8e4d964200fce4fd. Syntax and file paths verified.

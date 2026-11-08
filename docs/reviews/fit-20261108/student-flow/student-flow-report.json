@@ -1,0 +1,115 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "events": [
+    "Concept video pause/resume preserves its playback position",
+    "S01: lab, two manual transfer tasks, concept, continuation",
+    "Video failure preserves three concept captions and continuation",
+    "S02: lab, two manual transfer tasks, concept, continuation",
+    "S03: lab, two manual transfer tasks, concept, continuation",
+    "S04: lab, two manual transfer tasks, concept, continuation",
+    "S05: lab, two manual transfer tasks, concept, continuation",
+    "S06: lab, two manual transfer tasks, concept, continuation",
+    "S07: lab, two manual transfer tasks, concept, continuation",
+    "S08: lab, two manual transfer tasks, concept, continuation",
+    "S09: lab, two manual transfer tasks, concept, continuation",
+    "S10: lab, two manual transfer tasks, concept, continuation",
+    "Report, core, certificate, nickname, original predictions, archive and reload persisted"
+  ],
+  "playbackChecks": [
+    {
+      "name": "S03 playback elastic_return/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback elastic_return/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/glass_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/plastic_clear",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback light_transmission/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/wood_raw",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/plastic_opaque",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/rubber_soft",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback compression_recovery/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S05 three vessel moves",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S06 explicit stop",
+      "judgmentsPreserved": true,
+      "waterStopped": true,
+      "volumes": [
+        "90%",
+        "10%",
+        "0%"
+      ]
+    },
+    {
+      "name": "S06 manual slider input stops playback",
+      "judgmentsPreserved": true,
+      "waterStopped": true,
+      "volumes": [
+        "80%",
+        "20%",
+        "0%"
+      ]
+    },
+    {
+      "name": "S06 real transfer through all three vessels",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S07 dry tissue and closed-cup observation",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 open vent and record observations",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S08 pump three times",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S03 playback water_absorption/metal_plate",
+      "judgmentsPreserved": true
+    },
+    {
+      "name": "S10 current-design rain, light and impact tests",
+      "judgmentsPreserved": true
+    }
+  ],
+  "pageErrors": [],
+  "status": "passed",
+  "viewport": [
+    1280,
+    800
+  ],
+  "completedScreens": 10,
+  "observations": 10,
+  "evidence": 5,
+  "challenges": 20,
+  "archives": 1
+}
