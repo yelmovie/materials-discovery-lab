@@ -666,3 +666,5 @@ html[data-reduced=true] * { animation: none !important; transition: none !import
 }
 
 .map-label.offscreen { visibility: hidden; }
+
+.map-tools button{width:52px;min-width:48px;justify-content:center;padding:6px}
