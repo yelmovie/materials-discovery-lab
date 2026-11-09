@@ -183,9 +183,9 @@ export function PlaybackButton(){
  const controller=useContext(ControllerContext),state=useContext(StateContext);
  if(!state.label&&!state.playing&&!state.message)return null;
  return <div className="experiment-playback-control" data-playback-control="true">
-  <button type="button" className={`experiment-playback-button ${state.playing?'is-playing':''}`} disabled={!controller||(!state.available&&!state.playing)} aria-pressed={state.playing} aria-label={state.playing?'멈추기':'자동재생'} aria-description={state.label?`${state.label} 실험 과정을 자동으로 보여줘요.`:'실험 과정을 자동으로 보여줘요.'} title="실험 과정을 보여줘요. 직접 조작하면 자동재생이 멈춰요." onClick={()=>controller?.toggle()}>
+  <button type="button" className={`experiment-playback-button ${state.playing?'is-playing':''}`} disabled={!controller||(!state.available&&!state.playing)} aria-pressed={state.playing} aria-label={state.playing?'직접 해보기':'자동재생'} aria-description={state.label?`${state.label} 실험 과정을 자동으로 보여줘요.`:'실험 과정을 자동으로 보여줘요.'} title="실험 과정을 보여줘요. 직접 조작하면 자동재생이 멈춰요." onClick={()=>controller?.toggle()}>
    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">{state.playing?<><path d="M8 5v14M16 5v14" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/></>:<path d="m8 4 12 8-12 8Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>}</svg>
-   <span>{state.playing?'멈추기':'자동재생'}</span>
+   <span>{state.playing?'직접 해보기':'자동재생'}</span>
    {state.playing&&<span className="experiment-playback-progress" aria-hidden="true"/>}
   </button>
   <select className="experiment-playback-speed" aria-label="자동재생 속도" value={state.speed} onChange={event=>controller?.setSpeed(Number(event.target.value))}>
