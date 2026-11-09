@@ -1,0 +1,206 @@
+{
+ "base": "http://127.0.0.1:5118",
+ "load": [
+  {
+   "label": "local-unthrottled",
+   "throttle": null,
+   "firstContentfulPaintMs": 1332,
+   "startButtonVisibleMs": 1335,
+   "transferredBytes": 956404,
+   "hosts": [
+    "127.0.0.1:5118"
+   ],
+   "loadingIndicatorStillVisible": false
+  },
+  {
+   "label": "school-wifi-10mbps",
+   "throttle": {
+    "latency": 40,
+    "down": 1310720,
+    "up": 655360
+   },
+   "firstContentfulPaintMs": 836,
+   "startButtonVisibleMs": 821,
+   "transferredBytes": 956404,
+   "hosts": [
+    "127.0.0.1:5118"
+   ],
+   "loadingIndicatorStillVisible": false
+  }
+ ],
+ "concepts": [
+  {
+   "screen": "S01",
+   "src": "S01.webm",
+   "poster": "S01.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3196,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S02",
+   "src": "S02.webm",
+   "poster": "S02.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3121,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S03",
+   "src": "S03.webm",
+   "poster": "S03.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3075,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S04",
+   "src": "S04.webm",
+   "poster": "S04.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3105,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S05",
+   "src": "S05.webm",
+   "poster": "S05.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3185,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S06",
+   "src": "S06.webm",
+   "poster": "S06.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.317,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.26,
+   "escCloses": true
+  },
+  {
+   "screen": "S07",
+   "src": "S07.webm",
+   "poster": "S07.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3119,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S08",
+   "src": "S08.webm",
+   "poster": "S08.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3086,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S09",
+   "src": "S09.webm",
+   "poster": "S09.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3112,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S10",
+   "src": "S10.webm",
+   "poster": "S10.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3104,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.25,
+   "escCloses": true
+  }
+ ],
+ "reduced": {
+  "paused": true,
+  "currentTime": 0,
+  "poster": "S07.webp",
+  "playButton": 1
+ },
+ "errors": [],
+ "resume": {
+  "before": {
+   "hash": "#S01",
+   "activity": true
+  },
+  "after": {
+   "hash": "#S01",
+   "activity": true,
+   "heading": "물체의 부분을 조사하라",
+   "save": "S01"
+  },
+  "lockedS07": {
+   "hash": "#S07",
+   "activityHeading": "물체의 부분을 조사하라"
+  }
+ }
+}

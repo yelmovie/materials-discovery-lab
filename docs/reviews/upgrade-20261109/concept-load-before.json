@@ -1,0 +1,190 @@
+{
+ "base": "http://127.0.0.1:5118",
+ "load": [
+  {
+   "label": "local-unthrottled",
+   "throttle": null,
+   "firstContentfulPaintMs": 536,
+   "startButtonVisibleMs": 534,
+   "transferredBytes": 956606,
+   "hosts": [
+    "127.0.0.1:5118"
+   ],
+   "loadingIndicatorStillVisible": false
+  },
+  {
+   "label": "school-wifi-10mbps",
+   "throttle": {
+    "latency": 40,
+    "down": 1310720,
+    "up": 655360
+   },
+   "firstContentfulPaintMs": 748,
+   "startButtonVisibleMs": 735,
+   "transferredBytes": 956606,
+   "hosts": [
+    "127.0.0.1:5118"
+   ],
+   "loadingIndicatorStillVisible": false
+  }
+ ],
+ "concepts": [
+  {
+   "screen": "S01",
+   "src": "S01.webm",
+   "poster": "S01.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3062,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S02",
+   "src": "S02.webm",
+   "poster": "S02.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3073,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S03",
+   "src": "S03.webm",
+   "poster": "S03.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3106,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S04",
+   "src": "S04.webm",
+   "poster": "S04.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3067,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.28,
+   "escCloses": true
+  },
+  {
+   "screen": "S05",
+   "src": "S05.webm",
+   "poster": "S05.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3073,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S06",
+   "src": "S06.webm",
+   "poster": "S06.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3102,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S07",
+   "src": "S07.webm",
+   "poster": "S07.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3101,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S08",
+   "src": "S08.webm",
+   "poster": "S08.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3128,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S09",
+   "src": "S09.webm",
+   "poster": "S09.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3088,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  },
+  {
+   "screen": "S10",
+   "src": "S10.webm",
+   "poster": "S10.webp",
+   "duration": 9,
+   "readyState": 4,
+   "currentTime": 0.3108,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 6.25,
+   "escCloses": true
+  }
+ ],
+ "reduced": {
+  "paused": true,
+  "currentTime": 0,
+  "poster": "S07.webp",
+  "playButton": 1
+ },
+ "errors": []
+}

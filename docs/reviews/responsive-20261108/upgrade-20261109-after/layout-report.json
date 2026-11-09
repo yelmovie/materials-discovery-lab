@@ -1,0 +1,1032 @@
+{
+  "profiles": [
+    [
+      1280,
+      800
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      915,
+      412
+    ],
+    [
+      1024,
+      600
+    ]
+  ],
+  "screens": 100,
+  "pageErrors": [],
+  "checks": [
+    {
+      "name": "1280-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S02-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S02-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S05-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S09-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1280-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 800,
+      "footer": {
+        "top": 712,
+        "bottom": 792
+      }
+    },
+    {
+      "name": "1920-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S02-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S02-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S05-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S09-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1920-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 1080,
+      "footer": {
+        "top": 988,
+        "bottom": 1072
+      }
+    },
+    {
+      "name": "1024-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S02-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S02-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S05-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S09-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "1024-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 768,
+      "footer": {
+        "top": 680,
+        "bottom": 760
+      }
+    },
+    {
+      "name": "915-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S02-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S02-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S05-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S09-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "915-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 412,
+      "footer": {
+        "top": 356,
+        "bottom": 406
+      }
+    },
+    {
+      "name": "1024-S01-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S01-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S02-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S02-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S03-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S03-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S04-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S04-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S05-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S05-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S06-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S06-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S07-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S07-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S08-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S08-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S09-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S09-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S10-lab",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    },
+    {
+      "name": "1024-S10-challenge",
+      "issues": [],
+      "horizontalOverflow": false,
+      "bodyHeight": 600,
+      "footer": {
+        "top": 514,
+        "bottom": 594
+      }
+    }
+  ],
+  "limitations": [
+    "Real iPad/Android hardware not measured",
+    "Scrollable content is checked separately from viewport clipping"
+  ]
+}
