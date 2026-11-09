@@ -1,5 +1,7 @@
 import type {Screen} from './model';
 
+// 개념영상 길이와 장면 경계(초). films/concept-clips/kit.mjs 의 SECONDS·CHAPTERS 와 같아야 한다.
+export const CONCEPT_SECONDS=15, CONCEPT_CHAPTER_SECONDS=5;
 export interface Concept {title:string;summary:string;cues:[string,string,string];}
 export const concepts:Record<Screen,Concept>={
  S01:{title:'한 물체, 여러 재료',summary:'우산 하나에도 천·금속·나무처럼 서로 다른 물질이 쓰여.',cues:['우산의 천, 살, 손잡이를 따로 살펴봐.','천은 펼쳐지고, 금속 살은 받치고, 나무 손잡이는 잡기 좋아.','한 물체도 쓰임에 따라 여러 재료로 만들 수 있어.']},

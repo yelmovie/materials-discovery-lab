@@ -18,7 +18,7 @@ with sync_playwright() as p:
  page.get_by_role('button',name='소리 켜기',exact=True).click();page.wait_for_function('window.__gains[0].gain.value>0')
  page.get_by_role('button',name='홈',exact=True).click();page.wait_for_function('window.__effects.length>0')
  page.get_by_role('button',name='설정',exact=True).click();page.get_by_text('교사용 가이드',exact=True).click();page.get_by_text('교사용 도구',exact=True).click();page.get_by_role('button',name='관리자 전체 해금').click();page.get_by_role('button',name='닫기',exact=True).click()
- page.evaluate("location.hash='S01'");page.get_by_role('button',name=re.compile('3 9초 개념')).click()
+ page.evaluate("location.hash='S01'");page.get_by_role('button',name=re.compile('3 15초 개념')).click()
  page.wait_for_function("document.querySelector('video').currentTime>.2")
  assert page.evaluate('window.__gains[0].gain.value===0&&window.__effects.every(a=>a.paused)')
  page.wait_for_function("document.querySelector('video').ended",timeout=15000)
@@ -30,7 +30,7 @@ with sync_playwright() as p:
  assert [r['bytes'] for r in ranges[:3]]==[1024,1024,16]
  audio=page.evaluate("async()=>{const r=await fetch('/assets/audio/success.mp3');return {status:r.status,bytes:(await r.arrayBuffer()).byteLength}}")
  assert audio['status']==200 and audio['bytes']>0
- page.evaluate("location.hash='S06'");page.get_by_role('button',name=re.compile('3 9초 개념')).click();page.wait_for_function("document.querySelector('video').currentTime>.2")
+ page.evaluate("location.hash='S06'");page.get_by_role('button',name=re.compile('3 15초 개념')).click();page.wait_for_function("document.querySelector('video').currentTime>.2")
  page.screenshot(path=str(OUT/'offline-concept.jpg'),type='jpeg',quality=80)
  page.get_by_role('button',name='패널 닫기').click()
  page.reload(wait_until='networkidle');page.get_by_role('button',name='공방으로 출발!').wait_for()

@@ -1,0 +1,139 @@
+// 모루의 발견 극장 — 개념영상 10편이 같이 쓰는 장면 부품.
+// 각 편(films.mjs)은 소품 그림·이름표·움직임 데이터만 넘기고, 화면 틀·모루·말풍선·결론·반응·도장은 여기서 만든다.
+export const W = 1920, H = 1080, FPS = 30, SECONDS = 15;
+// 장(chapter) 경계: 앱의 '관찰하기·비교하기·기억하기' 버튼과 자막이 이 시간에 맞춰 바뀐다(src/domain/concepts.ts).
+export const CHAPTERS = [0, 5, 10];
+
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+export const CSS = `
+@font-face{font-family:'Jua';src:url('assets/fonts/jua-korean-400.woff2') format('woff2');font-weight:400;unicode-range:U+1100-11FF,U+3000-303F,U+3130-318F,U+A960-A97F,U+AC00-D7AF,U+D7B0-D7FF,U+FF00-FFEF}
+@font-face{font-family:'Jua';src:url('assets/fonts/jua-latin-400.woff2') format('woff2');font-weight:400;unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF,U+2713-2717}
+:root{--paper:#F7F4E6;--grid:rgba(160,196,170,.42);--ink:#214D43;--ink2:#3E6658;--accent:#D99A1E;--mark:#FFE98A;--water:#7FD0DE;--water-line:#3FA0B6;--glass:#EEF7F4;--glass-line:#6E9A92;--coral:#C9503F}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper)}
+#root{position:relative;width:1920px;height:1080px;overflow:hidden;font-family:'Jua',sans-serif;color:var(--ink);letter-spacing:0}
+#paper{position:absolute;inset:0;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;background-position:-1px -1px}
+#cam,#cast{position:absolute;inset:0}
+#cam-inner{position:absolute;inset:0}
+#props,#lines{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:visible}
+#lines{z-index:3}
+.pic{position:absolute;display:block}
+.pic img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(33,77,67,.18))}
+.lab{position:absolute;transform:translate(-50%,-50%);z-index:4}
+.lab .card{background:#fff;border:4px solid var(--ink);border-radius:18px;padding:10px 26px 12px;text-align:center;white-space:nowrap;box-shadow:0 8px 0 rgba(33,77,67,.12)}
+.lab.accent .card{border-color:var(--accent);box-shadow:0 8px 0 rgba(217,154,30,.22)}
+.lab .main{display:block;font-size:52px;line-height:1.1}
+.lab .sub{display:block;font-size:36px;line-height:1.2;color:var(--ink2);margin-top:2px}
+.lab .tag{display:inline-block;font-size:28px;line-height:1;color:var(--ink2);border:2px solid #A9C3B8;border-radius:10px;padding:4px 10px 6px;margin-bottom:6px;background:#F2F7F1}
+.note{position:absolute;font-size:38px;color:var(--ink2);transform:translate(-50%,0);white-space:nowrap}
+#moru-pos{position:absolute;left:1528px;top:596px;width:290px;height:430px;z-index:6}
+#moru{width:100%;height:100%;object-fit:contain;transform-origin:50% 100%;filter:drop-shadow(0 10px 18px rgba(33,77,67,.2))}
+#bubble-pos{position:absolute;right:150px;top:318px;z-index:7}
+#bubble{position:relative;max-width:640px;background:#fff;border:4px solid var(--ink);border-radius:30px;padding:24px 34px 28px;font-size:50px;line-height:1.28;word-break:keep-all;transform-origin:80% 100%}
+#bubble svg{position:absolute;right:86px;bottom:-40px;width:60px;height:44px;overflow:visible}
+#npc-pos{position:absolute;left:1290px;top:790px;width:220px;height:230px;z-index:5}
+#npc{width:100%;height:100%;object-fit:contain;transform-origin:50% 100%;filter:drop-shadow(0 8px 14px rgba(33,77,67,.2))}
+#concl-pos{position:absolute;left:0;right:0;top:118px;text-align:center;z-index:8}
+#concl{display:inline-block;font-size:84px;line-height:1.15;background:rgba(255,255,255,.92);border:4px solid var(--ink);border-radius:26px;padding:18px 44px 24px;word-break:keep-all}
+#concl .w{display:inline-block;margin:0 .13em}
+#concl .w.key{background:var(--mark);border-radius:12px;padding:0 .12em;box-shadow:inset 0 -6px 0 rgba(217,154,30,.55)}
+#stamp-pos{position:absolute;left:1580px;top:372px;width:200px;height:200px;transform:rotate(-10deg);z-index:9}
+#stamp{width:200px;height:200px;border-radius:50%;border:8px solid var(--accent);background:rgba(255,250,232,.96);display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:46px;line-height:1.05;text-align:center}
+#stamp small{font-size:30px;color:var(--ink2)}
+`;
+
+// 이름표: 물체 위(또는 옆)에 카드 + 물체로 이어지는 지시선. mainAt을 주면 관찰 문장(sub)이 먼저, 재료 이름(main)이 나중에 나온다.
+export function label({id, x, y, main, sub, tag, to, accent}) {
+  const card = `<div class="card">${tag ? `<span class="tag">${esc(tag)}</span>` : ''}${main ? `<span class="main">${esc(main)}</span>` : ''}${sub ? `<span class="sub">${esc(sub)}</span>` : ''}</div>`;
+  const html = `<div class="lab${accent ? ' accent' : ''}" id="${id}" style="left:${x}px;top:${y}px">${card}</div>`;
+  const svg = to ? `<line id="${id}-ln" x1="${x}" y1="${y}" x2="${to[0]}" y2="${to[1]}" stroke="${accent ? '#D99A1E' : '#214D43'}" stroke-width="4" stroke-linecap="round"/><circle id="${id}-dot" cx="${to[0]}" cy="${to[1]}" r="10" fill="${accent ? '#D99A1E' : '#214D43'}" stroke="#fff" stroke-width="4"/>` : '';
+  return {html, svg};
+}
+
+export function page({id, title, npc, question, conclusion, stamp = ['발견!', ''], props, pics = '', labels = [], notes = '', anim}) {
+  const labs = labels.map(label);
+  const words = conclusion.words.map((w, i) => `<span class="w${conclusion.key.includes(i) ? ' key' : ''}" id="cw${i}">${esc(w)}</span>`).join('');
+  return `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<title>${esc(id)} ${esc(title)}</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>${CSS}</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="${SECONDS}" data-width="${W}" data-height="${H}">
+ <div id="paper" class="clip" data-start="0" data-duration="${SECONDS}" data-track-index="0" style="z-index:0"></div>
+ <div id="cam" class="clip" data-start="0" data-duration="${SECONDS}" data-track-index="1" style="z-index:1" data-layout-allow-overlap>
+  <div id="cam-inner">
+   <svg id="props" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+     <pattern id="wood" patternUnits="userSpaceOnUse" width="300" height="105"><image href="assets/img/wood-sample.webp" width="300" height="105" preserveAspectRatio="none"/></pattern>
+    </defs>
+    ${props}
+   </svg>
+   ${pics}
+   <svg id="lines" viewBox="0 0 1920 1080" aria-hidden="true">${labs.map(l => l.svg).join('')}</svg>
+   ${labs.map(l => l.html).join('\n   ')}
+   ${notes}
+  </div>
+ </div>
+ <div id="cast" class="clip" data-start="0" data-duration="${SECONDS}" data-track-index="2" style="z-index:2" data-layout-allow-overlap>
+  <div id="moru-pos"><img id="moru" src="assets/img/companion.webp" alt="모루" /></div>
+  <div id="bubble-pos"><div id="bubble">${esc(question)}<svg viewBox="0 0 60 44"><path d="M4 0 L56 0 L44 42 Z" fill="#fff"/><path d="M4 0 L44 42 L56 0" fill="none" stroke="#214D43" stroke-width="4" stroke-linejoin="round"/></svg></div></div>
+  ${npc ? `<div id="npc-pos"><img id="npc" src="assets/img/${npc}.webp" alt="" /></div>` : ''}
+  <div id="concl-pos"><div id="concl">${words}</div></div>
+  <div id="stamp-pos"><div id="stamp">${esc(stamp[0])}${stamp[1] ? `<small>${esc(stamp[1])}</small>` : ''}</div></div>
+ </div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const $ = s => document.querySelector(s);
+const K = {
+ // 지시선이 먼저 0.22초 그려지고, 카드가 0.32초 튀어나온다. until이 있으면 0.2초에 빠진다.
+ label(id, at, until) {
+  const ln = document.getElementById(id + '-ln');
+  if (ln) {
+   const L = Math.ceil(ln.getTotalLength());
+   tl.fromTo(ln, {strokeDasharray: L, strokeDashoffset: L}, {strokeDashoffset: 0, duration: .22, ease: 'power2.out'}, at);
+   tl.fromTo('#' + id + '-dot', {scale: 0, transformOrigin: '50% 50%'}, {scale: 1, duration: .2, ease: 'back.out(2)'}, at);
+  }
+  tl.fromTo('#' + id + ' .card', {opacity: 0, scale: .86}, {opacity: 1, scale: 1, duration: .32, ease: 'back.out(1.6)'}, at + (ln ? .14 : 0));
+  if (until != null) K.out(['#' + id + ' .card', ln && ('#' + id + '-ln'), ln && ('#' + id + '-dot')].filter(Boolean), until);
+ },
+ line(id, at) { const ln = document.getElementById(id + '-ln'); const L = Math.ceil(ln.getTotalLength()); tl.fromTo(ln, {strokeDasharray: L, strokeDashoffset: L}, {strokeDashoffset: 0, duration: .22, ease: 'power2.out'}, at); tl.fromTo('#' + id + '-dot', {scale: 0, transformOrigin: '50% 50%'}, {scale: 1, duration: .2, ease: 'back.out(2)'}, at); },
+ hideLine(id, at) { tl.fromTo(['#' + id + '-ln', '#' + id + '-dot'], {opacity: 1}, {opacity: 0, duration: .2, ease: 'power3.in', immediateRender: false}, at); },
+ reveal(sel, at) { tl.fromTo(sel, {opacity: 0, scale: .8}, {opacity: 1, scale: 1, duration: .3, ease: 'back.out(1.8)'}, at); },
+ show(sel, at, d = .3) { tl.fromTo(sel, {opacity: 0}, {opacity: 1, duration: d, ease: 'power2.out'}, at); },
+ out(sel, at, d = .2) { tl.fromTo(sel, {opacity: 1}, {opacity: 0, duration: d, ease: 'power3.in', immediateRender: false}, at); },
+ ring(sel, at, until) { tl.fromTo(sel, {opacity: 0, scale: .6, transformOrigin: '50% 50%'}, {opacity: 1, scale: 1, duration: .4, ease: 'expo.out'}, at); if (until != null) K.out(sel, until); },
+ draw(sel, at, d = .35) { const e = $(sel); const L = Math.ceil(e.getTotalLength()); tl.fromTo(e, {strokeDasharray: L, strokeDashoffset: L}, {strokeDashoffset: 0, duration: d, ease: 'power2.inOut'}, at); },
+ take(sel, at) { tl.to(sel, {scaleY: .92, scaleX: 1.05, duration: .12, ease: 'power2.out'}, at).to(sel, {scaleY: 1, scaleX: 1, duration: .25, ease: 'back.out(1.6)'}, at + .12); },
+ hop(sel, at) { tl.to(sel, {scaleY: .9, scaleX: 1.06, duration: .1, ease: 'power2.out'}, at).to(sel, {y: -54, scaleY: 1.04, scaleX: .97, duration: .24, ease: 'power2.out'}, at + .1).to(sel, {y: 0, scaleY: 1, scaleX: 1, duration: .3, ease: 'power2.in'}, at + .34).to(sel, {scaleY: .94, scaleX: 1.04, duration: .08}, at + .64).to(sel, {scaleY: 1, scaleX: 1, duration: .2, ease: 'back.out(1.6)'}, at + .72); },
+ cam(at, scale, ox, oy, d = .8) { tl.to('#cam-inner', {scale, transformOrigin: ox + 'px ' + oy + 'px', duration: d, ease: 'power2.inOut'}, at); },
+ // 공통 연출: 모루 등장 → 질문 말풍선 → (각 편의 실험) → 결론 한 줄 → 캐릭터 반응 → 발견 도장
+ open(bubbleIn, bubbleOut) {
+  tl.fromTo('#moru-pos', {x: 420}, {x: 0, duration: .6, ease: 'expo.out'}, .15);
+  K.take('#moru', .75);
+  tl.fromTo('#bubble', {opacity: 0, scale: .9}, {opacity: 1, scale: 1, duration: .35, ease: 'back.out(1.4)'}, bubbleIn);
+  tl.fromTo('#bubble', {opacity: 1}, {opacity: 0, scale: .96, duration: .22, ease: 'power3.in', immediateRender: false}, bubbleOut);
+  tl.to('#moru', {rotation: -4, transformOrigin: '50% 100%', duration: .5, ease: 'power2.inOut'}, bubbleOut + .1);
+ },
+ close(conclAt, npcAt, stampAt) {
+  tl.fromTo('#concl', {opacity: 0}, {opacity: 1, duration: .15, ease: 'power2.out'}, conclAt);
+  document.querySelectorAll('#concl .w').forEach((w, i) => tl.fromTo(w, {opacity: 0, filter: 'blur(6px)'}, {opacity: 1, filter: 'blur(0px)', duration: .14, ease: 'power2.out'}, conclAt + .05 + i * .08));
+  tl.to('#moru', {rotation: 0, duration: .4, ease: 'power2.inOut'}, conclAt);
+  if ($('#npc')) { tl.fromTo('#npc-pos', {y: 260, opacity: 0}, {y: 0, opacity: 1, duration: .5, ease: 'expo.out'}, npcAt); K.take('#npc', npcAt + .5); }
+  K.hop('#moru', npcAt + .35);
+  tl.fromTo('#stamp', {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: .3, ease: 'back.out(1.7)'}, stampAt);
+ },
+};
+${anim}
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>
+`;
+}

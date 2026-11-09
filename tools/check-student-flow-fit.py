@@ -191,14 +191,14 @@ def finish(page, screen, video_failure=False):
     page.locator('.activity-footer>.primary').click()
     page.locator('dialog[open] video').wait_for()
     if video_failure:
-        play = page.get_by_role('button', name='9초 개념 영상 보기')
+        play = page.get_by_role('button', name='15초 개념 영상 보기')
         if play.count() and play.is_visible():
             play.click()
         page.locator('.concept-fallback').wait_for(timeout=12000)
         assert page.locator('.concept-fallback li').count() == 3
         events.append('Video failure preserves three concept captions and continuation')
     else:
-        page.get_by_role('button', name='9초 개념 영상 보기').click()
+        page.get_by_role('button', name='15초 개념 영상 보기').click()
         page.wait_for_function('document.querySelector("dialog[open] video").currentTime>.2', timeout=12000)
         assert page.locator('dialog[open] video').evaluate('(v)=>Math.abs(v.duration-9)<.15')
         if screen == 'S01':

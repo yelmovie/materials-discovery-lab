@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<title>S10 시험하고, 고치고, 다시 시험해</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:'Jua';src:url('assets/fonts/jua-korean-400.woff2') format('woff2');font-weight:400;unicode-range:U+1100-11FF,U+3000-303F,U+3130-318F,U+A960-A97F,U+AC00-D7AF,U+D7B0-D7FF,U+FF00-FFEF}
+@font-face{font-family:'Jua';src:url('assets/fonts/jua-latin-400.woff2') format('woff2');font-weight:400;unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF,U+2713-2717}
+:root{--paper:#F7F4E6;--grid:rgba(160,196,170,.42);--ink:#214D43;--ink2:#3E6658;--accent:#D99A1E;--mark:#FFE98A;--water:#7FD0DE;--water-line:#3FA0B6;--glass:#EEF7F4;--glass-line:#6E9A92;--coral:#C9503F}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper)}
+#root{position:relative;width:1920px;height:1080px;overflow:hidden;font-family:'Jua',sans-serif;color:var(--ink);letter-spacing:0}
+#paper{position:absolute;inset:0;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;background-position:-1px -1px}
+#cam,#cast{position:absolute;inset:0}
+#cam-inner{position:absolute;inset:0}
+#props,#lines{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:visible}
+#lines{z-index:3}
+.pic{position:absolute;display:block}
+.pic img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(33,77,67,.18))}
+.lab{position:absolute;transform:translate(-50%,-50%);z-index:4}
+.lab .card{background:#fff;border:4px solid var(--ink);border-radius:18px;padding:10px 26px 12px;text-align:center;white-space:nowrap;box-shadow:0 8px 0 rgba(33,77,67,.12)}
+.lab.accent .card{border-color:var(--accent);box-shadow:0 8px 0 rgba(217,154,30,.22)}
+.lab .main{display:block;font-size:52px;line-height:1.1}
+.lab .sub{display:block;font-size:36px;line-height:1.2;color:var(--ink2);margin-top:2px}
+.lab .tag{display:inline-block;font-size:28px;line-height:1;color:var(--ink2);border:2px solid #A9C3B8;border-radius:10px;padding:4px 10px 6px;margin-bottom:6px;background:#F2F7F1}
+.note{position:absolute;font-size:38px;color:var(--ink2);transform:translate(-50%,0);white-space:nowrap}
+#moru-pos{position:absolute;left:1528px;top:596px;width:290px;height:430px;z-index:6}
+#moru{width:100%;height:100%;object-fit:contain;transform-origin:50% 100%;filter:drop-shadow(0 10px 18px rgba(33,77,67,.2))}
+#bubble-pos{position:absolute;right:150px;top:318px;z-index:7}
+#bubble{position:relative;max-width:640px;background:#fff;border:4px solid var(--ink);border-radius:30px;padding:24px 34px 28px;font-size:50px;line-height:1.28;word-break:keep-all;transform-origin:80% 100%}
+#bubble svg{position:absolute;right:86px;bottom:-40px;width:60px;height:44px;overflow:visible}
+#npc-pos{position:absolute;left:1290px;top:790px;width:220px;height:230px;z-index:5}
+#npc{width:100%;height:100%;object-fit:contain;transform-origin:50% 100%;filter:drop-shadow(0 8px 14px rgba(33,77,67,.2))}
+#concl-pos{position:absolute;left:0;right:0;top:118px;text-align:center;z-index:8}
+#concl{display:inline-block;font-size:84px;line-height:1.15;background:rgba(255,255,255,.92);border:4px solid var(--ink);border-radius:26px;padding:18px 44px 24px;word-break:keep-all}
+#concl .w{display:inline-block;margin:0 .13em}
+#concl .w.key{background:var(--mark);border-radius:12px;padding:0 .12em;box-shadow:inset 0 -6px 0 rgba(217,154,30,.55)}
+#stamp-pos{position:absolute;left:1580px;top:372px;width:200px;height:200px;transform:rotate(-10deg);z-index:9}
+#stamp{width:200px;height:200px;border-radius:50%;border:8px solid var(--accent);background:rgba(255,250,232,.96);display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:46px;line-height:1.05;text-align:center}
+#stamp small{font-size:30px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1920" data-height="1080">
+ <div id="paper" class="clip" data-start="0" data-duration="15" data-track-index="0" style="z-index:0"></div>
+ <div id="cam" class="clip" data-start="0" data-duration="15" data-track-index="1" style="z-index:1" data-layout-allow-overlap>
+  <div id="cam-inner">
+   <svg id="props" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+     <pattern id="wood" patternUnits="userSpaceOnUse" width="300" height="105"><image href="assets/img/wood-sample.webp" width="300" height="105" preserveAspectRatio="none"/></pattern>
+    </defs>
+    <g id="rain"><path d="M300 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M360 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M420 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M480 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M540 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M600 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M660 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/><path d="M720 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/></g>
+   <g id="light"><g><circle cx="990" cy="330" r="38" fill="#F6D45E" stroke="#214D43" stroke-width="5"/><rect x="920" y="308" width="40" height="44" rx="8" fill="#8FA39B" stroke="#214D43" stroke-width="5"/></g><polygon id="beam" points="975,350 1005,360 652,768 292,700" fill="#F7D774" fill-opacity=".5"/></g>
+   <circle id="ball" cx="1040" cy="820" r="30" fill="#8FA39B" stroke="#214D43" stroke-width="5"/>
+   </svg>
+   <div class="pic" id="inv" style="left:220px;top:330px;width:600px;height:600px"><img src="assets/img/invention.webp" alt="" /></div><svg class="pic" id="cover" style="left:0;top:0;width:1920px;height:1080px;overflow:visible" viewBox="0 0 1920 1080"><rect x="290" y="586" width="364" height="184" rx="16" fill="url(#wood2)" stroke="#7A5530" stroke-width="6"/><defs><pattern id="wood2" patternUnits="userSpaceOnUse" width="300" height="105"><image href="assets/img/wood-sample.webp" width="300" height="105" preserveAspectRatio="none"/></pattern></defs></svg><svg class="pic" id="glow" style="left:0;top:0;width:1920px;height:1080px" viewBox="0 0 1920 1080"><rect x="292" y="588" width="360" height="180" rx="16" fill="#F7D774" fill-opacity=".45"/></svg>
+   <svg id="lines" viewBox="0 0 1920 1080" aria-hidden="true"><line id="l1-ln" x1="560" y1="250" x2="472" y2="640" stroke="#D99A1E" stroke-width="4" stroke-linecap="round"/><circle id="l1-dot" cx="472" cy="640" r="10" fill="#D99A1E" stroke="#fff" stroke-width="4"/></svg>
+   <div class="lab accent" id="l1" style="left:560px;top:250px"><div class="card"><span class="main">창: 투명한 재료로</span><span class="sub">근거: 빛 시험 기록</span></div></div>
+   <div class="lab" id="t1" style="left:1110px;top:420px"><div class="card" style="min-width:300px"><span class="sub" style="color:#214D43;font-size:40px">비 시험 <b class="ok" style="font-weight:400">✓</b><b class="no" style="font-weight:400;color:#C9503F"> ✗ 다시</b></span></div></div><div class="lab" id="t2" style="left:1110px;top:600px"><div class="card" style="min-width:300px"><span class="sub" style="color:#214D43;font-size:40px">빛 시험 <b class="ok" style="font-weight:400">✓</b><b class="no" style="font-weight:400;color:#C9503F"> ✗ 다시</b></span></div></div><div class="lab" id="t3" style="left:1110px;top:780px"><div class="card" style="min-width:300px"><span class="sub" style="color:#214D43;font-size:40px">충격 시험 <b class="ok" style="font-weight:400">✓</b><b class="no" style="font-weight:400;color:#C9503F"> ✗ 다시</b></span></div></div>
+  </div>
+ </div>
+ <div id="cast" class="clip" data-start="0" data-duration="15" data-track-index="2" style="z-index:2" data-layout-allow-overlap>
+  <div id="moru-pos"><img id="moru" src="assets/img/companion.webp" alt="모루" /></div>
+  <div id="bubble-pos"><div id="bubble">세 시험을 모두 통과할까?<svg viewBox="0 0 60 44"><path d="M4 0 L56 0 L44 42 Z" fill="#fff"/><path d="M4 0 L44 42 L56 0" fill="none" stroke="#214D43" stroke-width="4" stroke-linejoin="round"/></svg></div></div>
+  <div id="npc-pos"><img id="npc" src="assets/img/tori.webp" alt="" /></div>
+  <div id="concl-pos"><div id="concl"><span class="w" id="cw0">고치고</span><span class="w key" id="cw1">다시</span><span class="w key" id="cw2">시험해</span></div></div>
+  <div id="stamp-pos"><div id="stamp">발명<small>완성!</small></div></div>
+ </div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const $ = s => document.querySelector(s);
+const K = {
+ // 지시선이 먼저 0.22초 그려지고, 카드가 0.32초 튀어나온다. until이 있으면 0.2초에 빠진다.
+ label(id, at, until) {
+  const ln = document.getElementById(id + '-ln');
+  if (ln) {
+   const L = Math.ceil(ln.getTotalLength());
+   tl.fromTo(ln, {strokeDasharray: L, strokeDashoffset: L}, {strokeDashoffset: 0, duration: .22, ease: 'power2.out'}, at);
+   tl.fromTo('#' + id + '-dot', {scale: 0, transformOrigin: '50% 50%'}, {scale: 1, duration: .2, ease: 'back.out(2)'}, at);
+  }
+  tl.fromTo('#' + id + ' .card', {opacity: 0, scale: .86}, {opacity: 1, scale: 1, duration: .32, ease: 'back.out(1.6)'}, at + (ln ? .14 : 0));
+  if (until != null) K.out(['#' + id + ' .card', ln && ('#' + id + '-ln'), ln && ('#' + id + '-dot')].filter(Boolean), until);
+ },
+ line(id, at) { const ln = document.getElementById(id + '-ln'); const L = Math.ceil(ln.getTotalLength()); tl.fromTo(ln, {strokeDasharray: L, strokeDashoffset: L}, {strokeDashoffset: 0, duration: .22, ease: 'power2.out'}, at); tl.fromTo('#' + id + '-dot', {scale: 0, transformOrigin: '50% 50%'}, {scale: 1, duration: .2, ease: 'back.out(2)'}, at); },
+ hideLine(id, at) { tl.fromTo(['#' + id + '-ln', '#' + id + '-dot'], {opacity: 1}, {opacity: 0, duration: .2, ease: 'power3.in', immediateRender: false}, at); },
+ reveal(sel, at) { tl.fromTo(sel, {opacity: 0, scale: .8}, {opacity: 1, scale: 1, duration: .3, ease: 'back.out(1.8)'}, at); },
+ show(sel, at, d = .3) { tl.fromTo(sel, {opacity: 0}, {opacity: 1, duration: d, ease: 'power2.out'}, at); },
+ out(sel, at, d = .2) { tl.fromTo(sel, {opacity: 1}, {opacity: 0, duration: d, ease: 'power3.in', immediateRender: false}, at); },
+ ring(sel, at, until) { tl.fromTo(sel, {opacity: 0, scale: .6, transformOrigin: '50% 50%'}, {opacity: 1, scale: 1, duration: .4, ease: 'expo.out'}, at); if (until != null) K.out(sel, until); },
+ draw(sel, at, d = .35) { const e = $(sel); const L = Math.ceil(e.getTotalLength()); tl.fromTo(e, {strokeDasharray: L, strokeDashoffset: L}, {strokeDashoffset: 0, duration: d, ease: 'power2.inOut'}, at); },
+ take(sel, at) { tl.to(sel, {scaleY: .92, scaleX: 1.05, duration: .12, ease: 'power2.out'}, at).to(sel, {scaleY: 1, scaleX: 1, duration: .25, ease: 'back.out(1.6)'}, at + .12); },
+ hop(sel, at) { tl.to(sel, {scaleY: .9, scaleX: 1.06, duration: .1, ease: 'power2.out'}, at).to(sel, {y: -54, scaleY: 1.04, scaleX: .97, duration: .24, ease: 'power2.out'}, at + .1).to(sel, {y: 0, scaleY: 1, scaleX: 1, duration: .3, ease: 'power2.in'}, at + .34).to(sel, {scaleY: .94, scaleX: 1.04, duration: .08}, at + .64).to(sel, {scaleY: 1, scaleX: 1, duration: .2, ease: 'back.out(1.6)'}, at + .72); },
+ cam(at, scale, ox, oy, d = .8) { tl.to('#cam-inner', {scale, transformOrigin: ox + 'px ' + oy + 'px', duration: d, ease: 'power2.inOut'}, at); },
+ // 공통 연출: 모루 등장 → 질문 말풍선 → (각 편의 실험) → 결론 한 줄 → 캐릭터 반응 → 발견 도장
+ open(bubbleIn, bubbleOut) {
+  tl.fromTo('#moru-pos', {x: 420}, {x: 0, duration: .6, ease: 'expo.out'}, .15);
+  K.take('#moru', .75);
+  tl.fromTo('#bubble', {opacity: 0, scale: .9}, {opacity: 1, scale: 1, duration: .35, ease: 'back.out(1.4)'}, bubbleIn);
+  tl.fromTo('#bubble', {opacity: 1}, {opacity: 0, scale: .96, duration: .22, ease: 'power3.in', immediateRender: false}, bubbleOut);
+  tl.to('#moru', {rotation: -4, transformOrigin: '50% 100%', duration: .5, ease: 'power2.inOut'}, bubbleOut + .1);
+ },
+ close(conclAt, npcAt, stampAt) {
+  tl.fromTo('#concl', {opacity: 0}, {opacity: 1, duration: .15, ease: 'power2.out'}, conclAt);
+  document.querySelectorAll('#concl .w').forEach((w, i) => tl.fromTo(w, {opacity: 0, filter: 'blur(6px)'}, {opacity: 1, filter: 'blur(0px)', duration: .14, ease: 'power2.out'}, conclAt + .05 + i * .08));
+  tl.to('#moru', {rotation: 0, duration: .4, ease: 'power2.inOut'}, conclAt);
+  if ($('#npc')) { tl.fromTo('#npc-pos', {y: 260, opacity: 0}, {y: 0, opacity: 1, duration: .5, ease: 'expo.out'}, npcAt); K.take('#npc', npcAt + .5); }
+  K.hop('#moru', npcAt + .35);
+  tl.fromTo('#stamp', {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: .3, ease: 'back.out(1.7)'}, stampAt);
+ },
+};
+
+K.open(.6, 2.3);
+['#t1','#t2','#t3'].forEach(s => { tl.set(s + ' .ok', {opacity: 0}, 0); tl.set(s + ' .no', {opacity: 0}, 0); });
+tl.fromTo('#rain', {y: -60, opacity: 0}, {y: 70, opacity: 1, duration: .6, ease: 'power1.in'}, 2.4); K.out('#rain', 3.0);
+K.reveal('#t1 .card', 3.1); tl.to('#t1 .ok', {opacity: 1, duration: .2}, 3.2);
+K.show('#light', 3.3); K.reveal('#t2 .card', 3.9); tl.to('#t2 .no', {opacity: 1, duration: .2}, 4.0); K.out('#light', 4.2);
+tl.fromTo('#ball', {x: 400, opacity: 0}, {x: -330, opacity: 1, duration: .35, ease: 'power2.in'}, 4.1); tl.to('#ball', {x: -150, opacity: 0, duration: .3, ease: 'power2.out'}, 4.45);
+K.reveal('#t3 .card', 4.6); tl.to('#t3 .ok', {opacity: 1, duration: .2}, 4.7);
+tl.to('#cover', {y: 60, opacity: 0, duration: .6, ease: 'power3.in'}, 5.6);
+K.label('l1', 6.3);
+tl.to('#t2 .no', {opacity: 0, duration: .2}, 7.4);
+K.out(['#l1 .card', '#l1-ln', '#l1-dot'], 9.8);
+tl.set('#t1 .ok', {opacity: 0}, 10.0); tl.set('#t3 .ok', {opacity: 0}, 10.0);
+tl.fromTo('#light', {opacity: 0}, {opacity: 1, duration: .3, immediateRender: false}, 10.1);
+tl.fromTo('#glow', {opacity: 0}, {opacity: 1, duration: .3}, 10.4);
+tl.to('#t2 .ok', {opacity: 1, duration: .2}, 10.7);
+tl.to('#t1 .ok', {opacity: 1, duration: .2}, 10.9); tl.to('#t3 .ok', {opacity: 1, duration: .2}, 11.1);
+K.close(11.5, 12.0, 12.8);
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

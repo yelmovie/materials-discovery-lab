@@ -70,8 +70,8 @@ with sync_playwright() as p:
    screen=f'S{i:02}';route(page,screen);shot(page,f'{width}-{screen}-lab')
    page.get_by_role('button',name=re.compile('2 새 의뢰')).click();shot(page,f'{width}-{screen}-challenge-a')
    solve(page,next(c for c in challenges if c['id']==screen+'-a'));shot(page,f'{width}-{screen}-challenge-b')
-   page.get_by_role('button',name=re.compile('3 9초 개념')).click()
-   page.get_by_role('button',name='9초 개념 영상 보기').wait_for()
+   page.get_by_role('button',name=re.compile('3 15초 개념')).click()
+   page.get_by_role('button',name='15초 개념 영상 보기').wait_for()
    shot(page,f'{width}-{screen}-concept')
    assert page.locator('dialog').evaluate('(e)=>Math.abs(e.getBoundingClientRect().y+e.getBoundingClientRect().height/2-innerHeight/2)<3')
    page.get_by_role('button',name='패널 닫기').click()
@@ -97,7 +97,7 @@ with sync_playwright() as p:
   screen=f'S{i:02}';route(page,screen);page.get_by_role('button',name=re.compile('2 새 의뢰')).click()
   for item in [c for c in challenges if c['screen']==screen]:solve(page,item,drag=item['mode']=='classify')
   page.locator('.activity-footer>.primary').click();assert page.locator('dialog video').count()==1
-  page.get_by_role('button',name='9초 개념 영상 보기').click();page.wait_for_function("document.querySelector('video').currentTime>0.3")
+  page.get_by_role('button',name='15초 개념 영상 보기').click();page.wait_for_function("document.querySelector('video').currentTime>0.3")
   assert page.locator('video').evaluate('(v)=>Math.abs(v.duration-9)<0.1')
   page.get_by_role('button',name=re.compile('건너뛰고')).click()
   if i%2==0:

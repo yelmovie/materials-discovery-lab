@@ -32,7 +32,7 @@ def finish(page,screen,failure=False):
  page.locator('.activity-footer>.primary').click();page.locator('dialog video').wait_for()
  if failure:page.locator('.concept-fallback').wait_for();events.append('Video failure keeps captions and continuation available')
  else:
-  page.get_by_role('button',name='9초 개념 영상 보기').click();page.wait_for_function("document.querySelector('video').currentTime>.2")
+  page.get_by_role('button',name='15초 개념 영상 보기').click();page.wait_for_function("document.querySelector('video').currentTime>.2")
   if screen=='S01':
    page.get_by_role('button',name='개념 영상 일시 정지').click();t=page.locator('video').evaluate('(v)=>v.currentTime');page.get_by_role('button',name='이어서 보기').click();page.wait_for_function('(t)=>document.querySelector("video").currentTime>t+.1',arg=t);events.append('Video pause/resume preserves time')
  page.locator('.concept-actions .primary').click()

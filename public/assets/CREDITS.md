@@ -17,7 +17,7 @@
 | 지도 걷기 시트2 | generated/walk 연구원·모루 4방향 프레임32 | Canva 이미지 생성, 2026-11-07, 기존 researcher·companion을 참조로 생성. 원본 references/generated/walk, 자르기 scripts/prepare-walk-sprites.mjs | Canva 계정 요금제·AI 생성물 이용 조건 별도 보관 필요 |
 | 합성 BGM | src/services/audio.ts | Web Audio 코드에서 직접 합성 | 외부 음악 파일 사용 없음 |
 | Kenney Interface Sounds 1.0 | 선택·놓기·발견·힌트·도구 등 효과음 8종 | 공식 사이트 CC0 표시 및 다운로드 ZIP License.txt 대조 | audio/Kenney-CC0.txt 원문·sources.json 매핑 보존 |
-| 개념 모션 영상 10개 | 활동 완료·다시 보기 | 자체 SVG → sharp → FFmpeg, 자막 DOM 분리 | concepts/manifest.json, docs/MOTION-AND-INTERACTION.md |
+| 개념 모션 영상 10개 (2026-11-09 교체) | 활동 완료·다시 보기 | HyperFrames 0.9.26(오픈소스 CLI, 로컬 렌더)로 직접 만든 HTML 장면 → FFmpeg. 게임 안 그림(모루·NPC4·우산·보관함·나무 시료)과 Jua 글꼴을 재사용, 새 생성 이미지·음원 없음. 애니메이션 라이브러리 GSAP 3.15.0(GreenSock Standard License, 제작 소스에만 포함, 앱 번들에는 없음) | films/concept-clips(소스·SPEC·REVIEW), concepts/manifest.json |
 | SVG 공통 아이콘 | src/components/Icon.tsx | 프로젝트 코드의 직접 작성 SVG | 별도 유료 아이콘 팩 없음 |
 | Jua 400·시스템 글꼴 fallback | 로컬 글꼴 파일 | 기존 1udangtangtang 프로젝트의 Jua WOFF2와 SIL OFL 1.1 고지 함께 재사용 | fonts/Jua-OFL.txt 원문·저작권 고지 보존, 외부 CDN 불필요 |
 
