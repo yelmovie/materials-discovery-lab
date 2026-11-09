@@ -34,6 +34,7 @@ export function decodeSave(raw:string):Save {
  assert(typeof s.coreComplete==='boolean'&&typeof s.name==='string'&&s.name.length<=24);
  assert(object(s.settings)&&typeof s.settings.muted==='boolean'&&typeof s.settings.reducedMotion==='boolean'&&num(s.settings.bgm)&&s.settings.bgm>=0&&s.settings.bgm<=1&&num(s.settings.sfx)&&s.settings.sfx>=0&&s.settings.sfx<=1);
  assert(array(s.completionArchive));for(const r of s.completionArchive){assert(object(r)&&typeof r.id==='string'&&typeof r.name==='string'&&typeof r.date==='string'&&array(r.evidence)&&r.evidence.length===5&&r.evidence.every(e=>e.origin==='student'));validateDesign(r.design,s.observations);validateTests(r.tests);}
+ s.restoration=Object.fromEntries(Object.entries(object(s.restoration)?s.restoration:{}).filter(([k,v])=>/^[0-4]$/.test(k)&&Number.isInteger(v)&&v>=0&&v<=3&&s.evidence.some(e=>e.id===`E0${Number(k)+1}`)));
  // Copy only the known fields. Unknown fields never round-trip into student storage.
  const clean=Object.fromEntries(Object.keys(fresh).map(k=>[k,s[k as keyof Save]])) as unknown as Save;
  if(!canAccess(clean,clean.lastRoute,clean.lastPhase)){clean.lastRoute='world';clean.lastPhase='activity';}
