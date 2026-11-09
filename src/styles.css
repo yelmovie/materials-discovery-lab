@@ -41,7 +41,8 @@ button {
   line-height: 1.4; touch-action: manipulation;
   transition: background .15s, transform .15s, box-shadow .15s;
 }
-button:hover:not(:disabled) { background: #e3ebd3; transform: translateY(-1px); }
+button:hover:not(:disabled) { background: #e3ebd3; }
+@media (hover: hover) and (pointer: fine) { button:hover:not(:disabled) { transform: translateY(-1px); } }
 button:active:not(:disabled) { transform: translateY(2px); box-shadow: none; }
 button:disabled { cursor: default; opacity: .5; }
 button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
@@ -121,7 +122,8 @@ select { max-width: 100%; text-overflow: ellipsis; }
 .world-canvas.dragging canvas { cursor: grabbing; }
 .map-destination-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; --zoom: 1; --cam-x: 0px; --cam-y: 0px; }
 .map-label { position: absolute; left: calc(var(--x) * var(--zoom) - var(--cam-x)); top: calc(var(--y) * var(--zoom) - var(--cam-y)); transform: translate(-50%,-50%); pointer-events: auto; display: flex; align-items: center; gap: 8px; min-height: 54px; padding: 5px 12px 5px 6px; white-space: nowrap; color: #3f3a1f; background: linear-gradient(#fffbec,#f6eac6); border: 2px solid #8a6a36; border-radius: 14px; box-shadow: 0 4px 0 #5d4522a6,0 8px 14px #10281f40; font-size: 18px; }
-.map-label:hover:not(:disabled) { transform: translate(-50%,calc(-50% - 2px)); background: linear-gradient(#fffef6,#fbf0d0); }
+.map-label:hover:not(:disabled) { background: linear-gradient(#fffef6,#fbf0d0); }
+@media (hover: hover) and (pointer: fine) { .map-label:hover:not(:disabled) { transform: translate(-50%,calc(-50% - 2px)); } }
 .map-label:active:not(:disabled) { transform: translate(-50%,calc(-50% + 2px)); box-shadow: 0 1px 0 #5d4522a6; }
 .map-label::after { content: ''; position: absolute; bottom: -8px; left: calc(50% - 6px); width: 12px; height: 12px; background: #f6eac6; border-right: inherit; border-bottom: inherit; transform: rotate(45deg); }
 .label-face { position: relative; flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #fff7dd; border: 2px solid #c9a55c; }
@@ -278,7 +280,7 @@ select { max-width: 100%; text-overflow: ellipsis; }
 .object-art { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; min-height: 0; object-fit: contain; transition: transform .2s; filter: drop-shadow(0 11px 8px #3d5c3c20); }
 .object-hotspots { position: absolute; inset: 0; }
 .object-marker { position: absolute; min-width: 48px; min-height: 48px; transform: translate(-50%,-50%); background: #fff8d2ef; border: 2px solid #95783d; border-radius: 24px; color: #3b5638; box-shadow: 0 3px 0 #4f593c44; font-size: 16px; padding: 9px 12px; }
-.object-marker:hover:not(:disabled) { transform: translate(-50%,calc(-50% - 2px)); }
+@media (hover: hover) and (pointer: fine) { .object-marker:hover:not(:disabled) { transform: translate(-50%,calc(-50% - 2px)); } }
 .object-marker.selected { background: #ffe39b; border-color: #7d642e; box-shadow: 0 0 0 5px #f2ce6b55; }
 .material-preview { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 8px 12px; }
 .material-preview>div { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: #fff9e5e8; border: 1px solid #c2cfae; border-radius: 9px; font-size: 15px; }

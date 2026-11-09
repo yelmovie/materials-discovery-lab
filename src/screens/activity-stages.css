@@ -149,7 +149,7 @@ html[data-reduced=true] .learning-object .object-model-layer,html[data-reduced=t
 .invention-stage .compact-test-row>button { flex:1; display:flex; justify-content:space-between; align-items:center; gap:7px; min-width:0; min-height:36px; padding:5px 8px; font-size:15px; line-height:1.25; background:#f1f4e6; border:1px solid #bccdad; }
 .invention-stage .compact-test-row.pass>button { background:#e4efcd; border-color:#94b27f; }
 .invention-stage .compact-test-row.retry>button { background:#fff0d9; border-color:#c7a46b; }
-.invention-stage .compact-test-row>.stage-info-button { flex:none; min-width:42px; }
+.invention-stage .compact-test-row>.stage-info-button { flex:none; min-width:48px; }
 .invention-stage .revision-button { min-height:36px; margin-top:6px; padding:6px; font-size:15px; }
 .stage-detail-modal .modal-content { font-size:18px; line-height:1.6; }
 .stage-detail-modal h2 { padding-right:30px; }

@@ -46,7 +46,7 @@ SCAN = r"""() => {
  for(const e of root.querySelectorAll('.learning-rail button,.vessel-label,.lab-instruction,.lab-metric,.canvas-label,.water-line,.air-space,.tissue,.drop-slot,.stage-badge,.activity-heading h1,.experiment-tabs button,.activity-footer>.primary')){
   if(!visible(e))continue;const b=e.getBoundingClientRect();
   const walk=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let n;
-  while(n=walk.nextNode()){if(!n.textContent.trim())continue;const range=document.createRange();range.selectNodeContents(n);const t=range.getBoundingClientRect();if(t.left<b.left-2||t.right>b.right+2||t.top<b.top-2||t.bottom>b.bottom+2)issues.push({kind:'text-overflow',label:n.textContent.trim().slice(0,60)});}
+  while(n=walk.nextNode()){if(!n.textContent.trim())continue;const range=document.createRange();range.selectNodeContents(n);const t=range.getBoundingClientRect();if(!t.width&&!t.height)continue;if(t.left<b.left-2||t.right>b.right+2||t.top<b.top-2||t.bottom>b.bottom+2)issues.push({kind:'text-overflow',label:n.textContent.trim().slice(0,60)});}
  }
  const labels=[...root.querySelectorAll('.canvas-label,.inspection-lens,.tissue,.air-space,.water-line,.vent-switch,.vessel-label,.lab-instruction,.lab-metric,.air-flow span,.liquid-vessel-name,.liquid-reference,.water-balance,.journey,.workspace-note,.experiment-stage-heading,.experiment-observation,.experiment-trigger,.experiment-outline-key')].filter(visible);
  for(let i=0;i<labels.length;i++)for(let j=i+1;j<labels.length;j++){

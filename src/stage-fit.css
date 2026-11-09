@@ -106,7 +106,7 @@
 .live-activity .activity-grid .object-area.learning-object .object-control-deck>.view-controls button { width:44px; min-width:44px; height:44px; min-height:44px; }
 .live-activity .object-area.learning-object .object-canvas { container-name:object-view; }
 .live-activity .object-area.learning-object .object-marker { width:44px; min-width:44px; height:44px; min-height:44px; }
-.live-activity .stage-info-button,.live-activity .prediction-launch { min-height:44px; }
+.live-activity .stage-info-button,.live-activity .prediction-launch { min-height:48px; }
 .live-activity .prediction-launch { margin:0; }
 .live-activity .object-test-caption { display:none; }
 .live-activity .samples-stage .sample-grid .choice { min-height:44px; }
@@ -194,7 +194,7 @@ body:has(.live-activity)>.offline-status { z-index:90!important; }
  .live-activity .compact-test-list { grid-template-columns:repeat(3,minmax(0,1fr)); }
  .live-activity .compact-test-row { flex-direction:column; gap:4px; }
  .live-activity .compact-test-row>button { flex:none; flex-direction:column; justify-content:center; width:100%; min-height:44px; padding:4px; gap:2px; font-size:14px; }
- .live-activity .compact-test-row>.stage-info-button { min-height:44px; }
+ .live-activity .compact-test-row>.stage-info-button { min-height:48px; }
  .live-activity .test-name-long { display:none; }
  .live-activity .test-name-short { display:block; }
  .live-activity .revision-button { margin:0!important; }
