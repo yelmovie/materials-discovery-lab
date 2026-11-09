@@ -1,0 +1,16 @@
+{
+  "uuid": "405279f9-fbb3-477a-be04-c4651b67d6bb",
+  "model": "momo-voice",
+  "language": "ko",
+  "voice": "F1",
+  "text": "물질 코어가 멈추면서 재료 정보가 뒤섞였어요. 친구들과 공방을 다시 움직여 주세요.",
+  "createdAt": "2026-11-07T21:59:05.373Z",
+  "license": "OpenRAIL-M (Supertonic 3)",
+  "licenseUrl": "https://huggingface.co/Supertone/supertonic-3/blob/main/LICENSE",
+  "sourceSha256": "2352070ae6186b0dabc55676e94ec0ee65d5bbe4d44f6c8526b11912bf6a4ab7",
+  "renderSha256": "5b3e8d31280aa1984fa2b909fd6e093b216a7d5b58d5532e218a7696bd980727",
+  "captionExactMatch": true,
+  "sourceDuration": 7.871541666666666,
+  "renderDuration": 7.871541666666666,
+  "normalizedCorrelation": 0.9990027551261563
+}
