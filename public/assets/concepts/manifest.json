@@ -1,5 +1,7 @@
 {
   "created": "2026-11-09",
+  "updated": "2026-11-12",
+  "scienceReview": {"updatedClips": ["S05", "S10"], "record": "docs/reviews/SCIENCE-REVIEW-20261112.md"},
   "source": "HyperFrames 0.9.26 (films/concept-clips, 1920x1080 30fps master) → FFmpeg 960x540 H.264/VP9, no audio",
   "clips": [
     {
@@ -107,18 +109,18 @@
       "files": [
         {
           "name": "S05.mp4",
-          "bytes": 158316,
-          "sha256": "c9f51175574da62c6ae2035f7b21b4a871bd236593b65176ec81b931e121edb9"
+          "bytes": 170173,
+          "sha256": "88b15a9e484fe14417509c41e5e740c5be8ff6e2a099644eb887801561168885"
         },
         {
           "name": "S05.webm",
-          "bytes": 172054,
-          "sha256": "d2827fcf4409e603ba6f2924fb65585a231abddd01495b2289c8fb104918aad3"
+          "bytes": 176206,
+          "sha256": "c2b3015530750b8d314a11a91e25685078000db96be68ea748d3bd6516dc0edd"
         },
         {
           "name": "S05.webp",
-          "bytes": 24244,
-          "sha256": "3c5eeb4980e2c0ce949f9a469709415db7f411eddf934cc3b073b0faccebfe48"
+          "bytes": 25418,
+          "sha256": "2b0f9c1eb4df458ea9f9faa9f309d1efc7e93378d7c7bd4e2bf6932967e484ae"
         }
       ]
     },
@@ -227,18 +229,18 @@
       "files": [
         {
           "name": "S10.mp4",
-          "bytes": 208099,
-          "sha256": "b9e591882665af17e29409411961239d6ed090b83bbecbbf42541c07ec1b8705"
+          "bytes": 213194,
+          "sha256": "63e3396a06bf881896ff438288dc0a5c098007c59bec4de4b397dc6db8a87e09"
         },
         {
           "name": "S10.webm",
-          "bytes": 227275,
-          "sha256": "b4355beda188fd6379bfa4f77031126c4ca4c408a84e400f2c0782d723cc3d1c"
+          "bytes": 235964,
+          "sha256": "0d5e2af86864e15c2c1d8435aacb2b0b5c893c5bb62b64be33396c10d7b5c54d"
         },
         {
           "name": "S10.webp",
-          "bytes": 32112,
-          "sha256": "3862f0495a5a2dbc52e5ffe27ea544514a6ad5a7cfac083bf83de983012df834"
+          "bytes": 31890,
+          "sha256": "a1b0a2bd74b443f35e1d6d070b83ede6c7ebc5d85657f131773bce76eeb26b8b"
         }
       ]
     }

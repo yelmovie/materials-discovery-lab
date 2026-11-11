@@ -6,7 +6,7 @@ import type {Screen} from '../domain/model';
 import {useGame} from '../state/GameContext';
 import {setMediaQuiet} from '../services/audio';
 
-const termMap:Record<Screen,string[]>={S01:['물체','물질','재료'],S02:['부품','재료','관찰'],S03:['같은 조건','성질','비교'],S04:['쓰임','성질','근거'],S05:['고체','모양','크기'],S06:['모양','높이','양'],S07:['공기','공간','기체'],S08:['공기','기포','공간'],S09:['성질','관찰 기록','설계'],S10:['같은 조건','시험','설계']};
+const termMap:Record<Screen,string[]>={S01:['물체','물질','재료'],S02:['부품','재료','관찰'],S03:['같은 조건','성질','비교'],S04:['쓰임','성질','근거'],S05:['고체','모양','부피'],S06:['모양','높이','양'],S07:['공기','공간','기체'],S08:['공기','기포','공간'],S09:['성질','관찰 기록','설계'],S10:['같은 조건','시험','설계']};
 function Highlight({text,terms}:{text:string;terms:string[]}){const parts:{text:string;key:boolean}[]=[];let rest=text;while(rest){const hit=terms.map(term=>({term,index:rest.indexOf(term)})).filter(x=>x.index>=0).sort((a,b)=>a.index-b.index||b.term.length-a.term.length)[0];if(!hit){parts.push({text:rest,key:false});break;}if(hit.index)parts.push({text:rest.slice(0,hit.index),key:false});parts.push({text:hit.term,key:true});rest=rest.slice(hit.index+hit.term.length);}return <>{parts.map((p,i)=>p.key?<mark className="concept-keyword" key={i}>{p.text}</mark>:p.text)}</>;}
 export function ConceptVideo({screen,onClose,onContinue,continueLabel}:{screen:Screen;onClose:()=>void;onContinue?:()=>void;continueLabel?:string}){
  const {save}=useGame(),concept=concepts[screen],video=useRef<HTMLVideoElement>(null),next=useRef<HTMLButtonElement>(null);

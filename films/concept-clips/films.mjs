@@ -127,9 +127,9 @@ tl.to('#corner', {x: 280, opacity: 1, duration: .8, ease: 'power2.inOut'}, 10.0)
 K.close(10.5, 11.1, 12.1);`,
  },
  S05: {
-  title: '고체는 모양을 유지해', npc: 'banguli',
-  question: '용기를 바꾸면 모양도 바뀔까?',
-  conclusion: {words: ['고체는', '모양과', '크기가', '그대로'], key: [3]},
+  title: '용기만 바꾼 나무토막', npc: 'banguli',
+  question: '용기만 바꾸면 토막은 어떻게 될까?',
+  conclusion: {words: ['옮긴', '토막은', '모양과', '부피가', '그대로'], key: [4]},
   props: `${floor(180, 1200, 868)}${glass('c1', 220, 520, 200, 340)}${glass('c2', 520, 680, 400, 180)}${glass('c3', 1020, 380, 120, 480)}
    <rect id="ghost" x="275" y="770" width="90" height="90" rx="6" fill="none" stroke="#214D43" stroke-width="4" stroke-dasharray="10 8" opacity="0"/>
    <rect id="block" x="275" y="770" width="90" height="90" rx="6" fill="url(#wood)" stroke="#7A5530" stroke-width="5"/>`,
@@ -137,7 +137,7 @@ K.close(10.5, 11.1, 12.1);`,
   labels: [
    {id: 'l0', x: 320, y: 410, main: '나무토막', to: [320, 770]},
    {id: 'l1', x: 720, y: 560, main: '모양 그대로', to: [720, 770]},
-   {id: 'l2', x: 840, y: 330, main: '크기 그대로', to: [1035, 790], accent: true},
+   {id: 'l2', x: 840, y: 330, main: '부피 그대로', to: [1080, 770], accent: true},
   ],
   anim: `
 K.open(.7, 3.0);
@@ -145,11 +145,14 @@ tl.fromTo('#block', {y: -420}, {y: 0, duration: .55, ease: 'power2.in'}, 1.2);
 tl.to('#block', {y: -14, duration: .12, ease: 'power2.out'}, 1.75).to('#block', {y: 0, duration: .14, ease: 'power2.in'}, 1.87);
 tl.fromTo('#ghost', {opacity: 0}, {opacity: 1, duration: .3}, 2.4);
 K.label('l0', 3.3, 4.9);
-tl.to('#block', {x: 445, duration: .8, ease: 'power2.inOut'}, 5.3);
-tl.to('#block', {y: -200, duration: .4, ease: 'power2.out'}, 5.3).to('#block', {y: 0, duration: .4, ease: 'power2.in'}, 5.7);
+const moveBlock = (t, x, rise) => {
+ tl.to('#block', {y: rise, duration: .24, ease: 'power2.out'}, t);
+ tl.to('#block', {x, duration: .34, ease: 'power2.inOut'}, t + .24);
+ tl.to('#block', {y: 0, duration: .24, ease: 'power2.in'}, t + .58);
+};
+moveBlock(5.3, 400, -390);
 K.label('l1', 6.3, 6.9);
-tl.to('#block', {x: 760, duration: .8, ease: 'power2.inOut'}, 7.0);
-tl.to('#block', {y: -360, duration: .4, ease: 'power2.out'}, 7.0).to('#block', {y: 0, duration: .4, ease: 'power2.in'}, 7.4);
+moveBlock(7.0, 760, -510);
 K.label('l2', 8.1);
 tl.to('#ghost', {x: 760, duration: .7, ease: 'power2.inOut'}, 10.2);
 tl.to('#ghost', {stroke: '#D99A1E', strokeWidth: 7, duration: .2}, 10.9);
@@ -279,11 +282,16 @@ K.close(11.3, 11.8, 12.7);`,
   conclusion: {words: ['고치고', '다시', '시험해'], key: [1, 2]},
   stamp: ['발명', '완성!'],
   props: `<g id="rain">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<path d="M${300 + i * 60} 230 l-10 34" stroke="#3FA0B6" stroke-width="7" stroke-linecap="round"/>`).join('')}</g>
-   <g id="light">${lamp(990, 330)}<polygon id="beam" points="975,350 1005,360 652,768 292,700" fill="#F7D774" fill-opacity=".5"/></g>
-   <circle id="ball" cx="1040" cy="820" r="30" fill="#8FA39B" stroke="#214D43" stroke-width="5"/>`,
+   <g id="light">${lamp(990, 330)}<polygon id="beam" points="975,350 1005,360 652,768 292,700" fill="#F7D774" fill-opacity=".5"/></g>`,
   pics: pic('inv', 'invention', 220, 330, 600, 600) + `<svg class="pic" id="cover" style="left:0;top:0;width:1920px;height:1080px;overflow:visible" viewBox="0 0 1920 1080"><rect x="290" y="586" width="364" height="184" rx="16" fill="url(#wood2)" stroke="#7A5530" stroke-width="6"/><defs><pattern id="wood2" patternUnits="userSpaceOnUse" width="300" height="105"><image href="assets/img/wood-sample.webp" width="300" height="105" preserveAspectRatio="none"/></pattern></defs></svg>`
-   + `<svg class="pic" id="glow" style="left:0;top:0;width:1920px;height:1080px" viewBox="0 0 1920 1080"><rect x="292" y="588" width="360" height="180" rx="16" fill="#F7D774" fill-opacity=".45"/></svg>`,
-  notes: [['t1', '비 시험', 420], ['t2', '빛 시험', 600], ['t3', '충격 시험', 780]].map(([id, n, y]) => `<div class="lab" id="${id}" style="left:1110px;top:${y}px"><div class="card" style="min-width:300px"><span class="sub" style="color:#214D43;font-size:40px">${n} <b class="ok" style="font-weight:400">✓</b><b class="no" style="font-weight:400;color:#C9503F"> ✗ 다시</b></span></div></div>`).join(''),
+   + `<svg class="pic" id="glow" style="left:0;top:0;width:1920px;height:1080px" viewBox="0 0 1920 1080"><rect x="292" y="588" width="360" height="180" rx="16" fill="#F7D774" fill-opacity=".45"/></svg>`
+   + `<svg class="pic" id="press-rig" style="left:0;top:0;width:1920px;height:1080px;opacity:0" viewBox="0 0 1920 1080" aria-hidden="true">
+      <path d="M766 876 H856" fill="none" stroke="#214D43" stroke-width="8" stroke-linecap="round"/>
+      <rect id="press-pad" x="771" y="814" width="80" height="60" rx="15" fill="#E98981" stroke="#214D43" stroke-width="5"/>
+      <path d="M770 814 H854" fill="none" stroke="#214D43" stroke-width="4" stroke-dasharray="7 7" opacity=".55"/>
+      <g id="press-plate"><rect x="755" y="722" width="112" height="32" rx="9" fill="#8FA39B" stroke="#214D43" stroke-width="5"/><rect x="799" y="682" width="24" height="40" fill="#8FA39B" stroke="#214D43" stroke-width="5"/></g>
+    </svg>`,
+  notes: [['t1', '비 시험', 420], ['t2', '빛 시험', 600], ['t3', '모서리 누르기 시험', 780]].map(([id, n, y]) => `<div class="lab" id="${id}" style="left:1110px;top:${y}px"><div class="card" style="min-width:300px"><span class="sub" style="color:#214D43;font-size:40px">${n} <b class="ok" style="font-weight:400">✓</b><b class="no" style="font-weight:400;color:#C9503F"> ✗ 다시</b></span></div></div>`).join(''),
   labels: [
    {id: 'l1', x: 560, y: 250, main: '창: 투명한 재료로', sub: '근거: 빛 시험 기록', to: [472, 640], accent: true},
   ],
@@ -293,17 +301,29 @@ K.open(.6, 2.3);
 tl.fromTo('#rain', {y: -60, opacity: 0}, {y: 70, opacity: 1, duration: .6, ease: 'power1.in'}, 2.4); K.out('#rain', 3.0);
 K.reveal('#t1 .card', 3.1); tl.to('#t1 .ok', {opacity: 1, duration: .2}, 3.2);
 K.show('#light', 3.3); K.reveal('#t2 .card', 3.9); tl.to('#t2 .no', {opacity: 1, duration: .2}, 4.0); K.out('#light', 4.2);
-tl.fromTo('#ball', {x: 400, opacity: 0}, {x: -330, opacity: 1, duration: .35, ease: 'power2.in'}, 4.1); tl.to('#ball', {x: -150, opacity: 0, duration: .3, ease: 'power2.out'}, 4.45);
-K.reveal('#t3 .card', 4.6); tl.to('#t3 .ok', {opacity: 1, duration: .2}, 4.7);
+const press = t => {
+ tl.to('#press-rig', {opacity: 1, duration: .14}, t);
+ tl.to('#press-plate', {y: 60, duration: .22, ease: 'power2.in'}, t + .14);
+ tl.to('#press-plate', {y: 85, duration: .16, ease: 'power1.out'}, t + .36);
+ tl.to('#press-pad', {scaleY: .58, transformOrigin: '50% 100%', duration: .16, ease: 'power1.out'}, t + .36);
+ tl.to('#press-plate', {y: 0, duration: .28, ease: 'power2.out'}, t + .65);
+ tl.to('#press-pad', {scaleY: 1, duration: .28, ease: 'power2.out'}, t + .65);
+ tl.to('#press-rig', {opacity: 0, duration: .2}, t + 1.14);
+};
+press(4.1);
+K.reveal('#t3 .card', 5.05); tl.to('#t3 .ok', {opacity: 1, duration: .2}, 5.18);
 tl.to('#cover', {y: 60, opacity: 0, duration: .6, ease: 'power3.in'}, 5.6);
 K.label('l1', 6.3);
 tl.to('#t2 .no', {opacity: 0, duration: .2}, 7.4);
-K.out(['#l1 .card', '#l1-ln', '#l1-dot'], 9.8);
-tl.set('#t1 .ok', {opacity: 0}, 10.0); tl.set('#t3 .ok', {opacity: 0}, 10.0);
-tl.fromTo('#light', {opacity: 0}, {opacity: 1, duration: .3, immediateRender: false}, 10.1);
-tl.fromTo('#glow', {opacity: 0}, {opacity: 1, duration: .3}, 10.4);
-tl.to('#t2 .ok', {opacity: 1, duration: .2}, 10.7);
-tl.to('#t1 .ok', {opacity: 1, duration: .2}, 10.9); tl.to('#t3 .ok', {opacity: 1, duration: .2}, 11.1);
-K.close(11.5, 12.0, 12.8);`,
+K.out(['#l1 .card', '#l1-ln', '#l1-dot'], 9.3);
+tl.set('#t1 .ok', {opacity: 0}, 9.55); tl.set('#t3 .ok', {opacity: 0}, 9.55);
+tl.fromTo('#rain', {y: -60, opacity: 0}, {y: 70, opacity: 1, duration: .6, ease: 'power1.in', immediateRender: false}, 9.6); K.out('#rain', 10.2);
+tl.to('#t1 .ok', {opacity: 1, duration: .2}, 10.22);
+tl.fromTo('#light', {opacity: 0}, {opacity: 1, duration: .3, immediateRender: false}, 10.3);
+tl.fromTo('#glow', {opacity: 0}, {opacity: 1, duration: .3}, 10.55);
+tl.to('#t2 .ok', {opacity: 1, duration: .2}, 10.86); K.out('#light', 11.03);
+press(10.86);
+tl.to('#t3 .ok', {opacity: 1, duration: .2}, 11.94);
+K.close(12.15, 12.45, 12.8);`,
  },
 };

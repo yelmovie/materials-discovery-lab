@@ -369,7 +369,7 @@ def run_flow(page):
     assert saved(page)['checkpoints']['open']['tissueWet'] is True
     assert saved(page)['checkpoints']['airCompared'] is False, 'Autoplay answered the air comparison'
     assert saved(page)['checkpoints']['inflated'] is False
-    page.get_by_role('button', name='공기가 나간 자리에 물이 들어왔어. 공기는 공간을 차지해.', exact=True).click()
+    page.get_by_role('button', name='공기가 빠져나갔어요', exact=True).click()
     wait_saved(page, 's.checkpoints.airCompared')
     start_playback(page)
     page.wait_for_function("parseFloat(document.querySelector('.pump-meter span')?.style.width||'0')>=60")

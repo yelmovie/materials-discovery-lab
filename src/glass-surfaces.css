@@ -1,7 +1,7 @@
 /* Illustrated-world glass surfaces. Opacity belongs to the surface, never text. */
 :root{--glass-face:rgba(255,253,243,.78);--glass-reading:rgba(255,253,246,.91);--glass-line:rgba(71,99,75,.34);--glass-shadow:0 6px 20px rgba(27,53,40,.12),inset 0 1px rgba(255,255,255,.8)}
 
-button:not(.primary):not(.selected):not(.danger):not(.map-label):not(.drag-token):not(.drop-slot),.icon-button{background:var(--glass-face);border-color:var(--glass-line);box-shadow:var(--glass-shadow);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+button:not(.primary):not(.selected):not(.danger):not(.map-label):not(.drag-token):not(.drop-slot):not(.cup-drag-handle):not(.lab-vessel):not(.wood-block),.icon-button{background:var(--glass-face);border-color:var(--glass-line);box-shadow:var(--glass-shadow);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
 .tool-panel,.activity-heading>div:first-child,.tools>.small-note,.activity-footer>span,.map-guide>button{background:var(--glass-face);border:1px solid var(--glass-line);box-shadow:var(--glass-shadow);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
 .workspace{background:linear-gradient(150deg,rgba(255,253,245,.64),rgba(234,244,228,.54));box-shadow:var(--glass-shadow)}
 .modal,.map-guide-bubble{background:var(--glass-reading);border:1px solid var(--glass-line);box-shadow:0 16px 48px #1b352833;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}

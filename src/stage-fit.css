@@ -343,3 +343,8 @@ body:has(.live-activity)>.offline-status { z-index:90!important; }
  .demo-mode .live-activity .activity-footer>.next-step { display:none; }
  .demo-mode .live-activity .activity-footer>.companion-dock,.demo-mode .live-activity .activity-footer>.primary { grid-row:1; }
 }
+
+/* Mark one observation or action inside the existing guidance row. */
+.live-activity .next-step .guide-focus { color:#294e36; background:#f5e5b4; border-radius:4px; font-weight:800; }
+.live-activity:has(.activity-footer>.primary[data-next-action=true]) .activity-grid [data-next-action=true] { outline-color:transparent; box-shadow:none; }
+.live-activity :is(.air-stage,.invention-stage)>.tools>.compact-panel-top>.stage-count { color:#294e36; background:#fffbedf5; padding:3px 6px; border-radius:6px; }

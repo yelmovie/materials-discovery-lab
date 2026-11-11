@@ -18,7 +18,7 @@ export const tests: Test[] = ['rain','light','impact'];
 export const experiments: Experiment[] = ['elastic_return','light_transmission','water_absorption','compression_recovery'];
 export const partNames = {body:'몸체',window:'관찰창',bumper:'모서리 보호대',lid:'뚜껑',handle:'손잡이',canopy:'우산 천',frame:'금속 살'};
 export const experimentNames = {elastic_return:'당기고 놓기', light_transmission:'빛 비추기', water_absorption:'물방울 떨어뜨리기', compression_recovery:'누르고 놓기'};
-export const testNames = {rain:'비 시험',light:'빛 시험',impact:'모서리 충격 시험'};
+export const testNames = {rain:'비 시험',light:'빛 시험',impact:'모서리 누르기 시험'};
 export const shortNames: Record<string,string> = {wood_raw:'코팅하지 않은 나무',metal_plate:'금속',glass_clear:'투명 유리',plastic_clear:'투명 플라스틱',plastic_opaque:'불투명 플라스틱',rubber_soft:'부드러운 고무'};
 export const sampleColors: Record<string,string> = {wood_raw:'#b68551',metal_plate:'#aab7c8',glass_clear:'#c6eaf3',plastic_clear:'#90d2de',plastic_opaque:'#f3c864',rubber_soft:'#e98981'};
 export const evidenceNames = ['부품 재료 조사 기록','물질 성질 증거 묶음','고체·액체 비교 기록','공기 관측 기록','설계도와 시험 기록'];
@@ -65,7 +65,7 @@ export function evaluateTest(s:Save,testId:Test):TestResult {
  const p:Part=testId==='rain'?'body':testId==='light'?'window':'bumper';
  const m=materials.find(x=>x.id===s.design.parts[p].sampleId)!;
  const pass=linkedCorrectly(s,p)&&(testId==='rain'?m.rigid&&m.waterResistant:testId==='light'?m.transparent:m.cushioning);
- const feedback=pass?`${partNames[p]}가 필요한 성질을 보여 줬어!`:testId==='rain'?'몸체가 물에 젖거나 형태를 유지하지 못했어. 물방울·누르기 기록을 다시 보자.':testId==='light'?'안쪽 표시가 보이지 않아. 빛이 통과한 시료를 찾아보자.':'모서리가 충분히 눌렸다 복원되지 않았어. 고무와 단단한 시료를 비교해 보자.';
+ const feedback=pass?(testId==='impact'?'이 모형에서 모서리가 눌렸다 원래 모습으로 돌아왔어.':`${partNames[p]}가 필요한 성질을 보여 줬어!`):testId==='rain'?'몸체가 물에 젖거나 형태를 유지하지 못했어. 물방울·누르기 기록을 다시 보자.':testId==='light'?'안쪽 표시가 보이지 않아. 빛이 통과한 시료를 찾아보자.':'이 모형에서 모서리의 모양이 거의 그대로였어. 눌렀다 놓은 기록을 비교해 보자.';
  return {testId,attemptId:s.design.attemptId,designRevision:s.design.revision,pass,feedback};
 }
 export function currentResults(s:Save){return s.testResults.filter(t=>t.attemptId===s.design.attemptId&&t.designRevision===s.design.revision);}

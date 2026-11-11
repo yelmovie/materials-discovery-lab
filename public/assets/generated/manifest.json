@@ -105,5 +105,105 @@
     "provider": "OpenAI built-in image_gen (not Imagen)",
     "purpose": "Raw dry wood specimen surface; moisture, light and trial state remain code-driven",
     "operation": "Crop transparent margin then resize to existing 20:7 sample frame"
+  },
+  {
+    "id": "lab-glass",
+    "width": 560,
+    "height": 799,
+    "prompt": "Create exactly one production-ready transparent cutout asset for a Korean elementary science educational game. A single empty transparent laboratory tumbler / simple cylindrical drinking vessel, perfectly straight-on front view, symmetric, upright, no handle, no spout, no graduations. Ratio object width to height about 0.85. A shallow ellipse at the open top, almost straight vertical sides and a gently rounded closed bottom. Polished illustrated 3D storybook style, softly hand-painted edges, cool teal edge refraction and clean white rim highlights, neutral daylight, no yellow or sepia cast. The glass interior must be nearly clear with real alpha transparency so code-rendered water, tissue or a wooden block behind it stays clearly visible. Isolate the entire vessel on true transparent background with 8 percent margin, no cast floor shadow, no backdrop, no other objects. No text, no letters, no numbers, no logos, no labels, no water, no content, no grid. This is a scientific apparatus sprite, beautiful and tactile but mechanically simple, centered without cropping.",
+    "purpose": "S05 solid vessels, S06 liquid vessels, S07–S08 inverted cup and maker S06",
+    "crop": [
+      145,
+      70,
+      866,
+      1235
+    ],
+    "source": "references/generated/science-20261112/lab-glass-original.png",
+    "destination": "public/assets/generated/lab-glass.webp",
+    "hasAlpha": true,
+    "created": "2026-11-12",
+    "provider": "OpenAI built-in image_gen",
+    "operation": "Transparent-margin crop and WebP encoding with sharp; results and apparatus state controlled by code",
+    "rights": "Generated for this project. Human legal clearance not performed."
+  },
+  {
+    "id": "air-pump",
+    "width": 328,
+    "height": 844,
+    "prompt": "Exactly one isolated game asset on true transparent background. A small manual vertical air pump for an elementary science tabletop experiment. Beautiful polished storybook 3D illustration with restrained hand-painted texture, teal metal cylinder, dark teal T-shaped handle at the top, straight silver piston stem, stable low foot base at bottom. Orthographic straight-on front view. A single short hose connector stub projects horizontally from the bottom right of cylinder, no hose attached. Object proportions about width 0.5 of height. Entire object visible with 8% clear margin, centered. Neutral daylight, clean highlights, no yellow cast, no sepia. Scientifically plausible mechanical construction with one stem entering one cylinder. No gauges, no needles, no background, no floor shadow, no people, no text, no letters, no numbers, no logos. Intended as an apparatus sprite, matching a tactile teal and cream science workshop game.",
+    "purpose": "S08 air pouch pump and air-path maker mission",
+    "crop": [
+      120,
+      60,
+      655,
+      1685
+    ],
+    "source": "references/generated/science-20261112/air-pump-original.png",
+    "destination": "public/assets/generated/air-pump.webp",
+    "hasAlpha": true,
+    "created": "2026-11-12",
+    "provider": "OpenAI built-in image_gen",
+    "operation": "Transparent-margin crop and WebP encoding with sharp; results and apparatus state controlled by code",
+    "rights": "Generated for this project. Human legal clearance not performed."
+  },
+  {
+    "id": "wood-block",
+    "width": 420,
+    "height": 416,
+    "prompt": "A single square-cut wooden block for an elementary science game, one object, isolated on true transparent background. Polished hand-painted 3D educational illustration in a teal and cream workshop visual style. Solid unvarnished pale natural wood cube with fine visible grain, no writing. Front-facing three-quarter view with top and right faces visible only slightly, nearly a square silhouette, front face dominant, sharp regular straight edges very slightly softened for a child-safe block. Neutral diffuse daylight, natural pale wood color, no yellow lighting, no sepia. The full block centered with a small clear margin, no floor, no extra shadow floating around it, no background objects, no text, no letters, no marks, no diagrams. Crisp readable silhouette suitable at 60px display size. Scientifically simple, the same rigid block will be moved among different containers.",
+    "purpose": "S05 constant-size wooden block in three different vessels",
+    "crop": [
+      90,
+      105,
+      1060,
+      1050
+    ],
+    "source": "references/generated/science-20261112/wood-block-original.png",
+    "destination": "public/assets/generated/wood-block.webp",
+    "hasAlpha": true,
+    "created": "2026-11-12",
+    "provider": "OpenAI built-in image_gen",
+    "operation": "Transparent-margin crop and WebP encoding with sharp; results and apparatus state controlled by code",
+    "rights": "Generated for this project. Human legal clearance not performed."
+  },
+  {
+    "id": "air-pouch-inflated",
+    "width": 840,
+    "height": 388,
+    "prompt": "Exactly one isolated educational science apparatus asset on true transparent background. A sealed flexible clear plastic air pouch, fully inflated, horizontal oval pillow shape, about 2 times wider than tall. A single small soft tube opening on the FAR LEFT edge, centered vertically, no other openings. The opening extends a little left and is connected to the pouch, ready to connect a hose. The pouch is made of thin translucent nearly colorless clear plastic, slightly milky pearl with subtle blue-teal edge reflections, faint seams and realistic soft folds around edges, gently bulging front, empty inside. Straight-on front view. Polished hand-painted 3D storybook science game style, neutral diffuse daylight, no yellow or sepia cast. Transparent interior with true alpha so background can show through. No colored dots, no air particles, no floating arrows, no person, no text, no letters, no logos, no background, no grid. Full object in frame with 7 percent clear margin, a clean quiet sprite for comparison to its flat deflated version.",
+    "purpose": "S08 inflated flexible bag observation",
+    "crop": [
+      25,
+      65,
+      1680,
+      775
+    ],
+    "source": "references/generated/science-20261112/air-pouch-inflated-original.png",
+    "destination": "public/assets/generated/air-pouch-inflated.webp",
+    "hasAlpha": true,
+    "created": "2026-11-12",
+    "provider": "OpenAI built-in image_gen",
+    "operation": "Transparent-margin crop and WebP encoding with sharp; results and apparatus state controlled by code",
+    "rights": "Generated for this project. Human legal clearance not performed."
+  },
+  {
+    "id": "air-pouch-flat",
+    "width": 840,
+    "height": 124,
+    "prompt": "Edit only the same single clear flexible plastic air pouch to its DEFLATED state with air removed. Keep the same material, seam, horizontal width, front viewpoint, and single tube opening on its far left edge. The pouch is now flat and limp with gentle layered wrinkles, only about one fifth of the inflated height, lying horizontally without a surface. Entire object fully visible, isolated on a true transparent background. Preserve its single left opening at the vertical middle of the flat pouch and maintain the same outer width. Neutral daylight, clean teal-white highlights and subtle hand-painted 3D educational game finish. No text, no letters, no numbers, no logos, no other objects, no air dots, no floor, no backdrop.",
+    "purpose": "S08 same flexible bag before inflation",
+    "crop": [
+      25,
+      345,
+      1700,
+      250
+    ],
+    "source": "references/generated/science-20261112/air-pouch-flat-original.png",
+    "destination": "public/assets/generated/air-pouch-flat.webp",
+    "hasAlpha": true,
+    "created": "2026-11-12",
+    "provider": "OpenAI built-in image_gen",
+    "operation": "Transparent-margin crop and WebP encoding with sharp; results and apparatus state controlled by code",
+    "rights": "Generated for this project. Human legal clearance not performed."
   }
 ]

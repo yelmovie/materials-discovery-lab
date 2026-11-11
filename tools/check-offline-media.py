@@ -36,10 +36,15 @@ with sync_playwright() as p:
  assert audio['status']==200 and audio['bytes']>0
  voice=page.evaluate("async()=>{const r=await fetch('/assets/audio/npc-welcome.m4a');return {status:r.status,bytes:(await r.arrayBuffer()).byteLength}}")
  assert voice['status']==200 and voice['bytes']>0
- page.evaluate("location.hash='S06'");page.get_by_role('button',name=re.compile('3 15초 개념')).click();page.wait_for_function("document.querySelector('video').currentTime>.2")
- page.screenshot(path=str(OUT/'offline-concept.jpg'),type='jpeg',quality=80)
- page.get_by_role('button',name='패널 닫기').click()
+ illustrations=page.evaluate("""async()=>{const results=[];for(const id of ['lab-glass','wood-block','air-pump','air-pouch-flat','air-pouch-inflated']){const r=await fetch('/assets/generated/'+id+'.webp');results.push({id,status:r.status,bytes:(await r.arrayBuffer()).byteLength});}return results;}""")
+ assert all(item['status']==200 and item['bytes']>0 for item in illustrations)
+ for screen in ['S06','S05','S10']:
+  page.evaluate('(screen)=>{location.hash=screen}',screen)
+  page.get_by_role('button',name=re.compile('3 15초 개념')).click()
+  page.wait_for_function("document.querySelector('video').currentTime>.2")
+  page.screenshot(path=str(OUT/('offline-concept-'+screen+'.jpg')),type='jpeg',quality=80)
+  page.get_by_role('button',name='패널 닫기').click()
  page.reload(wait_until='networkidle');page.get_by_role('button',name='공방으로 출발!').wait_for()
- report={'cache':cache,'normalAutoplay':True,'endFocus':True,'bgmQuietDuringVideo':True,'muteSwitch':True,'rangeResponses':ranges,'offlineAudio':audio,'offlineVoice':voice,'offlineVideoPlayback':True,'offlineReload':True,'pageErrors':errors}
+ report={'cache':cache,'normalAutoplay':True,'endFocus':True,'bgmQuietDuringVideo':True,'muteSwitch':True,'rangeResponses':ranges,'offlineAudio':audio,'offlineVoice':voice,'offlineVideoPlayback':True,'offlineConcepts':['S06','S05','S10'],'offlineNewIllustrations':illustrations,'offlineReload':True,'pageErrors':errors}
  (OUT/'offline-media-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(report));assert not errors
  b.close()

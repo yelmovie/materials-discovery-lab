@@ -1,6 +1,6 @@
 import {useEffect,useRef,useId,type CSSProperties} from 'react';
 import Phaser from 'phaser';
-import {materials,sampleColors,shortNames,resultFor,type Experiment} from '../domain/model';
+import {materials,sampleColors,shortNames,type Experiment} from '../domain/model';
 import './experiment-stage.css';
 export interface ExperimentProps {kind:'samples'|'solid'|'liquid'|'air'|'sand'|'bag';sample?:string;experiment?:Experiment;active?:boolean;moving?:boolean;solid?:number;volumes?:number[];airDown?:boolean;vent?:boolean;showAir?:boolean;inflated?:boolean;onAction?:(i:number)=>void;reduced?:boolean}
 export default function ExperimentCanvas(props:ExperimentProps){
@@ -19,9 +19,15 @@ function SampleExperiment({sample='rubber_soft',experiment='elastic_return',acti
  const width=experiment==='elastic_return'&&moving&&m.cushioning?270:200;
  const height=experiment==='compression_recovery'&&moving&&m.cushioning?38:70;
  const sx=300-width/2,sy=153-height/2;
+ const observations={
+  elastic_return:m.cushioning?'당기는 동안 양끝 사이가 멀어졌고, 놓은 뒤 점선 안에 들어왔어요.':'당기는 동안 양끝 위치가 거의 같았어요.',
+  compression_recovery:m.cushioning?'누르는 동안 높이가 낮아졌고, 놓은 뒤 점선 높이로 돌아왔어요.':'누르는 동안 높이가 거의 같았어요.',
+  light_transmission:m.transparent?'손전등을 켜니 시료 뒤 별 표시가 밝게 보여요.':'손전등을 켜도 시료 뒤 별 표시가 어둡게 가려져 있어요.',
+  water_absorption:m.waterResistant?'물방울이 시료 표면에 둥글게 남아 있어요.':'물방울 자리에 넓고 짙은 자국이 생겼어요.',
+ };
  return <figure className={`experiment-canvas experiment-stage sample-simulation ${state} ${reduced?'motion-reduced':''}`} data-experiment={experiment} style={{'--sample-color':color} as CSSProperties}>
   <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow">{shortNames[m.id]}</span><strong>{instructions[experiment]}</strong><span className={`experiment-state ${state}`}>{!active?'준비':moving?'시험 중':'관찰'}</span></figcaption>
-  <div className="experiment-scene" role="img" aria-label={!active?`${shortNames[m.id]} 시료가 도구 아래에 놓여 있어요.`:moving?'같은 조건으로 시료를 시험하고 있어요.':resultFor(experiment,m.id)}>
+  <div className="experiment-scene" role="img" aria-label={!active?`${shortNames[m.id]} 시료가 도구 아래에 놓여 있어요.`:moving?'같은 조건으로 시료를 시험하고 있어요.':observations[experiment]}>
    <svg viewBox="0 0 600 260" aria-hidden="true">
     <defs>
      <linearGradient id={`${uid}-sample`} x1="0" y1="0" x2="0" y2="1"><stop stopColor="#fff" stopOpacity=".62"/><stop offset=".4" stopColor={color}/><stop offset="1" stopColor={color}/></linearGradient>
@@ -62,8 +68,8 @@ function SampleExperiment({sample='rubber_soft',experiment='elastic_return',acti
 function LiquidExperiment({volumes,reduced}:{volumes:number[];reduced?:boolean}){
  const uid=useId().replace(/:/g,''),widths=[77,110,66],heights=[133,94,157],capacities=[1400,1600,1200];
  return <figure className={`experiment-canvas experiment-stage liquid-simulation ${reduced?'motion-reduced':''}`}>
-  <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow">물을 옮겨 비교하기</span><strong>물높이와 용기에 담긴 모양을 살펴봐요.</strong></figcaption>
-  <div className="liquid-vessels" role="img" aria-label={`처음 컵 ${Math.round(volumes[0]/10)}%, 넓은 용기 ${Math.round(volumes[1]/10)}%, 길쭉한 용기 ${Math.round(volumes[2]/10)}%. 흘리지 않아 물의 총량은 같아요.`}>
+  <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow">물(액체)을 옮겨 비교하기</span><strong>물높이와 용기에 담긴 모양을 살펴봐요.</strong></figcaption>
+  <div className="liquid-vessels" role="img" aria-label={`처음 물의 양을 100으로 볼 때, 처음 컵 ${volumes[0]/10}, 넓은 용기 ${volumes[1]/10}, 길쭉한 용기 ${volumes[2]/10}만큼 담겨 있어요. 옮기는 동안 물을 흘리지 않았어요.`}>
    {['처음 컵','넓은 용기','길쭉한 용기'].map((name,i)=>{
     const w=widths[i],h=heights[i],left=80-w/2,top=180-h,waterH=Math.max(0,Math.min(volumes[i]??0,capacities[i]))/capacities[i]*h,waterY=180-waterH,baseline=180-1000/capacities[0]*heights[0];
     return <div className={`liquid-vessel ${volumes[i]>0?'has-water':''}`} key={name}>
@@ -72,9 +78,7 @@ function LiquidExperiment({volumes,reduced}:{volumes:number[];reduced?:boolean})
       <path d={`M${left} ${top}v${h-4}q0 4 4 4h${w-8}q4 0 4-4V${top}`} fill={`url(#${uid}-glass-${i})`} stroke="#668f8b" strokeWidth="3"/>
       <rect className="liquid-fill" x={left+3} y={waterY} width={w-6} height={waterH} rx="2" fill={`url(#${uid}-water-${i})`} opacity=".88"/>
       {waterH>0&&<ellipse className="liquid-surface" cx="80" cy={waterY} rx={w/2-3} ry="3" fill="#a6e7ee" stroke="#3b9fb8" strokeWidth="1.5"/>}
-      {[1,2,3,4].map(tick=><path key={tick} d={`M${left+3} ${180-h*tick/5}h9`} stroke="#668f8b" opacity=".5" strokeWidth="1.5"/>)}
-      <path d={`M${left+9} ${top+12}v${h-23}`} stroke="white" opacity=".7" strokeWidth="4" strokeLinecap="round"/>
-      <path d={`M${left-2} ${top}h${w+4}`} stroke="#668f8b" strokeWidth="4" strokeLinecap="round"/>
+      <image href={`${import.meta.env.BASE_URL}assets/generated/lab-glass.webp`} x={left-4} y={top-6} width={w+8} height={h+15} preserveAspectRatio="none"/>
       {i===0&&<path d={`M${left-8} ${baseline}h${w+16}`} stroke="#bc8445" strokeWidth="2.5" strokeDasharray="5 4"/>}
      </svg>
      <span className="liquid-vessel-name">{name}</span>
@@ -91,20 +95,19 @@ function SandExperiment(){
 }
 
 function BagExperiment({inflated,reduced}:{inflated:boolean;reduced?:boolean}){
- const uid=useId().replace(/:/g,'');
+ const assetBase=`${import.meta.env.BASE_URL}assets/generated/`;
  return <figure className={`experiment-canvas experiment-stage bag-simulation ${reduced?'motion-reduced':''}`}>
-  <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow">공기가 차지하는 공간</span><strong>{inflated?'공기가 들어가 주머니가 부풀었어요.':'펌프로 주머니에 공기를 넣어 봐요.'}</strong></figcaption>
-  <div className="experiment-scene" role="img" aria-label={inflated?'펌프에서 나온 공기가 주머니 안을 채워 주머니가 크게 부풀었어요.':'펌프와 연결된 주머니가 납작해요.'}>
-   <svg viewBox="0 0 600 260" aria-hidden="true"><defs><linearGradient id={`${uid}-bag`} x1="0" y1="0" x2="0" y2="1"><stop stopColor="#fff3d3"/><stop offset=".45" stopColor="#e9bd7f"/><stop offset="1" stopColor="#c49059"/></linearGradient></defs>
-    <ellipse cx="322" cy="231" rx="204" ry="13" fill="#758a72" opacity=".13"/>
-    <path d="M103 180v19q0 19 30 19h52q23 0 39-31" fill="none" stroke="#648b7c" strokeWidth="12"/>
-    <path d="M89 109h34v105H89Z" fill="#a4bdb0" stroke="#537e6c" strokeWidth="4"/>
-    <path d="M105 43v65" stroke="#537e6c" strokeWidth="9"/><path d="M70 41h72" stroke="#537e6c" strokeWidth="12" strokeLinecap="round"/>
-    <path d={inflated?'M225 174C217 94 283 39 372 45C470 52 520 140 475 191C438 233 278 239 225 190Z':'M225 180C256 169 446 170 476 188C447 211 266 210 225 194Z'} fill={`url(#${uid}-bag)`} stroke="#a17748" strokeWidth="4"/>
-    <path d={inflated?'M268 109q32-43 96-40':'M268 183q74-9 155 4'} fill="none" stroke="#fff8dd" strokeWidth="8" opacity=".7" strokeLinecap="round"/>
-    <path d="M219 171v31" stroke="#826c42" strokeWidth="7"/>
-    {inflated&&<g fill="#5d8a79"><path d="M148 151h38v-9l18 15-18 15v-9h-38Z"/><circle cx="278" cy="161" r="5"/><circle cx="360" cy="103" r="5"/><circle cx="425" cy="171" r="5"/></g>}
+  <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow">공기주머니 관찰</span><strong>{inflated?'공기를 넣기 전과 주머니의 모습을 비교해요.':'펌프로 주머니에 공기를 넣어 봐요.'}</strong></figcaption>
+  <div className="experiment-scene" role="img" aria-label={inflated?'호스로 연결된 주머니의 위아래가 벌어져 둥글게 부풀었어요.':'펌프와 연결된 주머니의 위아래가 붙어 납작해요.'}>
+   <svg viewBox="0 0 600 260" aria-hidden="true">
+    <ellipse cx="335" cy="232" rx="210" ry="10" fill="#758a72" opacity=".1"/>
+    <path d="M135 187H170Q187 187 187 164V150Q187 135 207 135H236" fill="none" stroke="#648b7c" strokeWidth="10" strokeLinecap="round"/>
+    <path d="M135 185H170Q185 185 185 164V150Q185 133 207 133H236" fill="none" stroke="#b5d9cc" strokeWidth="3" strokeLinecap="round"/>
+    <image href={`${assetBase}air-pump.webp`} x="60" y="22" width="88" height="210" preserveAspectRatio="none"/>
+    <image className="air-pouch-art" href={`${assetBase}${inflated?'air-pouch-inflated':'air-pouch-flat'}.webp`} x="225" y={inflated?58:111} width="320" height={inflated?150:48} preserveAspectRatio="none"/>
+    {inflated&&<path d="M179 156v-15q0-14 16-14h15m-7-7 8 7-8 7" fill="none" stroke="#397e6d" strokeWidth="3" strokeLinecap="round"/>}
    </svg>
+   <div className="experiment-position-labels" aria-hidden="true"><span>손펌프</span><span>연결관</span><span>공기주머니</span></div>
   </div>
  </figure>;
 }

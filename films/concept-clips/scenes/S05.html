@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1920, height=1080" />
-<title>S05 고체는 모양을 유지해</title>
+<title>S05 용기만 바꾼 나무토막</title>
 <script src="assets/vendor/gsap.min.js"></script>
 <style>
 @font-face{font-family:'Jua';src:url('assets/fonts/jua-korean-400.woff2') format('woff2');font-weight:400;unicode-range:U+1100-11FF,U+3000-303F,U+3130-318F,U+A960-A97F,U+AC00-D7AF,U+D7B0-D7FF,U+FF00-FFEF}
@@ -56,18 +56,18 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper)}
    <rect id="block" x="275" y="770" width="90" height="90" rx="6" fill="url(#wood)" stroke="#7A5530" stroke-width="5"/>
    </svg>
    
-   <svg id="lines" viewBox="0 0 1920 1080" aria-hidden="true"><line id="l0-ln" x1="320" y1="410" x2="320" y2="770" stroke="#214D43" stroke-width="4" stroke-linecap="round"/><circle id="l0-dot" cx="320" cy="770" r="10" fill="#214D43" stroke="#fff" stroke-width="4"/><line id="l1-ln" x1="720" y1="560" x2="720" y2="770" stroke="#214D43" stroke-width="4" stroke-linecap="round"/><circle id="l1-dot" cx="720" cy="770" r="10" fill="#214D43" stroke="#fff" stroke-width="4"/><line id="l2-ln" x1="840" y1="330" x2="1035" y2="790" stroke="#D99A1E" stroke-width="4" stroke-linecap="round"/><circle id="l2-dot" cx="1035" cy="790" r="10" fill="#D99A1E" stroke="#fff" stroke-width="4"/></svg>
+   <svg id="lines" viewBox="0 0 1920 1080" aria-hidden="true"><line id="l0-ln" x1="320" y1="410" x2="320" y2="770" stroke="#214D43" stroke-width="4" stroke-linecap="round"/><circle id="l0-dot" cx="320" cy="770" r="10" fill="#214D43" stroke="#fff" stroke-width="4"/><line id="l1-ln" x1="720" y1="560" x2="720" y2="770" stroke="#214D43" stroke-width="4" stroke-linecap="round"/><circle id="l1-dot" cx="720" cy="770" r="10" fill="#214D43" stroke="#fff" stroke-width="4"/><line id="l2-ln" x1="840" y1="330" x2="1080" y2="770" stroke="#D99A1E" stroke-width="4" stroke-linecap="round"/><circle id="l2-dot" cx="1080" cy="770" r="10" fill="#D99A1E" stroke="#fff" stroke-width="4"/></svg>
    <div class="lab" id="l0" style="left:320px;top:410px"><div class="card"><span class="main">나무토막</span></div></div>
    <div class="lab" id="l1" style="left:720px;top:560px"><div class="card"><span class="main">모양 그대로</span></div></div>
-   <div class="lab accent" id="l2" style="left:840px;top:330px"><div class="card"><span class="main">크기 그대로</span></div></div>
+   <div class="lab accent" id="l2" style="left:840px;top:330px"><div class="card"><span class="main">부피 그대로</span></div></div>
    <div class="note" style="left:320px;top:884px">처음 컵</div><div class="note" style="left:720px;top:884px">넓은 용기</div><div class="note" style="left:1080px;top:884px">길쭉한 용기</div>
   </div>
  </div>
  <div id="cast" class="clip" data-start="0" data-duration="15" data-track-index="2" style="z-index:2" data-layout-allow-overlap>
   <div id="moru-pos"><img id="moru" src="assets/img/companion.webp" alt="모루" /></div>
-  <div id="bubble-pos"><div id="bubble">용기를 바꾸면 모양도 바뀔까?<svg viewBox="0 0 60 44"><path d="M4 0 L56 0 L44 42 Z" fill="#fff"/><path d="M4 0 L44 42 L56 0" fill="none" stroke="#214D43" stroke-width="4" stroke-linejoin="round"/></svg></div></div>
+  <div id="bubble-pos"><div id="bubble">용기만 바꾸면 토막은 어떻게 될까?<svg viewBox="0 0 60 44"><path d="M4 0 L56 0 L44 42 Z" fill="#fff"/><path d="M4 0 L44 42 L56 0" fill="none" stroke="#214D43" stroke-width="4" stroke-linejoin="round"/></svg></div></div>
   <div id="npc-pos"><img id="npc" src="assets/img/banguli.webp" alt="" /></div>
-  <div id="concl-pos"><div id="concl"><span class="w" id="cw0">고체는</span><span class="w" id="cw1">모양과</span><span class="w" id="cw2">크기가</span><span class="w key" id="cw3">그대로</span></div></div>
+  <div id="concl-pos"><div id="concl"><span class="w" id="cw0">옮긴</span><span class="w" id="cw1">토막은</span><span class="w" id="cw2">모양과</span><span class="w" id="cw3">부피가</span><span class="w key" id="cw4">그대로</span></div></div>
   <div id="stamp-pos"><div id="stamp">발견!</div></div>
  </div>
 </div>
@@ -119,11 +119,14 @@ tl.fromTo('#block', {y: -420}, {y: 0, duration: .55, ease: 'power2.in'}, 1.2);
 tl.to('#block', {y: -14, duration: .12, ease: 'power2.out'}, 1.75).to('#block', {y: 0, duration: .14, ease: 'power2.in'}, 1.87);
 tl.fromTo('#ghost', {opacity: 0}, {opacity: 1, duration: .3}, 2.4);
 K.label('l0', 3.3, 4.9);
-tl.to('#block', {x: 445, duration: .8, ease: 'power2.inOut'}, 5.3);
-tl.to('#block', {y: -200, duration: .4, ease: 'power2.out'}, 5.3).to('#block', {y: 0, duration: .4, ease: 'power2.in'}, 5.7);
+const moveBlock = (t, x, rise) => {
+ tl.to('#block', {y: rise, duration: .24, ease: 'power2.out'}, t);
+ tl.to('#block', {x, duration: .34, ease: 'power2.inOut'}, t + .24);
+ tl.to('#block', {y: 0, duration: .24, ease: 'power2.in'}, t + .58);
+};
+moveBlock(5.3, 400, -390);
 K.label('l1', 6.3, 6.9);
-tl.to('#block', {x: 760, duration: .8, ease: 'power2.inOut'}, 7.0);
-tl.to('#block', {y: -360, duration: .4, ease: 'power2.out'}, 7.0).to('#block', {y: 0, duration: .4, ease: 'power2.in'}, 7.4);
+moveBlock(7.0, 760, -510);
 K.label('l2', 8.1);
 tl.to('#ghost', {x: 760, duration: .7, ease: 'power2.inOut'}, 10.2);
 tl.to('#ghost', {stroke: '#D99A1E', strokeWidth: 7, duration: .2}, 10.9);

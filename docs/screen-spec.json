@@ -1,15 +1,44 @@
 {
   "schemaVersion": 1,
   "status": "implementation_design",
-  "updatedAt": "2026-10-15",
+  "updatedAt": "2026-11-12",
   "project": "material-workshop-mission",
   "contentSources": {
     "curriculum": {
       "title": "경기도교육청 「초등 깊이있는 수업 프레임워크」 부록, 3~4학년군(2024)",
       "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202411110127574203.pdf",
       "pdfPage": 77,
-      "checkedAt": "2026-10-22",
+      "checkedAt": "2026-11-12",
+      "notice": "교육부 고시 제2022-33호 별책 9 과학과 교육과정",
+      "noticeUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458",
       "verificationRecord": "docs/PRD.md#성취기준-원문-대조-기록"
+    },
+    "science": {
+      "waterVolume": {
+        "title": "American Chemical Society · Comparing Solids, Liquids, and Gases",
+        "url": "https://www.acs.org/middleschoolchemistry/simulations/chapter1/lesson5.html",
+        "supports": "같은 조건에서 액체는 용기 모양을 따르지만 부피는 유지하며, 기체는 주어진 공간으로 퍼진다."
+      },
+      "sandGrains": {
+        "title": "American Chemical Society · Is sand a liquid?",
+        "url": "https://www.acs.org/education/resources/k-8/inquiryinaction/fifth-grade/chapter-1-investigating-matter-at-the-particle-level/matter-is-made-of-tiny-particles.html",
+        "supports": "모래 더미는 부을 수 있지만 알갱이 각각은 고체다. 여기서는 알갱이의 겉모양만 관찰한다."
+      },
+      "airSpace": {
+        "title": "American Chemical Society · Air – It’s Really There!",
+        "url": "https://www.acs.org/content/dam/acsorg/education/resources/k-8/science-activities/solidsliquidsgases/air/air-science-for-kids.pdf",
+        "supports": "뒤집은 컵에 남은 공기가 공간을 차지하므로 물이 컵 위쪽 휴지까지 닿지 않을 수 있다."
+      },
+      "solidDeformation": {
+        "title": "MIT BLOSSOMS · Elasticity: Studying How Solids Change Shape and Size",
+        "url": "https://web.mit.edu/blossoms/videos/lessons/elasticity_studying_how_solids_change_shape_and_size/",
+        "supports": "고체도 힘을 가하면 모양이나 크기가 달라질 수 있다. 이 앱은 누르거나 깎지 않고 용기만 옮긴 토막을 관찰한다."
+      },
+      "impactModel": {
+        "title": "NIST · Dynamic Response of Soft Protective Materials",
+        "url": "https://www.nist.gov/publications/new-metrologies-assess-dynamic-response-soft-protective-materials-used-helmets-and-pads",
+        "supports": "눌림 뒤 복원 관찰과 실제 충격 완화 성능 시험은 서로 다르다. 앱의 보호대 시험은 시료 반응을 비교하는 모형이다."
+      }
     },
     "learningDesign": {
       "title": "물질 공방 대작전 PRD · 학습 목표와 공방별 활동",
@@ -129,6 +158,23 @@
       "title": "물체의 부분을 조사하라",
       "standards": ["4과05-01"],
       "learningObjectives": ["우산을 부분별로 살펴보고, 하나의 물체가 여러 물질로 이루어질 수 있음을 설명할 수 있다."],
+      "learning": {
+        "concept": "물체와 물질",
+        "progression": "전체 보기 → 부품 찾기 → 특징 기록",
+        "evidence": "우산 천의 접힘, 살의 단단함, 손잡이의 무늬를 구별한다.",
+        "practice": "연필의 조사 방법을 고르고 관찰 순서를 구성한다.",
+        "challengeIds": [
+          "S01-a",
+          "S01-b"
+        ],
+        "scienceSources": [],
+        "keyConcept": {
+          "goal": "한 물체를 이루는 부분을 찾아요.",
+          "observe": "천, 살, 손잡이에서 보이는 특징을 비교해요.",
+          "takeaway": "이 우산에는 천·금속·나무가 쓰였어요. 다른 우산의 재료는 직접 확인해야 해요.",
+          "question": "연필을 조사한다면 어느 부분부터 살펴볼까요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -153,7 +199,27 @@
       "stage": 1,
       "title": "부품과 재료를 연결하라",
       "standards": ["4과05-01"],
-      "learningObjectives": ["관찰 기록을 근거로 우산 부품과 재료를 연결하고, 각 부분에 그 재료를 쓰는 까닭을 설명할 수 있다."],
+      "learningObjectives": [
+        "부품의 관찰 특징과 재료 확인 자료를 연결하고, 물체와 그 재료를 구분할 수 있다.",
+        "같은 재료로 된 생활 물체를 재료 기준으로 묶는 방법을 말할 수 있다."
+      ],
+      "learning": {
+        "concept": "재료를 확인하는 근거와 분류",
+        "progression": "관찰 특징 → 확인 자료 → 재료별 묶기",
+        "evidence": "손잡이의 무늬와 이 우산의 재료 확인 기록을 함께 사용한다.",
+        "practice": "물체와 재료를 구분하고, 관찰·확인 자료를 고른다. 같은 재료로 된 생활 물체를 말로 묶어 본다.",
+        "challengeIds": [
+          "S02-a",
+          "S02-b"
+        ],
+        "scienceSources": [],
+        "keyConcept": {
+          "goal": "부품의 특징을 재료 기록과 연결해요.",
+          "observe": "관찰한 모습과 확인 자료가 어떻게 이어지는지 봐요.",
+          "takeaway": "겉모습만으로 재료를 단정하기 어려워요. 관찰한 특징과 확인 자료를 함께 써요.",
+          "question": "나무 자와 나무 숟가락을 모양이 달라도 어떤 기준으로 함께 묶을까요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -182,6 +248,25 @@
       "title": "직접 시험해 증거를 모아라",
       "standards": ["4과05-01"],
       "learningObjectives": ["같은 조건에서 시료를 시험해 늘어남과 복원, 빛의 통과, 물의 스밈을 비교하고 결과를 기록할 수 있다."],
+      "learning": {
+        "concept": "같은 조건에서 물질의 성질 비교",
+        "progression": "조건 맞추기 → 시료 바꾸기 → 반응 기록",
+        "evidence": "같은 도구로 시험한 시료의 늘어남·복원·뒤쪽 표시·물의 스밈을 비교한다.",
+        "practice": "물 스밈 비교의 통제 조건을 고르고 필요한 성질을 시험과 연결한다.",
+        "challengeIds": [
+          "S03-a",
+          "S03-b"
+        ],
+        "scienceSources": [
+          "solidDeformation"
+        ],
+        "keyConcept": {
+          "goal": "재료만 바꾸어 반응을 비교해요.",
+          "observe": "힘을 주기 전과 뒤, 빛을 비췄을 때의 표시, 물방울 자리를 봐요.",
+          "takeaway": "실험마다 비교할 재료만 바꿔요. 물의 양과 기다리는 시간처럼 다른 조건은 같게 해요.",
+          "question": "물방울을 바로 본 기록과 한참 뒤에 본 기록을 그대로 비교해도 될까요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -214,7 +299,30 @@
       "stage": 2,
       "title": "쓰임에 맞는 재료를 결정하라",
       "standards": ["4과05-01"],
-      "learningObjectives": ["빛이 통과하거나 눌렸다 돌아오는 관찰 결과를 근거로, 관찰창과 보호대에 쓸 재료를 선택할 수 있다."],
+      "learningObjectives": [
+        "뒤쪽 표시가 보이거나 눌렸다 돌아온 관찰 기록으로 창과 보호대의 재료 후보를 고를 수 있다.",
+        "눌림·복원 관찰과 실제 충격 완화 성능을 확인하는 시험을 구별할 수 있다."
+      ],
+      "learning": {
+        "concept": "쓰임에 맞는 성질과 근거",
+        "progression": "쓰임 확인 → 관찰 근거 연결 → 후보 고르기",
+        "evidence": "뒤쪽 표시가 보인 시료와 눌렀다 놓아 돌아온 시료의 기록을 구별한다.",
+        "practice": "관찰창 후보를 비교하고 보호대 후보를 고르는 순서를 구성한다.",
+        "challengeIds": [
+          "S04-a",
+          "S04-b"
+        ],
+        "scienceSources": [
+          "impactModel"
+        ],
+        "keyConcept": {
+          "goal": "창과 보호대의 쓰임에 맞는 근거를 골라요.",
+          "observe": "뒤쪽 표시가 보이는지, 눌렀다 놓은 뒤 어떻게 되는지 살펴봐요.",
+          "takeaway": "안쪽 표시가 보인 시료는 창 후보예요. 눌림·복원은 보호대 후보를 고르는 단서예요.",
+          "question": "후보가 실제 충격을 줄이는지는 어떻게 더 확인할까요?"
+        },
+        "designBridge": "4과05-03"
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -241,7 +349,29 @@
       "stage": 3,
       "title": "고체를 다른 용기에 옮겨 보자",
       "standards": ["4과05-02"],
-      "learningObjectives": ["같은 나무토막을 모양이 다른 용기로 옮겨도 토막의 모양과 크기가 그대로임을 비교해 설명할 수 있다."],
+      "learningObjectives": [
+        "나무토막을 누르거나 자르지 않고 다른 용기로 옮겨, 처음과 나중의 모양과 부피를 비교할 수 있다."
+      ],
+      "learning": {
+        "concept": "고체의 모양과 부피",
+        "progression": "예상 → 토막 옮기기 → 윤곽 비교",
+        "evidence": "누르거나 자르지 않고 옮긴 나무토막이 점선 윤곽과 같은지 확인한다.",
+        "practice": "금속 구슬에도 적용하고 나무토막의 위치와 윤곽·부피를 구별한다.",
+        "challengeIds": [
+          "S05-a",
+          "S05-b"
+        ],
+        "scienceSources": [
+          "solidDeformation",
+          "waterVolume"
+        ],
+        "keyConcept": {
+          "goal": "용기를 바꾸어 나무토막을 비교해요.",
+          "observe": "토막을 옮긴 뒤 처음 점선과 윤곽을 겹쳐 봐요.",
+          "takeaway": "이 토막은 누르거나 자르지 않고 옮겨 모양과 부피가 그대로예요.",
+          "question": "토막의 위치가 달라졌다고 차지하는 공간도 달라졌을까요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -268,9 +398,30 @@
       "title": "액체를 따르고 다시 비교하자",
       "standards": ["4과05-02"],
       "learningObjectives": [
-        "물을 여러 용기에 옮겼다가 처음 용기로 되돌려, 물의 모양은 달라져도 흘리지 않은 물의 양은 같음을 확인할 수 있다.",
-        "모래 더미가 흐르는 것과 모래알 하나가 모양을 유지하는 것을 구별할 수 있다."
+        "물을 더 넣지도 흘리지도 않고 여러 용기로 옮겨, 처음 컵의 기준선으로 모양·높이와 물의 양을 구별할 수 있다.",
+        "모래 더미의 모양과 모래 알갱이 하나의 모양을 구별할 수 있다."
       ],
+      "learning": {
+        "concept": "액체의 모양과 부피, 모래 알갱이",
+        "progression": "예상 → 물 옮기기 → 같은 컵의 기준선 비교 → 알갱이 보기",
+        "evidence": "처음 컵으로 돌아온 물의 눈금과 모래알 하나의 윤곽을 관찰한다.",
+        "practice": "물 양의 확인 방법을 고르고 모래 더미와 알갱이 관찰을 구별한다.",
+        "challengeIds": [
+          "S06-a",
+          "S06-b"
+        ],
+        "scienceSources": [
+          "waterVolume",
+          "sandGrains"
+        ],
+        "keyConcept": {
+          "goal": "옮긴 물의 모양과 양을 따로 비교해요.",
+          "observe": "높이가 달라도 처음 컵으로 돌아온 뒤 기준선을 다시 봐요.",
+          "takeaway": "흘리거나 더하지 않은 물은 모양이 달라도 양이 같아요. 모래 알갱이는 각각 고체예요.",
+          "question": "좁은 컵에서 높아진 물의 양을 어떤 방법으로 확인할까요?"
+        },
+        "designBridge": "4과05-03"
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -302,6 +453,25 @@
       "title": "빈 컵 속 공간을 관찰하라",
       "standards": ["4과05-02"],
       "learningObjectives": ["거꾸로 놓은 컵을 물속에 넣고 물이 들어온 범위와 휴지의 상태를 관찰해, 공기가 공간을 차지함을 설명할 수 있다."],
+      "learning": {
+        "concept": "보이지 않는 공기의 공간",
+        "progression": "마른 휴지 확인 → 컵을 곧게 넣기 → 물높이·휴지 관찰",
+        "evidence": "물은 아래에 조금 들어오고, 위쪽에 남은 공간과 휴지 상태를 확인한다.",
+        "practice": "휴지가 마른 이유를 고르고 같은 관찰을 하는 순서를 구성한다.",
+        "challengeIds": [
+          "S07-a",
+          "S07-b"
+        ],
+        "scienceSources": [
+          "airSpace"
+        ],
+        "keyConcept": {
+          "goal": "물속의 뒤집힌 컵 안을 살펴봐요.",
+          "observe": "물이 들어온 범위와 위쪽 휴지 상태를 함께 봐요.",
+          "takeaway": "컵에 남은 공기가 공간을 차지해 물이 휴지까지 닿지 않았어요. 색은 공기 위치를 알려 주는 표시예요.",
+          "question": "공기가 컵에서 나가면 물은 어디까지 들어갈까요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -328,9 +498,30 @@
       "title": "공기가 나가면 무엇이 달라질까",
       "standards": ["4과05-02"],
       "learningObjectives": [
-        "같은 컵을 같은 깊이에서 비교해, 배출구를 열면 공기가 빠져나간 자리에 물이 들어옴을 설명할 수 있다.",
-        "펌프로 공기를 넣으면 주머니가 부푸는 모습을 관찰할 수 있다."
+        "같은 컵·방향·깊이에서 배출구만 바꿔, 기포와 물 유입을 비교할 수 있다.",
+        "공기를 넣은 주머니의 모습과 나무토막·물의 모양 변화를 비교할 수 있다."
       ],
+      "learning": {
+        "concept": "공기의 이동과 세 상태 비교",
+        "progression": "같은 조건 맞추기 → 배출구 열기 → 기포·물높이 비교 → 주머니에 공기 넣기",
+        "evidence": "같은 깊이에서 공기가 빠져나오는 기포와 컵 안 물높이, 주머니의 팽창을 살펴본다.",
+        "practice": "배출구와 물 유입의 원인·결과를 잇고 통제 조건을 고른다.",
+        "challengeIds": [
+          "S08-a",
+          "S08-b"
+        ],
+        "scienceSources": [
+          "airSpace",
+          "waterVolume"
+        ],
+        "keyConcept": {
+          "goal": "배출구만 바꿔 컵 안을 비교해요.",
+          "observe": "기포가 어디서 나오고, 컵 안 물이 어디까지 올라오는지 봐요.",
+          "takeaway": "공기가 기포로 나간 자리에 물이 들어와요. 공기를 넣으면 주머니 안에 퍼져 공간을 채워요.",
+          "question": "나무토막·물·공기를 용기에 넣었을 때 모양은 어떻게 다를까요?"
+        },
+        "designBridge": "4과05-03"
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -361,6 +552,25 @@
       "title": "증거를 이용해 보관함을 설계하라",
       "standards": ["4과05-03"],
       "learningObjectives": ["보관함의 몸체·관찰창·보호대에 맞는 재료를 고르고, 선택을 뒷받침하는 관찰 기록을 연결할 수 있다."],
+      "learning": {
+        "concept": "재료 성질을 이용한 보관함 설계",
+        "progression": "부품의 역할 확인 → 시료 선택 → 관련 기록 연결",
+        "evidence": "각 부품에 선택한 재료의 관찰 기록이 그 부품의 역할과 관련 있는지 확인한다.",
+        "practice": "부품 역할과 성질을 연결하고 연구자가 고칠 행동을 고른다.",
+        "challengeIds": [
+          "S09-a",
+          "S09-b"
+        ],
+        "scienceSources": [
+          "impactModel"
+        ],
+        "keyConcept": {
+          "goal": "부품마다 맡은 일에 맞춰 설계해요.",
+          "observe": "고른 재료와 연결할 관찰 기록이 같은 시료인지 확인해요.",
+          "takeaway": "몸체, 창, 보호대는 맡은 일이 달라요. 각 부품에 필요한 성질을 보여 준 기록으로 설계해요.",
+          "question": "창 재료를 골랐다면 어떤 기록으로 그 이유를 설명할까요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -388,7 +598,29 @@
       "stage": 5,
       "title": "시험하고 개선해 공방을 재가동하라",
       "standards": ["4과05-03"],
-      "learningObjectives": ["보관함을 비·빛·충격 조건에서 시험하고, 필요하면 시험 결과를 근거로 재료를 바꾸어 다시 시험할 수 있다."],
+      "learningObjectives": [
+        "같은 조건의 비·빛·모서리 누르기 모형 시험에서 현재 설계의 결과를 살펴보고, 필요한 부품을 수정해 다시 시험할 수 있다.",
+        "모형 결과와 실제 제품 성능 검증을 구별할 수 있다."
+      ],
+      "learning": {
+        "concept": "같은 조건의 모형 시험과 재설계",
+        "progression": "현재 설계 시험 → 결과 비교 → 필요한 곳 수정 → 재시험",
+        "evidence": "비·빛·모서리 반응의 결과가 현재 설계의 것인지 확인한다.",
+        "practice": "재료를 바꾼 뒤 다시 시험할 방법과 완성품 설명에 포함할 근거를 고른다.",
+        "challengeIds": [
+          "S10-a",
+          "S10-b"
+        ],
+        "scienceSources": [
+          "impactModel"
+        ],
+        "keyConcept": {
+          "goal": "현재 설계를 시험하고 필요한 곳을 고쳐요.",
+          "observe": "어느 부품의 반응이 달라졌고 어느 기록으로 설명할지 봐요.",
+          "takeaway": "고친 설계는 같은 조건의 모형 시험으로 다시 확인해요. 모형 통과가 실제 제품의 성능을 보장하지는 않아요.",
+          "question": "무엇을 고쳤고 시험에서 어떤 차이를 봤나요?"
+        }
+      },
       "needsReview": true,
       "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
       "reviewer": null,
@@ -398,7 +630,7 @@
         "S09"
       ],
       "actions": [
-        "비·빛·모서리 충격 시험",
+        "비·빛·모서리 누르기 시험",
         "문제 부품 관찰",
         "재료 수정·재시험",
         "증거 보고",
@@ -495,7 +727,9 @@
     "모든 물질에 대한 보편 법칙이 아닌 지정 시료의 수업용 관찰 모델",
     "천은 S01/S02 조사 전용",
     "몸체의 접합 구조는 동일하게 통제",
-    "내구성·가격·질량은 이번 의뢰의 판정 항목이 아님"
+    "내구성·가격·질량은 이번 의뢰의 판정 항목이 아님",
+    "시료의 눌림·복원 관찰은 보호대 후보를 고르는 단서이며 실제 충격 완화나 안전을 보장하지 않음",
+    "기존 cushioning·impact 식별자는 저장 호환을 위해 유지하고, 판정은 정해진 조건의 모형 반응에만 적용함"
   ],
   "finalRequest": {
     "id": "visible_protected_box",
