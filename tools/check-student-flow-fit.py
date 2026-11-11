@@ -2,6 +2,9 @@
 
 Run: python tools/check-student-flow-fit.py [http://127.0.0.1:5319]
 Optional QA_VIEWPORT=1280x800 and QA_OUTPUT=/absolute/external/SSD/output.
+QA_REFERENCE may point to expected domain data exported from the tested source
+when checking a production build. Service workers are blocked in this flow so
+the deliberate video-network failure reaches the fallback. Offline QA is separate.
 The browser and this process write temporary files only below the project .tmp.
 No student state is seeded and no reducer is called from this test. Domain imports
 provide expected labels/answers only; every experiment and decision uses the UI.
@@ -38,6 +41,7 @@ layout_checks=[]
 FIT_SCAN=next(node.value.value for node in ast.parse((ROOT/'tools/check-fit.py').read_text()).body if isinstance(node,ast.Assign) and any(isinstance(target,ast.Name) and target.id=='SCAN' for target in node.targets))
 current_step = 'initialization'
 challenges, lab = [], {}
+reference = json.loads(Path(os.environ['QA_REFERENCE']).read_text()) if os.environ.get('QA_REFERENCE') else None
 
 
 def stage(name):
@@ -200,7 +204,8 @@ def finish(page, screen, video_failure=False):
     else:
         page.get_by_role('button', name='15초 개념 영상 보기').click()
         page.wait_for_function('document.querySelector("dialog[open] video").currentTime>.2', timeout=12000)
-        assert page.locator('dialog[open] video').evaluate('(v)=>Math.abs(v.duration-9)<.15')
+        expected_duration = reference['conceptDuration'] if reference else page.evaluate("async()=> (await import('/src/domain/concepts.ts')).CONCEPT_SECONDS")
+        assert page.locator('dialog[open] video').evaluate('(v,duration)=>Math.abs(v.duration-duration)<.15', expected_duration)
         if screen == 'S01':
             page.get_by_role('button', name='개념 영상 일시 정지').click()
             position = page.locator('dialog[open] video').evaluate('(v)=>v.currentTime')
@@ -233,12 +238,13 @@ def observe(page, experiment, sample):
     before_count = len(saved(page)['observations'])
     if experiment=='elastic_return' and sample=='rubber_soft':
         before=decisions(saved(page))
+        page.get_by_label('자동재생 속도',exact=True).select_option('0.5')
         start_playback(page)
-        page.wait_for_timeout(150)
-        page.get_by_role('button',name='멈추기',exact=True).click()
+        page.locator('.experiment-playback-button[aria-pressed=true]').click()
         page.wait_for_function("document.querySelector('.sample-simulation')?.classList.contains('ready')")
         assert_decisions_unchanged(before,page,'S03 interrupted experiment')
         playback_checks.append({'name':'S03 interrupted experiment returns to ready','judgmentsPreserved':True})
+        page.get_by_label('자동재생 속도',exact=True).select_option('1')
     auto(page, f'S03 playback {experiment}/{sample}')
     page.locator('.sample-answer-options .choice').first.wait_for(state='visible')
     assert page.locator('.sample-answer-options .choice[aria-pressed=true]').count() == 0, \
@@ -276,10 +282,13 @@ def assert_stopped_water(page, before_decisions, label):
 
 def run_flow(page):
     global challenges, lab
-    page.goto(BASE+'/#S01', wait_until='networkidle')
+    page.goto(BASE+'/#S01', wait_until='networkidle', timeout=60000)
     page.locator('.live-activity .umbrella-stage').wait_for()
-    challenges = page.evaluate("async()=> (await import('/src/domain/challenges.ts')).challenges")
-    lab = page.evaluate("async()=>{const m=await import('/src/domain/model.ts');return {experiments:m.experiments,comparisons:m.requiredComparisons,names:m.shortNames,results:Object.fromEntries(m.experiments.map(e=>[e,Object.fromEntries(m.materials.map(s=>[s.id,m.resultFor(e,s.id)]))]))}}")
+    if reference:
+        challenges, lab = reference['challenges'], reference['lab']
+    else:
+        challenges = page.evaluate("async()=> (await import('/src/domain/challenges.ts')).challenges")
+        lab = page.evaluate("async()=>{const m=await import('/src/domain/model.ts');return {experiments:m.experiments,comparisons:m.requiredComparisons,names:m.shortNames,results:Object.fromEntries(m.experiments.map(e=>[e,Object.fromEntries(m.materials.map(s=>[s.id,m.resultFor(e,s.id)]))]))}}")
     assert saved(page)['origin'] == 'student' and saved(page)['completedScreens'] == []
 
     stage('S01 manual part recording')
@@ -326,7 +335,7 @@ def run_flow(page):
     before = decisions(saved(page))
     start_playback(page)
     page.wait_for_function("[...document.querySelectorAll('.water-balance>span b')].map(e=>e.textContent).join(',')!=='100%,0%,0%'")
-    page.get_by_role('button', name='멈추기', exact=True).click()
+    page.locator('.experiment-playback-button[aria-pressed=true]').click()
     assert_stopped_water(page, before, 'S06 explicit stop')
     before = decisions(saved(page))
     initial_water = water_values(page)
@@ -364,7 +373,7 @@ def run_flow(page):
     wait_saved(page, 's.checkpoints.airCompared')
     start_playback(page)
     page.wait_for_function("parseFloat(document.querySelector('.pump-meter span')?.style.width||'0')>=60")
-    page.get_by_role('button',name='멈추기',exact=True).click()
+    page.locator('.experiment-playback-button[aria-pressed=true]').click()
     assert not saved(page)['checkpoints']['inflated']
     assert page.get_by_role('button',name=re.compile('펌프를 세 번 눌러 봐')).is_enabled()
     playback_checks.append({'name':'S08 interrupted pumping remains manually resumable','judgmentsPreserved':True})
@@ -399,7 +408,7 @@ def run_flow(page):
     start_playback(page)
     page.locator('.object-area.testing').wait_for()
     page.wait_for_timeout(100)
-    page.get_by_role('button',name='멈추기',exact=True).click()
+    page.locator('.experiment-playback-button[aria-pressed=true]').click()
     page.locator('.object-area.testing').wait_for(state='hidden')
     page.wait_for_timeout(1300)
     assert saved(page)['testResults']==before_tests,'Stopped S10 playback saved a late result'
@@ -451,8 +460,8 @@ def main():
                 channel='chrome', headless=True, downloads_path=str(TMP/'downloads'),
                 args=['--renderer-process-limit=2', '--disk-cache-dir='+str(TMP/'chrome-cache'), '--crash-dumps-dir='+str(TMP/'crashes')])
             width, height = map(int, os.environ.get('QA_VIEWPORT', '1280x800').split('x'))
-            page = browser.new_page(viewport={'width': width, 'height': height}, reduced_motion='reduce')
-            page.set_default_timeout(12000)
+            page = browser.new_page(viewport={'width': width, 'height': height}, reduced_motion='reduce', service_workers='block')
+            page.set_default_timeout(30000)
             page.on('pageerror', lambda error: errors.append(str(error)))
             state = run_flow(page)
             assert not errors, f'Browser errors: {errors}'

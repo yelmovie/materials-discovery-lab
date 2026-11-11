@@ -48,6 +48,23 @@ async function concepts(){
   const closed=await page.locator('dialog[open].concept-dialog').count()===0;
   report.concepts.push({screen:s,...info,posterOk,thirdChapterLabel:third,thirdChapterSeek:Math.round(seekTime*100)/100,escCloses:closed});
  }
+ await page.evaluate(()=>{location.hash='world';});
+ await page.locator('.map-surface canvas').waitFor();
+ await page.waitForTimeout(1000);
+ report.frameTiming=await page.evaluate(()=>new Promise(resolve=>{
+  const intervals=[];let previous;
+  function frame(time){
+   if(previous!==undefined)intervals.push(time-previous);
+   previous=time;
+   if(intervals.length<180){requestAnimationFrame(frame);return;}
+   const mean=intervals.reduce((sum,value)=>sum+value,0)/intervals.length;
+   const sorted=[...intervals].sort((a,b)=>a-b);
+   resolve({context:'Desktop headless Chromium world map, 1280x800',frames:intervals.length,
+    meanFrameMs:Math.round(mean*100)/100,p95FrameMs:Math.round(sorted[Math.floor(sorted.length*.95)]*100)/100,
+    estimatedFps:Math.round(1000/mean*10)/10});
+  }
+  requestAnimationFrame(frame);
+ }));
  await ctx.close();
 }
 

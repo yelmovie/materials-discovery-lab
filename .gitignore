@@ -6,6 +6,14 @@ test-results/
 # Local Python caches are not release sources.
 __pycache__/
 *.pyc
+._*
+.DS_Store
+.wrangler/
+.work/
+.claude/
+_unused/
+docs/reviews/**/*.jpg
+docs/reviews/**/*.png
 # HyperFrames 작업 캐시·스냅샷(렌더 산출물은 TMPDIR)
 films/**/.hyperframes/
 films/**/renders/

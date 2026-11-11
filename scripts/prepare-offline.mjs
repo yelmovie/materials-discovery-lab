@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {readFile,readdir,writeFile,stat} from 'node:fs/promises';
+import {readFile,readdir,writeFile,stat,unlink} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -8,14 +8,18 @@ const dist=fileURLToPath(new URL('../dist/',import.meta.url));
 async function walk(dir,prefix=''){
  const result=[];
  for(const item of await readdir(dir,{withFileTypes:true})){
-  if(item.name.startsWith('._'))continue; // macOS metadata on the exFAT drive, removed before delivery.
+  if(item.name.startsWith('._')||item.name==='.DS_Store'){
+   // Vite copies exFAT metadata from public. Keep it out of the release directory.
+   if(item.isFile())await unlink(path.join(dir,item.name));
+   continue;
+  }
   const relative=prefix+item.name;
   if(item.isDirectory())result.push(...await walk(path.join(dir,item.name),relative+'/'));
   else result.push(relative);
  }
  return result;
 }
-const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3)$/.test(p)).sort();
+const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3|m4a)$/.test(p)).sort();
 if(!files.includes('index.html')||!files.includes('manifest.webmanifest')||!files.some(p=>p.endsWith('.js')))throw new Error('Build the app before preparing offline assets.');
 const hash=createHash('sha256');let bytes=0;
 for(const file of files){const data=await readFile(path.join(dist,file));hash.update(file).update(data);bytes+=data.length;}

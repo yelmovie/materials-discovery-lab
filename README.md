@@ -48,7 +48,22 @@ npm run preview -- --port 5190
 
 학생 기록은 현재 브라우저의 material-workshop-mission.student.v1 키에 저장돼. 서버 동기화는 없어. 초기화는 확인 단계를 거쳐 이 게임의 기록만 지우고 소리 설정은 유지해. 다른 기기·브라우저에는 자동으로 이어지지 않아.
 
-최종 검증 결과는 docs/reviews에서 확인해. 실제 태블릿·교실 네트워크·학생 사용성은 별도 실측이 필요해. 기존 사용자 제공 이미지와 신규 생성물의 상업 이용 근거는 납품 전에 확인해야 해. 미확인을 통과나10점 만점으로 표현하지 않아. 이번 작업에서 공개 배포는 수행하지 않았어.
+최종 검증 결과는 docs/reviews에서 확인해. 실제 태블릿·교실 네트워크·학생 사용성은 별도 실측이 필요해. 기존 사용자 제공 이미지와 신규 생성물의 상업 이용 근거는 납품 전에 확인해야 해. 최신 납품 점검과 점수는 RELEASE-REVIEW-20261111.md와 SCORE-20261111.md에 기록해.
+
+운영 주소는 https://materials-discovery-lab.yelsam.workers.dev/ 야. 운영·미리보기·localhost는 origin이 달라서 학생 저장 기록이 각각 분리돼. 같은 운영 주소의 업데이트는 기존 기록을 이어 읽어. 새 버전 안내가 나오면 모든 게임 탭을 닫고 다시 열면 돼.
+
+Mac에서는 외장 SSD의 프로젝트에서 실행하고 임시파일과 캐시도 같은 SSD로 지정해.
+
+~~~sh
+mkdir -p .tmp/runtime .tmp/npm-cache .tmp/node-compile-cache
+export TMPDIR="$PWD/.tmp/runtime" TMP="$PWD/.tmp/runtime" TEMP="$PWD/.tmp/runtime"
+export npm_config_cache="$PWD/.tmp/npm-cache" NODE_COMPILE_CACHE="$PWD/.tmp/node-compile-cache"
+npm test
+npm run build
+npm run preview -- --port 5320
+~~~
+
+브라우저 회귀 검사는 설치된 Python Playwright와 시스템 Chrome을 사용해. `tools/check-fit.py`는 실험·문제의 겹침과 스크롤, `tools/check-maker.py`는 제작 실패·수정·납품, `tools/check-delivery-pages.py`는 홈·팝업·마무리 페이지를 확인해. 프로덕션 빌드의 학생 완주는 먼저 `node tools/export-qa-reference.mjs`를 실행하고 `QA_REFERENCE="$PWD/.tmp/delivery-reference.json"`을 지정해 `tools/check-student-flow-fit.py`를 실행해. 정답 참조 데이터를 읽고 실제 화면의 버튼을 눌러 진행해.
 
 원본65개와 샘플10장은 references에 보존돼. 이전 기획은 references/source-documents에 있고, 현재 구현 기준은 docs/PRD.md·TRD.md와 실제 도메인 데이터야.
 
@@ -77,7 +92,7 @@ npm run preview -- --port 5190
 
 ## 개념 영상 · 직접 조작 강화
 
-각 활동에 9초 모션 영상 10개를 적용했어. 탐구→새 의뢰→개념 정리의 흐름, 다람쥐 모루의 단계별 힌트, 재료 카드 끌기와 분류, 고체·컵 직접 이동, 기울기와 연속 붓기, 공기 펌프, 재료에 따라 변하는 설계 모형을 포함해. 완료한 요구 조건과 예상은 접어 긴 패널을 줄였고, 의뢰의 주 버튼은 하단의 같은 자리에 있어.
+각 활동에 15초 모션 영상 10개를 적용했어. 탐구→새 의뢰→개념 정리의 흐름, 다람쥐 모루의 단계별 힌트, 재료 카드 끌기와 분류, 고체·컵 직접 이동, 기울기와 연속 붓기, 공기 펌프, 재료에 따라 변하는 설계 모형을 포함해. 완료한 요구 조건과 예상은 접어 긴 패널을 줄였고, 의뢰의 주 버튼은 하단의 같은 자리에 있어.
 
 Kenney의 CC0 효과음 8개와 기존 합성 BGM을 사용해. 영상 중에는 게임 소리가 겹치지 않아. 제작·출처·재생성 방법은 [모션과 상호작용](docs/MOTION-AND-INTERACTION.md)에 정리했어.
 

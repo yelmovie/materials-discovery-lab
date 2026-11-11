@@ -117,6 +117,7 @@
 .live-activity .matter-lab .cup-drag-handle { min-height:44px; }
 .live-activity .material-placement-stage .drag-token { min-height:44px; }
 .live-activity .material-placement-stage .drag-tokens { gap:2px; padding:0; }
+.live-activity .material-placement-stage>.workspace { grid-template-rows:minmax(136px,1fr) auto; }
 .live-activity .material-placement-stage .drag-token { font-size:clamp(14px,1.05vw,21px); }
 .live-activity .stage-info-button { font-size:clamp(14px,1vw,20px); }
 .live-activity .stage-conclusion-options .choice,.live-activity .sample-answer-options .choice { font-size:var(--text-body); }
@@ -198,8 +199,10 @@ body:has(.live-activity)>.offline-status { z-index:90!important; }
  .live-activity .test-name-long { display:none; }
  .live-activity .test-name-short { display:block; }
  .live-activity .revision-button { margin:0!important; }
+ .live-activity .invention-stage:not(.material-placement-stage) .compact-panel-top { display:none; }
 }
 @media (max-height:450px) and (min-width:700px) {
+ .live-activity .material-placement-stage>.workspace { row-gap:0; }
  .app:has(>.live-activity)>.toast { top:6px; height:44px; left:116px; right:116px; font-size:14px; }
  body:has(.live-activity)>.offline-status { top:6px!important; left:116px!important; right:116px!important; font-size:14px!important; }
  .live-activity .challenge-heading { display:none; }
@@ -277,6 +280,31 @@ body:has(.live-activity)>.offline-status { z-index:90!important; }
 }
 
 /* One contextual instruction and one highlighted next action per activity. */
+@media (min-width:1024px) {
+ .live-activity .stage-badge,.live-activity .activity-number,
+ .live-activity>.demo-toolbar .demo-step-pad span,.live-activity .demo-step-pad b,
+ .live-activity>.demo-toolbar>.demo-next-stage,.live-activity .learning-rail b,.live-activity .learning-rail>span,
+ .live-activity .activity-grid .learning-object .object-selected-badge,.live-activity .activity-choice-label,
+ .live-activity .drop-slot>b,.live-activity .drop-slot>span,
+ .live-activity .experiment-tabs button>span,.live-activity .assignment-visual>p,
+ .live-activity .selected-material,.live-activity .vessel-label small,
+ .live-activity .prediction-launch.recorded,.live-activity .stage-count,
+ .live-activity .test-name-long,.live-activity .test-state,.live-activity .compact-test-row>.stage-info-button,
+ .live-activity .water-line,.live-activity .tissue,.live-activity .vent-switch {
+  font-size:clamp(14px,1vw,18px);
+ }
+}
+@media (min-width:1024px) and (min-height:650px) {
+ .live-activity .drag-token,.live-activity .drop-slot,
+ .live-activity .experiment-tabs button,.live-activity .tab-row button,
+ .live-activity .choice,.live-activity .cup-drag-handle { min-height:48px; }
+}
+.live-activity .activity-footer>.optional-action {
+ background:rgba(255,255,255,.82);
+ color:#315b44;
+ border-color:#a9bdb4;
+ box-shadow:none;
+}
 .live-activity [data-next-action=true]:not(button) {
  border-radius:12px;
  outline:2px solid #be9442;

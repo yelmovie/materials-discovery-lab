@@ -3,6 +3,20 @@
   "status": "implementation_design",
   "updatedAt": "2026-10-15",
   "project": "material-workshop-mission",
+  "contentSources": {
+    "curriculum": {
+      "title": "경기도교육청 「초등 깊이있는 수업 프레임워크」 부록, 3~4학년군(2024)",
+      "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202411110127574203.pdf",
+      "pdfPage": 77,
+      "checkedAt": "2026-10-22",
+      "verificationRecord": "docs/PRD.md#성취기준-원문-대조-기록"
+    },
+    "learningDesign": {
+      "title": "물질 공방 대작전 PRD · 학습 목표와 공방별 활동",
+      "path": "docs/PRD.md",
+      "sections": [2, 4]
+    }
+  },
   "scope": {
     "stages": 5,
     "coreScreens": 10,
@@ -113,6 +127,11 @@
       "id": "S01",
       "stage": 1,
       "title": "물체의 부분을 조사하라",
+      "standards": ["4과05-01"],
+      "learningObjectives": ["우산을 부분별로 살펴보고, 하나의 물체가 여러 물질로 이루어질 수 있음을 설명할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "moru",
       "renderer": "three-object",
       "prerequisites": [],
@@ -133,6 +152,11 @@
       "id": "S02",
       "stage": 1,
       "title": "부품과 재료를 연결하라",
+      "standards": ["4과05-01"],
+      "learningObjectives": ["관찰 기록을 근거로 우산 부품과 재료를 연결하고, 각 부분에 그 재료를 쓰는 까닭을 설명할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "moru",
       "renderer": "three-object",
       "prerequisites": [
@@ -156,6 +180,11 @@
       "id": "S03",
       "stage": 2,
       "title": "직접 시험해 증거를 모아라",
+      "standards": ["4과05-01"],
+      "learningObjectives": ["같은 조건에서 시료를 시험해 늘어남과 복원, 빛의 통과, 물의 스밈을 비교하고 결과를 기록할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "dandani",
       "renderer": "phaser-2d",
       "prerequisites": [
@@ -184,6 +213,11 @@
       "id": "S04",
       "stage": 2,
       "title": "쓰임에 맞는 재료를 결정하라",
+      "standards": ["4과05-01"],
+      "learningObjectives": ["빛이 통과하거나 눌렸다 돌아오는 관찰 결과를 근거로, 관찰창과 보호대에 쓸 재료를 선택할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "dandani",
       "renderer": "dom-2d",
       "prerequisites": [
@@ -206,6 +240,11 @@
       "id": "S05",
       "stage": 3,
       "title": "고체를 다른 용기에 옮겨 보자",
+      "standards": ["4과05-02"],
+      "learningObjectives": ["같은 나무토막을 모양이 다른 용기로 옮겨도 토막의 모양과 크기가 그대로임을 비교해 설명할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "banguli",
       "renderer": "phaser-2d",
       "prerequisites": [
@@ -227,6 +266,14 @@
       "id": "S06",
       "stage": 3,
       "title": "액체를 따르고 다시 비교하자",
+      "standards": ["4과05-02"],
+      "learningObjectives": [
+        "물을 여러 용기에 옮겼다가 처음 용기로 되돌려, 물의 모양은 달라져도 흘리지 않은 물의 양은 같음을 확인할 수 있다.",
+        "모래 더미가 흐르는 것과 모래알 하나가 모양을 유지하는 것을 구별할 수 있다."
+      ],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "banguli",
       "renderer": "phaser-2d",
       "prerequisites": [
@@ -253,6 +300,11 @@
       "id": "S07",
       "stage": 4,
       "title": "빈 컵 속 공간을 관찰하라",
+      "standards": ["4과05-02"],
+      "learningObjectives": ["거꾸로 놓은 컵을 물속에 넣고 물이 들어온 범위와 휴지의 상태를 관찰해, 공기가 공간을 차지함을 설명할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "barami",
       "renderer": "phaser-2d",
       "prerequisites": [
@@ -274,6 +326,14 @@
       "id": "S08",
       "stage": 4,
       "title": "공기가 나가면 무엇이 달라질까",
+      "standards": ["4과05-02"],
+      "learningObjectives": [
+        "같은 컵을 같은 깊이에서 비교해, 배출구를 열면 공기가 빠져나간 자리에 물이 들어옴을 설명할 수 있다.",
+        "펌프로 공기를 넣으면 주머니가 부푸는 모습을 관찰할 수 있다."
+      ],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "barami",
       "renderer": "phaser-2d",
       "prerequisites": [
@@ -299,6 +359,11 @@
       "id": "S09",
       "stage": 5,
       "title": "증거를 이용해 보관함을 설계하라",
+      "standards": ["4과05-03"],
+      "learningObjectives": ["보관함의 몸체·관찰창·보호대에 맞는 재료를 고르고, 선택을 뒷받침하는 관찰 기록을 연결할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "tori",
       "renderer": "three-object",
       "prerequisites": [
@@ -322,6 +387,11 @@
       "id": "S10",
       "stage": 5,
       "title": "시험하고 개선해 공방을 재가동하라",
+      "standards": ["4과05-03"],
+      "learningObjectives": ["보관함을 비·빛·충격 조건에서 시험하고, 필요하면 시험 결과를 근거로 재료를 바꾸어 다시 시험할 수 있다."],
+      "needsReview": true,
+      "source": {"standards": "curriculum", "learningObjectives": "learningDesign"},
+      "reviewer": null,
       "npc": "tori",
       "renderer": "three-object",
       "prerequisites": [

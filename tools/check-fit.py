@@ -63,7 +63,7 @@ SCAN = r"""config => {
  function add(kind,e,detail={}){const item={kind,label:label(e),selector:cls(e),...detail};const key=JSON.stringify(item);if(!seen.has(key)){seen.add(key);issues.push(item);}}
  function rendered(e){
   if(e.closest('[hidden],[aria-hidden="true"],[inert]')||e.matches('input[type="hidden"]'))return false;
-  const closed=e.closest('details:not([open])');if(closed&&!closed.querySelector(':scope > summary')?.contains(e))return false;
+  for(let closed=e.closest('details:not([open])');closed;closed=closed.parentElement?.closest('details:not([open])'))if(!closed.querySelector(':scope > summary')?.contains(e))return false;
   for(let a=e;a&&a!==document;a=a.parentElement){const s=getComputedStyle(a);if(s.display==='none'||s.visibility==='hidden'||s.visibility==='collapse')return false;}
   return true;
  }
@@ -77,6 +77,8 @@ SCAN = r"""config => {
    const x=/^(hidden|clip|auto|scroll)$/.test(s.overflowX)&&(r.left<left-tol||r.right>right+tol);
    const y=/^(hidden|clip|auto|scroll)$/.test(s.overflowY)&&(r.top<top-tol||r.bottom>bottom+tol);
    if(x||y)out.push({by:cls(a),axes:(x?'x':'')+(y?'y':''),bounds:{left:Math.round(left),top:Math.round(top),right:Math.round(right),bottom:Math.round(bottom)}});
+   // Native modal dialogs are painted in the top layer, outside ancestor clipping.
+   if(a.matches('dialog:modal'))break;
   }
   return out;
  }
@@ -111,6 +113,7 @@ SCAN = r"""config => {
  }
  // Inspect real text line fragments, not scrollHeight from decorative pseudo elements.
  let textNodesChecked=0;
+ const smallText=[],fontMinimum=innerWidth>=1500?18:innerWidth>=1024?14:null;
  const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
  while(node=walk.nextNode()){
   if(!node.textContent.trim())continue;
@@ -121,6 +124,8 @@ SCAN = r"""config => {
   const lines=[...range.getClientRects()].filter(t=>t.width>.5&&t.height>.5);if(!lines.length)continue;
   textNodesChecked++;
   const text=node.textContent.replace(/\s+/g,' ').trim().slice(0,90);
+  const fontSize=parseFloat(getComputedStyle(e).fontSize);
+  if(fontMinimum&&fontSize<fontMinimum-.1)smallText.push({selector:cls(e),tag:e.tagName,parent:cls(e.parentElement),text,fontSize,minimum:fontMinimum});
   for(const t of lines){
    if(t.left<r.left-tol||t.right>r.right+tol||t.top<r.top-tol||t.bottom>r.bottom+tol)add('text-box-overflow',e,{text,line:box(t),parent:box(r)});
    if(t.left< -tol||t.right>innerWidth+tol||t.top< -tol||t.bottom>innerHeight+tol)add('text-viewport',e,{text,line:box(t)});
@@ -142,7 +147,7 @@ SCAN = r"""config => {
   if(!toolbar||(gridRect&&r.bottom>gridRect.top+tol))add('autoplay-not-in-top-toolbar',e,{...box(r),toolbar:toolbar?cls(toolbar):null});
  }
  const modal=[...document.querySelectorAll('dialog[open]')].map(e=>({title:label(e),...box(rect(e))}));
- return {issues,containers,controlsChecked,disabledChecked,textNodesChecked,diagrams,openDialogs:modal,viewport:{width:innerWidth,height:innerHeight,scrollX,scrollY}};
+ return {issues,containers,controlsChecked,disabledChecked,textNodesChecked,smallText,diagrams,openDialogs:modal,viewport:{width:innerWidth,height:innerHeight,scrollX,scrollY}};
 }"""
 
 report = {'startedAt': datetime.now(timezone.utc).isoformat(), 'base': BASE, 'label': LABEL,

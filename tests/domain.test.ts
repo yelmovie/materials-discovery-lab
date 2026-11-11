@@ -1,6 +1,6 @@
 import {describe,it,expect} from 'vitest';
 import {freshSave,demoSave,reduceSave,canAccess,canComplete,currentPass,canFinalize,designReady,makeObservation,materials,experiments,requiredLinks,parts,tests,evaluateTest,transfer,airTrial,comparableAir,type Save,type Part} from '../src/domain/model';
-import {decodeSave,loadSave,persist,persistIfUnchanged,SAVE_KEY,type StorageLike} from '../src/services/storage';
+import {clearSave,decodeSave,loadSave,persist,persistIfUnchanged,RECOVERY_KEY,SAVE_KEY,type StorageLike} from '../src/services/storage';
 import {challenges,challengesFor} from '../src/domain/challenges';
 import {sessionReducer} from '../src/state/GameContext';
 
@@ -22,6 +22,23 @@ describe('progress and evidence',()=>{
   s=reduceSave(s,{type:'challenge',id:second.id,answer:second.answer});expect(s.challengeResults).toHaveLength(2);
  });
  it('blocks later screens and forged URL progression',()=>{let s=freshSave();for(const route of ['S02','S05','S09','S10'] as const){expect(canAccess(s,route)).toBe(false);s=reduceSave(s,{type:'navigate',route});expect(s.lastRoute).toBe('home');}expect(canAccess(s,'S01')).toBe(true);});
+ it('keeps final panels off ordinary activities, including after reload',()=>{
+  const s=reduceSave(freshSave(),{type:'navigate',route:'S01'});
+  for(const route of ['home','world','S01'] as const)for(const phase of ['report','core','ending','certificate'] as const)expect(canAccess(s,route,phase)).toBe(false);
+  expect(reduceSave(s,{type:'navigate',route:'S01',phase:'certificate'}).lastPhase).toBe('activity');
+  const restored=decodeSave(JSON.stringify({...s,lastPhase:'certificate'}));
+  expect([restored.lastRoute,restored.lastPhase]).toEqual(['S01','activity']);
+ });
+ it('opens the certificate only after the core is actually restored',()=>{
+  let s=ready();s.reportedRevision=null;
+  expect(canAccess(s,'S10','report')).toBe(true);expect(canAccess(s,'S10','core')).toBe(false);
+  s=reduceSave(s,{type:'report'});
+  expect(canAccess(s,'S10','core')).toBe(true);
+  for(const phase of ['ending','certificate'] as const){expect(canAccess(s,'S10',phase)).toBe(false);expect(reduceSave(s,{type:'navigate',route:'S10',phase}).lastPhase).toBe('activity');}
+  s=reduceSave(s,{type:'navigate',route:'S10',phase:'core'});s=reduceSave(s,{type:'core'});
+  expect(s.completionArchive).toHaveLength(1);
+  expect(canAccess(s,'S10','ending')).toBe(true);expect(canAccess(s,'S10','certificate')).toBe(true);
+ });
  it('requires all inspected parts before completion and matching own evidence',()=>{let s=reduceSave(freshSave(),{type:'navigate',route:'S01'});s=reduceSave(s,{type:'complete',screen:'S01'});expect(s.completedScreens).toEqual([]);for(const part of ['canopy','frame','handle'] as const)s=reduceSave(s,{type:'inspect',part});expect(canComplete(s,'S01')).toBe(false);for(const c of challengesFor('S01'))s=reduceSave(s,{type:'challenge',id:c.id,answer:c.answer});expect(canComplete(s,'S01')).toBe(true);s=reduceSave(s,{type:'complete',screen:'S01'});s=reduceSave(s,{type:'navigate',route:'S02'});s=reduceSave(s,{type:'match',part:'canopy',material:'천',evidence:'frame'});expect(s.checkpoints.matched).toEqual([]);s=reduceSave(s,{type:'match',part:'canopy',material:'플라스틱',evidence:'canopy'});expect(s.checkpoints.matched).toEqual([]);});
  it('does not duplicate chapter rewards or erase previous records',()=>{let s=ready();s=reduceSave(s,{type:'complete',screen:'S10'});s=reduceSave(s,{type:'complete',screen:'S10'});expect(s.evidence).toHaveLength(5);const archive=reduceSave(reduceSave(s,{type:'report'}),{type:'core'});const restarted=reduceSave(archive,{type:'newDesign'});expect(restarted.evidence).toHaveLength(5);expect(restarted.completedScreens).toHaveLength(10);expect(restarted.completionArchive).toHaveLength(1);expect(currentPass(restarted)).toBe(false);});
 });
@@ -33,11 +50,34 @@ describe('controlled experiments',()=>{
  it('does not accept incorrect observation answers or foreign sample evidence',()=>{let s=ready();s.lastRoute='S03';s.observations=[];s=reduceSave(s,{type:'observe',experiment:'light_transmission',sampleId:'wood_raw',answer:'빛이 통과해 뒤쪽 표시가 보였어'});expect(s.observations).toHaveLength(0);s=ready();s.design.parts.body.observationIds=[];s=reduceSave(s,{type:'link',part:'body',id:makeObservation('water_absorption','wood_raw','student').id,enabled:true});expect(s.design.parts.body.observationIds).toHaveLength(0);});
 });
 describe('design and revision integrity',()=>{
+ it('rechecks experiment evidence when a saved completion flag is forged',()=>{
+  const s=ready();s.coreComplete=true;s.reportedRevision=s.design.revision;
+  s.testResults=[];s.lastPhase='certificate';
+  expect(canAccess(s,'S10','certificate')).toBe(false);
+  const restored=decodeSave(JSON.stringify(s));
+  expect(restored.coreComplete).toBe(false);
+  expect(restored.lastPhase).toBe('activity');
+ });
  it.each(['metal_plate','plastic_clear','plastic_opaque','glass_clear'])('allows rigid water-resistant body %s',id=>{let s=material(ready(),'body',id);s=runAll(s);expect(currentPass(s)).toBe(true);});
  it.each(['glass_clear','plastic_clear'])('allows transparent window %s',id=>{let s=material(ready(),'window',id);s=runAll(s);expect(currentPass(s)).toBe(true);});
  it('allows relevant evidence for an unsuitable design, then failure, repair and success',()=>{let s=material(ready(),'body','wood_raw');expect(designReady(s)).toBe(true);expect(canComplete(s,'S09')).toBe(true);s=runAll(s);expect(currentPass(s)).toBe(false);expect(evaluateTest(s,'rain').pass).toBe(false);s=material(s,'body','plastic_opaque');expect(currentPass(s)).toBe(false);s=runAll(s);expect(currentPass(s)).toBe(true);});
  it('invalidates old results and rejects stale animation callbacks',()=>{let s=ready();const old=s.design.revision,id=s.design.attemptId;s=material(s,'window','glass_clear');expect(currentPass(s)).toBe(false);const n=reduceSave(s,{type:'test',testId:'light',revision:old,attemptId:id});expect(n.testResults).toEqual(s.testResults);expect(canFinalize(n)).toBe(false);});
  it('requires new E05 after design changes and preserves archived runs',()=>{let s=ready();s=reduceSave(s,{type:'report'});s=reduceSave(s,{type:'core'});const original=structuredClone(s.completionArchive[0]);s=reduceSave(s,{type:'newDesign'});s=material(s,'window','glass_clear');s.lastRoute='S10';s=runAll(s);expect(currentPass(s)).toBe(true);expect(canFinalize(s)).toBe(false);s=reduceSave(s,{type:'complete',screen:'S10'});expect(canFinalize(s)).toBe(true);expect(s.completionArchive[0]).toEqual(original);});
+ it('archives a revised certificate separately after returning to the completed design',()=>{
+  let s=reduceSave(reduceSave(ready(),{type:'report'}),{type:'core'});
+  const previous=structuredClone(s.completionArchive[0]);
+  s=reduceSave(s,{type:'navigate',route:'S09'});expect(s.lastRoute).toBe('S09');
+  s=reduceSave(s,{type:'need',part:'window',enabled:true});expect(s.design.attemptId).toBe(previous.id);expect(s.coreComplete).toBe(true);
+  s=material(s,'window','glass_clear');expect(s.design.attemptId).not.toBe(previous.id);expect(s.coreComplete).toBe(false);
+  s=runAll(reduceSave(s,{type:'navigate',route:'S10'}));
+  s=reduceSave(s,{type:'complete',screen:'S10'});expect(s.evidence).toHaveLength(5);
+  s=reduceSave(s,{type:'navigate',route:'S10',phase:'report'});s=reduceSave(s,{type:'report'});
+  s=reduceSave(s,{type:'navigate',route:'S10',phase:'core'});s=reduceSave(s,{type:'core'});s=reduceSave(s,{type:'core'});
+  expect(s.completionArchive).toHaveLength(2);
+  expect(s.completionArchive[0]).toEqual(previous);
+  expect(s.completionArchive[1].design.parts.window.sampleId).toBe('glass_clear');
+  expect(decodeSave(JSON.stringify(s)).completionArchive).toEqual(s.completionArchive);
+ });
  it('rejects references to absent and demo observation records',()=>{let s=ready();s.design.parts.body.observationIds=[];const id=makeObservation('water_absorption','metal_plate','student').id;s.observations=s.observations.map(o=>o.id===id?{...o,origin:'demo'}:o);s=reduceSave(s,{type:'link',part:'body',id,enabled:true});s=reduceSave(s,{type:'link',part:'body',id:'not-found',enabled:true});expect(s.design.parts.body.observationIds).toEqual([]);});
 });
 describe('storage and isolated demo session',()=>{
@@ -48,6 +88,17 @@ describe('storage and isolated demo session',()=>{
  });
  it('round trips a full run with a whitelisted schema',()=>{let s=ready();s=reduceSave(s,{type:'report'});s=reduceSave(s,{type:'core'});const decoded=decodeSave(JSON.stringify({...s,unexpected:'excluded'}));expect(decoded).toEqual(s);expect('unexpected' in decoded).toBe(false);});
  it('preserves corrupt source before starting a recoverable fresh run',()=>{const store=new Memory();store.setItem(SAVE_KEY,'{bad');store.setItem('another-app','preserved');const result=loadSave(store);expect(result.blocked).toBe(false);expect(result.notice).toContain('손상');expect(store.getItem(`${SAVE_KEY}.recovery`)).toBe('{bad');expect(persist(store,result.save)).toBe(true);expect(store.getItem('another-app')).toBe('preserved');});
+ it('clears both student history and its recovery copy on an explicit reset',()=>{
+  const store=new Memory(),s={...freshSave(),name:'이전 연구원'};
+  persist(store,s);store.setItem(RECOVERY_KEY,JSON.stringify(s));store.setItem('another-app','preserved');
+  clearSave(store);
+  expect(store.getItem(SAVE_KEY)).toBeNull();expect(store.getItem(RECOVERY_KEY)).toBeNull();expect(store.getItem('another-app')).toBe('preserved');
+ });
+ it('keeps autosave blocked and reports when research history could not be deleted',()=>{
+  const student={...freshSave(),name:'이전 연구원'};
+  const reset=sessionReducer({student,demo:null,notice:'',blocked:false},{type:'reset',storageFailed:true});
+  expect(reset.student.name).toBe('');expect(reset.blocked).toBe(true);expect(reset.notice).toContain('지우지 못했어');
+ });
  it('preserves future schemas and never silently overwrites them',()=>{const store=new Memory(),raw=JSON.stringify({...freshSave(),schemaVersion:99});store.setItem(SAVE_KEY,raw);const result=loadSave(store);expect(result.blocked).toBe(true);expect(store.getItem(SAVE_KEY)).toBe(raw);});
  it('rejects malformed references and out-of-bounds checkpoints',()=>{const s=ready();s.design.parts.body.observationIds=['absent'];expect(()=>decodeSave(JSON.stringify(s))).toThrow();const n=ready();n.checkpoints.liquidStep=900;expect(()=>decodeSave(JSON.stringify(n))).toThrow();});
  it('handles storage denial and quota failure without claiming a successful save',()=>{const store:StorageLike={getItem(){throw new Error('denied')},setItem(){throw new Error('quota')},removeItem(){}};expect(loadSave(store).blocked).toBe(true);expect(persist(store,freshSave())).toBe(false);});
@@ -60,6 +111,16 @@ describe('prediction history and concurrent saves',()=>{
  it('does not invent historical predictions while migrating older saves',()=>{const s=freshSave();s.predictions.S06='change';const old={...s} as Partial<Save>;delete old.initialPredictions;let migrated=decodeSave(JSON.stringify(old));migrated=reduceSave(migrated,{type:'prediction',key:'S06',value:'same'});expect(migrated.initialPredictions).toEqual({});});
  it('rejects malformed first predictions',()=>{expect(()=>decodeSave(JSON.stringify({...freshSave(),initialPredictions:{S05:'made-up'}}))).toThrow();});
  it('keeps newer storage intact and reports a conflict',()=>{const mem=new Memory(),s=freshSave();expect(persistIfUnchanged(mem,s,null)).toBe('saved');const base=mem.getItem(SAVE_KEY);const other={...s,name:'새 기록'};persist(mem,other);expect(persistIfUnchanged(mem,s,base)).toBe('conflict');expect(loadSave(mem).save.name).toBe('새 기록');});
+ it('uses the record actually loaded as the conflict baseline during startup',()=>{
+  const s=freshSave(),previous=JSON.stringify(s),next=JSON.stringify({...s,name:'다른 창에서 저장한 기록'});
+  const mem=new Memory();mem.setItem(SAVE_KEY,previous);let firstRead=true;
+  const storage:StorageLike={getItem(key){const snapshot=mem.getItem(key);if(key===SAVE_KEY&&firstRead){firstRead=false;mem.setItem(SAVE_KEY,next);}return snapshot;},setItem:(key,value)=>mem.setItem(key,value),removeItem:key=>mem.removeItem(key)};
+  const loaded=loadSave(storage);
+  expect(loaded.save.name).toBe('');
+  expect(loaded.expectedRaw).toBe(previous);
+  expect(persistIfUnchanged(storage,loaded.save,loaded.expectedRaw)).toBe('conflict');
+  expect(mem.getItem(SAVE_KEY)).toBe(next);
+ });
  it('blocks persistence after the other tab resets the slot',()=>{const mem=new Memory(),s=freshSave();persist(mem,s);const base=mem.getItem(SAVE_KEY);mem.removeItem(SAVE_KEY);expect(persistIfUnchanged(mem,s,base)).toBe('conflict');expect(mem.getItem(SAVE_KEY)).toBeNull();});
  it('keeps demo and student data intact on conflict',()=>{const student=freshSave(),demo=demoSave(student.settings);const state=sessionReducer({student,demo,blocked:false,notice:''},{type:'saveConflict'});expect(state.blocked).toBe(true);expect(state.student).toBe(student);expect(state.demo).toBe(demo);});
 });

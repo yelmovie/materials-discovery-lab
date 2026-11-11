@@ -79,11 +79,16 @@ export function transfer(volumes:number[],from:number,to:number,requested:number
  const amount=Math.max(0,Math.min(Math.floor(requested),next[from],capacities[to]-next[to]));next[from]-=amount;next[to]+=amount;return next;
 }
 export function canAccess(s:Save,route:Route,phase:Phase='activity'){
+ if(route!=='S10'&&phase!=='activity')return false;
  if(route==='home'||route==='world')return true;
  const target=screens.find(x=>x.id===route);if(!target)return false;
  if(!target.prerequisites.every(id=>s.completedScreens.includes(id as Screen)))return false;
- if(route==='S10'&&phase!=='activity')return (phase==='certificate'&&s.coreComplete)||canFinalize(s)&&(phase==='report'||s.reportedRevision===s.design.revision);
- return true;
+ if(phase==='activity')return true;
+ if(!canFinalize(s))return false;
+ if(phase==='report')return true;
+ if(s.reportedRevision!==s.design.revision)return false;
+ if(phase==='certificate')return s.coreComplete;
+ return phase==='core'||phase==='ending'&&s.coreComplete;
 }
 export function canComplete(s:Save,id:Screen){return canCompleteInvestigation(s,id)&&challengesFor(id).every(c=>s.challengeResults.some(r=>r.id===c.id&&correctChallenge(c,r.answer)));}
 export function canCompleteInvestigation(s:Save,id:Screen){const c=s.checkpoints;switch(id){
@@ -120,6 +125,13 @@ export type Action =
  |{type:'report'}|{type:'core'}|{type:'newDesign'}|{type:'name';value:string}
  |{type:'settings';value:Partial<Settings>};
 const add=<T,>(a:T[],v:T)=>a.includes(v)?a:[...a,v];
+function reviseDesign(s:Save,forceNewAttempt=false){
+ // A completed design already has an immutable certificate snapshot.
+ if(forceNewAttempt||s.completionArchive.some(r=>r.id===s.design.attemptId)){
+  s.design.attemptId=crypto.randomUUID();s.design.revision=1;s.testResults=[];
+ }else s.design.revision++;
+ s.reportedRevision=null;s.coreComplete=false;
+}
 export function reduceSave(original:Save,a:Action,admin=false):Save {
  const s=structuredClone(original);const c=s.checkpoints;
  switch(a.type){
@@ -144,9 +156,9 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  case 'air':if((!a.open&&s.lastRoute==='S07')||(a.open&&s.lastRoute==='S08'&&c.closed)){if(a.open)c.open=airTrial(true);else c.closed=airTrial(false);}break;
  case 'airCompare':if(comparableAir(c.closed,c.open))c.airCompared=true;break;
  case 'inflate':if(c.airCompared)c.inflated=true;break;
- case 'need':s.design.needs=a.enabled?add(s.design.needs,a.part):s.design.needs.filter(p=>p!==a.part);s.design.revision++;s.reportedRevision=null;s.coreComplete=false;break;
- case 'material':if(materials.some(m=>m.id===a.sampleId)&&s.design.parts[a.part].sampleId!==a.sampleId){s.design.parts[a.part]={sampleId:a.sampleId,observationIds:[]};s.design.revision++;s.reportedRevision=null;s.coreComplete=false;}break;
- case 'link':{const p=s.design.parts[a.part];const o=s.observations.find(o=>o.id===a.id&&o.sampleId===p.sampleId&&o.origin===s.origin&&requiredLinks[a.part].includes(o.experiment));if(o){p.observationIds=a.enabled?add(p.observationIds,a.id):p.observationIds.filter(id=>id!==a.id);s.design.revision++;s.reportedRevision=null;s.coreComplete=false;}break;}
+ case 'need':if(s.design.needs.includes(a.part)!==a.enabled){s.design.needs=a.enabled?add(s.design.needs,a.part):s.design.needs.filter(p=>p!==a.part);reviseDesign(s);}break;
+ case 'material':if(materials.some(m=>m.id===a.sampleId)&&s.design.parts[a.part].sampleId!==a.sampleId){s.design.parts[a.part]={sampleId:a.sampleId,observationIds:[]};reviseDesign(s);}break;
+ case 'link':{const p=s.design.parts[a.part];const o=s.observations.find(o=>o.id===a.id&&o.sampleId===p.sampleId&&o.origin===s.origin&&requiredLinks[a.part].includes(o.experiment));if(o&&p.observationIds.includes(a.id)!==a.enabled){p.observationIds=a.enabled?add(p.observationIds,a.id):p.observationIds.filter(id=>id!==a.id);reviseDesign(s);}break;}
  case 'test':if(s.lastRoute==='S10'&&s.lastPhase==='activity'&&designReady(s)&&a.revision===s.design.revision&&a.attemptId===s.design.attemptId){s.testResults=s.testResults.filter(t=>!(t.testId===a.testId&&t.attemptId===a.attemptId&&t.designRevision===a.revision)).concat(evaluateTest(s,a.testId));}break;
  case 'complete':if(s.lastRoute===a.screen&&canComplete(s,a.screen)){
    s.completedScreens=add(s.completedScreens,a.screen);const i=screens.findIndex(x=>x.id===a.screen);
@@ -154,7 +166,7 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  }break;
  case 'report':if(canFinalize(s))s.reportedRevision=s.design.revision;break;
  case 'core':if(canFinalize(s)&&s.reportedRevision===s.design.revision){s.coreComplete=true;if(!s.completionArchive.some(r=>r.id===s.design.attemptId))s.completionArchive.push({id:s.design.attemptId,name:s.name.trim()||'신입 연구원',date:new Date().toISOString(),design:structuredClone(s.design),evidence:structuredClone(s.evidence),tests:structuredClone(currentResults(s))});}break;
- case 'newDesign':s.design={...structuredClone(s.design),attemptId:crypto.randomUUID(),revision:1};s.testResults=[];s.reportedRevision=null;s.coreComplete=false;s.lastRoute='S09';s.lastPhase='activity';break;
+ case 'newDesign':reviseDesign(s,true);s.lastRoute='S09';s.lastPhase='activity';break;
  case 'name':s.name=a.value.slice(0,24);if(s.coreComplete){const r=s.completionArchive.find(r=>r.id===s.design.attemptId);if(r)r.name=s.name.trim()||'신입 연구원';}break;
  case 'settings':s.settings={...s.settings,...a.value};break;
  }

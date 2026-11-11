@@ -19,7 +19,7 @@
 | Kenney Interface Sounds 1.0 | 선택·놓기·발견·힌트·도구 등 효과음 8종 | 공식 사이트 CC0 표시 및 다운로드 ZIP License.txt 대조 | audio/Kenney-CC0.txt 원문·sources.json 매핑 보존 |
 | 개념 모션 영상 10개 (2026-11-09 교체) | 활동 완료·다시 보기 | HyperFrames 0.9.26(오픈소스 CLI, 로컬 렌더)로 직접 만든 HTML 장면 → FFmpeg. 게임 안 그림(모루·NPC4·우산·보관함·나무 시료)과 Jua 글꼴을 재사용, 새 생성 이미지·음원 없음. 애니메이션 라이브러리 GSAP 3.15.0(GreenSock Standard License, 제작 소스에만 포함, 앱 번들에는 없음) | films/concept-clips(소스·SPEC·REVIEW), concepts/manifest.json |
 | SVG 공통 아이콘 | src/components/Icon.tsx | 프로젝트 코드의 직접 작성 SVG | 별도 유료 아이콘 팩 없음 |
-| Jua 400·시스템 글꼴 fallback | 로컬 글꼴 파일 | 기존 1udangtangtang 프로젝트의 Jua WOFF2와 SIL OFL 1.1 고지 함께 재사용 | fonts/Jua-OFL.txt 원문·저작권 고지 보존, 외부 CDN 불필요 |
+| NanumSquare Neo Regular·Bold·ExtraBold (400·700·800) / Jua 400 | NanumSquare Neo는 앱 UI·실험 Canvas, Jua는 기존 개념 영상 제작 | 자체 호스팅 WOFF2. NanumSquare Neo는 NAVER Corporation 저작권 및 SIL OFL 1.1, Jua는 기존 프로젝트에서 SIL OFL 1.1 고지와 함께 재사용 | `fonts/NanumSquareNeo-OFL.txt`·`fonts/Jua-OFL.txt` 원문과 저작권 고지 보존. 글꼴 적용 검증: `docs/FONT-QA-20261111.md` |
 
 미확인 에셋 권리를 해결하기 전 **상업 배포 승인 완료로 판단하지 않아**. 기본 이미지는 학습용 재현 그림으로, 실제 재료의 성질이나 실험 결과를 보장하는 사진이 아니야.
 

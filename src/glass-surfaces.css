@@ -9,6 +9,10 @@ button:not(.primary):not(.selected):not(.danger):not(.map-label):not(.drag-token
 button[aria-pressed=true],.choice.selected{background:#e2edcf;border-color:#55794d}
 .modal-actions{flex-wrap:wrap}
 @media(prefers-reduced-transparency:reduce){:root{--glass-face:#fffdf3;--glass-reading:#fffdf6}.workspace{background:#fffdf3}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+ :root{--glass-face:#fffdf3;--glass-reading:#fffdf6}
+ .workspace{background:#fffdf3}
+}
 @media print{.modal,.tool-panel,.workspace{background:#fff!important;backdrop-filter:none!important;box-shadow:none!important}}
 @media(max-width:600px){.demo-ribbon{top:70px;max-width:calc(100vw - 32px);pointer-events:none;font-size:12px;padding:4px 10px}}
 :root{--card-corner:18px;--card-gap:12px}

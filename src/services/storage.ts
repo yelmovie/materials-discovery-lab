@@ -1,7 +1,8 @@
 import {validDelivery} from '../domain/maker';
-import {canAccess, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
+import {canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
 import {challenges,correctChallenge} from '../domain/challenges';
 export const SAVE_KEY='material-workshop-mission.student.v1';
+export const RECOVERY_KEY=`${SAVE_KEY}.recovery`;
 export interface StorageLike {getItem(key:string):string|null;setItem(key:string,value:string):void;removeItem(key:string):void}
 const object=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
 const array=(v:unknown):v is unknown[]=>Array.isArray(v);
@@ -39,15 +40,17 @@ export function decodeSave(raw:string):Save {
  s.restoration=Object.fromEntries(Object.entries(object(s.restoration)?s.restoration:{}).filter(([k,v])=>/^[0-4]$/.test(k)&&Number.isInteger(v)&&v>=0&&v<=3&&s.evidence.some(e=>e.id===`E0${Number(k)+1}`)));
  // Copy only the known fields. Unknown fields never round-trip into student storage.
  const clean=Object.fromEntries(Object.keys(fresh).map(k=>[k,s[k as keyof Save]])) as unknown as Save;
- if(!canAccess(clean,clean.lastRoute,clean.lastPhase)){clean.lastRoute='world';clean.lastPhase='activity';}
+ if(!canFinalize(clean)||clean.reportedRevision!==clean.design.revision)clean.coreComplete=false;
+ if(!canAccess(clean,clean.lastRoute,clean.lastPhase)){clean.lastPhase='activity';if(!canAccess(clean,clean.lastRoute))clean.lastRoute='world';}
  if(clean.lastPhase==='ending'){clean.lastPhase=clean.coreComplete?'certificate':'report';}
  return clean;
 }
-export function loadSave(storage:StorageLike):{save:Save;notice:string;blocked:boolean}{
+export function loadSave(storage:StorageLike):{save:Save;notice:string;blocked:boolean;expectedRaw:string|null}{
  let raw:string|null=null;
- try{raw=storage.getItem(SAVE_KEY);if(!raw)return {save:freshSave(),notice:'',blocked:false};const header=JSON.parse(raw);if(object(header)&&(Number(header.schemaVersion)>1||header.contentVersion!=='mvp-1'))return {save:freshSave(),notice:'다른 버전의 저장 기록이 있어. 원본을 보존했어. 새로 시작을 확인하기 전에는 이번 진행이 저장되지 않아.',blocked:true};return {save:decodeSave(raw),notice:'',blocked:false};}
- catch{if(raw){try{storage.setItem(`${SAVE_KEY}.recovery`,raw);}catch{/* Keep the original slot if recovery cannot be written. */return {save:freshSave(),notice:'저장 기록을 읽지 못했고 복구본도 저장하지 못했어. 기존 기록을 보존하며 임시로 진행할게.',blocked:true};}}return {save:freshSave(),notice:raw?'손상된 저장 기록을 복구용으로 보관했어. 새 기록으로 시작할게.':'이 브라우저에서는 자동 저장을 사용할 수 없어. 창을 닫으면 이번 진행이 사라질 수 있어.',blocked:!raw};}
+ try{raw=storage.getItem(SAVE_KEY);if(!raw)return {save:freshSave(),notice:'',blocked:false,expectedRaw:raw};const header=JSON.parse(raw);if(object(header)&&(Number(header.schemaVersion)>1||header.contentVersion!=='mvp-1'))return {save:freshSave(),notice:'다른 버전의 저장 기록이 있어. 원본을 보존했어. 새로 시작을 확인하기 전에는 이번 진행이 저장되지 않아.',blocked:true,expectedRaw:raw};return {save:decodeSave(raw),notice:'',blocked:false,expectedRaw:raw};}
+ catch{if(raw){try{storage.setItem(RECOVERY_KEY,raw);}catch{/* Keep the original slot if recovery cannot be written. */return {save:freshSave(),notice:'저장 기록을 읽지 못했고 복구본도 저장하지 못했어. 기존 기록을 보존하며 임시로 진행할게.',blocked:true,expectedRaw:raw};}}return {save:freshSave(),notice:raw?'손상된 저장 기록을 복구용으로 보관했어. 새 기록으로 시작할게.':'이 브라우저에서는 자동 저장을 사용할 수 없어. 창을 닫으면 이번 진행이 사라질 수 있어.',blocked:!raw,expectedRaw:raw};}
 }
+export function clearSave(storage:StorageLike){storage.removeItem(RECOVERY_KEY);storage.removeItem(SAVE_KEY);}
 export function persist(storage:StorageLike,s:Save){if(s.origin!=='student')return false;try{const raw=JSON.stringify(s);decodeSave(raw);storage.setItem(SAVE_KEY,raw);return true;}catch{return false;}}
 
 /** Best-effort synchronous optimistic check. Never replace a newer tab's record. */

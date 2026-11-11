@@ -1,31 +1,72 @@
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useId,useRef,useState} from 'react';
 import {makerOrders,evaluateOrder,type MakerOrder} from '../domain/maker';
 import {canCompleteInvestigation,type Screen} from '../domain/model';
 import {useGame} from '../state/GameContext';
 import {playSound} from '../services/audio';
+import {Modal} from './Modal';
 import './maker-mission.css';
-export function MakerMission({screen,onContinue}:{screen:string;onContinue:()=>void}){
- const order=makerOrders.find(o=>o.screen===screen);return order?<Bench key={screen} order={order} onContinue={onContinue}/>:null;
+
+export function MakerMission({screen}:{screen:string}){
+ const order=makerOrders.find(o=>o.screen===screen);
+ return order?<Bench key={screen} order={order}/>:null;
 }
-function Bench({order,onContinue}:{order:MakerOrder;onContinue:()=>void}){
- const {save,dispatch}=useGame();const old=save.deliveries?.[order.screen];
- const [parts,setParts]=useState<Record<string,string>>(old?.parts??{}),[selected,setSelected]=useState<{slot:string;id:string}|null>(null),[phase,setPhase]=useState<'build'|'running'|'result'>('build'),[attempts,setAttempts]=useState(old?.attempts??0),[delivered,setDelivered]=useState(!!old);
- const results=evaluateOrder(order,parts),pass=results.every(r=>r.pass),ready=order.slots.every(s=>!!parts[s.id]);const pending=useRef(false);
- useEffect(()=>{if(phase!=='running')return;const id=setTimeout(()=>{setPhase('result');pending.current=false;playSound(pass?'success':'retry');},save.settings.reducedMotion?100:1200);return()=>{clearTimeout(id);pending.current=false;};},[phase,pass,save.settings.reducedMotion]);
- function place(slot:string,id:string){if(phase==='running'||!order.slots.find(s=>s.id===slot)?.choices.some(c=>c.id===id))return;setParts(v=>({...v,[slot]:id}));setPhase('build');setDelivered(false);setSelected(null);playSound('drop');}
- function run(){if(!ready||pending.current)return;pending.current=true;setAttempts(n=>n+1);setPhase('running');playSound('experiment');}
+
+function Bench({order}:{order:MakerOrder}){
+ const {save,dispatch}=useGame(),old=save.deliveries?.[order.screen],guideId=useId();
+ const [parts,setParts]=useState<Record<string,string>>(old?.parts??{});
+ const [selected,setSelected]=useState<{slot:string;id:string}|null>(null);
+ const [phase,setPhase]=useState<'build'|'running'|'result'>(old?'result':'build');
+ const [attempts,setAttempts]=useState(old?.attempts??0),[delivered,setDelivered]=useState(!!old);
+ const [detail,setDetail]=useState<'conditions'|'result'|null>(null);
+ const results=evaluateOrder(order,parts),failed=results.filter(r=>!r.pass),pass=failed.length===0;
+ const missing=order.slots.filter(s=>!parts[s.id]).length,ready=missing===0,running=phase==='running';
+ const canDeliver=canCompleteInvestigation(save,order.screen as Screen),pending=useRef(false);
+ const chosenSlot=order.slots.find(s=>s.id===selected?.slot)?.label;
+ const guide=running?'어느 부품이 기능을 하는지 관찰해 봐.':chosenSlot?`${chosenSlot} 자리를 눌러 골라 둔 재료를 끼워 줘.`:ready?'부품이 모두 준비됐어. 시험해 보자.':`재료를 골라 같은 이름의 자리에 놓아 봐. 빈자리 ${missing}개.`;
+ const success=order.screen==='S10'&&!delivered?'비, 빛, 모서리 시험을 모두 통과했어.':order.success;
+ useEffect(()=>{
+  if(!running)return;
+  const timer=setTimeout(()=>{setPhase('result');pending.current=false;playSound(pass?'success':'retry');},save.settings.reducedMotion?100:1200);
+  return()=>{clearTimeout(timer);pending.current=false;};
+ },[running,pass,save.settings.reducedMotion]);
+ function place(slot:string,id:string){
+  if(running||!order.slots.find(s=>s.id===slot)?.choices.some(c=>c.id===id))return;
+  setSelected(null);
+  if(parts[slot]===id)return;
+  setParts(v=>({...v,[slot]:id}));setPhase('build');setDelivered(false);playSound('drop');
+ }
+ function run(){if(!ready||selected||running||pending.current)return;pending.current=true;setAttempts(n=>n+1);setPhase('running');playSound('experiment');}
+ function deliver(){
+  if(delivered||!canDeliver||selected||phase!=='result'||!pass)return;
+  dispatch({type:'deliver',screen:order.screen,parts,attempts});setDelivered(true);playSound('success');
+ }
+ const resultDetails=<div className="maker-result-list">{results.map(r=><p key={r.id} className={r.pass?'pass':'fix'}><b>{order.slots.find(s=>s.id===r.id)!.label}</b><span>{r.feedback}</span></p>)}</div>;
  return <section className="maker-mission" aria-label="주문 제작 작업대">
- <div className="maker-order"><img src={order.npc==='moru'?'/assets/generated/companion.webp':`/assets/characters/${order.npc}.webp`} alt="주문한 친구"/><div><small>공방 제작 의뢰 · {old?'납품 완료 · 다시 만들기':'새 설계도'}</small><h2>{order.title}</h2><p>{order.request}</p></div></div>
- <div className="maker-layout"><div className={`maker-scene ${phase==='running'?'is-testing':''} ${phase==='result'?(pass?'trial-pass':'trial-fail'):''}`}>
- <img className="maker-backdrop" src="/assets/generated/invention.webp" alt="부품을 조립하는 공방 작업대"/>
- <Apparatus order={order} parts={parts} active={phase!=='build'}/><div className="maker-trial" aria-hidden="true">{phase==='running'?'⋮ ⋮ ⋮':phase==='result'?(pass?'✓':'↻'):'＋'}</div>
- <div className="maker-sockets">{order.slots.map(s=>{const part=s.choices.find(c=>c.id===parts[s.id]),result=results.find(r=>r.id===s.id)!;return <button key={s.id} className={`maker-socket ${part?'fitted':''} ${phase==='result'&&!result.pass?'needs-fix':''}`} disabled={phase==='running'} aria-label={`${s.label} 자리${part?': '+part.label:''}`} onClick={()=>{if(selected?.slot===s.id)place(s.id,selected.id);}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const [slot,id]=e.dataTransfer.getData('text/plain').split(':');if(slot===s.id)place(slot,id);}}><b>{s.label}</b><i style={{background:part?.color??'transparent'}}>{part?'✓':'＋'}</i><span>{part?.label??'재료 → 여기를 눌러'}</span></button>;})}</div>
- </div><div className="maker-controls"><p className="maker-instruction">재료를 골라 같은 이름의 자리에 놓아 봐. 끌어 놓기도 가능해.</p>
- {order.slots.map(s=><fieldset key={s.id}><legend>{s.label}</legend><div>{s.choices.map(c=><button key={c.id} draggable={phase!=='running'} disabled={phase==='running'} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>setSelected({slot:s.id,id:c.id})}><i style={{background:c.color}}/>{c.label}</button>)}</div></fieldset>)}
- <div className="maker-actions"><button className="primary" disabled={!ready||phase==='running'} onClick={run}>{phase==='running'?'작동 중…':order.trial}</button><button className="secondary" disabled={phase==='running'} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);}}>부품 비우기</button></div>
- </div></div>
- <div className="maker-feedback" aria-live="polite">{phase==='result'?<>{results.map(r=><p key={r.id} className={r.pass?'pass':'fix'}>{order.slots.find(s=>s.id===r.id)!.label}: {r.feedback}</p>)}{pass&&<button className="primary" disabled={delivered||!canCompleteInvestigation(save,order.screen as Screen)} onClick={()=>{dispatch({type:'deliver',screen:order.screen,parts,attempts});setDelivered(true);playSound('success');}}>{delivered?'주민에게 납품했어 ✓':!canCompleteInvestigation(save,order.screen as Screen)?'먼저 탐구 기록을 완성해 줘':'주민에게 전달하기 →'}</button>}{delivered&&<button className="secondary" onClick={onContinue}>배운 성질로 새 의뢰 도전 →</button>}</>:<p>{phase==='running'?'어느 부품이 기능을 하는지 관찰해 봐.':selected?`${order.slots.find(s=>s.id===selected.slot)?.label} 자리를 눌러 부품을 끼워 줘.`:'부품 선택이 결과를 바꿔. 실패해도 다른 부품으로 다시 시험할 수 있어.'}</p>}</div>
- <small className="maker-note">{order.note}</small>
+  <header className="maker-order">
+   <img src={order.npc==='moru'?'/assets/generated/companion.webp':`/assets/characters/${order.npc}.webp`} alt=""/>
+   <div><small>{delivered?'납품 완료':'공방 제작 의뢰'}</small><h2>{order.title}</h2><p>{order.request}</p></div>
+   <button className="maker-condition-button" onClick={()=>setDetail('conditions')}>시험 조건</button>
+  </header>
+  <div className="maker-layout">
+   <div className={`maker-scene ${running?'is-testing':''} ${phase==='result'?(pass?'trial-pass':'trial-fail'):''}`}>
+    <img className="maker-backdrop" src="/assets/generated/invention.webp" alt=""/>
+    <Apparatus order={order} parts={parts} active={phase!=='build'}/>
+    {phase!=='build'&&<div className="maker-trial" aria-hidden="true">{running?'⋮':pass?'✓':'↻'}</div>}
+    <div className="maker-sockets">{order.slots.map(s=>{
+     const part=s.choices.find(c=>c.id===parts[s.id]),result=results.find(r=>r.id===s.id)!;
+     return <button key={s.id} className={`maker-socket ${part?'fitted':''} ${phase==='result'&&!result.pass?'needs-fix':''}`} disabled={running} data-next-action={selected?.slot===s.id||undefined} aria-label={`${s.label} 자리${part?': '+part.label:''}`} onClick={()=>{if(selected?.slot===s.id)place(s.id,selected.id);}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const [slot,id]=e.dataTransfer.getData('text/plain').split(':');if(slot===s.id)place(slot,id);}}><b>{s.label}</b><i style={{background:part?.color??'transparent'}} aria-hidden="true">{phase==='result'&&!result.pass?'!':part?'✓':'＋'}</i><span>{part?.label??'재료 놓기'}</span></button>;
+    })}</div>
+   </div>
+   <div className="maker-controls">
+    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row"><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id})}><i style={{background:c.color}} aria-hidden="true"/><span>{c.label}</span></button>)}</div></fieldset>)}</div>
+    <div className="maker-actions"><button className="primary" disabled={!ready||running||!!selected} aria-describedby={guideId} data-next-action={ready&&phase==='build'&&!selected||undefined} onClick={run}>{running?'작동 중…':order.trial}</button><button className="secondary" disabled={running||(!selected&&missing===order.slots.length)} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);}}>부품 비우기</button></div>
+   </div>
+  </div>
+  <div className={`maker-feedback ${phase==='result'&&!pass?'has-failures':''}`}>
+   {phase==='result'?(pass?<><p id={guideId} className="maker-success" role="status"><span className="maker-success-full">{chosenSlot?guide:success}</span><span className="maker-success-short">{chosenSlot?`${chosenSlot}에 끼우기`:delivered?'납품 완료':'시험 통과'}</span></p><button className="primary maker-deliver" disabled={delivered||!canDeliver||!!selected} data-next-action={!delivered&&canDeliver&&!selected||undefined} onClick={deliver}>{delivered?'주민에게 납품했어 ✓':!canDeliver?'먼저 탐구 기록을 완성해 줘':'주민에게 전달하기 →'}</button></>:<><div aria-live="polite">{resultDetails}</div><div className="maker-failure-compact"><p id={guideId} role="status">{chosenSlot?`${chosenSlot}에 끼우기`:`고칠 부품 ${failed.length}개`}</p><button onClick={()=>setDetail('result')}>원인 보기</button></div></>):<p id={guideId} role="status">{guide}</p>}
+  </div>
+  <small className="maker-note">{order.note}</small>
+  {detail&&<Modal title={detail==='conditions'?'의뢰와 시험 조건':'시험 결과'} className="maker-detail-dialog" onClose={()=>setDetail(null)}><h2>{detail==='conditions'?'의뢰와 시험 조건':'시험 결과'}</h2>{detail==='conditions'?<><p>{order.request}</p><p>{order.note}</p>{phase==='result'&&pass&&<p>{success}</p>}</>:resultDetails}<button className="primary full" onClick={()=>setDetail(null)}>작업대로 돌아가기</button></Modal>}
  </section>;
 }
 
