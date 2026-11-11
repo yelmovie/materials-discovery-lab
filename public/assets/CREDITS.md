@@ -170,3 +170,8 @@ THE SOFTWARE.
 - MP3 변환과 음량 정규화: 로컬 FFmpeg. 효과음은 UI 피드백용이며 실제 물·공기 녹음이라고 표시하지 않아.
 - 자체 개념 클립: concepts/S01~S10의 WebM·MP4·WebP. 직접 작성한 도형이고 별도 유료 영상 소스·AI 영상 생성 서비스는 쓰지 않았어. FFmpeg 실행 파일은 배포하지 않아.
 - 다람쥐 힌트 친구는 기존 generated/companion.webp를 지도·활동·영상 자막에 일관되게 활용했어. 새 이미지 생성·외부 캐릭터 구입은 하지 않았어.
+
+
+## 2026-11-11 앱 글꼴 통일
+
+본문·제목·버튼·입력란·실험 Canvas 라벨은 NAVER NanumSquare Neo Regular/Bold/ExtraBold 자체 호스팅 WOFF2를 사용한다. SIL Open Font License 1.1 원문은 fonts/NanumSquareNeo-OFL.txt에 포함한다. 기존 Jua 라이선스는 이미 렌더된 개념 영상의 출처 기록을 위해 보존하며, 영상 속 글자는 이번 UI 글꼴 변경에 포함하지 않는다.
