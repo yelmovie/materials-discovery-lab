@@ -101,8 +101,8 @@ function BagExperiment({inflated,reduced}:{inflated:boolean;reduced?:boolean}){
   <div className="experiment-scene" role="img" aria-label={inflated?'호스로 연결된 주머니의 위아래가 벌어져 둥글게 부풀었어요.':'펌프와 연결된 주머니의 위아래가 붙어 납작해요.'}>
    <svg viewBox="0 0 600 260" aria-hidden="true">
     <ellipse cx="335" cy="232" rx="210" ry="10" fill="#758a72" opacity=".1"/>
-    <path d="M135 187H170Q187 187 187 164V150Q187 135 207 135H236" fill="none" stroke="#648b7c" strokeWidth="10" strokeLinecap="round"/>
-    <path d="M135 185H170Q185 185 185 164V150Q185 133 207 133H236" fill="none" stroke="#b5d9cc" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M132 198H170Q187 198 187 164V150Q187 135 207 135H236" fill="none" stroke="#648b7c" strokeWidth="10" strokeLinecap="round"/>
+    <path d="M132 196H170Q185 196 185 164V150Q185 133 207 133H236" fill="none" stroke="#b5d9cc" strokeWidth="3" strokeLinecap="round"/>
     <image href={`${assetBase}air-pump.webp`} x="60" y="22" width="88" height="210" preserveAspectRatio="none"/>
     <image className="air-pouch-art" href={`${assetBase}${inflated?'air-pouch-inflated':'air-pouch-flat'}.webp`} x="225" y={inflated?58:111} width="320" height={inflated?150:48} preserveAspectRatio="none"/>
     {inflated&&<path d="M179 156v-15q0-14 16-14h15m-7-7 8 7-8 7" fill="none" stroke="#397e6d" strokeWidth="3" strokeLinecap="round"/>}
