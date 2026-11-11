@@ -1,5 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {makerOrders,evaluateOrder,type MakerOrder} from '../domain/maker';
+import {canCompleteInvestigation,type Screen} from '../domain/model';
 import {useGame} from '../state/GameContext';
 import {playSound} from '../services/audio';
 import './maker-mission.css';
@@ -23,7 +24,7 @@ function Bench({order,onContinue}:{order:MakerOrder;onContinue:()=>void}){
  {order.slots.map(s=><fieldset key={s.id}><legend>{s.label}</legend><div>{s.choices.map(c=><button key={c.id} draggable={phase!=='running'} disabled={phase==='running'} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>setSelected({slot:s.id,id:c.id})}><i style={{background:c.color}}/>{c.label}</button>)}</div></fieldset>)}
  <div className="maker-actions"><button className="primary" disabled={!ready||phase==='running'} onClick={run}>{phase==='running'?'작동 중…':order.trial}</button><button className="secondary" disabled={phase==='running'} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);}}>부품 비우기</button></div>
  </div></div>
- <div className="maker-feedback" aria-live="polite">{phase==='result'?<>{results.map(r=><p key={r.id} className={r.pass?'pass':'fix'}>{order.slots.find(s=>s.id===r.id)!.label}: {r.feedback}</p>)}{pass&&<button className="primary" disabled={delivered} onClick={()=>{dispatch({type:'deliver',screen:order.screen,parts,attempts});setDelivered(true);playSound('success');}}>{delivered?'주민에게 납품했어 ✓':'주민에게 전달하기 →'}</button>}{delivered&&<button className="secondary" onClick={onContinue}>배운 성질로 새 의뢰 도전 →</button>}</>:<p>{phase==='running'?'어느 부품이 기능을 하는지 관찰해 봐.':selected?`${order.slots.find(s=>s.id===selected.slot)?.label} 자리를 눌러 부품을 끼워 줘.`:'부품 선택이 결과를 바꿔. 실패해도 다른 부품으로 다시 시험할 수 있어.'}</p>}</div>
+ <div className="maker-feedback" aria-live="polite">{phase==='result'?<>{results.map(r=><p key={r.id} className={r.pass?'pass':'fix'}>{order.slots.find(s=>s.id===r.id)!.label}: {r.feedback}</p>)}{pass&&<button className="primary" disabled={delivered||!canCompleteInvestigation(save,order.screen as Screen)} onClick={()=>{dispatch({type:'deliver',screen:order.screen,parts,attempts});setDelivered(true);playSound('success');}}>{delivered?'주민에게 납품했어 ✓':!canCompleteInvestigation(save,order.screen as Screen)?'먼저 탐구 기록을 완성해 줘':'주민에게 전달하기 →'}</button>}{delivered&&<button className="secondary" onClick={onContinue}>배운 성질로 새 의뢰 도전 →</button>}</>:<p>{phase==='running'?'어느 부품이 기능을 하는지 관찰해 봐.':selected?`${order.slots.find(s=>s.id===selected.slot)?.label} 자리를 눌러 부품을 끼워 줘.`:'부품 선택이 결과를 바꿔. 실패해도 다른 부품으로 다시 시험할 수 있어.'}</p>}</div>
  <small className="maker-note">{order.note}</small>
  </section>;
 }
