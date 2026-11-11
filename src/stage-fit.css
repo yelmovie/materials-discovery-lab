@@ -203,6 +203,8 @@ body:has(.live-activity)>.offline-status { z-index:90!important; }
 }
 @media (max-height:450px) and (min-width:700px) {
  .live-activity .material-placement-stage>.workspace { row-gap:0; }
+ .live-activity .matter-lab .air-cup { min-height:44px; }
+ .live-activity .matter-lab .water-tank { bottom:0; }
  .app:has(>.live-activity)>.toast { top:6px; height:44px; left:116px; right:116px; font-size:14px; }
  body:has(.live-activity)>.offline-status { top:6px!important; left:116px!important; right:116px!important; font-size:14px!important; }
  .live-activity .challenge-heading { display:none; }

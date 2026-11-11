@@ -87,6 +87,8 @@ def inspect_cups(page, size):
           const waterBox=tank.getBoundingClientRect();
           return {waterFraction:water.getBoundingClientRect().height/r.height,
                   capBelowSurface:r.top-waterBox.top,bottomBeyondTank:r.bottom-waterBox.bottom,
+                  artBottomBeyondTank:art.getBoundingClientRect().bottom-waterBox.bottom,
+                  hitHeight:hit.getBoundingClientRect().height,
                   hitBackground:h.backgroundColor, hitBlur:h.backdropFilter,
                   cupBackground:getComputedStyle(cup).backgroundColor,
                   waterZ:Number(getComputedStyle(water).zIndex),artZ:Number(getComputedStyle(art).zIndex)};
@@ -97,7 +99,9 @@ def inspect_cups(page, size):
         assert sample['hitBackground'] == 'rgba(0, 0, 0, 0)' and sample['hitBlur'] == 'none', sample
         # The light cup cross-section must mask the surrounding tank water.
         assert sample['cupBackground'].startswith('rgb('), sample
-        assert sample['capBelowSurface'] >= -2 and sample['waterZ'] >= sample['artZ'], sample
+        assert sample['capBelowSurface'] >= 0 and sample['waterZ'] >= sample['artZ'], sample
+        assert max(sample['bottomBeyondTank'], sample['artBottomBeyondTank']) <= 2, sample
+        assert sample['hitHeight'] >= 44, sample
     closed, opened = states
     assert closed['waterFraction'] < .25 and opened['waterFraction'] > .65, states
     assert abs(closed['capBelowSurface']-opened['capBelowSurface']) < 2, states
