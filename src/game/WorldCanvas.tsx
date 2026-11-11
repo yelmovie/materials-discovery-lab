@@ -55,7 +55,7 @@ export default function WorldCanvas(props:Props){
     // Size the camera explicitly: Phaser skips cameras whose size drifted from the previous game size.
     this.scale.on('resize',(size:Phaser.Structs.Size)=>camera.setSize(size.width,size.height));
     // Report after drawing so DOM labels match the exact frame on screen (worldView is the rendered top-left corner).
-    const report=()=>{const view=camera.worldView,key=`${view.x.toFixed(1)},${view.y.toFixed(1)},${camera.zoom.toFixed(4)}`;if(key!==this.lastCamera){this.lastCamera=key;live.current.onCamera?.(view.x,view.y,camera.zoom);}};
+    const report=()=>{const view=camera.worldView,key=`${view.x.toFixed(1)},${view.y.toFixed(1)},${camera.zoom.toFixed(4)},${Math.floor(performance.now()/250)}`;if(key!==this.lastCamera){this.lastCamera=key;live.current.onCamera?.(view.x,view.y,camera.zoom);}};
     this.game.events.on(Phaser.Core.Events.POST_RENDER,report);this.events.once('shutdown',()=>this.game.events.off(Phaser.Core.Events.POST_RENDER,report));
     // Drag pans the camera (hand cursor); a short tap still walks to the nearest road.
     this.input.on('pointerdown',(pointer:Phaser.Input.Pointer)=>{if(this.isPaused())return;this.drag={x:pointer.x,y:pointer.y,center:{...this.center},moved:false};});

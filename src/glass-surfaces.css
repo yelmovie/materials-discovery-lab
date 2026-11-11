@@ -11,3 +11,12 @@ button[aria-pressed=true],.choice.selected{background:#e2edcf;border-color:#5579
 @media(prefers-reduced-transparency:reduce){:root{--glass-face:#fffdf3;--glass-reading:#fffdf6}.workspace{background:#fffdf3}}
 @media print{.modal,.tool-panel,.workspace{background:#fff!important;backdrop-filter:none!important;box-shadow:none!important}}
 @media(max-width:600px){.demo-ribbon{top:70px;max-width:calc(100vw - 32px);pointer-events:none;font-size:12px;padding:4px 10px}}
+:root{--card-corner:18px;--card-gap:12px}
+:is(.tool-panel,.workspace,.test-card,.final-card,.ending-panel,.choice){border-radius:var(--card-corner)}
+:is(.stack,.sample-grid,.classification-grid,.observation-list){gap:var(--card-gap)}
+.tool-panel{margin-bottom:var(--card-gap)}
+@media(max-height:560px){:is(.stack,.sample-grid,.classification-grid,.observation-list){gap:8px}}
+/* Reduce frame padding, not observation size or touch targets. */
+.tool-panel{padding:14px}
+.tool-panel h3{padding-bottom:8px;margin-bottom:10px}
+.activity-grid{gap:12px}
