@@ -1,3 +1,4 @@
+import {validDelivery} from '../domain/maker';
 import {canAccess, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
 import {challenges,correctChallenge} from '../domain/challenges';
 export const SAVE_KEY='material-workshop-mission.student.v1';
@@ -13,6 +14,7 @@ export function decodeSave(raw:string):Save {
  const parsed=JSON.parse(raw);assert(object(parsed));assert(parsed.schemaVersion===1&&parsed.contentVersion==='mvp-1');
  const s=parsed as unknown as Save;const fresh=freshSave();
  // Older MVP saves retain earned progress. New transfer tasks start unfilled.
+ s.deliveries=Object.fromEntries(Object.entries(object(s.deliveries)?s.deliveries:{}).filter(([k,v])=>object(v)&&object(v.parts)&&Object.values(v.parts).every(x=>typeof x==='string')&&validDelivery(k,v.parts as Record<string,string>)&&Number.isInteger(v.attempts)&&Number(v.attempts)>0));
  if(s.challengeResults===undefined)s.challengeResults=[];
  // Do not invent a first prediction for records created before this field existed.
  if(s.initialPredictions===undefined)s.initialPredictions={};
