@@ -1,0 +1,65 @@
+{
+  "base": "https://materials-discovery-lab.yelsam.workers.dev",
+  "expectedSource": "956028c4d4a7afd993bf73d68919b341bd8eecfc",
+  "pageErrors": [],
+  "network404": [],
+  "status": "passed",
+  "httpStatus": 200,
+  "serviceWorkerMarker": "bba0e186caa37dd6",
+  "fontFaces": [
+    {
+      "weight": 400,
+      "loaded": true
+    },
+    {
+      "weight": 700,
+      "loaded": true
+    },
+    {
+      "weight": 800,
+      "loaded": true
+    }
+  ],
+  "actualPlatformFonts": [
+    {
+      "familyName": "NanumSquare Neo TTF Regular",
+      "postScriptName": "NanumSquareNeoTTF-bRg",
+      "isCustomFont": true,
+      "glyphCount": 7
+    }
+  ],
+  "glass": {
+    "backgroundColor": "rgba(255, 253, 243, 0.78)",
+    "alpha": 0.78,
+    "opacity": 1,
+    "backdropFilter": "blur(7px)"
+  },
+  "autoPlayback": {
+    "options": [
+      {
+        "value": "0.5",
+        "label": "0.5배"
+      },
+      {
+        "value": "1",
+        "label": "1배"
+      },
+      {
+        "value": "1.5",
+        "label": "1.5배"
+      },
+      {
+        "value": "2",
+        "label": "2배"
+      }
+    ],
+    "selected": "2",
+    "startStopWorked": true
+  },
+  "conceptVideo": {
+    "duration": 15,
+    "currentTime": 0.2875,
+    "src": "https://materials-discovery-lab.yelsam.workers.dev/assets/concepts/S01.webm",
+    "readyState": 4
+  }
+}

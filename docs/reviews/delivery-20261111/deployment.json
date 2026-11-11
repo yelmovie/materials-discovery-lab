@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "956028c4d4a7afd993bf73d68919b341bd8eecfc",
+  "url": "https://materials-discovery-lab.yelsam.workers.dev/",
+  "workerVersion": "8b44ac20-c2d4-4a99-8b34-1af483cda2fb",
+  "deploymentId": "d331e4fb-d428-44f9-ae10-1dcc9fdc9f04",
+  "deployedAt": "2026-11-11T15:02:31.408255Z",
+  "previousWorkerVersion": "186c242a-0ad7-4f0b-8bac-59d7341765f1",
+  "previousSourceCommit": "450c6cd",
+  "offlineVersion": "bba0e186caa37dd6",
+  "files": 118,
+  "bytes": 10708802,
+  "tests": 69,
+  "rating": 8.4,
+  "ratingMaximum": 10
+}

@@ -1,0 +1,220 @@
+{
+  "base": "http://127.0.0.1:5319",
+  "profiles": [
+    [
+      873,
+      580
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1024,
+      768
+    ]
+  ],
+  "checks": [
+    {
+      "name": "873x580-certificate",
+      "issues": [],
+      "readingScroll": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 873,
+          "scrollWidth": 873,
+          "clientHeight": 580,
+          "scrollHeight": 580
+        },
+        {
+          "selector": "body",
+          "clientWidth": 873,
+          "scrollWidth": 873,
+          "clientHeight": 580,
+          "scrollHeight": 580
+        },
+        {
+          "selector": "activity-shell final-activity",
+          "clientWidth": 873,
+          "scrollWidth": 873,
+          "clientHeight": 580,
+          "scrollHeight": 580
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 838,
+          "scrollWidth": 838,
+          "clientHeight": 426,
+          "scrollHeight": 426
+        }
+      ],
+      "controlsChecked": 11,
+      "disabledChecked": 2,
+      "textNodesChecked": 35,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 873,
+        "height": 580,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1920x1080-certificate",
+      "issues": [],
+      "readingScroll": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1920,
+          "scrollWidth": 1920,
+          "clientHeight": 1080,
+          "scrollHeight": 1080
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1920,
+          "scrollWidth": 1920,
+          "clientHeight": 1080,
+          "scrollHeight": 1080
+        },
+        {
+          "selector": "activity-shell final-activity",
+          "clientWidth": 1920,
+          "scrollWidth": 1920,
+          "clientHeight": 1080,
+          "scrollHeight": 1080
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 926,
+          "scrollHeight": 926
+        }
+      ],
+      "controlsChecked": 11,
+      "disabledChecked": 2,
+      "textNodesChecked": 35,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1024x768-certificate",
+      "issues": [],
+      "readingScroll": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 768,
+          "scrollHeight": 768
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 768,
+          "scrollHeight": 768
+        },
+        {
+          "selector": "activity-shell final-activity",
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 768,
+          "scrollHeight": 768
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 983,
+          "scrollWidth": 983,
+          "clientHeight": 614,
+          "scrollHeight": 614
+        }
+      ],
+      "controlsChecked": 11,
+      "disabledChecked": 2,
+      "textNodesChecked": 35,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "network404": [],
+  "navigationFixtures": [],
+  "printChecks": [
+    {
+      "profile": "873x580",
+      "pages": 1,
+      "mediaBoxes": [
+        [
+          0.0,
+          0.0,
+          841.91998,
+          594.95996
+        ]
+      ],
+      "a4Landscape": true,
+      "certificate": true,
+      "visibleControls": 0
+    },
+    {
+      "profile": "1920x1080",
+      "pages": 1,
+      "mediaBoxes": [
+        [
+          0.0,
+          0.0,
+          841.91998,
+          594.95996
+        ]
+      ],
+      "a4Landscape": true,
+      "certificate": true,
+      "visibleControls": 0
+    },
+    {
+      "profile": "1024x768",
+      "pages": 1,
+      "mediaBoxes": [
+        [
+          0.0,
+          0.0,
+          841.91998,
+          594.95996
+        ]
+      ],
+      "a4Landscape": true,
+      "certificate": true,
+      "visibleControls": 0
+    }
+  ],
+  "summary": {
+    "views": 3,
+    "issues": 0,
+    "smallText": 0,
+    "intentionalReadingScroll": 0,
+    "errors": 0,
+    "consoleErrors": 0,
+    "network404": 0
+  }
+}

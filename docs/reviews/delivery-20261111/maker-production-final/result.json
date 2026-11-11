@@ -1,0 +1,1753 @@
+{
+  "base": "http://127.0.0.1:5320",
+  "profiles": [
+    [
+      740,
+      360
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      873,
+      580
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "screens": [
+    "S02",
+    "S04",
+    "S06",
+    "S08",
+    "S10"
+  ],
+  "cases": [
+    {
+      "id": "740x360-S02",
+      "screen": "S02",
+      "size": [
+        740,
+        360
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S02-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "740x360-S04",
+      "screen": "S04",
+      "size": [
+        740,
+        360
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S04-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "740x360-S06",
+      "screen": "S06",
+      "size": [
+        740,
+        360
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S06-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "740x360-S08",
+      "screen": "S08",
+      "size": [
+        740,
+        360
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S08-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "740x360-S10",
+      "screen": "S10",
+      "size": [
+        740,
+        360
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 26,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S10-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 26
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 26,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/740x360-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "390x844-S02",
+      "screen": "S02",
+      "size": [
+        390,
+        844
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S02-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "390x844-S04",
+      "screen": "S04",
+      "size": [
+        390,
+        844
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S04-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "390x844-S06",
+      "screen": "S06",
+      "size": [
+        390,
+        844
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S06-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "390x844-S08",
+      "screen": "S08",
+      "size": [
+        390,
+        844
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S08-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "390x844-S10",
+      "screen": "S10",
+      "size": [
+        390,
+        844
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 26,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S10-fail.jpg"
+        },
+        {
+          "name": "failure-details",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 26
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 26,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/390x844-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "873x580-S02",
+      "screen": "S02",
+      "size": [
+        873,
+        580
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S02-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "873x580-S04",
+      "screen": "S04",
+      "size": [
+        873,
+        580
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S04-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "873x580-S06",
+      "screen": "S06",
+      "size": [
+        873,
+        580
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S06-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "873x580-S08",
+      "screen": "S08",
+      "size": [
+        873,
+        580
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S08-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 23
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 23,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "873x580-S10",
+      "screen": "S10",
+      "size": [
+        873,
+        580
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "conditions",
+          "issues": [],
+          "controlsChecked": 2
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 25,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S10-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 26
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 26,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/873x580-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1280x800-S02",
+      "screen": "S02",
+      "size": [
+        1280,
+        800
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S02-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1280x800-S04",
+      "screen": "S04",
+      "size": [
+        1280,
+        800
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S04-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1280x800-S06",
+      "screen": "S06",
+      "size": [
+        1280,
+        800
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S06-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1280x800-S08",
+      "screen": "S08",
+      "size": [
+        1280,
+        800
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S08-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1280x800-S10",
+      "screen": "S10",
+      "size": [
+        1280,
+        800
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 24,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S10-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 25,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1280x800-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1024x768-S02",
+      "screen": "S02",
+      "size": [
+        1024,
+        768
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S02-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1024x768-S04",
+      "screen": "S04",
+      "size": [
+        1024,
+        768
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S04-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1024x768-S06",
+      "screen": "S06",
+      "size": [
+        1024,
+        768
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S06-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1024x768-S08",
+      "screen": "S08",
+      "size": [
+        1024,
+        768
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S08-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1024x768-S10",
+      "screen": "S10",
+      "size": [
+        1024,
+        768
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 24,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S10-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 25,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1024x768-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "768x1024-S02",
+      "screen": "S02",
+      "size": [
+        768,
+        1024
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S02-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "768x1024-S04",
+      "screen": "S04",
+      "size": [
+        768,
+        1024
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S04-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "768x1024-S06",
+      "screen": "S06",
+      "size": [
+        768,
+        1024
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S06-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "768x1024-S08",
+      "screen": "S08",
+      "size": [
+        768,
+        1024
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S08-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "768x1024-S10",
+      "screen": "S10",
+      "size": [
+        768,
+        1024
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 24,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S10-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 25,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/768x1024-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1920x1080-S02",
+      "screen": "S02",
+      "size": [
+        1920,
+        1080
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S02-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S02-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1920x1080-S04",
+      "screen": "S04",
+      "size": [
+        1920,
+        1080
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S04-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S04-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1920x1080-S06",
+      "screen": "S06",
+      "size": [
+        1920,
+        1080
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S06-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S06-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1920x1080-S08",
+      "screen": "S08",
+      "size": [
+        1920,
+        1080
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 21,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S08-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 21
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 22
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 22,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S08-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    },
+    {
+      "id": "1920x1080-S10",
+      "screen": "S10",
+      "size": [
+        1920,
+        1080
+      ],
+      "phases": [
+        {
+          "name": "initial",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "first-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "fail",
+          "issues": [],
+          "controlsChecked": 24,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S10-fail.jpg"
+        },
+        {
+          "name": "repair-testing",
+          "issues": [],
+          "controlsChecked": 24
+        },
+        {
+          "name": "pass",
+          "issues": [],
+          "controlsChecked": 25
+        },
+        {
+          "name": "delivered",
+          "issues": [],
+          "controlsChecked": 25,
+          "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/delivery-20261111/maker-production-final/1920x1080-S10-delivered.jpg"
+        }
+      ],
+      "issues": [],
+      "failedThenRepaired": true,
+      "delivered": true
+    }
+  ],
+  "pageErrors": [],
+  "network404": [],
+  "fatalErrors": [],
+  "summary": {
+    "cases": 35,
+    "delivered": 35,
+    "issues": 0,
+    "pageErrors": [],
+    "network404": [],
+    "fatalErrors": []
+  }
+}
