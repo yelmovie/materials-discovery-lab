@@ -1,0 +1,223 @@
+{
+  "base": "https://materials-discovery-lab.yelsam.workers.dev/",
+  "checks": [
+    {
+      "size": "1280x800",
+      "screen": "S05",
+      "loadedVessels": [
+        {
+          "width": 560,
+          "height": 799
+        },
+        {
+          "width": 560,
+          "height": 799
+        },
+        {
+          "width": 560,
+          "height": 799
+        }
+      ],
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1280x800-S05-vessels.jpg"
+    },
+    {
+      "waterFraction": 0.13775343361674297,
+      "capBelowSurface": 27.4375,
+      "bottomBeyondTank": -11.34375,
+      "artBottomBeyondTank": -5.703125,
+      "hitHeight": 188.125,
+      "hitBackground": "rgba(0, 0, 0, 0)",
+      "hitBlur": "none",
+      "cupBackground": "rgb(245, 248, 238)",
+      "waterZ": 2,
+      "artZ": 2,
+      "size": "1280x800",
+      "screen": "S07",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1280x800-S07-cup.jpg"
+    },
+    {
+      "waterFraction": 0.8464682799215173,
+      "capBelowSurface": 27.4375,
+      "bottomBeyondTank": -11.34375,
+      "artBottomBeyondTank": -5.703125,
+      "hitHeight": 188.125,
+      "hitBackground": "rgba(0, 0, 0, 0)",
+      "hitBlur": "none",
+      "cupBackground": "rgb(245, 248, 238)",
+      "waterZ": 2,
+      "artZ": 2,
+      "size": "1280x800",
+      "screen": "S08",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1280x800-S08-cup.jpg"
+    },
+    {
+      "scaleY": 0.856439,
+      "animation": "bumper-compress",
+      "plate": true,
+      "size": "1280x800",
+      "screen": "S10",
+      "material": "rubber",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1280x800-S10-rubber-pressed.jpg",
+      "returnedToScale": 1
+    },
+    {
+      "plate": true,
+      "plateMoves": false,
+      "anyCompressingPart": false,
+      "size": "1280x800",
+      "screen": "S10",
+      "material": "metal",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1280x800-S10-metal-pressed.jpg",
+      "retryShown": true
+    },
+    {
+      "size": "740x360",
+      "screen": "S05",
+      "loadedVessels": [
+        {
+          "width": 560,
+          "height": 799
+        },
+        {
+          "width": 560,
+          "height": 799
+        },
+        {
+          "width": 560,
+          "height": 799
+        }
+      ],
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S05-vessels.jpg"
+    },
+    {
+      "waterFraction": 0.13032670454545456,
+      "capBelowSurface": 4.328125,
+      "bottomBeyondTank": -1,
+      "artBottomBeyondTank": 0.234375,
+      "hitHeight": 44,
+      "hitBackground": "rgba(0, 0, 0, 0)",
+      "hitBlur": "none",
+      "cupBackground": "rgb(245, 248, 238)",
+      "waterZ": 2,
+      "artZ": 2,
+      "size": "740x360",
+      "screen": "S07",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S07-cup.jpg"
+    },
+    {
+      "waterFraction": 0.8011363636363636,
+      "capBelowSurface": 2.734375,
+      "bottomBeyondTank": -1,
+      "artBottomBeyondTank": 0.234375,
+      "hitHeight": 44,
+      "hitBackground": "rgba(0, 0, 0, 0)",
+      "hitBlur": "none",
+      "cupBackground": "rgb(245, 248, 238)",
+      "waterZ": 2,
+      "artZ": 2,
+      "size": "740x360",
+      "screen": "S08",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S08-cup.jpg"
+    },
+    {
+      "scaleY": 0.856424,
+      "animation": "bumper-compress",
+      "plate": true,
+      "size": "740x360",
+      "screen": "S10",
+      "material": "rubber",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S10-rubber-pressed.jpg",
+      "returnedToScale": 1
+    },
+    {
+      "plate": true,
+      "plateMoves": false,
+      "anyCompressingPart": false,
+      "size": "740x360",
+      "screen": "S10",
+      "material": "metal",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S10-metal-pressed.jpg",
+      "retryShown": true
+    },
+    {
+      "amounts": [
+        "95.5%",
+        "4.5%",
+        "0%"
+      ],
+      "total": "총량 100%",
+      "contained": true,
+      "overlaps": false,
+      "accessible": "처음 물의 양을 100으로 볼 때, 처음 컵 95.5, 넓은 용기 4.5, 길쭉한 용기 0만큼 담겨 있어요. 옮기는 동안 물을 흘리지 않았어요.",
+      "size": "1024x768",
+      "screen": "S06",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1024x768-S06-decimals.jpg"
+    },
+    {
+      "amounts": [
+        "95.5%",
+        "4.5%",
+        "0%"
+      ],
+      "total": "총량 100%",
+      "contained": true,
+      "overlaps": false,
+      "accessible": "처음 물의 양을 100으로 볼 때, 처음 컵 95.5, 넓은 용기 4.5, 길쭉한 용기 0만큼 담겨 있어요. 옮기는 동안 물을 흘리지 않았어요.",
+      "size": "740x360",
+      "screen": "S06",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S06-decimals.jpg"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "network404": [],
+  "status": "passed",
+  "pumpCheck": [
+    {
+      "images": [
+        {
+          "url": "/assets/generated/air-pump.webp",
+          "width": 328,
+          "height": 844
+        },
+        {
+          "url": "/assets/generated/air-pouch-inflated.webp",
+          "width": 840,
+          "height": 388
+        }
+      ],
+      "hoses": [
+        "M132 198H170Q187 198 187 164V150Q187 135 207 135H236",
+        "M132 196H170Q185 196 185 164V150Q185 133 207 133H236"
+      ],
+      "size": "1280x800",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/1280x800-S08-pump.jpg"
+    },
+    {
+      "images": [
+        {
+          "url": "/assets/generated/air-pump.webp",
+          "width": 328,
+          "height": 844
+        },
+        {
+          "url": "/assets/generated/air-pouch-inflated.webp",
+          "width": 840,
+          "height": 388
+        }
+      ],
+      "hoses": [
+        "M132 198H170Q187 198 187 164V150Q187 135 207 135H236",
+        "M132 196H170Q185 196 185 164V150Q185 133 207 133H236"
+      ],
+      "size": "740x360",
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/science-20261112/live-final/public-visuals/740x360-S08-pump.jpg"
+    }
+  ],
+  "sourceCommit": "9d9fbff58bc7bf02d483dbdbd46eaaaa29555698",
+  "serviceWorker": "d43c2ffca230bb34",
+  "assets": [
+    "/assets/index-CcfWGov-.js",
+    "/assets/index-DV7Yomnz.css"
+  ]
+}

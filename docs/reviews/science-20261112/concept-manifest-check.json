@@ -1,0 +1,126 @@
+{
+  "files": 30,
+  "matching": 30,
+  "checks": [
+    {
+      "file": "S01.mp4",
+      "matches": true
+    },
+    {
+      "file": "S01.webm",
+      "matches": true
+    },
+    {
+      "file": "S01.webp",
+      "matches": true
+    },
+    {
+      "file": "S02.mp4",
+      "matches": true
+    },
+    {
+      "file": "S02.webm",
+      "matches": true
+    },
+    {
+      "file": "S02.webp",
+      "matches": true
+    },
+    {
+      "file": "S03.mp4",
+      "matches": true
+    },
+    {
+      "file": "S03.webm",
+      "matches": true
+    },
+    {
+      "file": "S03.webp",
+      "matches": true
+    },
+    {
+      "file": "S04.mp4",
+      "matches": true
+    },
+    {
+      "file": "S04.webm",
+      "matches": true
+    },
+    {
+      "file": "S04.webp",
+      "matches": true
+    },
+    {
+      "file": "S05.mp4",
+      "matches": true
+    },
+    {
+      "file": "S05.webm",
+      "matches": true
+    },
+    {
+      "file": "S05.webp",
+      "matches": true
+    },
+    {
+      "file": "S06.mp4",
+      "matches": true
+    },
+    {
+      "file": "S06.webm",
+      "matches": true
+    },
+    {
+      "file": "S06.webp",
+      "matches": true
+    },
+    {
+      "file": "S07.mp4",
+      "matches": true
+    },
+    {
+      "file": "S07.webm",
+      "matches": true
+    },
+    {
+      "file": "S07.webp",
+      "matches": true
+    },
+    {
+      "file": "S08.mp4",
+      "matches": true
+    },
+    {
+      "file": "S08.webm",
+      "matches": true
+    },
+    {
+      "file": "S08.webp",
+      "matches": true
+    },
+    {
+      "file": "S09.mp4",
+      "matches": true
+    },
+    {
+      "file": "S09.webm",
+      "matches": true
+    },
+    {
+      "file": "S09.webp",
+      "matches": true
+    },
+    {
+      "file": "S10.mp4",
+      "matches": true
+    },
+    {
+      "file": "S10.webm",
+      "matches": true
+    },
+    {
+      "file": "S10.webp",
+      "matches": true
+    }
+  ]
+}

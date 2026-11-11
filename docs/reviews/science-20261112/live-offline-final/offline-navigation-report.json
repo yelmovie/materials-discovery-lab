@@ -1,0 +1,19 @@
+{
+  "requested": "https://materials-discovery-lab.yelsam.workers.dev/#S10",
+  "afterAppLoad": "https://materials-discovery-lab.yelsam.workers.dev/#home",
+  "response": {
+    "status": 200,
+    "fromServiceWorker": true,
+    "url": "https://materials-discovery-lab.yelsam.workers.dev/"
+  },
+  "cache": {
+    "name": "material-workshop-offline-d43c2ffca230bb34",
+    "request": "/",
+    "url": "https://materials-discovery-lab.yelsam.workers.dev/",
+    "redirected": false,
+    "status": 200,
+    "legacyIndexCached": false,
+    "browserOffline": true,
+    "active": "https://materials-discovery-lab.yelsam.workers.dev/sw.js"
+  }
+}

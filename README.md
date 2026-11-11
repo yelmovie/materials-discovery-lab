@@ -48,7 +48,7 @@ npm run preview -- --port 5190
 
 학생 기록은 현재 브라우저의 material-workshop-mission.student.v1 키에 저장돼. 서버 동기화는 없어. 초기화는 확인 단계를 거쳐 이 게임의 기록만 지우고 소리 설정은 유지해. 다른 기기·브라우저에는 자동으로 이어지지 않아.
 
-최종 검증 결과는 docs/reviews에서 확인해. 실제 태블릿·교실 네트워크·학생 사용성은 별도 실측이 필요해. 기존 사용자 제공 이미지와 신규 생성물의 상업 이용 근거는 납품 전에 확인해야 해. 최신 납품 점검과 점수는 RELEASE-REVIEW-20261111.md와 SCORE-20261111.md에 기록해.
+최종 검증 결과는 docs/reviews에서 확인해. 실제 태블릿·교실 네트워크·학생 사용성과 기존 제공 이미지의 상업 이용 근거는 사람의 확인이 남아 있어. 최신 검토는 [과학 학습 흐름](docs/reviews/SCIENCE-REVIEW-20261112.md), [공개 배포 검증](docs/reviews/RELEASE-REVIEW-20261112.md), [성적표](docs/reviews/SCORE-20261112.md)에 기록했어.
 
 운영 주소는 https://materials-discovery-lab.yelsam.workers.dev/ 야. 운영·미리보기·localhost는 origin이 달라서 학생 저장 기록이 각각 분리돼. 같은 운영 주소의 업데이트는 기존 기록을 이어 읽어. 새 버전 안내가 나오면 모든 게임 탭을 닫고 다시 열면 돼.
 
@@ -104,4 +104,4 @@ python tools/check-student-flow.py
 npm run concepts:render
 ```
 
-화면 검수와 실제 조작 결과는 docs/reviews/experience의 JSON·JPG에 남아. 좁고 낮은 가로 화면에서는 일부 관찰 근거만 패널 안에서 스크롤해. 실제 태블릿·전자칠판에서의 터치 감도와 시청 거리는 별도 실기기 검증이 필요해.
+초기 화면 검수 기록은 docs/reviews/experience에 있어. 2026-11-12 최종 공개 검사는 9개 화면 크기의 실험·문제 180조합에서 실험과 조작 버튼의 스크롤·겹침·잘림이 없었어. 긴 설정·연구 수첩에는 읽기용 스크롤이 있어. 실제 태블릿·전자칠판의 터치 감도와 시청 거리는 실기기 검증이 남아 있어.

@@ -1,0 +1,79 @@
+{
+  "cache": {
+    "count": 122,
+    "media": 29
+  },
+  "normalAutoplay": true,
+  "endFocus": true,
+  "bgmQuietDuringVideo": true,
+  "muteSwitch": true,
+  "rangeResponses": [
+    {
+      "range": "bytes=0-1023",
+      "status": 206,
+      "bytes": 1024,
+      "contentRange": "bytes 0-1023/170620"
+    },
+    {
+      "range": "bytes=1024-2047",
+      "status": 206,
+      "bytes": 1024,
+      "contentRange": "bytes 1024-2047/170620"
+    },
+    {
+      "range": "bytes=-16",
+      "status": 206,
+      "bytes": 16,
+      "contentRange": "bytes 170604-170619/170620"
+    },
+    {
+      "range": "bytes=999999999-",
+      "status": 416,
+      "bytes": 0,
+      "contentRange": "bytes */170620"
+    }
+  ],
+  "offlineAudio": {
+    "status": 200,
+    "bytes": 3596
+  },
+  "offlineVoice": {
+    "status": 200,
+    "bytes": 68987
+  },
+  "offlineVideoPlayback": true,
+  "offlineConcepts": [
+    "S06",
+    "S05",
+    "S10"
+  ],
+  "offlineNewIllustrations": [
+    {
+      "id": "lab-glass",
+      "status": 200,
+      "bytes": 140808
+    },
+    {
+      "id": "wood-block",
+      "status": 200,
+      "bytes": 52208
+    },
+    {
+      "id": "air-pump",
+      "status": 200,
+      "bytes": 34888
+    },
+    {
+      "id": "air-pouch-flat",
+      "status": 200,
+      "bytes": 30620
+    },
+    {
+      "id": "air-pouch-inflated",
+      "status": 200,
+      "bytes": 110748
+    }
+  ],
+  "offlineReload": true,
+  "pageErrors": []
+}

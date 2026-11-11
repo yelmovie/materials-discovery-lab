@@ -1,0 +1,31 @@
+{
+  "url": "https://materials-discovery-lab.yelsam.workers.dev/",
+  "sourceCommit": "9d9fbff58bc7bf02d483dbdbd46eaaaa29555698",
+  "deployedAt": "2026-11-11T16:22:31.245516Z",
+  "deploymentId": "0cf6d94a-971b-4605-924f-a05c4227cd6b",
+  "versions": [
+    {
+      "version_id": "29468a02-ce7b-4ede-96b0-4e1f97149c67",
+      "percentage": 100
+    }
+  ],
+  "serviceWorker": "d43c2ffca230bb34",
+  "fileCount": 123,
+  "bytes": 11138764,
+  "rollback": {
+    "id": "f5178753-a015-478a-9636-932b8a1c8647",
+    "createdOn": "2026-11-11T16:10:31.690991Z",
+    "versions": [
+      {
+        "version_id": "9719877a-72ec-410c-b6b9-7bab55fc3b88",
+        "percentage": 100
+      }
+    ],
+    "annotations": {
+      "workers/message": "Science review source 40b8955425088f8efe00e2583...",
+      "workers/triggered_by": "upload"
+    }
+  },
+  "method": "Cloudflare connected app, Worker assets-only deployment",
+  "compatibilityDate": "2026-11-11"
+}

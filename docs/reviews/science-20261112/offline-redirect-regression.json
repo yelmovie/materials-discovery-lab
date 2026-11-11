@@ -1,0 +1,34 @@
+{
+  "before": {
+    "name": "material-workshop-offline-932fe1c173c3d09b",
+    "canonical": null,
+    "legacy": {
+      "status": 200,
+      "redirected": true,
+      "url": "http://127.0.0.1:50269/before/"
+    },
+    "offlineReload": false,
+    "reloadError": "Page.reload: net::ERR_FAILED\nCall log:\n  - waiting for navigation until \"domcontentloaded\"\n"
+  },
+  "after": {
+    "name": "material-workshop-offline-319eb214108abaaf",
+    "canonical": {
+      "status": 200,
+      "redirected": false,
+      "url": "http://127.0.0.1:50269/after/"
+    },
+    "legacy": null,
+    "offlineReload": true,
+    "hash": "#S10"
+  },
+  "upgrade": {
+    "previousCache": "material-workshop-offline-932fe1c173c3d09b",
+    "pendingCaches": [
+      "material-workshop-offline-932fe1c173c3d09b",
+      "material-workshop-offline-319eb214108abaaf"
+    ],
+    "newCache": "material-workshop-offline-319eb214108abaaf",
+    "offlineReloadAfterUpgrade": true,
+    "url": "http://127.0.0.1:50670/#S10"
+  }
+}

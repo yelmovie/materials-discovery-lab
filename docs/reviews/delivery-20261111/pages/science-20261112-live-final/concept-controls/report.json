@@ -1,0 +1,572 @@
+{
+  "base": "https://materials-discovery-lab.yelsam.workers.dev/",
+  "views": [
+    {
+      "profile": "390x844",
+      "screen": "S01",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 601,
+        "modalScrollHeight": 601,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S02",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 601,
+        "modalScrollHeight": 601,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S03",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 675,
+        "modalScrollHeight": 675,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S04",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 636,
+        "modalScrollHeight": 636,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S05",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 601,
+        "modalScrollHeight": 601,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S06",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 636,
+        "modalScrollHeight": 636,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S06",
+      "phase": "playing",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 636,
+        "modalScrollHeight": 636,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S06",
+      "phase": "ended",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 668,
+        "modalScrollHeight": 668,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S07",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 601,
+        "modalScrollHeight": 601,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S08",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 636,
+        "modalScrollHeight": 636,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S09",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 675,
+        "modalScrollHeight": 675,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "390x844",
+      "screen": "S10",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 675,
+        "modalScrollHeight": 675,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 195.75,
+        "buttonHeight": 78
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S01",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S02",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S03",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S04",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S05",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S06",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S06",
+      "phase": "playing",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S06",
+      "phase": "ended",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S07",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S08",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S09",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "740x360",
+      "screen": "S10",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 332,
+        "modalScrollHeight": 332,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 194.390625,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S01",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S02",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S03",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S04",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S05",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S06",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S06",
+      "phase": "playing",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S06",
+      "phase": "ended",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S07",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S08",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S09",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    },
+    {
+      "profile": "1024x768",
+      "screen": "S10",
+      "phase": "ready",
+      "issues": [],
+      "geometry": {
+        "modalHeight": 709,
+        "modalScrollHeight": 709,
+        "overlap": false,
+        "buttonPosition": "static",
+        "transform": "none",
+        "pictureHeight": 322.546875,
+        "buttonHeight": 54
+      }
+    }
+  ],
+  "playback": [
+    {
+      "profile": "390x844",
+      "reducedManual": true,
+      "pausedAt": 0.3223,
+      "resumed": true,
+      "endedFocus": true,
+      "restarted": true
+    },
+    {
+      "profile": "740x360",
+      "reducedManual": true,
+      "pausedAt": 0.3179,
+      "resumed": true,
+      "endedFocus": true,
+      "restarted": true
+    },
+    {
+      "profile": "1024x768",
+      "reducedManual": true,
+      "pausedAt": 0.3163,
+      "resumed": true,
+      "endedFocus": true,
+      "restarted": true
+    }
+  ],
+  "errors": []
+}

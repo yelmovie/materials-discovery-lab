@@ -1,0 +1,213 @@
+{
+ "base": "https://materials-discovery-lab.yelsam.workers.dev",
+ "load": [
+  {
+   "label": "local-unthrottled",
+   "throttle": null,
+   "firstContentfulPaintMs": 1076,
+   "startButtonVisibleMs": 1124,
+   "transferredBytes": 1373816,
+   "hosts": [
+    "materials-discovery-lab.yelsam.workers.dev"
+   ],
+   "loadingIndicatorStillVisible": false
+  },
+  {
+   "label": "school-wifi-10mbps",
+   "throttle": {
+    "latency": 40,
+    "down": 1310720,
+    "up": 655360
+   },
+   "firstContentfulPaintMs": 1012,
+   "startButtonVisibleMs": 1084,
+   "transferredBytes": 1373347,
+   "hosts": [
+    "materials-discovery-lab.yelsam.workers.dev"
+   ],
+   "loadingIndicatorStillVisible": false
+  }
+ ],
+ "concepts": [
+  {
+   "screen": "S01",
+   "src": "S01.webm",
+   "poster": "S01.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3177,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S02",
+   "src": "S02.webm",
+   "poster": "S02.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3141,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S03",
+   "src": "S03.webm",
+   "poster": "S03.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3113,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S04",
+   "src": "S04.webm",
+   "poster": "S04.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.313,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S05",
+   "src": "S05.webm",
+   "poster": "S05.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3081,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S06",
+   "src": "S06.webm",
+   "poster": "S06.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3146,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S07",
+   "src": "S07.webm",
+   "poster": "S07.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3105,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S08",
+   "src": "S08.webm",
+   "poster": "S08.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3107,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S09",
+   "src": "S09.webm",
+   "poster": "S09.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.31,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  },
+  {
+   "screen": "S10",
+   "src": "S10.webm",
+   "poster": "S10.webp",
+   "duration": 15,
+   "readyState": 4,
+   "currentTime": 0.3099,
+   "width": 960,
+   "height": 540,
+   "paused": false,
+   "posterOk": true,
+   "thirdChapterLabel": "3 / 3",
+   "thirdChapterSeek": 10.24,
+   "escCloses": true
+  }
+ ],
+ "reduced": {
+  "paused": true,
+  "currentTime": 0,
+  "poster": "S07.webp",
+  "playButton": 1
+ },
+ "errors": [],
+ "resume": {
+  "before": {
+   "hash": "#S01",
+   "activity": true
+  },
+  "after": {
+   "hash": "#S01",
+   "activity": true,
+   "heading": "물체의 부분을 조사하라",
+   "save": "S01"
+  },
+  "lockedS07": {
+   "hash": "#S07",
+   "activityHeading": "물체의 부분을 조사하라"
+  }
+ },
+ "frameTiming": {
+  "context": "Desktop headless Chromium world map, 1280x800",
+  "frames": 180,
+  "meanFrameMs": 16.67,
+  "p95FrameMs": 16.7,
+  "estimatedFps": 60
+ }
+}
