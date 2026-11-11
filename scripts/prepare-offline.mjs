@@ -21,16 +21,19 @@ async function walk(dir,prefix=''){
 }
 const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3|m4a)$/.test(p)).sort();
 if(!files.includes('index.html')||!files.includes('manifest.webmanifest')||!files.some(p=>p.endsWith('.js')))throw new Error('Build the app before preparing offline assets.');
-const hash=createHash('sha256');let bytes=0;
+// A worker logic change also needs a fresh cache, even if the app files did not change.
+const hash=createHash('sha256').update(await readFile(fileURLToPath(import.meta.url)));let bytes=0;
 for(const file of files){const data=await readFile(path.join(dist,file));hash.update(file).update(data);bytes+=data.length;}
 const version=hash.digest('hex').slice(0,16);
 const source=`/* Generated from build contents by scripts/prepare-offline.mjs. */
 const CACHE_PREFIX='material-workshop-offline-';
 const CACHE_NAME=CACHE_PREFIX+${JSON.stringify(version)};
 const FILES=${JSON.stringify(files)};
-const urls=FILES.map(file=>new URL(file,self.registration.scope).href);
+// Static hosts can redirect /index.html to /. Cache the canonical shell so the
+// fallback is usable for navigation requests that cannot return a redirected response.
+const indexURL=self.registration.scope;
+const urls=FILES.map(file=>file==='index.html'?indexURL:new URL(file,indexURL).href);
 const precached=new Set(urls);
-const indexURL=new URL('index.html',self.registration.scope).href;
 self.addEventListener('install',event=>{
  event.waitUntil((async()=>{const cache=await caches.open(CACHE_NAME);await cache.addAll(urls.map(url=>new Request(url,{cache:'reload'})));})());
  // No skipWaiting: an update cannot replace an active lesson.

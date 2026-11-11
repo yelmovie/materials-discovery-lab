@@ -12,3 +12,29 @@
 @media(max-height:650px){.concept-focus{padding:6px 10px;gap:5px}.concept-focus strong{padding:1px 7px}}
 
 .concept-dialog .concept-chapters{padding:6px 24px}.concept-dialog .concept-focus{margin:8px 24px 0}.concept-dialog .concept-picture video{max-height:42dvh}.concept-dialog .concept-caption{min-height:70px}.concept-dialog .concept-caption p{line-height:1.45}@media(max-height:650px){.concept-dialog .concept-picture video{max-height:33dvh}.concept-dialog .concept-header{padding-top:10px}.concept-dialog .concept-actions{padding-block:8px}.concept-dialog .concept-caption{padding:8px 16px}}
+
+.concept-dialog .concept-header{padding-inline-end:64px}
+.concept-dialog .concept-actions :is(.concept-play,.concept-pause){position:static;inset:auto;transform:none;width:auto;max-width:none;min-inline-size:8em;min-height:48px;font-size:clamp(16px,1.2vw,20px);line-height:1.25}
+.concept-dialog .concept-actions :is(.concept-play,.concept-pause):is(:hover,:active){transform:none}
+.concept-dialog .concept-actions :is(.concept-play,.concept-pause)[aria-disabled=true]{cursor:progress}
+
+@media(max-width:500px){
+ .concept-dialog .concept-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
+ .concept-dialog .concept-actions :is(.concept-play,.concept-pause){min-inline-size:0}
+}
+
+@media(max-height:480px) and (min-width:600px){
+ .concept-dialog>.modal-content{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,1fr);grid-template-areas:'header header' 'picture caption' 'picture timeline' 'picture words' 'picture chapters' 'actions actions'}
+ .concept-dialog .concept-header{grid-area:header;padding-block:8px 4px}
+ .concept-dialog .concept-header h2{font-size:22px;margin-bottom:4px}
+ .concept-dialog .concept-picture{grid-area:picture;align-items:center}
+ .concept-dialog .concept-picture video{max-height:54dvh}
+ .concept-dialog .concept-caption{grid-area:caption;min-height:0;padding:6px 10px;gap:8px}
+ .concept-dialog .concept-caption img{width:30px;height:36px}
+ .concept-dialog .concept-caption p{font-size:17px;line-height:1.35}
+ .concept-dialog .concept-timeline{grid-area:timeline}
+ .concept-dialog .concept-focus{grid-area:words;margin:5px 10px 0}
+ .concept-dialog .concept-chapters{grid-area:chapters;padding:4px 10px 0}
+ .concept-dialog .concept-chapters button{padding-inline:4px}
+ .concept-dialog .concept-actions{grid-area:actions}
+}
