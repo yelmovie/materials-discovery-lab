@@ -74,7 +74,7 @@ export default function WorldCanvas(props:Props){
      this.time.delayedCall(0,()=>{this.drag=null;});
     });
     const keyboard=this.input.keyboard;
-    keyboard?.on('keydown',(event:KeyboardEvent)=>{if(this.isPaused()||this.typing())return;if(this.directionFor(event.code)){event.preventDefault();this.keys.add(event.code);}});
+    keyboard?.on('keydown',(event:KeyboardEvent)=>{if(this.isPaused()||this.typing()||event.ctrlKey||event.altKey||event.metaKey)return;if(this.directionFor(event.code)){event.preventDefault();this.keys.add(event.code);}});
     keyboard?.on('keyup',(event:KeyboardEvent)=>this.keys.delete(event.code));
     const clear=()=>this.keys.clear();window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);this.events.once('shutdown',()=>{window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);});
     if(p.reveal!=null){if(p.reduced)p.onRevealEnd?.();else this.startReveal(p.reveal);}

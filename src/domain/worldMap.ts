@@ -1,3 +1,4 @@
+import {assistMapStep} from '../map-controls.js';
 export const MAP_WIDTH = 1536;
 export const MAP_HEIGHT = 1024;
 export type MapDirection = 'up' | 'down' | 'left' | 'right';
@@ -58,10 +59,8 @@ export function projectRoad(point:MapPoint):RoadProjection{
 }
 /** One held-movement step: pushing against a road's edge slides along it instead of leaving it. */
 export function walkRoad(start:MapPoint,direction:MapPoint,step:number):MapPoint{
- const next={x:start.x+direction.x*step,y:start.y+direction.y*step},road=projectRoad(next);
- if(road.gap<=ROAD_HALF_WIDTH)return next;
- const keep=ROAD_HALF_WIDTH/road.gap;
- return {x:road.x+(next.x-road.x)*keep,y:road.y+(next.y-road.y)*keep};
+ const length=Math.hypot(direction.x,direction.y)||1;
+ return assistMapStep(start,{x:direction.x/length*step,y:direction.y/length*step},p=>projectRoad(p).gap<=ROAD_HALF_WIDTH);
 }
 export function roadRoute(start:string,end:string):string[]{
  const costs:Record<string,number>={[start]:0},previous:Record<string,string>={},pending=new Set(Object.keys(roadNodes));
