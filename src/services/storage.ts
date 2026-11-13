@@ -1,7 +1,7 @@
 import {normalizeMapHits} from '../map-encounters.js';
 import {mapEncounterIds} from '../domain/model';
 import {validDelivery} from '../domain/maker';
-import {canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
+import {activityToResume, canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
 import {challenges,correctChallenge} from '../domain/challenges';
 export const SAVE_KEY='material-workshop-mission.student.v1';
 export const RECOVERY_KEY=`${SAVE_KEY}.recovery`;
@@ -45,6 +45,10 @@ export function decodeSave(raw:string):Save {
  const clean=Object.fromEntries(Object.keys(fresh).map(k=>[k,s[k as keyof Save]])) as unknown as Save;
  if(!canFinalize(clean)||clean.reportedRevision!==clean.design.revision)clean.coreComplete=false;
  if(!canAccess(clean,clean.lastRoute,clean.lastPhase)){clean.lastPhase='activity';if(!canAccess(clean,clean.lastRoute))clean.lastRoute='world';}
+ // Older saves from Home retained the observation but no longer had an activity route.
+ const legacy=clean.lastPhase==='activity'&&activityToResume(clean,clean.lastRoute)||
+  (clean.checkpoints.inspected.length>0&&!clean.completedScreens.includes('S01')?'S01':null);
+ clean.resumeActivity=activityToResume(clean,Object.hasOwn(s,'resumeActivity')?s.resumeActivity:legacy);
  if(clean.lastPhase==='ending'){clean.lastPhase=clean.coreComplete?'certificate':'report';}
  return clean;
 }
