@@ -3,7 +3,7 @@ import {lazy,Suspense,useEffect,useRef,useState} from 'react';
 import {WorkshopRestoration} from './components/WorkshopRestoration';
 import {useGame} from './state/GameContext';
 import {screens,stages,evidenceNames,recovery,canAccess,canFinalize,canComplete,shortNames,type Route,type Phase,type Screen} from './domain/model';
-import {Activity} from './screens/Activities';
+import {MapEntryBoundary} from './components/MapEntryBoundary';
 import {NpcVoice} from './components/NpcVoice';
 import {NpcDialogue} from './components/NpcDialogue';
 import {Icon} from './components/Icon';
@@ -12,7 +12,12 @@ import {ConceptVideo} from './components/ConceptVideo';
 import {SettingsDialog} from './components/SettingsDialog';
 import {worldDestinations,type MapDirection} from './domain/worldMap';
 import {startAudio,updateAudio,clickSound,stopAudio} from './services/audio';
-const WorldCanvas=lazy(()=>import('./game/WorldCanvas'));
+import {registerOffline} from './services/offline';
+let worldModule:Promise<typeof import('./game/WorldCanvas')>|undefined;
+function loadWorld(){
+ return worldModule??=import('./game/WorldCanvas').catch(error=>{worldModule=undefined;throw error;});
+}
+const WorldCanvas=lazy(loadWorld);
 const FinalPanels=lazy(()=>import('./screens/FinalPanels'));
 const portrait=(npc:string)=>npc==='moru'?'/assets/generated/companion.webp':`/assets/characters/${npc}.webp`;
 const npcNames=['모루','단단이','방울이','바람이','토리'];
@@ -31,11 +36,53 @@ export default function App(){
  const {save,student,demo,notice,dispatch}=useGame();
  const [modal,setModal]=useState<ModalKind>(null),[selectedStage,setSelectedStage]=useState(0),[target,setTarget]=useState<number|null>(null),[arrived,setArrived]=useState<number|null>(null),[toast,setToast]=useState(''),[returnToDesign,setReturnToDesign]=useState(false),[direction,setDirection]=useState<MapDirection|null>(null),[guide,setGuide]=useState(false),[conceptAdvance,setConceptAdvance]=useState(false),[storyStep,setStoryStep]=useState(0),[hand,setHand]=useState(false),[overview,setOverview]=useState(false),[reveal,setReveal]=useState<number|null>(null);
  const labels=useRef<HTMLElement>(null),pendingReveal=useRef<number|null>(null);
+ const [homeDressed,setHomeDressed]=useState(false),[mapReady,setMapReady]=useState(false),[mapSlow,setMapSlow]=useState(false),[mapFailed,setMapFailed]=useState(false);
+ const focusActivity=useRef(false);
  const history=useRef<{route:Route;phase:Phase}[]>([]),previousDemo=useRef(demo);
  const route=save.lastRoute,phase=save.lastPhase,screen=screens.find(s=>s.id===route),stage=screen?stages[screen.stage-1]:null;
+ useEffect(()=>{
+  if(route!=='home'){setHomeDressed(false);return;}
+  const timer=window.setTimeout(()=>setHomeDressed(true),650);
+  return()=>clearTimeout(timer);
+ },[route]);
+ useEffect(()=>{
+  if(route!=='world'){setMapReady(false);setMapSlow(false);setMapFailed(false);return;}
+  if(mapReady||mapFailed)return;
+  const timer=window.setTimeout(()=>setMapSlow(true),3000);
+  return()=>clearTimeout(timer);
+ },[route,mapReady,mapFailed]);
+ useEffect(()=>{
+  if(route!=='home'||modal!=='story')return;
+  const warm=()=>{
+   const connection=(navigator as Navigator&{connection?:{saveData?:boolean;effectiveType?:string}}).connection;
+   if(!document.hidden&&navigator.onLine&&!connection?.saveData&&!/^(slow-)?2g$/.test(connection?.effectiveType||''))
+    void loadWorld().catch(()=>{/* The map's boundary handles errors on entry. */});
+  };
+  if(typeof requestIdleCallback==='function'){const id=requestIdleCallback(warm,{timeout:700});return()=>cancelIdleCallback(id);}
+  const timer=window.setTimeout(warm,300);
+  return()=>clearTimeout(timer);
+ },[route,modal]);
+ useEffect(()=>{
+  if(!screen||!focusActivity.current)return;
+  focusActivity.current=false;
+  document.querySelector<HTMLElement>('.activity-heading h1')?.focus({preventScroll:true});
+ },[screen]);
  useEffect(()=>{if(route!=='world')return;const pad=document.querySelector<HTMLElement>('.map-direction-pad');if(!pad)return;const controls=bindDirectionPad(pad,'[data-map-direction]',b=>b.dataset.mapDirection as MapDirection,{blocked:()=>!!modal||reveal!==null||document.hidden,press:d=>{cancelMapWalk();setOverview(false);setHand(false);setDirection(d);},release:()=>setDirection(null)});return controls.destroy;},[route,modal,reveal]);
  const reducedMotion=save.settings.reducedMotion||matchMedia('(prefers-reduced-motion: reduce)').matches;
  const isActivity=!!screen&&phase==='activity',nextStage=Math.min(save.evidence.length,5),progress=recovery(save);
+ const [Activity,setActivity]=useState<typeof import('./screens/Activities').Activity|null>(null);
+ const [activityFailed,setActivityFailed]=useState(false);
+ useEffect(()=>{
+  if(!isActivity||Activity)return;
+  let active=true;
+  void import('./screens/Activities').then(module=>{if(active)setActivity(()=>module.Activity);},()=>{if(active)setActivityFailed(true);});
+  return()=>{active=false;};
+ },[isActivity,Activity]);
+ useEffect(()=>{
+  if(!import.meta.env.PROD||!isActivity||demo)return;
+  const timer=window.setTimeout(registerOffline,3000);
+  return()=>clearTimeout(timer);
+ },[isActivity,demo]);
  const hasProgress=student.completedScreens.length>0||student.checkpoints.inspected.length>0||student.observations.length>0;
  function navigate(next:Route,nextPhase:Phase='activity'){history.current.push({route,phase});dispatch({type:'navigate',route:next,phase:nextPhase});setModal(null);clickSound();}
  function back(){if(modal){setModal(null);return;}const previous=history.current.pop();if(previous&&(demo||canAccess(save,previous.route,previous.phase)))dispatch({type:'navigate',...previous});else if(route==='world')dispatch({type:'navigate',route:'home'});else if(screen)dispatch({type:'navigate',route:'world'});}
@@ -56,6 +103,23 @@ export default function App(){
  function onArrive(i:number){setSelectedStage(i);setTarget(i);setArrived(i);if(!isOpen(i))setToast(i===5?'다섯 공방의 연구 기록과 보관함 시험을 먼저 마쳐 주세요.':`${stages[i-1].name}의 연구 기록을 먼저 모아 주세요.`);}
  function enter(){if(arrived===null||!isOpen(arrived))return;if(arrived===5)navigate('S10',save.coreComplete?'certificate':'report');else{setSelectedStage(arrived);setModal('mission');}}
  function enterStage(fromStart=false){const entry=stages[selectedStage];const first=entry.screens[0] as Screen,second=entry.screens[1] as Screen;navigate(!fromStart&&save.completedScreens.includes(first)?second:first);}
+ function enterWithoutMap(){
+  if(nextStage===5){
+   const finalPhase=save.coreComplete?'certificate':'report';
+   if(demo||canAccess(save,'S10',finalPhase)){focusActivity.current=true;navigate('S10',finalPhase);return;}
+  }
+  for(let i=Math.min(nextStage,4);i>=0;i--){
+   const [first,second]=stages[i].screens as [Screen,Screen];
+   const destination=save.completedScreens.includes(first)&&canAccess(save,second)?second:first;
+   if(demo||canAccess(save,destination)){focusActivity.current=true;navigate(destination);return;}
+  }
+ }
+ function mapRecovery(failed:boolean){
+  return <section className="map-entry-recovery">
+   <p role="status">{failed?'지도를 불러오지 못했어요. 탐구부터 시작할 수 있어요.':mapSlow?'지도가 늦게 열리고 있어요. 탐구부터 시작할 수 있어요.':'숲속 공방으로 가는 길을 준비해요…'}</p>
+   {(failed||mapSlow)&&<div className="map-entry-actions"><button className="primary" onClick={enterWithoutMap}>탐구부터 시작하기</button><button className="secondary" onClick={()=>location.reload()}>지도 다시 불러오기</button></div>}
+  </section>;
+ }
  const demoIndex=demoSteps.findIndex(s=>s.route===route&&s.phase===phase);
  function demoGo(index:number){const step=demoSteps[Math.max(0,Math.min(demoSteps.length-1,index))];navigate(step.route,step.phase);}
  function demoNextStage(){const current=stage?.id??0;if(current>=5){if(demoIndex<demoSteps.length-1)demoGo(demoIndex+1);return;}navigate(stages[current].screens[0] as Route);}
@@ -70,7 +134,7 @@ export default function App(){
  function story(){setStoryStep(0);setModal('story');}
  const modalTitle=modal==='mission'?missions[selectedStage]?.[0]:modal==='reward'?'공방 복구 완료':modal==='reset'?'연구 기록 초기화':modal==='story'?'공방을 깨우는 이야기':'나의 연구 수첩';
  const npcDialoguePilot=modal==='mission'||modal==='reward';
- const activityHeading=screen?<div className="activity-heading"><div><span className="stage-badge">{stage?.name}</span><span className="activity-number">활동 {screen.id.slice(1)} / 10</span><h1>{phase==='activity'?screen.title:{report:'연구 보고',core:'코어 재가동',ending:'공방 복구',certificate:'연구원 인증서'}[phase]}</h1></div>{returnToDesign&&route==='S03'&&<button className="secondary" onClick={()=>{setReturnToDesign(false);navigate('S09');}}>설계로 돌아가기 →</button>}</div>:null;
+ const activityHeading=screen?<div className="activity-heading"><div><span className="stage-badge">{stage?.name}</span><span className="activity-number">활동 {screen.id.slice(1)} / 10</span><h1 tabIndex={-1}>{phase==='activity'?screen.title:{report:'연구 보고',core:'코어 재가동',ending:'공방 복구',certificate:'연구원 인증서'}[phase]}</h1></div>{returnToDesign&&route==='S03'&&<button className="secondary" onClick={()=>{setReturnToDesign(false);navigate('S09');}}>설계로 돌아가기 →</button>}</div>:null;
  const demoToolbar=demo&&screen?<div className="demo-toolbar"><nav className="demo-step-pad" aria-label="교사용 활동 넘기기"><button aria-label="이전 활동" disabled={demoIndex<=0} onClick={()=>demoGo(demoIndex-1)}><Icon name="back"/></button><span><b>{demoIndex+1}</b> / {demoSteps.length}<small>← → 키로 넘겨요</small></span><button aria-label="다음 활동" disabled={demoIndex>=demoSteps.length-1} onClick={()=>demoGo(demoIndex+1)}><Icon name="back"/></button></nav>
  <button className="primary demo-next-stage" aria-label={(stage?.id??0)<5?`다음 스테이지 · ${stages[stage?.id??0].name}`:'다음 단계로'} disabled={demoIndex>=demoSteps.length-1} onClick={demoNextStage}>{(stage?.id??0)<5?'다음 공방':'다음 단계'} <Icon name="next"/></button></div>:null;
  return <div className={`app route-${route} ${demo?'demo-mode':''}`}>
@@ -78,8 +142,8 @@ export default function App(){
  {demo&&<div className="demo-ribbon">교사용 시연 · 학생 기록과 따로 진행해요</div>}
  {notice&&<div className="storage-notice" role="alert">{notice}</div>}
  <main className={screen?`activity-shell ${isActivity?'live-activity':'final-activity'}`:''} style={stage?{'--stage-bg':`url(/assets/backgrounds/stage-${stage.id}.webp)`} as React.CSSProperties:undefined}>
- {route==='home'&&<div className="home-page"><div className="home-hero"><div className="hero-copy"><span className="eyebrow light">토리·모루와 함께하는 물질 탐구 모험</span><img className="game-logo" src="/assets/logo.webp" alt="물질 공방 대작전"/><h1>작은 발견이 모이면,<br/>공방이 다시 깨어나요!</h1><p>재료를 살펴보고 어떻게 달라지는지 시험해요.<br/>모은 단서로 보관함을 만들어 공방을 다시 열어요.</p><div className="hero-actions"><button className="primary gold" onClick={()=>hasProgress?navigate('world'):story()}>{hasProgress?'이어서 탐험하기':'공방으로 출발!'} <span>→</span></button>{hasProgress&&<button className="ghost" onClick={()=>setModal('reset')}>새로 시작</button>}</div><p className="save-note">살펴보기 → 시험하기 → 새 의뢰에 써 보기 · 기록은 자동 저장돼요</p></div></div></div>}
- {route==='world'&&<div className={`world-page ${overview?'overview':''}`}><div className="map-frame"><WorkshopRestoration/><div className="map-surface"><Suspense fallback={<div className="loading">숲속 공방으로 가는 길을 준비해요…</div>}><WorldCanvas onCamera={placeLabels} onPan={()=>{cancelMapWalk();setOverview(false);setHand(true);}} onFollow={()=>{setOverview(false);setHand(false);}} target={target} nextStage={save.coreComplete?6:nextStage} recovered={save.evidence.length} coreComplete={save.coreComplete} reduced={reducedMotion} direction={direction} overview={overview} hand={hand} reveal={reveal} onRevealEnd={()=>setReveal(null)} paused={!!modal} onSelect={pickDestination} onArrive={onArrive} onLeave={()=>setArrived(null)} onMoveStart={()=>setTarget(null)}/></Suspense>
+ {route==='home'&&<div className={`home-page${homeDressed?' home-dressed':''}`}><div className="home-hero"><div className="hero-copy"><span className="eyebrow light">토리·모루와 함께하는 물질 탐구 모험</span><img className="game-logo" src="/assets/logo.webp" width={900} height={230} fetchPriority="high" alt="물질 공방 대작전"/><h1>작은 발견이 모이면,<br/>공방이 다시 깨어나요!</h1><p>재료를 살펴보고 어떻게 달라지는지 시험해요.<br/>모은 단서로 보관함을 만들어 공방을 다시 열어요.</p><div className="hero-actions"><button className="primary gold" onClick={()=>hasProgress?navigate('world'):story()}>{hasProgress?'이어서 탐험하기':'공방으로 출발!'} <span>→</span></button>{hasProgress&&<button className="ghost" onClick={()=>setModal('reset')}>새로 시작</button>}</div><p className="save-note">살펴보기 → 시험하기 → 새 의뢰에 써 보기 · 기록은 자동 저장돼요</p></div></div></div>}
+ {route==='world'&&<div className={`world-page ${overview?'overview':''}`} data-map-ready={mapReady}><div className="map-frame"><WorkshopRestoration/><div className="map-surface"><MapEntryBoundary fallback={mapRecovery(true)}><Suspense fallback={mapRecovery(false)}>{mapFailed?mapRecovery(true):<><WorldCanvas onReady={()=>{setMapReady(true);setMapSlow(false);}} onFailure={()=>{setMapFailed(true);setMapReady(false);}} onCamera={placeLabels} onPan={()=>{cancelMapWalk();setOverview(false);setHand(true);}} onFollow={()=>{setOverview(false);setHand(false);}} target={target} nextStage={save.coreComplete?6:nextStage} recovered={save.evidence.length} coreComplete={save.coreComplete} reduced={reducedMotion} direction={direction} overview={overview} hand={hand} reveal={reveal} onRevealEnd={()=>setReveal(null)} paused={!!modal} onSelect={pickDestination} onArrive={onArrive} onLeave={()=>setArrived(null)} onMoveStart={()=>setTarget(null)}/>{!mapReady&&mapRecovery(false)}</>}</Suspense></MapEntryBoundary>
  <nav ref={labels} className="map-destination-labels" aria-label="공방 목적지">{worldDestinations.map((d,i)=><button key={d.id} className={`map-label ${!isOpen(i)?'locked':i<save.evidence.length?'restored':i===nextStage?'current':''} ${selectedStage===i&&target!==null?'selected':''}`} style={{'--x':`${d.labelX}px`,'--y':`${d.labelY}px`} as React.CSSProperties} aria-pressed={target===i} aria-label={`${d.name}${!isOpen(i)?' · 앞선 연구 기록 필요':i<save.evidence.length?' · 복구 완료':''}`} onClick={()=>pickDestination(i)}><span className="label-face">{i<5?<img src={portrait(stages[i].npc)} alt=""/>:<Icon name="crystal"/>}{(!isOpen(i)||i<save.evidence.length)&&<i><Icon name={isOpen(i)?'check':'lock'}/></i>}</span><span className="label-text"><b>{d.name}</b><small>{i<save.evidence.length?'복구 완료':!isOpen(i)?'앞선 연구 기록 필요':i===nextStage?'다음 발견':'살펴보기'}</small></span>{i<5&&<span className="label-pips" aria-hidden="true">{stages[i].screens.map(s=><i key={s} className={save.completedScreens.includes(s as Screen)?'done':''}/>)}</span>}</button>)}</nav>
  </div><div className={`map-goal ${reveal!==null?'reveal':''}`} role="status"><b>{reveal!==null?`${stages[reveal].worldEffect}!`:save.coreComplete?'공방 마을 복구 완료':`다음 발견 · ${worldDestinations[nextStage].name}`}</b><span aria-label={`${Math.min(save.evidence.length,5)}곳 복구`}>{stages.map((s,i)=><i key={s.id} className={i<save.evidence.length?'done':''}/>)}<small>{Math.min(save.evidence.length,5)} / 5</small></span></div>
  <div className="map-direction-pad" aria-label="연구원 이동">{(['up','left','down','right'] as MapDirection[]).map(d=><button key={d} data-map-direction={d} className={`direction-${d} ${direction===d?'held':''}`} aria-label={{up:'위로 이동',left:'왼쪽으로 이동',down:'아래로 이동',right:'오른쪽으로 이동'}[d]} onKeyDown={e=>{if(e.code==='Space'||e.code==='Enter'){e.preventDefault();cancelMapWalk();setOverview(false);setHand(false);setDirection(d);}}} onKeyUp={()=>setDirection(null)} onBlur={()=>setDirection(null)}><Icon name="back"/></button>)}</div>
@@ -88,7 +152,7 @@ export default function App(){
  <button className="primary map-next-action" disabled={target!==null&&arrived!==target} onClick={()=>arrived!==null&&isOpen(arrived)?enter():pickDestination(nextStage)}>{target!==null&&arrived!==target?'길을 따라 이동하고 있어요…':arrived!==null&&isOpen(arrived)?<>{worldDestinations[arrived].name} 들어가기 <Icon name="next"/></>:<><em>다음 발견</em>{worldDestinations[nextStage].name}로 가기 <Icon name="next"/></>}</button>
  </div></div>}
  {screen&&<>{isActivity?<>{activityHeading}{demoToolbar}</>:<div className="final-toprail">{activityHeading}{demoToolbar}</div>}
- <div className="stage-body">{isActivity?<Activity key={`${demo}-${route}`} screen={screen.id as Screen} onFinish={finish} onConcept={()=>{setConceptAdvance(false);setModal('concept');}} onMessage={setToast} onNavigate={s=>{if(route==='S09'&&s==='S03')setReturnToDesign(true);navigate(s);}}/>:<Suspense fallback={<div className="loading">연구 기록을 펼쳐요…</div>}><FinalPanels key={`${demo}-${phase}`} navigate={p=>navigate('S10',p)}/></Suspense>}</div>
+ <div className="stage-body">{isActivity?(Activity?<Activity key={`${demo}-${route}`} screen={screen.id as Screen} onFinish={finish} onConcept={()=>{setConceptAdvance(false);setModal('concept');}} onMessage={setToast} onNavigate={s=>{if(route==='S09'&&s==='S03')setReturnToDesign(true);navigate(s);}}/>:<div className="loading" role="status">{activityFailed?<><p>실험 도구를 열지 못했어요.</p><button className="secondary" onClick={()=>location.reload()}>다시 열기</button></>:<>실험 도구를 준비하고 있어요…</>}</div>):<Suspense fallback={<div className="loading">연구 기록을 펼쳐요…</div>}><FinalPanels key={`${demo}-${phase}`} navigate={p=>navigate('S10',p)}/></Suspense>}</div>
 </>}
  </main>
  {toast&&<div className="toast" role="status">{toast}<button aria-label="알림 닫기" onClick={()=>setToast('')}>×</button></div>}

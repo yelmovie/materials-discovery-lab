@@ -19,6 +19,34 @@
  <link rel="manifest" href="/manifest.webmanifest"/>
  <link rel="apple-touch-icon" href="/assets/icons/app-192.png"/>
  <title>물질 공방 대작전</title>
+ <style>
+  body { margin:0; }
+  .workshop-boot { box-sizing:border-box; min-height:100svh; display:grid; place-content:center; gap:1rem; padding:1.5rem; text-align:center; background:#f8f6ed; color:#183d56; font:1.125rem/1.5 system-ui,sans-serif; }
+  .workshop-boot h1 { margin:0; font:700 clamp(2rem,5vw,3.5rem)/1.2 system-ui,sans-serif; }
+  .workshop-boot p { margin:0; }
+  .workshop-boot a { display:inline-grid; place-items:center; min-height:44px; color:inherit; }
+ </style>
 </head>
-<body style="margin:0"><div id="root"><div class="boot" role="status" style="min-height:100svh;display:grid;place-content:center;background:#f8f6ed;color:#183d56;font:700 18px/1.5 NanumSquareNeo,system-ui,sans-serif;text-align:center">공방을 준비하고 있어<br/>잠시만 기다려 줘.</div></div><script type="module" src="/src/main.tsx"></script></body>
+<body>
+ <div id="root"><main class="workshop-boot"><h1>물질 공방 대작전</h1><p role="status">공방을 준비하고 있어요.</p><p hidden><a href="">다시 열기</a></p><noscript>공방을 열려면 브라우저에서 자바스크립트를 켜 주세요.</noscript></main></div>
+ <script>
+  (() => {
+   const cover = document.querySelector('.workshop-boot');
+   const status = cover.querySelector('[role=status]');
+   const retry = cover.querySelector('a').parentElement;
+   function show(message, failed) {
+    if (!cover.isConnected || !retry.hidden) return;
+    status.textContent = message;
+    retry.hidden = !failed;
+   }
+   setTimeout(() => show('연결이 느려 조금 더 걸리고 있어요.', false), 3000);
+   setTimeout(() => show('공방이 아직 열리지 않았어요. 잠시 더 기다리거나 다시 열어 주세요.', true), 12000);
+   window.addEventListener('error', event => {
+    if (event.target instanceof HTMLScriptElement && event.target.type === 'module')
+     show('공방을 열지 못했어요. 연결을 확인하고 다시 열어 주세요.', true);
+   }, true);
+  })();
+ </script>
+ <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>

@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 import {drawWorkshopChange} from './workshop-change';
 import {MAP_WIDTH,MAP_HEIGHT,worldDestinations,worldLights,roadNodes,routeBetween,walkRoad,doorAt,pathLength,pointAlong,type MapDirection,type MapPoint} from '../domain/worldMap';
 export const destinations=worldDestinations;
-interface Props {target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void}
+interface Props {target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
 // Zoom past "cover" so the map always fills the screen and shows a close, walkable area like the sibling games.
 const ZOOM_OVER_COVER=1.45,DRAG_THRESHOLD=10,WALK_SPEED=250,ROUTE_SPEED=340,FOLLOW_GAP=52;
 const DUSK=.42,DUSK_SCALE=.25,REVEAL_LIGHT=1200,REVEAL_TRAVEL=1500,REVEAL_END=3000;
@@ -41,6 +41,7 @@ export default function WorldCanvas(props:Props){
     for(const name of Object.keys(WALKERS) as (keyof typeof WALKERS)[])for(const direction of WALK_DIRECTIONS)for(let frame=1;frame<=4;frame++)this.load.image(walkKey(name,direction,frame),`/assets/generated/walk/${name}/${direction}-${frame}.webp`);
    }
    create(){
+    if(!this.textures.exists('island')){live.current.onFailure?.();return;}
     const p=live.current;
     if(this.textures.exists('island'))this.add.image(MAP_WIDTH/2,MAP_HEIGHT/2,'island').setDisplaySize(MAP_WIDTH,MAP_HEIGHT);
     if(this.textures.exists('island'))this.makeUpgrades();
@@ -63,6 +64,8 @@ export default function WorldCanvas(props:Props){
     // Report after drawing so DOM labels match the exact frame on screen (worldView is the rendered top-left corner).
     const report=()=>{const view=camera.worldView,key=`${view.x.toFixed(1)},${view.y.toFixed(1)},${camera.zoom.toFixed(4)},${Math.floor(performance.now()/250)}`;if(key!==this.lastCamera){this.lastCamera=key;live.current.onCamera?.(view.x,view.y,camera.zoom);}};
     this.game.events.on(Phaser.Core.Events.POST_RENDER,report);this.events.once('shutdown',()=>this.game.events.off(Phaser.Core.Events.POST_RENDER,report));
+    const ready=()=>live.current.onReady?.();
+    this.game.events.once(Phaser.Core.Events.POST_RENDER,ready);this.events.once('shutdown',()=>this.game.events.off(Phaser.Core.Events.POST_RENDER,ready));
     // One finger drags immediately; two fingers zoom around a world point.
     const gesture=()=>{const [a,b]=this.fingers.values();return {x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y))};};
     const snapshot=(id:number,x:number,y:number,moved=false)=>({id,x,y,center:{...this.center},moved});

@@ -632,3 +632,42 @@ html[data-reduced=true] .air-bubbles i { animation:none; opacity:.7; }
  .final-toprail { display:none!important; }
  .demo-mode .activity-shell.final-activity { padding:0!important; }
 }
+
+.route-home:has(.home-page:not(.home-dressed)) { font-family:system-ui,sans-serif; }
+.home-page:not(.home-dressed) .home-hero { background:linear-gradient(135deg,#0d2a1f,#245b43); }
+.map-entry-recovery { position:absolute; z-index:20; inset:50% auto auto 50%; transform:translate(-50%,-50%); width:min(510px,calc(100% - 32px)); padding:clamp(14px,3vw,24px); border:2px solid #788658; border-radius:18px; background:#fff9e9; color:#254535; text-align:center; box-shadow:0 7px 24px #112a3460; }
+.map-entry-recovery p { margin:0; }
+.map-entry-actions { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px; }
+.world-page[data-map-ready="false"] :is(.map-destination-labels,.map-direction-pad,.map-guide,.map-next-stack) { visibility:hidden; }
+@media (max-width:800px) {
+ .home-hero { height:100dvh; min-height:0; padding:90px 22px 30px; align-items:flex-end; background:linear-gradient(0deg,#0d2a1ff2 0%,#123424c4 42%,transparent 72%),url('/assets/generated/title-keyart.webp') 78% center/cover; }
+ .hero-copy { max-width:none; }
+ .hero-copy .game-logo { width:min(420px,84vw); }
+}
+@media (max-height:660px) and (min-width:801px) {
+ .home-hero { padding-top:64px; padding-bottom:16px; }
+ .hero-copy .game-logo { width:min(340px,36vw); margin:8px 0 10px; }
+ .hero-actions .primary.gold { min-height:56px; font-size:21px; }
+}
+/* Teacher demo controls take their own bottom row so the activity's own buttons stay reachable. */
+.demo-mode .activity-shell { padding-bottom:92px !important; }
+.demo-step-pad,.demo-next-stage { bottom:14px; }
+@media (max-width:800px) {
+ .demo-mode .activity-footer { bottom:84px; }
+ .demo-step-pad { left:12px; bottom:10px; }
+ .demo-step-pad button { width:48px; height:48px; }
+ .demo-step-pad span { min-width:64px; font-size:16px; }
+ .demo-step-pad small { display:none; }
+ .demo-next-stage { right:12px; bottom:10px; min-height:58px; max-width:calc(100vw - 230px); padding:10px 14px; font-size:16px; }
+}
+@media (max-height:660px) and (min-width:801px) {
+ /* Short landscape screens: move teacher controls into the top menu row so the lab keeps its full height. */
+ .demo-mode .activity-shell { padding-bottom:8px !important; }
+ .app:has(.demo-step-pad) .demo-ribbon { display:none; }
+ .demo-step-pad,.demo-next-stage { top:12px; bottom:auto; }
+ .demo-step-pad { left:140px; padding:2px; gap:6px; border-radius:14px; }
+ .demo-step-pad button { width:48px; height:48px; }
+ .demo-step-pad span { min-width:70px; font-size:15px; }
+ .demo-step-pad small { display:none; }
+ .demo-next-stage { right:140px; min-height:52px; padding:6px 16px; font-size:17px; }
+}
