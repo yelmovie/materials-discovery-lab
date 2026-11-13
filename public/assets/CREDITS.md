@@ -178,3 +178,9 @@ THE SOFTWARE.
 ## 2026-11-11 앱 글꼴 통일
 
 본문·제목·버튼·입력란·실험 Canvas 라벨은 NAVER NanumSquare Neo Regular/Bold/ExtraBold 자체 호스팅 WOFF2를 사용한다. SIL Open Font License 1.1 원문은 fonts/NanumSquareNeo-OFL.txt에 포함한다. 기존 Jua 라이선스는 이미 렌더된 개념 영상의 출처 기록을 위해 보존하며, 영상 속 글자는 이번 UI 글꼴 변경에 포함하지 않는다.
+
+## NPC 대화 확장 · 2026-11-12
+
+- `npc-expressions/`의 모루·단단이·방울이·바람이·토리 반신 초상은 기존 캐릭터를 참고해 Codex image_gen으로 생성했다. 640×640 투명 WebP의 기본·생각·기쁨 표정을 대사별로 한 프레임씩 표시한다.
+- `audio/npc-elevenlabs/`의 의뢰·복구 발화 20줄은 ElevenLabs v4 한국어 라이브러리 음성으로 생성했다. 캐릭터마다 일관된 voice ID를 사용하며 원문과 생성 정보는 같은 폴더 manifest.json에 기록했다.
+- 생성 원본과 로컬 검수 기록은 외장 프로젝트 `output/npc-dialogue-expanded-20261112/`에 보관한다.

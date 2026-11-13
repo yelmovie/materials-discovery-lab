@@ -1,0 +1,211 @@
+{
+  "engine": "ElevenLabs v4",
+  "language": "ko",
+  "flow": "0G3Tolo3ZkbnmOFQ2c6K",
+  "recordings": [
+    {
+      "key": "moru-mission-0",
+      "text": "비를 막는 작은 지붕을 부탁해!",
+      "speaker": "모루",
+      "voice": "dnZGOA54w68T7vLLPFTp",
+      "node_id": "z1pbdjVsNbSwQp5ivDqv",
+      "generation_id": "oRX0Zy3U0G0bfkndHV2I",
+      "duration": 2.4
+    },
+    {
+      "key": "moru-mission-1",
+      "text": "먼저 우산의 천, 살, 손잡이를 살펴봐요. 알아낸 성질을 작은 지붕 만들기에 써요.",
+      "speaker": "모루",
+      "voice": "dnZGOA54w68T7vLLPFTp",
+      "node_id": "gWscMJL6Dl3nkeOeL5yS",
+      "generation_id": "OomgF8lL7NZ54PQJfDo5",
+      "duration": 7.12
+    },
+    {
+      "key": "moru-mission-2",
+      "text": "부품 조사 기록을 얻으면 재료 선반과 간판에 불이 들어와요.",
+      "speaker": "모루",
+      "voice": "dnZGOA54w68T7vLLPFTp",
+      "node_id": "2qwqZHEiow9cP8L4KHIb",
+      "generation_id": "tytKE1ZCxBmgeCABLX0d",
+      "duration": 4.32
+    },
+    {
+      "key": "moru-reward",
+      "text": "재료 선반과 간판 점등!",
+      "speaker": "모루",
+      "voice": "dnZGOA54w68T7vLLPFTp",
+      "node_id": "Rlt6OqGOs4NATjczbg4T",
+      "generation_id": "Y7CSZHpnoQuMO9UbYinD",
+      "duration": 2.16
+    },
+    {
+      "key": "dandani-mission-0",
+      "text": "안을 볼 수 있는 전시 상자를 만들어 줘!",
+      "speaker": "단단이",
+      "voice": "rCm09Tf1yMYbOyCRLDyB",
+      "node_id": "wuhZ43DfvMwexvnaDv47",
+      "generation_id": "c7J60kBeFPfYFEzw4UH8",
+      "duration": 2.72
+    },
+    {
+      "key": "dandani-mission-1",
+      "text": "재료에 빛을 비추고 눌러 봐요. 그 결과를 보고 상자의 창과 모서리를 골라요.",
+      "speaker": "단단이",
+      "voice": "rCm09Tf1yMYbOyCRLDyB",
+      "node_id": "oY83dQD8jBORv5TyKTqY",
+      "generation_id": "RDrR8HyN9Io7puuXaZ27",
+      "duration": 6
+    },
+    {
+      "key": "dandani-mission-2",
+      "text": "재료를 비교한 기록이 모이면 시험 장치가 다시 움직여요.",
+      "speaker": "단단이",
+      "voice": "rCm09Tf1yMYbOyCRLDyB",
+      "node_id": "XKDygq5Dst2NLyKHXPqI",
+      "generation_id": "qoCJnapp0iza8odWWW1e",
+      "duration": 3.84
+    },
+    {
+      "key": "dandani-reward",
+      "text": "시험 장치와 공방 조명 복구!",
+      "speaker": "단단이",
+      "voice": "rCm09Tf1yMYbOyCRLDyB",
+      "node_id": "mTLHBzJr8Qc5U5ZgfC0f",
+      "generation_id": "9mBJnGSH3dwGhmhmm6cz",
+      "duration": 2.56
+    },
+    {
+      "key": "banguli-mission-0",
+      "text": "흘리지 않는 운반대를 만들어 줘!",
+      "speaker": "방울이",
+      "voice": "7Tms2JpTU4QYeCNp0Gtn",
+      "node_id": "igl1AAazHgnnpquZMWLW",
+      "generation_id": "RH8JpG0Y0Itdh4kp5Epk",
+      "duration": 2.4
+    },
+    {
+      "key": "banguli-mission-1",
+      "text": "나무토막과 물을 다른 용기에 옮겨 봐요. 그 차이를 물 운반대 만들기에 써요.",
+      "speaker": "방울이",
+      "voice": "7Tms2JpTU4QYeCNp0Gtn",
+      "node_id": "xfEF4BMJGO5mtlQKxgVc",
+      "generation_id": "FBw5KJKQZchK9kPkHdWR",
+      "duration": 6.16
+    },
+    {
+      "key": "banguli-mission-2",
+      "text": "고체와 액체를 비교하면 물이 지나가는 관을 다시 쓸 수 있어요.",
+      "speaker": "방울이",
+      "voice": "7Tms2JpTU4QYeCNp0Gtn",
+      "node_id": "UAzmYw01lZvEWlWJKsR9",
+      "generation_id": "NwsHzaXhGYzEQ0ZNVIAs",
+      "duration": 4.72
+    },
+    {
+      "key": "banguli-reward",
+      "text": "이송 배관에 물 흐름!",
+      "speaker": "방울이",
+      "voice": "7Tms2JpTU4QYeCNp0Gtn",
+      "node_id": "SSjt6d9Q1ZgLvBci55Gi",
+      "generation_id": "2SzZWEratBd7O160s80K",
+      "duration": 2
+    },
+    {
+      "key": "barami-mission-0",
+      "text": "공기로 바람개비를 돌려 줘!",
+      "speaker": "바람이",
+      "voice": "AiutpBawf78dyoTpoaHl",
+      "node_id": "6EjhSzurCxLSU5PyALl3",
+      "generation_id": "uREHlsIgP635IE9avjse",
+      "duration": 2.16
+    },
+    {
+      "key": "barami-mission-1",
+      "text": "컵 안에서 공기가 차지하는 자리를 찾아봐요. 펌프에서 나온 공기로 날개도 돌려 봐요.",
+      "speaker": "바람이",
+      "voice": "AiutpBawf78dyoTpoaHl",
+      "node_id": "PYnPEidnREFhuh6KaPN4",
+      "generation_id": "IfZpyvrqeFmsjX6Qz021",
+      "duration": 6.56
+    },
+    {
+      "key": "barami-mission-2",
+      "text": "공기 관찰 기록을 모으면 펌프와 환기팬이 움직여요.",
+      "speaker": "바람이",
+      "voice": "AiutpBawf78dyoTpoaHl",
+      "node_id": "M2JNWC4zpXSeFqcrI9oc",
+      "generation_id": "E5EbxP3z9vyUTQuKHYNf",
+      "duration": 4.24
+    },
+    {
+      "key": "barami-reward",
+      "text": "펌프와 환기팬 가동!",
+      "speaker": "바람이",
+      "voice": "AiutpBawf78dyoTpoaHl",
+      "node_id": "9YT9pmaRVbSjxE6YknHT",
+      "generation_id": "QQ0vEtDXizkt2ddlEZMd",
+      "duration": 2.16
+    },
+    {
+      "key": "tori-mission-0",
+      "text": "관찰 기록으로 발명해요!",
+      "speaker": "토리",
+      "voice": "O2KReOFLpoR65nz6C9Se",
+      "node_id": "wHexNMpBXb39f7HSa7tt",
+      "generation_id": "v2r9wrDHdYxDtmcUr3gn",
+      "duration": 2.508,
+      "voice_name": "Aria – Bright & Youthful Korean",
+      "flow": "jO9I2jaTn7vjKJh3HdlL",
+      "sha256": "c5b07a4c1a6cf2970a23db4cc7c5e84ab82ad1b802531ff7a298704235a009e8"
+    },
+    {
+      "key": "tori-mission-1",
+      "text": "보관함의 몸체, 창, 모서리에 쓸 재료를 골라요. 물과 빛을 써 보고 모서리를 눌러 확인해요.",
+      "speaker": "토리",
+      "voice": "O2KReOFLpoR65nz6C9Se",
+      "node_id": "GqgZ5tWOQAPnJcPKN5Pn",
+      "generation_id": "TYvOOW8w2zcgDZWz3761",
+      "duration": 8.255,
+      "voice_name": "Aria – Bright & Youthful Korean",
+      "flow": "jO9I2jaTn7vjKJh3HdlL",
+      "sha256": "c8f251f709642ec653186c092377683f51465b31885be3995b6390698728595a"
+    },
+    {
+      "key": "tori-mission-2",
+      "text": "설계도와 시험 기록을 모으면 제작소와 중앙 코어를 다시 쓸 수 있어요.",
+      "speaker": "토리",
+      "voice": "O2KReOFLpoR65nz6C9Se",
+      "node_id": "FVaazmhKdmLA3Kyq2ZKf",
+      "generation_id": "g3rsB4YEdgKESNoXRJWr",
+      "duration": 5.381,
+      "voice_name": "Aria – Bright & Youthful Korean",
+      "flow": "jO9I2jaTn7vjKJh3HdlL",
+      "sha256": "84e3138ebabebebc8a0f808f844a72c95f7a194ce241e34b86386ac5e47e19e7"
+    },
+    {
+      "key": "tori-reward",
+      "text": "제작 설비 가동!",
+      "speaker": "토리",
+      "voice": "O2KReOFLpoR65nz6C9Se",
+      "node_id": "pRxTNxa0EcwqdaFEy2OH",
+      "generation_id": "LIV2san0j7k4Dzxonjpf",
+      "duration": 1.855,
+      "voice_name": "Aria – Bright & Youthful Korean",
+      "flow": "jO9I2jaTn7vjKJh3HdlL",
+      "sha256": "791b076dc0592c2398ccdb98be98f6fe87940f4eeed883139494849fb7d54b25"
+    },
+    {
+      "key": "tori-welcome",
+      "text": "물질 코어가 멈추면서 재료 정보가 뒤섞였어요. 친구들과 공방을 다시 움직여 주세요.",
+      "speaker": "토리",
+      "voice": "O2KReOFLpoR65nz6C9Se",
+      "voice_name": "Aria – Bright & Youthful Korean",
+      "node_id": "O9fuk4eMuUy6MTvhc1Kj",
+      "generation_id": "7OMOyhinWMLpfVzmcTea",
+      "flow": "jO9I2jaTn7vjKJh3HdlL",
+      "duration": 6.661,
+      "sha256": "c36683a761fe677b88b49b7d7437480f44fe110fdbe699a290ccfadc7b48a5e6"
+    }
+  ]
+}

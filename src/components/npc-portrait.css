@@ -1,0 +1,69 @@
+.npc-portrait {
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  width: 108px;
+  vertical-align: middle;
+}
+.npc-portrait .npc-portrait-art {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 124px;
+  transform-origin: 50% 72%;
+}
+.npc-portrait .npc-portrait-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+.npc-portrait .npc-speaker-name {
+  display: block;
+  margin-top: 3px;
+  padding: 3px 12px;
+  border: 1px solid #99ac79;
+  border-radius: 999px;
+  background: #eef3dc;
+  color: #365a36;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.npc-portrait[data-emotion="happy"] .npc-speaker-name {
+  border-color: #b89a4b;
+  background: #fff3cb;
+  color: #765b1c;
+}
+.npc-portrait.npc-portrait-reward .npc-portrait-art { height: 105px; }
+@media (max-height: 600px), (max-width: 600px) {
+  .npc-portrait { width: 86px; }
+  .npc-portrait .npc-portrait-art { height: 90px; }
+  .npc-portrait.npc-portrait-reward .npc-portrait-art { height: 72px; }
+}
+
+/* Keep the first request and its reward actionable on short landscape screens. */
+@media (max-height: 600px) {
+  .native-modal.npc-dialogue-pilot { max-height: calc(100dvh - 24px); }
+  .native-modal.npc-dialogue-pilot .modal-content { padding: 12px 20px; }
+  .native-modal.npc-dialogue-pilot .eyebrow { margin: 0 0 4px; line-height: 1.3; }
+  .native-modal.npc-dialogue-pilot h2 { margin: 0 0 6px; font-size: 25px; line-height: 1.2; padding-right: 44px; }
+  .native-modal.npc-dialogue-pilot h3 { margin: 0 0 4px; font-size: 21px; line-height: 1.25; }
+  .native-modal.npc-dialogue-pilot p { margin: 0; font-size: 20px; line-height: 1.35; }
+  .native-modal.npc-dialogue-pilot .mission-dialogue { gap: 14px; }
+  .native-modal.npc-dialogue-pilot .npc-portrait { width: 72px; }
+  .native-modal.npc-dialogue-pilot .npc-portrait-art { height: 64px; }
+  .native-modal.npc-dialogue-pilot .npc-speaker-name { padding: 1px 10px; }
+  .native-modal.npc-dialogue-pilot .reward-preview { margin: 8px 0; padding: 6px 12px; font-size: 19px; line-height: 1.35; }
+  .native-modal.npc-dialogue-pilot .primary,
+  .native-modal.npc-dialogue-pilot .secondary { min-height: 48px; margin-top: 6px; padding: 8px 14px; font-size: 20px; line-height: 1.3; }
+  .modal-reward.npc-dialogue-pilot .modal-content { display: grid; grid-template-columns: 84px minmax(0, 1fr); column-gap: 14px; text-align: left; }
+  .modal-reward.npc-dialogue-pilot .npc-portrait { grid-column: 1; grid-row: 1 / 5; align-self: center; }
+  .modal-reward.npc-dialogue-pilot .modal-content > :is(.eyebrow,h2,h3,p) { grid-column: 2; }
+  .modal-reward.npc-dialogue-pilot .reward-progress { grid-column: 1 / -1; display: flex; flex-direction: row; align-items: center; gap: 12px; margin: 8px 0 0; padding: 6px 12px; }
+  .modal-reward.npc-dialogue-pilot .reward-progress b { font-size: 28px; }
+  .modal-reward.npc-dialogue-pilot .reward-progress span { font-size: 18px; line-height: 1.3; }
+  .modal-reward.npc-dialogue-pilot .modal-content > .primary { grid-column: 1 / -1; }
+}
