@@ -314,7 +314,7 @@ export default function WorldCanvas(props:Props){
      encounters=mountMapEncounters({host:element,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-tools')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
       blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0,
       reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
-      art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-right.webp',frames:6},
+      art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-right.webp',frames:6},
       palette:'#43e2dc',reach:112,contact:26,tone:(kind,hits)=>playSound(kind==='finish'?'air':kind==='contact'?'pour':hits===1?'drop':'retry'),
      });
     }
