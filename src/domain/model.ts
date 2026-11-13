@@ -38,16 +38,17 @@ export interface AirTrial {cupId:'cup-1'; depth:80;orientation:'inverted';ventOp
 export interface Settings {muted:boolean;bgm:number;sfx:number;reducedMotion:boolean}
 export interface Evidence {id:string;origin:Origin;observationIds:string[];attemptId?:string;revision?:number}
 export interface Archive {id:string;name:string;date:string;design:Design;evidence:Evidence[];tests:TestResult[]}
+export const mapEncounterIds=['materials','properties','states','air','invention','core'] as const;
 export interface Save {
  schemaVersion:1;contentVersion:'mvp-1';origin:Origin;lastRoute:Route;lastPhase:Phase;
  deliveries:Record<string,{parts:Record<string,string>;attempts:number}>;
- restoration:Record<string,number>;completedScreens:Screen[];observations:Observation[];evidence:Evidence[];
+ mapHits:Record<string,number>;restoration:Record<string,number>;completedScreens:Screen[];observations:Observation[];evidence:Evidence[];
  challengeResults:{id:string;answer:string[]}[];
  checkpoints:{inspected:UmbrellaPart[];matched:UmbrellaPart[];assignments:string[];solid:number[];liquidStep:number;sand:boolean;closed:AirTrial|null;open:AirTrial|null;inflated:boolean;airCompared:boolean};
  initialPredictions:Partial<Record<'S05'|'S06',string>>;predictions:Record<string,string>;design:Design;testResults:TestResult[];reportedRevision:number|null;coreComplete:boolean;completionArchive:Archive[];name:string;settings:Settings;
 }
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
-export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',deliveries:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,reducedMotion:false}};}
+export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',deliveries:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,reducedMotion:false}};}
 export function observationId(experiment:Experiment,sampleId:string){return `${experiment}:${sampleId}:standard`;}
 export function resultFor(experiment:Experiment,sampleId:string):string {
  const m=materials.find(x=>x.id===sampleId)!;
@@ -121,6 +122,7 @@ export type Action =
  |{type:'link';part:Part;id:string;enabled:boolean}
  |{type:'test';testId:Test;revision:number;attemptId:string}
  |{type:'restoreWorkshop';stage:number;step:number}
+ |{type:'mapHit';id:string;hits:number}
  |{type:'complete';screen:Screen}
  |{type:'report'}|{type:'core'}|{type:'newDesign'}|{type:'name';value:string}
  |{type:'settings';value:Partial<Settings>};
@@ -136,6 +138,7 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  const s=structuredClone(original);const c=s.checkpoints;
  switch(a.type){
  case 'deliver':if(s.lastRoute===a.screen&&canCompleteInvestigation(s,a.screen as Screen)&&validDelivery(a.screen,a.parts)&&Number.isInteger(a.attempts)&&a.attempts>0){s.deliveries={...s.deliveries,[a.screen]:{parts:{...a.parts},attempts:a.attempts}};}break;
+ case 'mapHit':{const i=mapEncounterIds.findIndex(id=>id===a.id);if(!admin&&s.lastRoute==='world'&&i>=0&&(i===5?s.coreComplete:s.evidence.some(e=>e.id===`E0${i+1}`))&&a.hits===(s.mapHits?.[a.id]??0)+1&&a.hits<=3){s.mapHits={...s.mapHits,[a.id]:a.hits};}break;}
  case 'restoreWorkshop':if(Number.isInteger(a.stage)&&a.stage>=0&&a.stage<5&&s.evidence.some(e=>e.id===`E0${a.stage+1}`)&&a.step===(s.restoration?.[a.stage]??0)+1&&a.step<=3){s.restoration={...s.restoration,[a.stage]:a.step};}break;
  case 'challenge':{const item=challenges.find(c=>c.id===a.id);if(item&&s.lastRoute===item.screen&&s.lastPhase==='activity'&&canCompleteInvestigation(s,item.screen)&&correctChallenge(item,a.answer)){
    const list=challengesFor(item.screen),index=list.indexOf(item);if(list.slice(0,index).every(c=>s.challengeResults.some(r=>r.id===c.id)))s.challengeResults=s.challengeResults.filter(r=>r.id!==item.id).concat({id:item.id,answer:[...a.answer]});

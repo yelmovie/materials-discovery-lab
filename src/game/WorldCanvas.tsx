@@ -1,9 +1,13 @@
 import {useEffect,useRef} from 'react';
+import {mountMapEncounters,type MapReaction} from '../map-encounters.js';
+import {mapVillainStages} from '../domain/map-villain-content';
+import {playSound} from '../services/audio';
+
 import Phaser from 'phaser';
 import {drawWorkshopChange} from './workshop-change';
 import {MAP_WIDTH,MAP_HEIGHT,worldDestinations,worldLights,roadNodes,routeBetween,walkRoad,doorAt,pathLength,pointAlong,type MapDirection,type MapPoint} from '../domain/worldMap';
 export const destinations=worldDestinations;
-interface Props {target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
+interface Props {encounterIds:string[];mapHits:Record<string,number>;onMapHit:(id:string,hits:number)=>void;target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
 // Zoom past "cover" so the map always fills the screen and shows a close, walkable area like the sibling games.
 const ZOOM_OVER_COVER=1.45,DRAG_THRESHOLD=10,WALK_SPEED=250,ROUTE_SPEED=340,FOLLOW_GAP=52;
 const DUSK=.42,DUSK_SCALE=.25,REVEAL_LIGHT=1200,REVEAL_TRAVEL=1500,REVEAL_END=3000;
@@ -20,6 +24,9 @@ let lastSpot:MapPoint|null=null;
 export default function WorldCanvas(props:Props){
  const host=useRef<HTMLDivElement>(null),live=useRef(props);live.current=props;
  useEffect(()=>{if(!host.current)return;
+  const element=host.current;
+  // The world route owns a fresh map mount after each workshop completion.
+  let encounters:ReturnType<typeof mountMapEncounters>|null=null;
   class WorldScene extends Phaser.Scene {
    avatar!:Phaser.GameObjects.Image;friend!:Phaser.GameObjects.Image;shadow!:Phaser.GameObjects.Ellipse;friendShadow!:Phaser.GameObjects.Ellipse;
    overlay!:Phaser.GameObjects.Graphics;orb!:Phaser.GameObjects.Image;duskImage!:Phaser.GameObjects.Image;dusk!:Phaser.Textures.CanvasTexture;duskBase=document.createElement('canvas');duskKey='';duskSpot='';
@@ -33,6 +40,12 @@ export default function WorldCanvas(props:Props){
    lastReveal:number|null|undefined=null;
    upgrades:{before:Phaser.GameObjects.Image;after:Phaser.GameObjects.Image}[]=[];
    preload(){
+    // The bundled atlas is optional: existing walk art remains the fallback.
+    if(live.current.encounterIds.length)for(const [actor,url] of Object.entries(import.meta.glob<string>('/public/assets/map-encounter/map-*-reaction.webp',{eager:true,import:'default',query:'?url'}))){
+     const name=actor.includes('-hero-')?'researcher':'companion';
+     this.load.spritesheet(`reaction-${name}`,url,{frameWidth:256,frameHeight:256});
+    }
+
     this.load.image('island','/assets/generated/workshop-island.webp');
     this.load.image('researcher','/assets/generated/researcher.webp');
     this.load.image('companion','/assets/generated/companion.webp');
@@ -295,6 +308,32 @@ export default function WorldCanvas(props:Props){
     if(hand)this.freeCenter={...this.center};
     this.handWas=Boolean(p.hand||this.handWas&&p.overview);camera.setZoom(zoom);camera.centerOn(this.center.x,this.center.y);
    }
+   drawReactions(){
+    if(!encounters){
+     const p=live.current;
+     encounters=mountMapEncounters({host:element,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-tools')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
+      blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0,
+      reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
+      art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-right.webp',frames:6},
+      palette:'#43e2dc',reach:112,contact:26,tone:(kind,hits)=>playSound(kind==='finish'?'air':kind==='contact'?'pour':hits===1?'drop':'retry'),
+     });
+    }
+    const camera=this.cameras.main;
+    const reactions=encounters.update({hero:this.pos,ally:this.friendPos,scale:camera.zoom,
+     project:p=>({x:camera.width/2+(p.x-camera.midPoint.x)*camera.zoom,y:camera.height/2+(p.y-camera.midPoint.y)*camera.zoom})});
+    this.react(this.avatar,'researcher',reactions.hero);this.react(this.friend,'companion',reactions.ally);
+   }
+   react(image:Phaser.GameObjects.Image,name:keyof typeof WALKERS,pose:MapReaction|null){
+    if(!pose){image.setAngle(0).clearTint();return;}
+    const key=`reaction-${name}`,row=(pose.kind==='hurt'?2:0)+(pose.direction>0?1:0);
+    if(this.textures.exists(key)){
+     image.setTexture(key,row*4+pose.frame).setOrigin(.5,240/256).setScale(WALKERS[name].height/208);
+     image.x+=pose.dx;image.setAngle(0).clearTint();return;
+    }
+    this.pose(image,name,pose.direction<0?'left':'right',pose.frame+1);
+    image.x+=pose.dx;image.setAngle(live.current.reduced?0:(pose.kind==='hurt'?-pose.direction:pose.direction)*[0,6,4,0][pose.frame]);
+    image.setTint(pose.kind==='hurt'?0xffd5d1:0xc5fff6);
+   }
    update(time:number,delta:number){
     if(!this.avatar)return;
     const p=live.current;
@@ -306,14 +345,14 @@ export default function WorldCanvas(props:Props){
     if(this.reveal)this.stepReveal(delta);
     else if(paused){this.keys.clear();}
     else{this.watchTarget();walking=this.walk(delta);if(walking)this.elapsed+=delta;this.watchDoors();}
-    this.paintDusk();this.drawLights(time);this.drawOverlay(time);this.drawCharacters(time,walking);this.updateCamera(delta);
+    this.paintDusk();this.drawLights(time);this.drawOverlay(time);this.drawCharacters(time,walking);this.updateCamera(delta);this.drawReactions();
    }
   }
   // Own canvas + Scale.NONE: Phaser pools canvases, and a lab game torn down before boot could keep restyling a recycled one.
   const size=()=>({width:Math.max(1,Math.round(host.current?.clientWidth||MAP_WIDTH)),height:Math.max(1,Math.round(host.current?.clientHeight||MAP_HEIGHT))});
   const game=new Phaser.Game({type:Phaser.CANVAS,canvas:document.createElement('canvas'),parent:host.current,...size(),transparent:true,pixelArt:true,roundPixels:true,scene:WorldScene,scale:{mode:Phaser.Scale.NONE},input:{activePointers:3},banner:false,audio:{noAudio:true}});
   const observer=new ResizeObserver(()=>{const next=size();if(next.width!==game.scale.width||next.height!==game.scale.height)game.scale.resize(next.width,next.height);});observer.observe(host.current);
-  return()=>{observer.disconnect();game.destroy(true);};
+  return()=>{observer.disconnect();encounters?.destroy();game.destroy(true);};
  },[]);
- return <div ref={host} className="world-canvas" role="img" aria-label="연구원과 모루가 함께 걷는 숲속 공방 지도. 방향판이나 방향키를 누르고 있으면 길을 따라 걷고, 땅이나 건물 이름을 누르면 그곳까지 걸어가요. 손으로 끌면 둘러볼 수 있어요."/>;
+ return <div ref={host} className="world-canvas" role="region" aria-label="연구원과 모루가 함께 걷는 숲속 공방 지도. 방향판이나 방향키를 누르고 있으면 길을 따라 걷고, 땅이나 건물 이름을 누르면 그곳까지 걸어가요. 손으로 끌면 둘러볼 수 있어요."/>;
 }

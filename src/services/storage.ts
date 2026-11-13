@@ -1,3 +1,5 @@
+import {normalizeMapHits} from '../map-encounters.js';
+import {mapEncounterIds} from '../domain/model';
 import {validDelivery} from '../domain/maker';
 import {canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
 import {challenges,correctChallenge} from '../domain/challenges';
@@ -38,6 +40,7 @@ export function decodeSave(raw:string):Save {
  assert(object(s.settings)&&typeof s.settings.muted==='boolean'&&typeof s.settings.reducedMotion==='boolean'&&num(s.settings.bgm)&&s.settings.bgm>=0&&s.settings.bgm<=1&&num(s.settings.sfx)&&s.settings.sfx>=0&&s.settings.sfx<=1);
  assert(array(s.completionArchive));for(const r of s.completionArchive){assert(object(r)&&typeof r.id==='string'&&typeof r.name==='string'&&typeof r.date==='string'&&array(r.evidence)&&r.evidence.length===5&&r.evidence.every(e=>e.origin==='student'));validateDesign(r.design,s.observations);validateTests(r.tests);}
  s.restoration=Object.fromEntries(Object.entries(object(s.restoration)?s.restoration:{}).filter(([k,v])=>/^[0-4]$/.test(k)&&Number.isInteger(v)&&v>=0&&v<=3&&s.evidence.some(e=>e.id===`E0${Number(k)+1}`)));
+ s.mapHits=normalizeMapHits(s.mapHits,mapEncounterIds.filter((_,i)=>i===5?s.coreComplete:s.evidence.some(e=>e.id===`E0${i+1}`)));
  // Copy only the known fields. Unknown fields never round-trip into student storage.
  const clean=Object.fromEntries(Object.keys(fresh).map(k=>[k,s[k as keyof Save]])) as unknown as Save;
  if(!canFinalize(clean)||clean.reportedRevision!==clean.design.revision)clean.coreComplete=false;
