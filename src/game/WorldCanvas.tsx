@@ -1,8 +1,9 @@
 import {useEffect,useRef} from 'react';
 import Phaser from 'phaser';
+import {drawWorkshopChange} from './workshop-change';
 import {MAP_WIDTH,MAP_HEIGHT,worldDestinations,worldLights,roadNodes,routeBetween,walkRoad,doorAt,pathLength,pointAlong,type MapDirection,type MapPoint} from '../domain/worldMap';
 export const destinations=worldDestinations;
-interface Props {target:number|null;nextStage:number;recovered:number;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void}
+interface Props {target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void}
 // Zoom past "cover" so the map always fills the screen and shows a close, walkable area like the sibling games.
 const ZOOM_OVER_COVER=1.45,DRAG_THRESHOLD=10,WALK_SPEED=250,ROUTE_SPEED=340,FOLLOW_GAP=52;
 const DUSK=.42,DUSK_SCALE=.25,REVEAL_LIGHT=1200,REVEAL_TRAVEL=1500,REVEAL_END=3000;
@@ -23,10 +24,14 @@ export default function WorldCanvas(props:Props){
    avatar!:Phaser.GameObjects.Image;friend!:Phaser.GameObjects.Image;shadow!:Phaser.GameObjects.Ellipse;friendShadow!:Phaser.GameObjects.Ellipse;
    overlay!:Phaser.GameObjects.Graphics;orb!:Phaser.GameObjects.Image;duskImage!:Phaser.GameObjects.Image;dusk!:Phaser.Textures.CanvasTexture;duskBase=document.createElement('canvas');duskKey='';duskSpot='';
    pos:MapPoint={...roadNodes.spawn};friendPos:MapPoint={...roadNodes.spawn};trail:MapPoint[]=[];path:MapPoint[]=[];
-   lastTarget:number|null=null;doorLatch=-1;announced=-1;manualOn=false;keys=new Set<string>();elapsed=0;dustAt=0;facing:MapDirection='down';friendFacing:MapDirection='down';
-   drag:{x:number;y:number;center:MapPoint;moved:boolean}|null=null;center:MapPoint={...roadNodes.spawn};cameraReady=false;lastCamera='';
+   lastTarget:number|null=null;doorPath=false;doorLatch=-1;announced=-1;manualOn=false;keys=new Set<string>();elapsed=0;dustAt=0;facing:MapDirection='down';friendFacing:MapDirection='down';
+   drag:{id:number;x:number;y:number;center:MapPoint;moved:boolean}|null=null;center:MapPoint={...roadNodes.spawn};cameraReady=false;lastCamera='';
+   freeCenter:MapPoint|null=null;freeZoom=1;handWas=false;pinch:{gap:number;ratio:number;point:MapPoint}|null=null;
+   fingers=new Map<number,MapPoint>();
    glows:{image:Phaser.GameObjects.Image;stage:number;phase:number}[]=[];motes:{dot:Phaser.GameObjects.Arc;x:number;y:number;phase:number}[]=[];
    reveal:{stage:number;time:number;route:MapPoint[];length:number}|null=null;
+   lastReveal:number|null|undefined=null;
+   upgrades:{before:Phaser.GameObjects.Image;after:Phaser.GameObjects.Image}[]=[];
    preload(){
     this.load.image('island','/assets/generated/workshop-island.webp');
     this.load.image('researcher','/assets/generated/researcher.webp');
@@ -38,11 +43,12 @@ export default function WorldCanvas(props:Props){
    create(){
     const p=live.current;
     if(this.textures.exists('island'))this.add.image(MAP_WIDTH/2,MAP_HEIGHT/2,'island').setDisplaySize(MAP_WIDTH,MAP_HEIGHT);
+    if(this.textures.exists('island'))this.makeUpgrades();
     this.createDusk();this.createLights();
     this.overlay=this.add.graphics().setDepth(3.5);
     worldDestinations.forEach((destination,i)=>{
      const area=buildingCenter(i);
-     this.add.zone(area.x,area.y,200,190).setInteractive().on('pointerup',()=>{if(!this.isPaused()&&this.drag&&!this.drag.moved)live.current.onSelect(i);});
+     this.add.zone(area.x,area.y,200,190).setInteractive().on('pointerup',()=>{if(!this.isPaused()&&!live.current.hand&&this.drag&&!this.drag.moved&&!this.pinch)live.current.onSelect(i);});
     });
     const start=p.reveal!=null?worldDestinations[p.reveal]:lastSpot??roadNodes.spawn;
     this.pos={x:start.x,y:start.y};this.friendPos=walkRoad(this.pos,{x:-.8,y:.6},FOLLOW_GAP);this.doorLatch=doorAt(this.pos);this.center={x:this.pos.x,y:this.pos.y-50};
@@ -57,27 +63,55 @@ export default function WorldCanvas(props:Props){
     // Report after drawing so DOM labels match the exact frame on screen (worldView is the rendered top-left corner).
     const report=()=>{const view=camera.worldView,key=`${view.x.toFixed(1)},${view.y.toFixed(1)},${camera.zoom.toFixed(4)},${Math.floor(performance.now()/250)}`;if(key!==this.lastCamera){this.lastCamera=key;live.current.onCamera?.(view.x,view.y,camera.zoom);}};
     this.game.events.on(Phaser.Core.Events.POST_RENDER,report);this.events.once('shutdown',()=>this.game.events.off(Phaser.Core.Events.POST_RENDER,report));
-    // Drag pans the camera (hand cursor); a short tap still walks to the nearest road.
-    this.input.on('pointerdown',(pointer:Phaser.Input.Pointer)=>{if(this.isPaused())return;this.drag={x:pointer.x,y:pointer.y,center:{...this.center},moved:false};});
-    this.input.on('pointermove',(pointer:Phaser.Input.Pointer)=>{
-     if(!this.drag||!pointer.isDown||live.current.overview)return;const dx=pointer.x-this.drag.x,dy=pointer.y-this.drag.y;
-     if(!this.drag.moved&&Math.hypot(dx,dy)<DRAG_THRESHOLD)return;
-     if(!this.drag.moved){this.drag.moved=true;host.current?.classList.add('dragging');live.current.onPan?.();}
-     this.center={x:this.drag.center.x-dx/camera.zoom,y:this.drag.center.y-dy/camera.zoom};
+    // One finger drags immediately; two fingers zoom around a world point.
+    const gesture=()=>{const [a,b]=this.fingers.values();return {x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y))};};
+    const snapshot=(id:number,x:number,y:number,moved=false)=>({id,x,y,center:{...this.center},moved});
+    const beginPan=()=>{this.keys.clear();this.path=[];this.doorPath=false;host.current?.classList.add('dragging');live.current.onPan?.();};
+    this.input.on('pointerdown',(pointer:Phaser.Input.Pointer)=>{
+     if(this.isPaused()||pointer.button!==0)return;
+     this.fingers.set(pointer.id,{x:pointer.x,y:pointer.y});
+     if(this.fingers.size===1)this.drag=snapshot(pointer.id,pointer.x,pointer.y);
+     if(this.fingers.size===2){const at=gesture(),point=camera.getWorldPoint(at.x,at.y);this.drag=snapshot(pointer.id,at.x,at.y,true);this.pinch={gap:at.gap,ratio:camera.zoom/this.normalZoom(),point};beginPan();}
     });
-    this.input.on('pointerup',(pointer:Phaser.Input.Pointer,objects:Phaser.GameObjects.GameObject[])=>{
-     const drag=this.drag;host.current?.classList.remove('dragging');
-     if(drag&&!drag.moved&&!objects.length&&!this.isPaused()){
-      live.current.onMoveStart?.();live.current.onFollow?.();this.path=routeBetween(this.pos,{x:pointer.worldX,y:pointer.worldY});
-      if(live.current.reduced)this.teleport();
-     }
-     this.time.delayedCall(0,()=>{this.drag=null;});
+    this.input.on('pointermove',(pointer:Phaser.Input.Pointer)=>{
+     if(!pointer.isDown||!this.fingers.has(pointer.id)||this.isPaused())return;
+     this.fingers.set(pointer.id,{x:pointer.x,y:pointer.y});
+     if(this.pinch&&this.fingers.size>=2){const at=gesture();this.zoomAt(this.pinch.ratio*at.gap/this.pinch.gap,this.pinch.point,at);return;}
+     if(!this.drag||this.drag.id!==pointer.id||live.current.overview)return;
+     const dx=pointer.x-this.drag.x,dy=pointer.y-this.drag.y;
+     if(!this.drag.moved&&Math.hypot(dx,dy)<DRAG_THRESHOLD)return;
+     if(!this.drag.moved){this.drag.moved=true;this.freeZoom=camera.zoom/this.normalZoom();beginPan();}
+     this.freeCenter={x:this.drag.center.x-dx/camera.zoom,y:this.drag.center.y-dy/camera.zoom};
+     this.updateCamera(0);
+    });
+    const finish=(pointer:Phaser.Input.Pointer,objects:Phaser.GameObjects.GameObject[]=[],allowWalk=false)=>{
+     this.fingers.delete(pointer.id);const drag=this.drag;
+     if(allowWalk&&drag?.id===pointer.id&&!drag.moved&&!this.pinch&&!objects.length&&!this.isPaused()&&!live.current.hand){this.doorPath=false;live.current.onMoveStart?.();live.current.onFollow?.();this.path=routeBetween(this.pos,camera.getWorldPoint(pointer.x,pointer.y));if(live.current.reduced)this.teleport();}
+     if(this.fingers.size<2)this.pinch=null;
+     if(!this.fingers.size){this.drag=null;host.current?.classList.remove('dragging');}
+    };
+    this.input.on('pointerup',(pointer:Phaser.Input.Pointer,objects:Phaser.GameObjects.GameObject[])=>finish(pointer,objects,true));
+    this.input.on('pointerupoutside',(pointer:Phaser.Input.Pointer)=>finish(pointer));
+    this.input.on('wheel',(pointer:Phaser.Input.Pointer,_objects:Phaser.GameObjects.GameObject[],_dx:number,dy:number,_dz:number)=>{
+     if(this.isPaused())return;const point=camera.getWorldPoint(pointer.x,pointer.y);beginPan();
+     this.zoomAt(camera.zoom/this.normalZoom()*Math.exp(-dy*.0015),point,pointer);host.current?.classList.remove('dragging');
     });
     const keyboard=this.input.keyboard;
-    keyboard?.on('keydown',(event:KeyboardEvent)=>{if(this.isPaused()||this.typing()||event.ctrlKey||event.altKey||event.metaKey)return;if(this.directionFor(event.code)){event.preventDefault();this.keys.add(event.code);}});
+    keyboard?.on('keydown',(event:KeyboardEvent)=>{if(this.isPaused()||this.typing()||event.ctrlKey||event.altKey||event.metaKey)return;if(this.directionFor(event.code)){event.preventDefault();if(!event.repeat){this.cancelGesture();this.path=[];this.doorPath=false;live.current.onMoveStart?.();live.current.onFollow?.();}this.keys.add(event.code);}});
     keyboard?.on('keyup',(event:KeyboardEvent)=>this.keys.delete(event.code));
-    const clear=()=>this.keys.clear();window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);this.events.once('shutdown',()=>{window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);});
-    if(p.reveal!=null){if(p.reduced)p.onRevealEnd?.();else this.startReveal(p.reveal);}
+    const clear=()=>{this.keys.clear();this.cancelGesture();};window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);this.events.once('shutdown',()=>{window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);});
+   }
+   cancelGesture(){this.drag=null;this.pinch=null;this.fingers.clear();host.current?.classList.remove('dragging');}
+   makeUpgrades(){
+    const art=this.textures.get('island').getSourceImage() as HTMLImageElement;
+    this.upgrades=worldDestinations.map((_,i)=>{
+     const layers=([false,true] as const).map(restored=>{
+      const patch=drawWorkshopChange(art,i,restored),key=`workshop-${i}-${restored}`;
+      this.textures.addCanvas(key,patch.canvas);
+      return this.add.image(patch.x,patch.y,key).setOrigin(0).setDepth(restored?1:.1);
+     });
+     return {before:layers[0],after:layers[1]};
+    });
    }
    createDusk(){
     const width=MAP_WIDTH*DUSK_SCALE,height=MAP_HEIGHT*DUSK_SCALE;
@@ -158,7 +192,7 @@ export default function WorldCanvas(props:Props){
    walk(delta:number){
     const p=live.current,dt=Math.min(delta,50)/1000,held=this.heldVector(p.direction),from=this.pos;
     if(held){
-     if(!this.manualOn){this.manualOn=true;this.path=[];p.onMoveStart?.();p.onFollow?.();}
+     if(!this.manualOn){this.manualOn=true;this.cancelGesture();this.path=[];this.doorPath=false;p.onMoveStart?.();p.onFollow?.();}
      this.moveTo(walkRoad(this.pos,held,WALK_SPEED*dt));
     }else{
      this.manualOn=false;
@@ -172,14 +206,15 @@ export default function WorldCanvas(props:Props){
    }
    watchDoors(){
     const p=live.current,door=doorAt(this.pos);
+    if(p.target!==null&&this.doorPath&&this.path.length)return;
     if(door===this.doorLatch)return;
     const left=door<0;this.doorLatch=door;
     if(left){this.announced=-1;p.onLeave?.();}else{this.announced=door;p.onArrive(door);}
    }
    watchTarget(){
     const p=live.current;if(p.target===this.lastTarget)return;
-    this.lastTarget=p.target;if(p.target===null)return;
-    const door=worldDestinations[p.target];
+    this.lastTarget=p.target;if(p.target===null){if(this.doorPath)this.path=[];this.doorPath=false;this.announced=-1;return;}
+    const door=worldDestinations[p.target];this.doorPath=true;
     if(this.doorLatch===p.target){this.path=[];if(this.announced!==p.target){this.announced=p.target;p.onArrive(p.target);}return;}
     this.path=routeBetween(this.pos,door);if(p.reduced)this.teleport();
    }
@@ -214,32 +249,56 @@ export default function WorldCanvas(props:Props){
    }
    drawLights(time:number){
     const p=live.current,grow=this.reveal?Math.min(1,this.reveal.time/REVEAL_LIGHT):1;
+    this.upgrades.forEach(({before,after},i)=>{
+     const amount=i===5?Number(p.coreComplete):i<p.recovered?(this.reveal?.stage===i?grow:1):0;
+     before.setVisible(amount<1).setAlpha(1-amount);
+     after.setVisible(amount>0).setAlpha(amount);
+    });
     for(const light of this.glows){
      const flicker=p.reduced?1:.84+Math.sin(time/640+light.phase)*.16;
-     if(light.stage===5){light.image.setVisible(true).setAlpha((.16+p.recovered*.06)*flicker);continue;}
+     if(light.stage===5){light.image.setVisible(true).setAlpha((p.coreComplete?.9:.16+p.recovered*.06)*flicker);continue;}
      const on=light.stage<p.recovered;light.image.setVisible(on);if(on)light.image.setAlpha(flicker*.55*(this.reveal?.stage===light.stage?grow:1));
     }
     for(const mote of this.motes)mote.dot.setPosition(mote.x+Math.sin(time/1900+mote.phase)*26,mote.y+Math.cos(time/2500+mote.phase)*18).setAlpha(.28+Math.sin(time/900+mote.phase)*.22);
+   }
+   normalZoom(){
+    const {width,height}=this.cameras.main;return Math.max(width/MAP_WIDTH,height/MAP_HEIGHT)*(height>width?1.15:ZOOM_OVER_COVER);
+   }
+   zoomAt(ratio:number,point:MapPoint,at:MapPoint){
+    const camera=this.cameras.main,min=Math.max(camera.width/MAP_WIDTH,camera.height/MAP_HEIGHT)/this.normalZoom();
+    this.freeZoom=Phaser.Math.Clamp(ratio,min,1.7);
+    const zoom=this.normalZoom()*this.freeZoom;
+    this.freeCenter={x:point.x-(at.x-camera.width/2)/zoom,y:point.y-(at.y-camera.height/2)/zoom};
+    this.updateCamera(0);
    }
    updateCamera(delta:number){
     const camera=this.cameras.main,p=live.current;
     // Some resize sequences (boot behind a dialog, route swaps) can leave the camera at an old size; re-sync every frame.
     if(camera.width!==this.scale.width||camera.height!==this.scale.height)camera.setSize(this.scale.width,this.scale.height);
-    const width=camera.width,height=camera.height,cover=Math.max(width/MAP_WIDTH,height/MAP_HEIGHT),short=height<560,top=short?0:96,bottom=short?0:118;
-    const zoomGoal=p.overview?Math.min(width/MAP_WIDTH,(height-top-bottom)/MAP_HEIGHT):cover*(height>width?1.15:ZOOM_OVER_COVER);
-    const ease=!this.cameraReady||p.reduced?1:Math.min(1,delta/200);this.cameraReady=true;
+    const width=camera.width,height=camera.height,short=height<560,top=short?0:96,bottom=short?0:118;
+    const overview=p.overview&&!(this.pinch&&this.freeCenter),hand=!overview&&(p.hand||!!this.drag?.moved);
+    if(hand&&!this.freeCenter){this.freeCenter={...this.center};this.freeZoom=camera.zoom/this.normalZoom();}
+    if(!p.hand&&!p.overview&&!this.drag?.moved&&this.handWas){this.freeCenter=null;this.freeZoom=1;}
+    const zoomGoal=overview?Math.min(width/MAP_WIDTH,(height-top-bottom)/MAP_HEIGHT):this.normalZoom()*(hand?Phaser.Math.Clamp(this.freeZoom,Math.max(width/MAP_WIDTH,height/MAP_HEIGHT)/this.normalZoom(),1.7):1);
+    const ease=!this.cameraReady||p.reduced||hand?1:-Math.expm1(-Math.max(0,delta)/145);this.cameraReady=true;
     const zoom=Math.abs(zoomGoal-camera.zoom)<.0015?zoomGoal:camera.zoom+(zoomGoal-camera.zoom)*ease;
     const focus=this.revealFocus();
-    const want=p.overview?{x:MAP_WIDTH/2,y:MAP_HEIGHT/2+(bottom-top)/2/zoom}:focus??(p.hand||this.drag?.moved?this.center:{x:this.pos.x,y:this.pos.y-50});
+    const want=overview?{x:MAP_WIDTH/2,y:MAP_HEIGHT/2+(bottom-top)/2/zoom}:focus??(hand&&this.freeCenter?this.freeCenter:{x:this.pos.x,y:this.pos.y-50});
     if(want!==this.center)this.center={x:this.center.x+(want.x-this.center.x)*ease,y:this.center.y+(want.y-this.center.y)*ease};
-    if(!p.overview){
+    if(!overview){
      const halfWidth=width/2/zoom,halfHeight=height/2/zoom;
      this.center={x:halfWidth*2>=MAP_WIDTH?MAP_WIDTH/2:Phaser.Math.Clamp(this.center.x,halfWidth,MAP_WIDTH-halfWidth),y:halfHeight*2>=MAP_HEIGHT?MAP_HEIGHT/2:Phaser.Math.Clamp(this.center.y,halfHeight,MAP_HEIGHT-halfHeight)};
     }
-    camera.setZoom(zoom);camera.centerOn(this.center.x,this.center.y);
+    if(hand)this.freeCenter={...this.center};
+    this.handWas=Boolean(p.hand||this.handWas&&p.overview);camera.setZoom(zoom);camera.centerOn(this.center.x,this.center.y);
    }
    update(time:number,delta:number){
     if(!this.avatar)return;
+    const p=live.current;
+    if(p.reveal!==this.lastReveal){
+     this.lastReveal=p.reveal;
+     if(p.reveal!==null&&p.reveal!==undefined){if(p.reduced)p.onRevealEnd?.();else this.startReveal(p.reveal);}
+    }
     const paused=this.isPaused();let walking=false;
     if(this.reveal)this.stepReveal(delta);
     else if(paused){this.keys.clear();}
@@ -249,7 +308,7 @@ export default function WorldCanvas(props:Props){
   }
   // Own canvas + Scale.NONE: Phaser pools canvases, and a lab game torn down before boot could keep restyling a recycled one.
   const size=()=>({width:Math.max(1,Math.round(host.current?.clientWidth||MAP_WIDTH)),height:Math.max(1,Math.round(host.current?.clientHeight||MAP_HEIGHT))});
-  const game=new Phaser.Game({type:Phaser.CANVAS,canvas:document.createElement('canvas'),parent:host.current,...size(),transparent:true,pixelArt:true,roundPixels:true,scene:WorldScene,scale:{mode:Phaser.Scale.NONE},banner:false,audio:{noAudio:true}});
+  const game=new Phaser.Game({type:Phaser.CANVAS,canvas:document.createElement('canvas'),parent:host.current,...size(),transparent:true,pixelArt:true,roundPixels:true,scene:WorldScene,scale:{mode:Phaser.Scale.NONE},input:{activePointers:3},banner:false,audio:{noAudio:true}});
   const observer=new ResizeObserver(()=>{const next=size();if(next.width!==game.scale.width||next.height!==game.scale.height)game.scale.resize(next.width,next.height);});observer.observe(host.current);
   return()=>{observer.disconnect();game.destroy(true);};
  },[]);
