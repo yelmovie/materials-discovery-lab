@@ -7,7 +7,7 @@ import Phaser from 'phaser';
 import {drawWorkshopChange} from './workshop-change';
 import {MAP_WIDTH,MAP_HEIGHT,worldDestinations,worldLights,roadNodes,routeBetween,walkRoad,doorAt,pathLength,pointAlong,type MapDirection,type MapPoint} from '../domain/worldMap';
 export const destinations=worldDestinations;
-interface Props {encounterIds:string[];mapHits:Record<string,number>;onMapHit:(id:string,hits:number)=>void;target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
+interface Props {clearStage?:string|null;encounterIds:string[];mapHits:Record<string,number>;onMapHit:(id:string,hits:number)=>void;target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
 // Zoom past "cover" so the map always fills the screen and shows a close, walkable area like the sibling games.
 const ZOOM_OVER_COVER=1.45,DRAG_THRESHOLD=10,WALK_SPEED=250,ROUTE_SPEED=340,FOLLOW_GAP=52;
 const DUSK=.42,DUSK_SCALE=.25,REVEAL_LIGHT=1200,REVEAL_TRAVEL=1500,REVEAL_END=3000;
@@ -308,10 +308,12 @@ export default function WorldCanvas(props:Props){
     if(hand)this.freeCenter={...this.center};
     this.handWas=Boolean(p.hand||this.handWas&&p.overview);camera.setZoom(zoom);camera.centerOn(this.center.x,this.center.y);
    }
+   clearStage:string|null=null;
    drawReactions(){
+    if(live.current.clearStage)this.clearStage=live.current.clearStage;
     if(!encounters){
      const p=live.current;
-     encounters=mountMapEncounters({host:element,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-tools')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
+     encounters=mountMapEncounters({requiredFoes:6,host:element,clearStage:()=>this.clearStage,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-tools')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
       blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0,
       reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
       art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-right.webp',frames:6},
