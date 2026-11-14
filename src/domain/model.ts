@@ -40,7 +40,7 @@ export interface Evidence {id:string;origin:Origin;observationIds:string[];attem
 export interface Archive {id:string;name:string;date:string;design:Design;evidence:Evidence[];tests:TestResult[]}
 export const mapEncounterIds=['materials','properties','states','air','invention','core'] as const;
 export interface Save {
- schemaVersion:1;contentVersion:'mvp-1';origin:Origin;lastRoute:Route;lastPhase:Phase;
+ schemaVersion:1;contentVersion:'mvp-1';origin:Origin;lastRoute:Route;lastPhase:Phase;resumeActivity:Screen|null;
  deliveries:Record<string,{parts:Record<string,string>;attempts:number}>;
  mapHits:Record<string,number>;restoration:Record<string,number>;completedScreens:Screen[];observations:Observation[];evidence:Evidence[];
  challengeResults:{id:string;answer:string[]}[];
@@ -48,7 +48,7 @@ export interface Save {
  initialPredictions:Partial<Record<'S05'|'S06',string>>;predictions:Record<string,string>;design:Design;testResults:TestResult[];reportedRevision:number|null;coreComplete:boolean;completionArchive:Archive[];name:string;settings:Settings;
 }
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
-export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',deliveries:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,reducedMotion:false}};}
+export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,reducedMotion:false}};}
 export function observationId(experiment:Experiment,sampleId:string){return `${experiment}:${sampleId}:standard`;}
 export function resultFor(experiment:Experiment,sampleId:string):string {
  const m=materials.find(x=>x.id===sampleId)!;
@@ -90,6 +90,10 @@ export function canAccess(s:Save,route:Route,phase:Phase='activity'){
  if(s.reportedRevision!==s.design.revision)return false;
  if(phase==='certificate')return s.coreComplete;
  return phase==='core'||phase==='ending'&&s.coreComplete;
+}
+export function activityToResume(s:Save,route:unknown):Screen|null {
+ const screen=screens.find(x=>x.id===route)?.id as Screen|undefined;
+ return screen&&canAccess(s,screen)?screen:null;
 }
 export function canComplete(s:Save,id:Screen){return canCompleteInvestigation(s,id)&&challengesFor(id).every(c=>s.challengeResults.some(r=>r.id===c.id&&correctChallenge(c,r.answer)));}
 export function canCompleteInvestigation(s:Save,id:Screen){const c=s.checkpoints;switch(id){
@@ -143,7 +147,11 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  case 'challenge':{const item=challenges.find(c=>c.id===a.id);if(item&&s.lastRoute===item.screen&&s.lastPhase==='activity'&&canCompleteInvestigation(s,item.screen)&&correctChallenge(item,a.answer)){
    const list=challengesFor(item.screen),index=list.indexOf(item);if(list.slice(0,index).every(c=>s.challengeResults.some(r=>r.id===c.id)))s.challengeResults=s.challengeResults.filter(r=>r.id!==item.id).concat({id:item.id,answer:[...a.answer]});
  }break;}
- case 'navigate':if(admin||canAccess(s,a.route,a.phase)){s.lastRoute=a.route;s.lastPhase=a.phase??'activity';}break;
+ case 'navigate':if(admin||canAccess(s,a.route,a.phase)){
+  s.lastRoute=a.route;s.lastPhase=a.phase??'activity';
+  if(s.lastPhase==='activity'&&a.route!=='home'&&a.route!=='world')s.resumeActivity=a.route;
+  if(a.route==='world'&&s.resumeActivity&&s.completedScreens.includes(s.resumeActivity))s.resumeActivity=null;
+ }break;
  case 'inspect':if(s.lastRoute==='S01')c.inspected=add(c.inspected,a.part);break;
  case 'match':if(s.lastRoute==='S02'&&c.inspected.includes(a.evidence)&&a.evidence===a.part&&a.material===({canopy:'천',frame:'금속',handle:'나무'}[a.part]))c.matched=add(c.matched,a.part);break;
  case 'observe':if(s.lastRoute==='S03'&&materials.some(m=>m.id===a.sampleId)&&a.answer===resultFor(a.experiment,a.sampleId)){const o=makeObservation(a.experiment,a.sampleId,s.origin);s.observations=s.observations.filter(x=>x.id!==o.id).concat(o);}break;
@@ -169,7 +177,7 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  }break;
  case 'report':if(canFinalize(s))s.reportedRevision=s.design.revision;break;
  case 'core':if(canFinalize(s)&&s.reportedRevision===s.design.revision){s.coreComplete=true;if(!s.completionArchive.some(r=>r.id===s.design.attemptId))s.completionArchive.push({id:s.design.attemptId,name:s.name.trim()||'신입 연구원',date:new Date().toISOString(),design:structuredClone(s.design),evidence:structuredClone(s.evidence),tests:structuredClone(currentResults(s))});}break;
- case 'newDesign':reviseDesign(s,true);s.lastRoute='S09';s.lastPhase='activity';break;
+ case 'newDesign':reviseDesign(s,true);s.lastRoute='S09';s.lastPhase='activity';s.resumeActivity='S09';break;
  case 'name':s.name=a.value.slice(0,24);if(s.coreComplete){const r=s.completionArchive.find(r=>r.id===s.design.attemptId);if(r)r.name=s.name.trim()||'신입 연구원';}break;
  case 'settings':s.settings={...s.settings,...a.value};break;
  }

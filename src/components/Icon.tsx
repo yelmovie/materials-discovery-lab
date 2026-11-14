@@ -1,4 +1,4 @@
-export type IconName='home'|'back'|'sound'|'muted'|'settings'|'book'|'close'|'star'|'crystal'|'building'|'hand'|'next'|'prev'|'map'|'lock'|'check'|'locate';
+export type IconName='home'|'back'|'sound'|'muted'|'settings'|'book'|'close'|'star'|'crystal'|'building'|'hand'|'next'|'prev'|'map'|'lock'|'unlock'|'check'|'locate';
 export function Icon({name}:{name:IconName}){
  const paths={
  home:<><path d="m3 11 9-8 9 8"/><path d="M5 10v11h5v-7h4v7h5V10"/></>,
@@ -16,6 +16,7 @@ export function Icon({name}:{name:IconName}){
  prev:<path d="m19 5-7 7 7 7M12 5l-7 7 7 7"/>,
  map:<><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"/><path d="M9 3v15m6-12v15"/></>,
  lock:<><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></>,
+ unlock:<><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></>,
  check:<path d="m4 13 5 5L20 6"/>,
  locate:<><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></>,
  };

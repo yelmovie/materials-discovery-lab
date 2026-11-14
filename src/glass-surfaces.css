@@ -24,3 +24,158 @@ button[aria-pressed=true],.choice.selected{background:#e2edcf;border-color:#5579
 .tool-panel{padding:14px}
 .tool-panel h3{padding-bottom:8px;margin-bottom:10px}
 .activity-grid{gap:12px}
+
+/* Pulse only the next-destination arrow. The label and tap target stay still. */
+@media (prefers-reduced-motion: no-preference) {
+  .map-next-cue:not(:disabled):not([aria-disabled="true"]) > :is(svg:last-child, .map-direction-cue) {
+    animation: map-direction-pulse 1.45s ease-in-out 4;
+  }
+}
+@keyframes map-direction-pulse {
+  0%, 100% { opacity: 1; translate: 0; }
+  50% { opacity: .55; translate: 4px 0; }
+}
+.map-lock-icon { flex: none; vertical-align: middle; }
+.map-label > svg { flex: none; width: 19px; height: 19px; }
+
+/* Map corner controls shared across the science maps. */
+#root .route-world .map-frame {
+  overflow: clip; /* Focusing a map control must not scroll the painted frame. */
+  --map-edge: 16px;
+  --map-key: 52px;
+  --map-key-gap: 7px;
+  --map-action-height: 60px;
+  --map-action-type: 20px;
+  --map-left: calc(var(--map-edge) + env(safe-area-inset-left, 0px));
+  --map-right: calc(var(--map-edge) + env(safe-area-inset-right, 0px));
+  --map-bottom: calc(var(--map-edge) + env(safe-area-inset-bottom, 0px));
+  --map-pad-width: calc(3 * var(--map-key) + 2 * var(--map-key-gap));
+  --map-pad-height: calc(2 * var(--map-key) + var(--map-key-gap));
+}
+@media (max-width: 760px), (max-height: 560px) {
+  #root .route-world .map-frame { --map-key: 44px; --map-key-gap: 4px; --map-action-height: 52px; --map-action-type: 17px; }
+}
+@media (min-width: 1500px) and (min-height: 850px) {
+  #root .route-world .map-frame { --map-key: 64px; --map-key-gap: 10px; --map-action-type: 22px; }
+}
+#root .route-world .map-frame .map-direction-pad {
+  grid-template-columns: repeat(3, var(--map-key));
+  grid-template-rows: repeat(2, var(--map-key));
+  gap: var(--map-key-gap);
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  filter: none;
+}
+#root .route-world .map-frame .map-direction-pad button {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: var(--map-key);
+  height: var(--map-key);
+  min-width: var(--map-key);
+  min-height: var(--map-key);
+  padding: 0;
+  border: 2px solid #6a5636;
+  border-radius: 14px;
+  background: #fff6dc;
+  color: #233e33;
+  box-shadow: 0 3px 0 #3f4b39, 0 5px 12px #172a2340;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  font: 800 clamp(23px, calc(var(--map-key) / 2), 30px)/1 system-ui, sans-serif;
+  transition: none; /* Preserve contrast at the instant a direction is pressed. */
+}
+#root .route-world .map-frame .map-direction-pad button > svg { width: 24px; height: 24px; stroke-width: 2.6; }
+#root .route-world .map-frame .map-direction-pad button:is(:active,.is-held,.held,[data-map-held]) {
+  transform: translateY(2px);
+  background: #245b46;
+  color: #fff;
+  border-color: #143f30;
+  box-shadow: inset 0 2px 4px #15382a80;
+  filter: none;
+  outline: none;
+}
+#root .route-world .map-frame .map-direction-pad button:focus-visible, #root .route-world .map-frame .map-next-action:focus-visible {
+  outline: 3px solid #175b4b;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fff6dc;
+}
+#root .route-world .map-frame .map-next-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--map-action-height);
+  height: auto;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 2px solid #8c6a24;
+  border-radius: 16px;
+  background: linear-gradient(#ffe391,#f4c95f);
+  color: #463813;
+  box-shadow: 0 4px 0 #8c6a24, 0 8px 20px #39291438;
+  font-size: var(--map-action-type);
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+#root .route-world .map-frame .map-next-action > svg { flex: none; width: 22px; height: 22px; margin: 0; }
+@media (hover: hover) and (pointer: fine) {
+  #root .route-world .map-frame .map-next-action:hover:not(:disabled) { background: linear-gradient(#ffeba9,#f9d473); }
+}
+#root .route-world .map-frame .map-next-action:active:not(:disabled) { box-shadow: 0 1px 0 #8c6a24; }
+#root .route-world .map-frame .map-next-action:disabled { opacity: .85; background: linear-gradient(#ffe391,#f4c95f); color: #463813; cursor: wait; }
+@media (max-width: 480px) {
+  #root .route-world .map-frame .map-next-action { gap: 4px; padding-inline: 8px; font-size: 15px; }
+  #root .route-world .map-frame .map-next-action > svg { width: 18px; height: 18px; }
+}
+
+#root .route-world .map-frame .map-direction-pad { left: var(--map-left); bottom: var(--map-bottom); }
+#root .route-world .map-frame .map-next-stack {
+  position: absolute; z-index: 8; right: var(--map-right); bottom: var(--map-bottom);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  max-width: min(46vw, 480px); pointer-events: none;
+}
+#root .route-world .map-frame .map-tools {
+  position: static; display: flex; gap: var(--map-key-gap); pointer-events: auto;
+}
+#root .route-world .map-frame .map-tools button {
+  width: var(--map-key); min-width: var(--map-key); min-height: var(--map-key); padding: 0;
+}
+#root .route-world .map-frame .map-next-action {
+  position: relative; inset: auto; max-width: 100%; pointer-events: auto;
+}
+#root .route-world .map-frame .map-guide {
+  right: auto; bottom: auto; transform: translate(-50%,-100%);
+}
+.route-world .map-guide:not([data-positioned]) { visibility: hidden; pointer-events: none; }
+#root .route-world .map-guide > button {
+  display: grid; place-items: center; width: 44px; height: 44px; min-height: 44px;
+  padding: 0; border: 0; background: none; box-shadow: none; backdrop-filter: none; color: #314737;
+}
+.route-world .map-guide > button span {
+  position: relative; display: grid; place-items: center; width: 34px; height: 28px;
+  padding-bottom: 5px; border: 2px solid currentColor; border-radius: 13px;
+  background: #fff6dc; font: 800 18px/1 system-ui,sans-serif;
+}
+.route-world .map-guide > button span::after {
+  content: ''; position: absolute; top: 100%; left: calc(50% - 5px); width: 10px; height: 6px;
+  background: currentColor; clip-path: polygon(0 0,100% 0,50% 100%);
+}
+.route-world .map-guide > button:is(:active,[aria-expanded=true]) span { background: #245b46; color: #fff; }
+#root .route-world .map-guide-bubble {
+  right: auto; left: var(--map-hint-left, 0); bottom: calc(100% + 3px);
+  width: min(320px,calc(100vw - 24px)); padding: 12px 16px; border-radius: 14px;
+  font-size: clamp(15px,1.65vw,18px); pointer-events: none;
+}
+#root .route-world .map-guide[data-hint-below] .map-guide-bubble { top: calc(100% + 8px); bottom: auto; }
+@media (max-width: 640px) {
+  #root .route-world .map-frame .map-next-stack {
+    max-width: calc(100% - var(--map-left) - var(--map-right) - var(--map-pad-width) - 12px);
+  }
+}

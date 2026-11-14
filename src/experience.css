@@ -355,6 +355,13 @@ html[data-reduced=true] .air-bubbles i { animation:none; opacity:.7; }
 .hero-copy h1 { font-size:clamp(26px,2.6vw,42px); text-shadow:0 3px 0 #0b241a99; }
 .hero-copy p { text-shadow:0 2px 6px #0b241acc; }
 .hero-actions .primary.gold { min-height:66px; padding:16px 34px; font-size:24px; box-shadow:0 6px 0 #7a5a1d,0 12px 24px #0b241a66; }
+.hero-copy .game-logo { height:auto; }
+.route-home:has(.home-page:not(.home-dressed)) { font-family:system-ui,sans-serif; }
+.home-page:not(.home-dressed) .home-hero { background:linear-gradient(135deg,#0d2a1f,#245b43); }
+.map-entry-recovery { position:absolute; z-index:20; inset:50% auto auto 50%; transform:translate(-50%,-50%); width:min(510px,calc(100% - 32px)); padding:clamp(14px,3vw,24px); border:2px solid #788658; border-radius:18px; background:#fff9e9; color:#254535; text-align:center; box-shadow:0 7px 24px #112a3460; }
+.map-entry-recovery p { margin:0; }
+.map-entry-actions { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px; }
+.world-page[data-map-ready="false"] :is(.map-destination-labels,.map-direction-pad,.map-guide,.map-next-stack) { visibility:hidden; }
 @media (max-width:800px) {
  .home-hero { height:100dvh; min-height:0; padding:90px 22px 30px; align-items:flex-end; background:linear-gradient(0deg,#0d2a1ff2 0%,#123424c4 42%,transparent 72%),url('/assets/generated/title-keyart.webp') 78% center/cover; }
  .hero-copy { max-width:none; }
@@ -564,8 +571,6 @@ html[data-reduced=true] .air-bubbles i { animation:none; opacity:.7; }
  .final-activity .core-device>span { z-index:1; }
  .final-activity .core-ring { bottom:8%; width:min(260px,90%); height:clamp(28px,9dvh,84px); }
  .final-activity .ending-panel { flex:1 1 0; gap:clamp(4px,.8dvh,10px); padding:clamp(8px,1.3vw,18px); overflow:hidden; }
- .final-activity .ending-stars { line-height:1; }
- .final-activity .ending-stars svg { width:clamp(21px,4dvh,36px); height:clamp(21px,4dvh,36px); }
  .final-activity .restored-buildings { width:min(640px,100%); display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:3px; margin:0; }
  .final-activity .restored-buildings>div { min-width:0; padding:3px 1px; font-size:clamp(12px,1.35vw,17px); line-height:1.3; }
  .final-activity .restored-buildings>div>span { font-size:0; }
@@ -623,7 +628,7 @@ html[data-reduced=true] .air-bubbles i { animation:none; opacity:.7; }
 }
 @media screen and (min-width:1500px) {
  :root { --delivery-reading:18px; }
- .app:not(:has(.live-activity))>.demo-ribbon,.hero-copy .eyebrow.light,.route-world :is(.map-goal small,.map-next-action em,.map-guide button span) { font-size:var(--delivery-reading); }
+ .app:not(:has(.live-activity))>.demo-ribbon,.hero-copy .eyebrow.light,.route-world :is(.map-next-action em,.map-guide button span) { font-size:var(--delivery-reading); }
  .final-activity :is(.demo-step-pad span,.demo-next-stage,.core-layout .field,.certificate-actions .field,.certificate-actions button,.certificate-actions input) { font-size:var(--delivery-reading); }
  .concept-dialog :is(.concept-focus strong,.concept-caption>span,.concept-chapters button),.modal :is(.eyebrow,.settings-note) { font-size:max(var(--delivery-reading),1em); }
  .hero-copy .save-note,.modal-story .npc-voice>small,.final-activity .evidence-report article>span,.modal-evidence .notebook-stages>div>b { font-size:var(--delivery-reading); }
