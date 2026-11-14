@@ -188,7 +188,7 @@ select { max-width: 100%; text-overflow: ellipsis; }
 .demo-step-pad span { min-width: 92px; text-align: center; font-size: 18px; color: #4c431f; line-height: 1.2; }
 .demo-step-pad small { display: block; font-size: 12px; color: #7a6a3e; }
 .demo-next-stage { position: fixed; right: 22px; bottom: 22px; z-index: 58; display: flex; align-items: center; gap: 8px; min-height: 64px; padding: 14px 22px; background: #ffdf8e; border: 2px solid #92723c; color: #4c431f; box-shadow: 0 5px 0 #4a542d66; border-radius: 16px; font-size: 20px; }
-.map-guide { position: absolute; right: 26px; bottom: 108px; z-index: 9; }
+.map-guide { position: absolute; left: 216px; right: auto; bottom: 24px; z-index: 9; }
 .map-guide>button { display: flex; align-items: center; gap: 6px; min-height: 52px; padding: 3px 14px 3px 4px; background: linear-gradient(#fffbec,#f2e4bd); border: 2px solid #8a6a36; border-radius: 999px; color: #4c431f; box-shadow: 0 3px 0 #5d4522a6; font-size: 16px; font-weight: 700; }
 .map-guide>button img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; object-position: 30% 10%; background: #fff7dd; }
 .map-guide-bubble { position: absolute; right: 0; bottom: 66px; width: min(370px,65vw); padding: 18px 20px; margin: 0; border: 2px solid #8a6a36; border-radius: 18px 18px 2px 18px; background: #fff9e7; box-shadow: var(--shadow); font-size: 19px; line-height: 1.6; }
@@ -672,3 +672,11 @@ html[data-reduced=true] * { animation: none !important; transition: none !import
 [data-map-pad][data-map-held] { filter:brightness(1.15); outline:3px solid #f4bc45; outline-offset:1px; box-shadow:inset 0 0 0 2px #fff8da; }
 [data-map-pad]:focus-visible { outline:3px solid #165fba; outline-offset:3px; }
 [data-map-pad]:disabled { opacity:.5; }
+
+
+.world-page .map-tools{display:flex;align-items:center;left:auto;right:26px;bottom:108px}
+@media (max-height:650px),(max-width:900px){.world-page .map-tools{right:12px;bottom:78px}}
+
+
+@media(max-width:900px),(max-height:650px){.world-page .map-guide{left:178px;right:auto;bottom:10px}}
+@media(max-width:680px){.world-page .map-guide{left:14px;bottom:148px}}
