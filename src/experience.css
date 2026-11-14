@@ -356,7 +356,6 @@ html[data-reduced=true] .air-bubbles i { animation:none; opacity:.7; }
 .hero-copy p { text-shadow:0 2px 6px #0b241acc; }
 .hero-actions .primary.gold { min-height:66px; padding:16px 34px; font-size:24px; box-shadow:0 6px 0 #7a5a1d,0 12px 24px #0b241a66; }
 .hero-copy .game-logo { height:auto; }
-.route-home:has(.home-page:not(.home-dressed)) { font-family:system-ui,sans-serif; }
 .home-page:not(.home-dressed) .home-hero { background:linear-gradient(135deg,#0d2a1f,#245b43); }
 .map-entry-recovery { position:absolute; z-index:20; inset:50% auto auto 50%; transform:translate(-50%,-50%); width:min(510px,calc(100% - 32px)); padding:clamp(14px,3vw,24px); border:2px solid #788658; border-radius:18px; background:#fff9e9; color:#254535; text-align:center; box-shadow:0 7px 24px #112a3460; }
 .map-entry-recovery p { margin:0; }

@@ -1,7 +1,13 @@
 {
   "created": "2026-11-09",
   "updated": "2026-11-12",
-  "scienceReview": {"updatedClips": ["S05", "S10"], "record": "docs/reviews/SCIENCE-REVIEW-20261112.md"},
+  "scienceReview": {
+    "updatedClips": [
+      "S05",
+      "S10"
+    ],
+    "record": "docs/reviews/SCIENCE-REVIEW-20261112.md"
+  },
   "source": "HyperFrames 0.9.26 (films/concept-clips, 1920x1080 30fps master) → FFmpeg 960x540 H.264/VP9, no audio",
   "clips": [
     {
@@ -13,18 +19,18 @@
       "files": [
         {
           "name": "S01.mp4",
-          "bytes": 203273,
-          "sha256": "087fb1b5115d5053ea91118f3cce02e74d110b0b3aa150552982fc174fdc48ec"
+          "bytes": 205569,
+          "sha256": "51b8e83e6ab06a5ec8aa58c91e813704c03f30a35c4c17cfec3c2c98be312f93"
         },
         {
           "name": "S01.webm",
-          "bytes": 222637,
-          "sha256": "87dddb0326d750f8df5b1af2d70c66538bc4d0c26e602aa34287fae1dbbe4c70"
+          "bytes": 223938,
+          "sha256": "cb8abe143b0bb17a834708fe924d1fac8049464c1acaa1d20a06698b41366da9"
         },
         {
           "name": "S01.webp",
-          "bytes": 29478,
-          "sha256": "ec022ac77144903d74f35e1ff95b3cf5c8f70e185a94cff8b526472019884464"
+          "bytes": 29578,
+          "sha256": "5ac715dd7cc9697a7c97850c26ff2a026febbaf6961de330402bf4398b84b487"
         }
       ]
     },
@@ -37,18 +43,18 @@
       "files": [
         {
           "name": "S02.mp4",
-          "bytes": 180709,
-          "sha256": "2bf4feac6349d301d0face552977d154fb4b31da6dcbe846433f42c7e828a26f"
+          "bytes": 186086,
+          "sha256": "ad813493caa7b3394737418d17c852bf46e42c6b32665fa80271236e603c0678"
         },
         {
           "name": "S02.webm",
-          "bytes": 218636,
-          "sha256": "5516272a20e9f7e063b70febf13f18ca135b37dc15c281adb1b99b5f0482ae75"
+          "bytes": 219993,
+          "sha256": "55769ad17aeb10d061e38d4e1ca0de840175ce992e4484bdcfb972d51d7d3ad5"
         },
         {
           "name": "S02.webp",
-          "bytes": 36304,
-          "sha256": "5907a95b8303d8ed48cf48233c611b9bc2cef327d67f95892e7cea9ee87183fa"
+          "bytes": 36394,
+          "sha256": "a405a88a319d6bfa60ed3cc4d5a50190e400327e0648e8d93254224069939b5f"
         }
       ]
     },
@@ -61,18 +67,18 @@
       "files": [
         {
           "name": "S03.mp4",
-          "bytes": 181843,
-          "sha256": "f788a3b4fe6d73a4779ed97adbe4271ad01748c990dcd88ba971b1d141906c6f"
+          "bytes": 182266,
+          "sha256": "66d5f9d243b8c833870c84cc36f4bb649d904832c2918af93b3be36795bce1c1"
         },
         {
           "name": "S03.webm",
-          "bytes": 200122,
-          "sha256": "b29771471c8124ba4c60a99581e1e3853728bee5d508d87283a461a237711eff"
+          "bytes": 201780,
+          "sha256": "633d898753d10a5bb68ebcf1a248f0c825bb5ecc256d4e78a64da8fd51d1eb14"
         },
         {
           "name": "S03.webp",
-          "bytes": 25736,
-          "sha256": "8772b421dd43d17a24eaddcd6a5f53d9f0706bc985adc8bc3cc1668f639bb470"
+          "bytes": 25768,
+          "sha256": "992461c03a00b1a8f092668076759aee69a60efd8c35074fe3300ee36944d352"
         }
       ]
     },
@@ -85,18 +91,18 @@
       "files": [
         {
           "name": "S04.mp4",
-          "bytes": 186049,
-          "sha256": "1a1a415adde399264a7655727166da1310b76c0effd9171f268dd240e0983dff"
+          "bytes": 195435,
+          "sha256": "40e96bd90fd09af13fcd4ecf3bd0f0475717c2518f36d366e975898268596057"
         },
         {
           "name": "S04.webm",
-          "bytes": 214844,
-          "sha256": "a3a66f6d7fb8d454b550874710e844e0dede02627a65ba01ae75f555ce10bb46"
+          "bytes": 215733,
+          "sha256": "df466ff889074467a6d2c69971649a7ba8b8bfa0143e0a025e9db6d0ae240e2e"
         },
         {
           "name": "S04.webp",
-          "bytes": 28448,
-          "sha256": "42b8c18721867c2508c12b8aa50b7d229ae6377571ca9a9644f5a2dfbb6eb41b"
+          "bytes": 28584,
+          "sha256": "fed4f8a7e17b95f76685984cc070e2f81edd5aa4531cc7ca192da8234105dc72"
         }
       ]
     },
@@ -109,18 +115,18 @@
       "files": [
         {
           "name": "S05.mp4",
-          "bytes": 170173,
-          "sha256": "88b15a9e484fe14417509c41e5e740c5be8ff6e2a099644eb887801561168885"
+          "bytes": 169432,
+          "sha256": "671465395d53a5db6dfbb779b2507505a3088e8593435d658c6e20890b7d7ef1"
         },
         {
           "name": "S05.webm",
-          "bytes": 176206,
-          "sha256": "c2b3015530750b8d314a11a91e25685078000db96be68ea748d3bd6516dc0edd"
+          "bytes": 177424,
+          "sha256": "62f05f41ab6c53dbf726766109ff78a6e3db35afb876fdcbf9bc2b88b962210a"
         },
         {
           "name": "S05.webp",
-          "bytes": 25418,
-          "sha256": "2b0f9c1eb4df458ea9f9faa9f309d1efc7e93378d7c7bd4e2bf6932967e484ae"
+          "bytes": 25382,
+          "sha256": "5faee0f3f35b6322030761a73750fc26b53734dc60da116423b0a06837ba07e3"
         }
       ]
     },
@@ -133,18 +139,18 @@
       "files": [
         {
           "name": "S06.mp4",
-          "bytes": 170620,
-          "sha256": "ddc29a2d4ba89e86a223c86e4c826fe74cbf9c23da3cb02879eec55222ab9e58"
+          "bytes": 172141,
+          "sha256": "7ea31011b045fa402eb48d0404d14fa5edc65e4a650012933fc291486a64c518"
         },
         {
           "name": "S06.webm",
-          "bytes": 176969,
-          "sha256": "61a1b80e70ca28765a7fe02f81fad871826702c1367fe088d024dbd1ccb2bf8a"
+          "bytes": 177984,
+          "sha256": "647974164e2d48e25642c4199bbb35f2111b3298d7d5cf7b63811a011f32ad49"
         },
         {
           "name": "S06.webp",
-          "bytes": 24626,
-          "sha256": "fb5f6263fbaf73778f6d6f27adc01c7e3494a046b6900c9eee5ebf6f2888921f"
+          "bytes": 24714,
+          "sha256": "a4c8b0b1dc2fa7aa26e396934bfd613ef810eae5593744b5747d017d2510f404"
         }
       ]
     },
@@ -157,18 +163,18 @@
       "files": [
         {
           "name": "S07.mp4",
-          "bytes": 153521,
-          "sha256": "48c0507ed83df3f8260e7d6644c4c64b1998e03d4e9163fb8d9ef2812ab4dae2"
+          "bytes": 157605,
+          "sha256": "f03eaa00b1a862638744bb6c1b1cb1ffd38b6f0a95241f88e3739cf5c17b4fca"
         },
         {
           "name": "S07.webm",
-          "bytes": 163787,
-          "sha256": "75cd3333be4793440f6f4697afbceca91a52a5765a7fb4dbdb34cefe40f1c7bf"
+          "bytes": 165530,
+          "sha256": "2e98824e784030f8d1d21037f7c10ec801a56e1f93004b518d6e2aa4bdc8597e"
         },
         {
           "name": "S07.webp",
-          "bytes": 22434,
-          "sha256": "6095f75feae662a3283884802033f1cd0cca135d9326967fe103f081d0723666"
+          "bytes": 22594,
+          "sha256": "4d44fb0f9da4097fee857b13f6c50fef627324ad86c2b1085a856c19ad7b884a"
         }
       ]
     },
@@ -181,18 +187,18 @@
       "files": [
         {
           "name": "S08.mp4",
-          "bytes": 153690,
-          "sha256": "6eea904f0eeb10f817a8ec206c9914b34498d25bc692a8bed1e6c18f593c8270"
+          "bytes": 157894,
+          "sha256": "cdca1570a984f651d58e83532aa80dcaf2b43e27fd01711452dfbc6ece40bbdc"
         },
         {
           "name": "S08.webm",
-          "bytes": 168704,
-          "sha256": "4a26490aa5f2661969c6c465e2b1c8db8a1ed2eff474bdd2bdf92cafa3e3227d"
+          "bytes": 169763,
+          "sha256": "6f3f6f754e418a23fa5cff14a7e19511605ccc64ca82fe4b92d34bfd0a13066b"
         },
         {
           "name": "S08.webp",
-          "bytes": 22750,
-          "sha256": "2a9e24c754588e58008accf2c3b86fdce853a6fdc5a14f6010468377d69b2099"
+          "bytes": 22772,
+          "sha256": "f38317dd1de0dcbc9a3d2dff54e614ee876d1c825d65ac91578b5c1663beb2bb"
         }
       ]
     },
@@ -205,18 +211,18 @@
       "files": [
         {
           "name": "S09.mp4",
-          "bytes": 192512,
-          "sha256": "367a2ccf5ec896c8070155681cf482bd920b17f6f54422fe12091b4931a8b715"
+          "bytes": 186330,
+          "sha256": "5d3cd6dd86313125c0b8423a9776109fa4034e0afee42ba00b59ea5da8c5824c"
         },
         {
           "name": "S09.webm",
-          "bytes": 215719,
-          "sha256": "f3805ce80d027e43ef414f141c85df552dd21758ae3c9a96789910ce3df9e861"
+          "bytes": 217175,
+          "sha256": "5db44c17f8e81848bda1cfcd16ba471956ade26301df365ada684d8c4b4d6e74"
         },
         {
           "name": "S09.webp",
-          "bytes": 38212,
-          "sha256": "1ac3005a1cbe52b5982d53e1e60b0c90436fd251462e2fd9a760580bf6764ab5"
+          "bytes": 38192,
+          "sha256": "3ad63b9e822a136f888eb66f1cd60dc7b36b5a78e6dd2d266c40f309bf8adaf2"
         }
       ]
     },
@@ -229,18 +235,18 @@
       "files": [
         {
           "name": "S10.mp4",
-          "bytes": 213194,
-          "sha256": "63e3396a06bf881896ff438288dc0a5c098007c59bec4de4b397dc6db8a87e09"
+          "bytes": 220175,
+          "sha256": "2b9efc4bc488908ef9f687dd4867c2a40edad4db34e1b8343bb8479a9da235b4"
         },
         {
           "name": "S10.webm",
-          "bytes": 235964,
-          "sha256": "0d5e2af86864e15c2c1d8435aacb2b0b5c893c5bb62b64be33396c10d7b5c54d"
+          "bytes": 237363,
+          "sha256": "3c90970dfeba4c94da16ed168dde9ea42b74b5dac7e76af5bcd85a81c275dede"
         },
         {
           "name": "S10.webp",
-          "bytes": 31890,
-          "sha256": "a1b0a2bd74b443f35e1d6d070b83ede6c7ebc5d85657f131773bce76eeb26b8b"
+          "bytes": 31946,
+          "sha256": "3305dd8895045f16f08dd889a3e9d5867f6c8af0a0d33356d2f79578617bdfe6"
         }
       ]
     }
