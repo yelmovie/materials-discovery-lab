@@ -184,3 +184,7 @@ THE SOFTWARE.
 - `npc-expressions/`의 모루·단단이·방울이·바람이·토리 반신 초상은 기존 캐릭터를 참고해 Codex image_gen으로 생성했다. 640×640 투명 WebP의 기본·생각·기쁨 표정을 대사별로 한 프레임씩 표시한다.
 - `audio/npc-elevenlabs/`의 의뢰·복구 발화 20줄은 ElevenLabs v4 한국어 라이브러리 음성으로 생성했다. 캐릭터마다 일관된 voice ID를 사용하며 원문과 생성 정보는 같은 폴더 manifest.json에 기록했다.
 - 생성 원본과 로컬 검수 기록은 외장 프로젝트 `output/npc-dialogue-expanded-20261112/`에 보관한다.
+
+## 시작 이야기 음성 · 2026-11-14
+
+- 모루와 방울이의 시작 이야기 음성은 각각 기존 합성 캐릭터 음원을 참조해 Higgsfield에서 생성했다. 대사와 배포 파일 정보는 `audio/npc-higgsfield/manifest.json`에 기록한다. 토리의 기존 음원은 유지했다.

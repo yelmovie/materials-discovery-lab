@@ -1,0 +1,32 @@
+{
+  "engine": "Higgsfield Seed Audio",
+  "language": "ko",
+  "recordings": [
+    {
+      "key": "moru-story",
+      "speaker": "모루",
+      "text": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요.",
+      "generationId": "01e0e73a-25c5-4186-92b3-4364a7ba8a04",
+      "reference": "/assets/audio/npc-elevenlabs/moru-reward.mp3",
+      "whisperTranscript": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요.",
+      "sha256": "ac76d740a660f823c6a26686025af6d334dee511c428bfedf1baa2f0a4c4ebcc",
+      "duration": 8.26,
+      "lufs": -17.0,
+      "truePeakDbtp": -4.2,
+      "clippedSamples": 0
+    },
+    {
+      "key": "banguli-story",
+      "speaker": "방울이",
+      "text": "마지막에는 나만의 보관함을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요.",
+      "generationId": "9435f61a-a9f9-471c-88d8-53b342a5cfd3",
+      "reference": "/assets/audio/npc-elevenlabs/banguli-reward.mp3",
+      "whisperTranscript": "마지막에는 나만의 보관함을 만들어요. 관찰 기록으로 재료를 고르고 시험 결과를 보고 고쳐요.",
+      "sha256": "51b2783b638effeb7cd9c91e80066b3f0337eea24104dc699c48b51f4bbbba06",
+      "duration": 8.42,
+      "lufs": -17.5,
+      "truePeakDbtp": -4.5,
+      "clippedSamples": 0
+    }
+  ]
+}

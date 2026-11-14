@@ -153,8 +153,7 @@ select { max-width: 100%; text-overflow: ellipsis; }
 .map-goal.reveal { background: #fff1bd; border-color: #a8802f; color: #4b3b13; box-shadow: 0 4px 0 #8c6a24; }
 .demo-mode .map-goal { top: 68px; }
 .map-next-action { position: absolute; right: 26px; bottom: 26px; z-index: 8; gap: 10px; max-width: min(480px,48vw); min-height: 66px; padding: 12px 22px; background: linear-gradient(#ffe391,#f4c95f); border: 2px solid #a8802f; color: #463813; box-shadow: 0 5px 0 #8c6a24; border-radius: 16px; font-size: 22px; }
-.map-briefing-action { position: absolute; right: 26px; bottom: 106px; z-index: 8; min-height: 44px; }
-@media(max-width:1024px), (max-height:480px) { .map-briefing-action { right: 12px; bottom: 72px; } }
+.map-briefing-action { min-height: 44px; max-width: 100%; pointer-events: auto; white-space: normal; }
 .map-next-action:hover:not(:disabled) { background: linear-gradient(#ffeba9,#f9d473); }
 .map-next-action:active:not(:disabled) { box-shadow: 0 1px 0 #8c6a24; }
 .map-next-action:disabled { opacity: 1; background: #fff3c8; }
