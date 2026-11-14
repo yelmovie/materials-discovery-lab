@@ -7,13 +7,28 @@ import Phaser from 'phaser';
 import {drawWorkshopChange} from './workshop-change';
 import {MAP_WIDTH,MAP_HEIGHT,worldDestinations,worldLights,roadNodes,routeBetween,walkRoad,doorAt,pathLength,pointAlong,type MapDirection,type MapPoint} from '../domain/worldMap';
 export const destinations=worldDestinations;
-interface Props {clearStage?:string|null;encounterIds:string[];mapHits:Record<string,number>;onMapHit:(id:string,hits:number)=>void;target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
+interface Props {clearStage?:string|null;encounterIds:string[];mapHits:Record<string,number>;onMapHit:(id:string,hits:number)=>void;target:number|null;nextStage:number;recovered:number;coreComplete:boolean;reduced:boolean;direction?:MapDirection|null;paused?:boolean;overview?:boolean;hand?:boolean;reveal?:number|null;onMoveStart?:()=>void;onLeave?:()=>void;onFollow?:()=>void;onSelect:(i:number)=>void;onArrive:(i:number)=>void;onCamera?:(x:number,y:number,zoom:number,friend:MapPoint)=>void;onPan?:()=>void;onRevealEnd?:()=>void;onReady?:()=>void;onFailure?:()=>void}
 // Zoom past "cover" so the map always fills the screen and shows a close, walkable area like the sibling games.
 const ZOOM_OVER_COVER=1.45,DRAG_THRESHOLD=10,WALK_SPEED=250,ROUTE_SPEED=340,FOLLOW_GAP=52;
 const DUSK=.42,DUSK_SCALE=.25,REVEAL_LIGHT=1200,REVEAL_TRAVEL=1500,REVEAL_END=3000;
 const VECTORS:Record<MapDirection,MapPoint>={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}};
 // Frames come from scripts/prepare-walk-sprites.mjs: <direction>-<1..4>.webp on one shared canvas per character.
 const WALKERS={researcher:{height:96},companion:{height:78}} as const;
+const OUTLINE_PAD=5;
+function outlineActor(texture:Phaser.Textures.TextureManager,key:string){
+ const outlined=key+'-map-outline';
+ if(texture.exists(outlined))return outlined;
+ const source=texture.get(key).getSourceImage() as HTMLImageElement;
+ const frame=document.createElement('canvas'),mask=document.createElement('canvas');
+ frame.width=mask.width=source.width+OUTLINE_PAD*2;frame.height=mask.height=source.height+OUTLINE_PAD*2;
+ const ctx=frame.getContext('2d'),silhouette=mask.getContext('2d');
+ if(!ctx||!silhouette)return key;
+ silhouette.drawImage(source,OUTLINE_PAD,OUTLINE_PAD);silhouette.globalCompositeOperation='source-in';
+ silhouette.fillStyle='#fff4d2';silhouette.fillRect(0,0,mask.width,mask.height);
+ for(let i=0;i<8;i++){const angle=i*Math.PI/4;ctx.drawImage(mask,Math.cos(angle)*4,Math.sin(angle)*4);}
+ ctx.drawImage(source,OUTLINE_PAD,OUTLINE_PAD);texture.addCanvas(outlined,frame);
+ return outlined;
+}
 const WALK_DIRECTIONS:MapDirection[]=['down','left','right','up'];
 const walkKey=(name:keyof typeof WALKERS,direction:MapDirection,frame:number)=>`${name}-${direction}-${frame}`;
 const facingFor=(dx:number,dy:number,current:MapDirection):MapDirection=>Math.hypot(dx,dy)<.3?current:Math.abs(dx)>Math.abs(dy)*.8?(dx<0?'left':'right'):dy<0?'up':'down';
@@ -75,7 +90,7 @@ export default function WorldCanvas(props:Props){
     // Size the camera explicitly: Phaser skips cameras whose size drifted from the previous game size.
     this.scale.on('resize',(size:Phaser.Structs.Size)=>camera.setSize(size.width,size.height));
     // Report after drawing so DOM labels match the exact frame on screen (worldView is the rendered top-left corner).
-    const report=()=>{const view=camera.worldView,key=`${view.x.toFixed(1)},${view.y.toFixed(1)},${camera.zoom.toFixed(4)},${Math.floor(performance.now()/250)}`;if(key!==this.lastCamera){this.lastCamera=key;live.current.onCamera?.(view.x,view.y,camera.zoom);}};
+    const report=()=>{const view=camera.worldView,friend={x:this.friend.x,y:this.friend.y-this.friend.displayHeight*this.friend.originY},key=`${view.x.toFixed(1)},${view.y.toFixed(1)},${camera.zoom.toFixed(4)},${friend.x.toFixed(1)},${friend.y.toFixed(1)},${Math.floor(performance.now()/250)}`;if(key!==this.lastCamera){this.lastCamera=key;live.current.onCamera?.(view.x,view.y,camera.zoom,friend);}};
     this.game.events.on(Phaser.Core.Events.POST_RENDER,report);this.events.once('shutdown',()=>this.game.events.off(Phaser.Core.Events.POST_RENDER,report));
     const ready=()=>live.current.onReady?.();
     this.game.events.once(Phaser.Core.Events.POST_RENDER,ready);this.events.once('shutdown',()=>this.game.events.off(Phaser.Core.Events.POST_RENDER,ready));
@@ -237,8 +252,9 @@ export default function WorldCanvas(props:Props){
    // A frame swap keeps feet on the road: every frame shares a canvas and a bottom-centre origin.
    pose(image:Phaser.GameObjects.Image,name:keyof typeof WALKERS,direction:MapDirection,frame:number,breath=0){
     const key=walkKey(name,direction,frame);if(!this.textures.exists(key))return;
-    if(image.texture.key!==key)image.setTexture(key);
-    const scale=WALKERS[name].height/image.frame.height;image.setScale(scale,scale*(1+breath/WALKERS[name].height));
+    const outlined=outlineActor(this.textures,key),pad=outlined===key?0:OUTLINE_PAD;
+    if(image.texture.key!==outlined){image.setTexture(outlined);image.setOrigin(.5,1-pad/image.frame.height);}
+    const scale=WALKERS[name].height/(image.frame.height-pad*2);image.setScale(scale,scale*(1+breath/WALKERS[name].height));
    }
    drawCharacters(time:number,walking:boolean){
     const p=live.current,animate=!p.reduced,step=this.elapsed/125,frame=walking&&animate?Math.floor(step)%4+1:2,lift=walking&&animate?Math.abs(Math.sin(step*Math.PI/2))*2:0;
@@ -313,7 +329,7 @@ export default function WorldCanvas(props:Props){
     if(live.current.clearStage)this.clearStage=live.current.clearStage;
     if(!encounters){
      const p=live.current;
-     encounters=mountMapEncounters({requiredFoes:6,host:element,clearStage:()=>this.clearStage,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-tools')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
+     encounters=mountMapEncounters({requiredFoes:6,host:element,clearStage:()=>this.clearStage,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-next-stack')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
       blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0,
       reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
       art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-right.webp',frames:6},
