@@ -1,6 +1,6 @@
 import {roadNodes,worldDestinations} from './worldMap';
 
-const approaches=[roadNodes.north10,roadNodes.ne5,roadNodes.dock3,roadNodes.se5,roadNodes.sw5,roadNodes.spawn];
+const approaches=[roadNodes.north9,roadNodes.ne4,roadNodes.dock2,roadNodes.se4,roadNodes.sw4,roadNodes.south1];
 const dialogue=[
   ["물체랑 재료를 구별했어? 천을 반짝이는 판인 척 끼웠는데! 삐빅!", "내 이름도 오늘부턴 반짝판 봇이다!", "딸깍! 내가 바꾼 판이 빠졌어!", "진짜 재료표까지 읽혔어!", "삐빅, 가짜 부품 회수. 원래 판 돌려줌!"],
   ["어느 재료가 물을 잘 빨아들이는지 찾았어? 내 마른 천 위장은 실패다!", "젖은 천은 내 소매 뒤에 숨겼지!", "앗, 숨겨 둔 천에서 물이 뚝뚝!", "내 재료 시험표가 다 젖었잖아!", "삐빅, 시험 재료를 돌려드림. 수건은 빌려 줘!"],
