@@ -9,3 +9,4 @@ class ErrorBoundary extends Component<{children:ReactNode},{failed:boolean}>{sta
 createRoot(document.getElementById('root')!).render(<ErrorBoundary><GameProvider><App/></GameProvider></ErrorBoundary>);
 
 import './glass-surfaces.css';
+import './flow-polish.css';

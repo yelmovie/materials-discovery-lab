@@ -16,17 +16,6 @@ export const makerOrders:MakerOrder[]=[
   ]
  },
  {
-  screen:'S04',title:'보이는 전시 상자',npc:'dandani',
-  request:'안의 표식이 보이고, 모서리가 눌렸다 돌아오는 상자를 만들어 줘.',
-  trial:'빛과 누르기 시험',watch:'창 뒤 표식과 눌렀다 놓은 모서리를 봐.',
-  success:'안의 표식이 보이고 모서리는 눌렸다가 원래 모양으로 돌아왔어.',
-  note:'같은 빛과 힘으로 비교해요. 점선은 누를 때 모양이에요. 실제 충격 보호는 따로 시험해야 해요.',
-  slots:[
-   {id:'window',label:'관찰창',choices:[c('wood','나무판','#bc8d59'),c('clear','플라스틱 판','#9adce7')],accept:['clear'],observed:'창을 통해 안쪽 별이 보였어.',failure:'이 판이 빛을 막아 별이 보이지 않았어. 다른 판으로 다시 봐.'},
-   {id:'edge',label:'모서리',choices:[c('metal','금속 조각','#a6b6c9'),c('rubber','고무 조각','#f2a294')],accept:['rubber'],observed:'모서리가 눌렸다가 힘을 빼니 돌아왔어.',failure:'같은 힘으로 눌러도 모양이 거의 그대로야. 다른 조각과 비교해 봐.'}
-  ]
- },
- {
   screen:'S06',title:'물을 옮기는 운반대',npc:'banguli',
   request:'받침의 모양을 유지하고, 물을 흘리지 않고 옮겨 줘.',
   trial:'물 옮기기 시험',watch:'받침 모양과 컵 아래를 봐. 물이 떨어지나요?',
@@ -46,18 +35,6 @@ export const makerOrders:MakerOrder[]=[
   slots:[
    {id:'tube',label:'연결관',choices:[c('blocked','관 A','#cbb9a7'),c('open','관 B','#94cdd2')],accept:['open'],observed:'흰 점이 관 끝까지 이동했어.',failure:'흰 점이 관 안의 막힌 부분을 지나지 못했어. 다른 관과 비교해 봐.'},
    {id:'aim',label:'관 끝',choices:[c('away','위쪽','#bec8df'),c('fan','가운데','#f3d074')],accept:['fan'],observed:'관 끝이 날개를 향했어.',failure:'관 끝이 날개와 다른 곳을 향해. 장치에서 위치를 비교해 봐.'}
-  ]
- },
- {
-  screen:'S10',title:'주민의 최종 주문',npc:'tori',
-  request:'비를 막고, 안이 보이고, 눌렀다 돌아오는 모서리를 만들어 줘.',
-  trial:'비·빛·누르기 시험',watch:'몸체가 젖는지, 별이 보이는지, 모서리가 돌아오는지 봐.',
-  success:'물은 스며들지 않았고, 별은 보였고, 모서리는 눌렸다 돌아왔어.',
-  note:'같은 조건의 모형이에요. 점선은 누를 때 모양이에요. 실제 방수와 충격 보호는 따로 시험해요.',
-  slots:[
-   {id:'body',label:'몸체',choices:[c('wood','코팅 안 한 나무','#bc8d59'),c('plastic','플라스틱 판','#87cdd7')],accept:['plastic'],observed:'몸체에 물이 스며들지 않았어.',failure:'몸체 표면이 젖었어. 다른 판에도 같은 양의 물을 떨어뜨려 봐.'},
-   {id:'window',label:'창',choices:[c('opaque','플라스틱 A','#f2cc77'),c('clear','플라스틱 B','#9adce7')],accept:['clear'],observed:'창 너머의 별이 보였어.',failure:'창 뒤의 별이 보이지 않았어. 다른 판에 같은 빛을 비춰 봐.'},
-   {id:'edge',label:'보호대',choices:[c('metal','금속 조각','#a6b6c9'),c('rubber','고무 조각','#f2a294')],accept:['rubber'],observed:'힘을 빼니 보호대가 원래 모양으로 돌아왔어.',failure:'눌러도 보호대 모양이 거의 그대로였어. 다른 조각과 비교해 봐.'}
   ]
  }
 ];

@@ -1,0 +1,17 @@
+.gesture-button { position:relative; display:inline-flex; align-items:center; gap:10px; min-height:56px; min-width:220px; padding:6px 16px 6px 6px; overflow:hidden; border-radius:999px; border:2px solid #2f7a5e; background:#fffaf0; color:#234b39; text-align:left; touch-action:none; user-select:none; -webkit-user-select:none; box-shadow:0 8px 20px rgba(35,80,55,.22); cursor:pointer; }
+.gesture-button:disabled { opacity:.55; cursor:default; }
+.gesture-fill { position:absolute; inset:0; transform-origin:left center; transform:scaleX(var(--gesture-progress,0)); background:linear-gradient(90deg,#cfe8c0,#9fd18a); pointer-events:none; }
+.gesture-knob { position:relative; z-index:1; flex:none; display:grid; place-items:center; width:44px; height:44px; border-radius:50%; background:#2f7a5e; color:#fff; font-size:22px; line-height:1; }
+.gesture-text { position:relative; z-index:1; display:flex; flex-direction:column; line-height:1.2; pointer-events:none; }
+.gesture-text b { font-size:17px; }
+.gesture-text small { font-size:12.5px; color:#4f6b57; }
+/* Slide: the knob travels with the finger. */
+.gesture-swipe { min-width:240px; background:repeating-linear-gradient(90deg,#fffaf0 0 18px,#f4efdf 18px 20px); }
+.gesture-swipe .gesture-knob { transform:translateX(calc(var(--gesture-progress,0) * (100cqw - 56px))); background:#d39a2c; }
+.gesture-swipe { container-type:inline-size; }
+.gesture-swipe .gesture-text { margin-left:4px; }
+/* Hold: a ring fills around the knob. */
+.gesture-hold .gesture-knob { background:conic-gradient(#d39a2c calc(var(--gesture-progress,0) * 360deg),#2f7a5e 0); box-shadow:inset 0 0 0 4px #2f7a5e; }
+.gesture-tap .gesture-knob { background:#c9792f; }
+@media (max-height:520px) { .gesture-button { min-height:46px; min-width:180px; padding:3px 12px 3px 3px; } .gesture-knob { width:38px; height:38px; font-size:19px; } .gesture-text b { font-size:15px; } .gesture-text small { font-size:11px; } }
+@media (prefers-reduced-motion:reduce) { .gesture-fill,.gesture-knob { transition:none; } }

@@ -1,0 +1,1976 @@
+{
+  "startedAt": "2026-11-16T15:14:13.682212+00:00",
+  "base": "http://127.0.0.1:5178",
+  "label": "flow-baseline",
+  "profiles": [
+    [
+      1280,
+      800
+    ],
+    [
+      740,
+      360
+    ]
+  ],
+  "stages": [
+    2,
+    6,
+    8,
+    9,
+    10
+  ],
+  "views": [
+    "lab",
+    "challenge"
+  ],
+  "checks": [
+    {
+      "name": "1280x800-S02-lab",
+      "screen": "S02",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid umbrella-stage material-placement-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 865,
+          "scrollWidth": 865,
+          "clientHeight": 570,
+          "scrollHeight": 570
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 371,
+          "scrollWidth": 371,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        }
+      ],
+      "controlsChecked": 29,
+      "disabledChecked": 2,
+      "textNodesChecked": 44,
+      "smallText": [
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "drop-slot filled ",
+          "text": "천",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "drop-slot filled ",
+          "text": "금속",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "drop-slot filled ",
+          "text": "나무",
+          "fontSize": 13,
+          "minimum": 14
+        }
+      ],
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 20,
+          "y": 245,
+          "w": 484,
+          "h": 339
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/1280x800-S02-lab.jpg"
+    },
+    {
+      "name": "1280x800-S02-challenge",
+      "screen": "S02",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 572,
+          "scrollHeight": 572
+        }
+      ],
+      "controlsChecked": 19,
+      "disabledChecked": 1,
+      "textNodesChecked": 41,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S06-lab",
+      "screen": "S06",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid liquid-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 865,
+          "scrollWidth": 865,
+          "clientHeight": 570,
+          "scrollHeight": 570
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 371,
+          "scrollWidth": 371,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 1,
+      "textNodesChecked": 50,
+      "smallText": [
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "water-balance",
+          "text": "처음 컵",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "B",
+          "parent": "",
+          "text": "100",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "B",
+          "parent": "",
+          "text": "%",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "water-balance",
+          "text": "넓은 용기",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "B",
+          "parent": "",
+          "text": "0",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "B",
+          "parent": "",
+          "text": "%",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "water-balance",
+          "text": "길쭉한 용기",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "B",
+          "parent": "",
+          "text": "0",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "B",
+          "parent": "",
+          "text": "%",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "STRONG",
+          "parent": "water-balance",
+          "text": "총량 100%",
+          "fontSize": 13,
+          "minimum": 14
+        }
+      ],
+      "diagrams": [
+        {
+          "selector": "liquid-vessels",
+          "x": 31,
+          "y": 173,
+          "w": 835,
+          "h": 459
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/1280x800-S06-lab.jpg"
+    },
+    {
+      "name": "1280x800-S06-challenge",
+      "screen": "S06",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 572,
+          "scrollHeight": 572
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 36,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S08-lab",
+      "screen": "S08",
+      "view": "lab",
+      "scope": "page",
+      "issues": [
+        {
+          "kind": "control-clipped",
+          "label": "컵을 아래로 끌어 물속에 넣기",
+          "selector": "cup-drag-handle",
+          "x": 356,
+          "y": 133,
+          "w": 184,
+          "h": 45,
+          "disabled": true,
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 16,
+                "top": 130,
+                "right": 881,
+                "bottom": 130
+              }
+            }
+          ]
+        },
+        {
+          "kind": "control-clipped",
+          "label": "컵의 공기 배출구 열기",
+          "selector": "vent-switch open",
+          "x": 548,
+          "y": 133,
+          "w": 140,
+          "h": 44,
+          "disabled": false,
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 16,
+                "top": 130,
+                "right": 881,
+                "bottom": 130
+              }
+            }
+          ]
+        },
+        {
+          "kind": "text-clipped",
+          "label": "물 표면",
+          "selector": "water-line",
+          "text": "물 표면",
+          "line": {
+            "x": 768,
+            "y": 136,
+            "w": 40,
+            "h": 14
+          },
+          "clippedBy": [
+            {
+              "by": "water-tank",
+              "axes": "y",
+              "bounds": {
+                "left": 80,
+                "top": 130,
+                "right": 818,
+                "bottom": 130
+              }
+            },
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 16,
+                "top": 130,
+                "right": 881,
+                "bottom": 130
+              }
+            }
+          ]
+        },
+        {
+          "kind": "text-clipped",
+          "label": "젖은 휴지",
+          "selector": "tissue",
+          "text": "젖은 휴지",
+          "line": {
+            "x": 421,
+            "y": 148,
+            "w": 54,
+            "h": 14
+          },
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 16,
+                "top": 130,
+                "right": 881,
+                "bottom": 130
+              }
+            }
+          ]
+        },
+        {
+          "kind": "text-clipped",
+          "label": "컵의 공기 배출구 열기",
+          "selector": "vent-switch open",
+          "text": "열림 ✓",
+          "line": {
+            "x": 600,
+            "y": 148,
+            "w": 36,
+            "h": 14
+          },
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 16,
+                "top": 130,
+                "right": 881,
+                "bottom": 130
+              }
+            }
+          ]
+        },
+        {
+          "kind": "diagram-collapsed",
+          "label": "물 표면젖은 휴지열림 ✓공기 ↑물 ↑",
+          "selector": "matter-scene air-scene",
+          "x": 16,
+          "y": 130,
+          "w": 865,
+          "h": 0
+        }
+      ],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 865,
+          "scrollWidth": 865,
+          "clientHeight": 570,
+          "scrollHeight": 570
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 371,
+          "scrollWidth": 371,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        }
+      ],
+      "controlsChecked": 21,
+      "disabledChecked": 2,
+      "textNodesChecked": 39,
+      "smallText": [
+        {
+          "selector": "water-line",
+          "tag": "SPAN",
+          "parent": "water-tank",
+          "text": "물 표면",
+          "fontSize": 12.8,
+          "minimum": 14
+        },
+        {
+          "selector": "tissue",
+          "tag": "SPAN",
+          "parent": "cup-drag-handle",
+          "text": "젖은 휴지",
+          "fontSize": 13.44,
+          "minimum": 14
+        },
+        {
+          "selector": "vent-switch open",
+          "tag": "BUTTON",
+          "parent": "air-cup submerged vented ",
+          "text": "열림 ✓",
+          "fontSize": 13.44,
+          "minimum": 14
+        }
+      ],
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 16,
+          "y": 130,
+          "w": 865,
+          "h": 0
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/1280x800-S08-lab.jpg"
+    },
+    {
+      "name": "1280x800-S08-challenge",
+      "screen": "S08",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 572,
+          "scrollHeight": 572
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 39,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S09-lab",
+      "screen": "S09",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid invention-stage material-placement-stage",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 865,
+          "scrollWidth": 865,
+          "clientHeight": 570,
+          "scrollHeight": 570
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 371,
+          "scrollWidth": 371,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        }
+      ],
+      "controlsChecked": 30,
+      "disabledChecked": 0,
+      "textNodesChecked": 46,
+      "smallText": [
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "drop-slot filled ",
+          "text": "금속",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "drop-slot filled ",
+          "text": "투명 플라스틱",
+          "fontSize": 13,
+          "minimum": 14
+        },
+        {
+          "selector": "",
+          "tag": "SPAN",
+          "parent": "drop-slot filled ",
+          "text": "부드러운 고무",
+          "fontSize": 13,
+          "minimum": 14
+        }
+      ],
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 20,
+          "y": 245,
+          "w": 484,
+          "h": 339
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/1280x800-S09-lab.jpg"
+    },
+    {
+      "name": "1280x800-S09-challenge",
+      "screen": "S09",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 572,
+          "scrollHeight": 572
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 41,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "1280x800-S10-lab",
+      "screen": "S10",
+      "view": "lab",
+      "scope": "page",
+      "issues": [
+        {
+          "kind": "small-touch-target",
+          "label": "비 시험",
+          "selector": "",
+          "x": 908,
+          "y": 241,
+          "w": 292,
+          "h": 36,
+          "disabled": false
+        },
+        {
+          "kind": "small-touch-target",
+          "label": "결과",
+          "selector": "stage-info-button",
+          "x": 1205,
+          "y": 241,
+          "w": 48,
+          "h": 36,
+          "disabled": false
+        },
+        {
+          "kind": "small-touch-target",
+          "label": "빛 시험",
+          "selector": "",
+          "x": 908,
+          "y": 282,
+          "w": 292,
+          "h": 36,
+          "disabled": false
+        },
+        {
+          "kind": "small-touch-target",
+          "label": "결과",
+          "selector": "stage-info-button",
+          "x": 1205,
+          "y": 282,
+          "w": 48,
+          "h": 36,
+          "disabled": false
+        },
+        {
+          "kind": "small-touch-target",
+          "label": "모서리 누르기 시험",
+          "selector": "",
+          "x": 908,
+          "y": 323,
+          "w": 292,
+          "h": 36,
+          "disabled": false
+        },
+        {
+          "kind": "small-touch-target",
+          "label": "결과",
+          "selector": "stage-info-button",
+          "x": 1205,
+          "y": 323,
+          "w": 48,
+          "h": 36,
+          "disabled": false
+        }
+      ],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "activity-grid invention-stage ",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 865,
+          "scrollWidth": 865,
+          "clientHeight": 570,
+          "scrollHeight": 570
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 371,
+          "scrollWidth": 371,
+          "clientHeight": 574,
+          "scrollHeight": 574
+        }
+      ],
+      "controlsChecked": 29,
+      "disabledChecked": 0,
+      "textNodesChecked": 49,
+      "smallText": [],
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 81,
+          "y": 182,
+          "w": 734,
+          "h": 514
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/1280x800-S10-lab.jpg"
+    },
+    {
+      "name": "1280x800-S10-challenge",
+      "screen": "S10",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "body",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 1280,
+          "scrollWidth": 1280,
+          "clientHeight": 800,
+          "scrollHeight": 800
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 1252,
+          "scrollWidth": 1252,
+          "clientHeight": 724,
+          "scrollHeight": 724
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 1250,
+          "scrollWidth": 1250,
+          "clientHeight": 572,
+          "scrollHeight": 572
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 36,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S02-lab",
+      "screen": "S02",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid umbrella-stage material-placement-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 448,
+          "scrollWidth": 448,
+          "clientHeight": 180,
+          "scrollHeight": 181
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 260,
+          "scrollWidth": 260,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        }
+      ],
+      "controlsChecked": 25,
+      "disabledChecked": 2,
+      "textNodesChecked": 33,
+      "smallText": [],
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 154,
+          "w": 239,
+          "h": 94
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/740x360-S02-lab.jpg"
+    },
+    {
+      "name": "740x360-S02-challenge",
+      "screen": "S02",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 182,
+          "scrollHeight": 182
+        }
+      ],
+      "controlsChecked": 19,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S06-lab",
+      "screen": "S06",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid liquid-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 448,
+          "scrollWidth": 448,
+          "clientHeight": 180,
+          "scrollHeight": 180
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 260,
+          "scrollWidth": 260,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        }
+      ],
+      "controlsChecked": 20,
+      "disabledChecked": 1,
+      "textNodesChecked": 41,
+      "smallText": [],
+      "diagrams": [
+        {
+          "selector": "liquid-vessels",
+          "x": 20,
+          "y": 143,
+          "w": 432,
+          "h": 98
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/740x360-S06-lab.jpg"
+    },
+    {
+      "name": "740x360-S06-challenge",
+      "screen": "S06",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 182,
+          "scrollHeight": 182
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S08-lab",
+      "screen": "S08",
+      "view": "lab",
+      "scope": "page",
+      "issues": [
+        {
+          "kind": "control-clipped",
+          "label": "컵을 아래로 끌어 물속에 넣기",
+          "selector": "cup-drag-handle",
+          "x": 172,
+          "y": 119,
+          "w": 128,
+          "h": 44,
+          "disabled": true,
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 12,
+                "top": 116,
+                "right": 460,
+                "bottom": 116
+              }
+            }
+          ]
+        },
+        {
+          "kind": "control-clipped",
+          "label": "컵의 공기 배출구 열기",
+          "selector": "vent-switch open",
+          "x": 308,
+          "y": 119,
+          "w": 112,
+          "h": 44,
+          "disabled": false,
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 12,
+                "top": 116,
+                "right": 460,
+                "bottom": 116
+              }
+            }
+          ]
+        },
+        {
+          "kind": "text-clipped",
+          "label": "물 표면",
+          "selector": "water-line",
+          "text": "물 표면",
+          "line": {
+            "x": 379,
+            "y": 122,
+            "w": 37,
+            "h": 13
+          },
+          "clippedBy": [
+            {
+              "by": "water-tank",
+              "axes": "y",
+              "bounds": {
+                "left": 46,
+                "top": 116,
+                "right": 425,
+                "bottom": 116
+              }
+            },
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 12,
+                "top": 116,
+                "right": 460,
+                "bottom": 116
+              }
+            }
+          ]
+        },
+        {
+          "kind": "text-clipped",
+          "label": "젖은 휴지",
+          "selector": "tissue",
+          "text": "젖은 휴지",
+          "line": {
+            "x": 212,
+            "y": 126,
+            "w": 48,
+            "h": 13
+          },
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 12,
+                "top": 116,
+                "right": 460,
+                "bottom": 116
+              }
+            }
+          ]
+        },
+        {
+          "kind": "text-clipped",
+          "label": "컵의 공기 배출구 열기",
+          "selector": "vent-switch open",
+          "text": "열림 ✓",
+          "line": {
+            "x": 347,
+            "y": 133,
+            "w": 35,
+            "h": 14
+          },
+          "clippedBy": [
+            {
+              "by": "matter-scene air-scene",
+              "axes": "y",
+              "bounds": {
+                "left": 12,
+                "top": 116,
+                "right": 460,
+                "bottom": 116
+              }
+            }
+          ]
+        },
+        {
+          "kind": "diagram-collapsed",
+          "label": "물 표면젖은 휴지열림 ✓공기 ↑물 ↑",
+          "selector": "matter-scene air-scene",
+          "x": 12,
+          "y": 116,
+          "w": 448,
+          "h": 0
+        }
+      ],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid air-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 448,
+          "scrollWidth": 448,
+          "clientHeight": 180,
+          "scrollHeight": 180
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 260,
+          "scrollWidth": 260,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        }
+      ],
+      "controlsChecked": 21,
+      "disabledChecked": 2,
+      "textNodesChecked": 30,
+      "smallText": [],
+      "diagrams": [
+        {
+          "selector": "matter-scene air-scene",
+          "x": 12,
+          "y": 116,
+          "w": 448,
+          "h": 0
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/740x360-S08-lab.jpg"
+    },
+    {
+      "name": "740x360-S08-challenge",
+      "screen": "S08",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 182,
+          "scrollHeight": 182
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 26,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S09-lab",
+      "screen": "S09",
+      "view": "lab",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid invention-stage material-placement-stage",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 448,
+          "scrollWidth": 448,
+          "clientHeight": 183,
+          "scrollHeight": 183
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 260,
+          "scrollWidth": 260,
+          "clientHeight": 187,
+          "scrollHeight": 187
+        }
+      ],
+      "controlsChecked": 27,
+      "disabledChecked": 0,
+      "textNodesChecked": 35,
+      "smallText": [],
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 151,
+          "w": 239,
+          "h": 96
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/740x360-S09-lab.jpg"
+    },
+    {
+      "name": "740x360-S09-challenge",
+      "screen": "S09",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 185,
+          "scrollHeight": 185
+        }
+      ],
+      "controlsChecked": 18,
+      "disabledChecked": 1,
+      "textNodesChecked": 28,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "740x360-S10-lab",
+      "screen": "S10",
+      "view": "lab",
+      "scope": "page",
+      "issues": [
+        {
+          "kind": "control-clipped",
+          "label": "결과",
+          "selector": "stage-info-button",
+          "x": 478,
+          "y": 202,
+          "w": 78,
+          "h": 48,
+          "disabled": false,
+          "clippedBy": [
+            {
+              "by": "tool-panel",
+              "axes": "y",
+              "bounds": {
+                "left": 471,
+                "top": 115,
+                "right": 729,
+                "bottom": 245
+              }
+            }
+          ]
+        },
+        {
+          "kind": "control-clipped",
+          "label": "결과",
+          "selector": "stage-info-button",
+          "x": 561,
+          "y": 202,
+          "w": 78,
+          "h": 48,
+          "disabled": false,
+          "clippedBy": [
+            {
+              "by": "tool-panel",
+              "axes": "y",
+              "bounds": {
+                "left": 471,
+                "top": 115,
+                "right": 729,
+                "bottom": 245
+              }
+            }
+          ]
+        },
+        {
+          "kind": "control-clipped",
+          "label": "결과",
+          "selector": "stage-info-button",
+          "x": 644,
+          "y": 202,
+          "w": 78,
+          "h": 48,
+          "disabled": false,
+          "clippedBy": [
+            {
+              "by": "tool-panel",
+              "axes": "y",
+              "bounds": {
+                "left": 471,
+                "top": 115,
+                "right": 729,
+                "bottom": 245
+              }
+            }
+          ]
+        }
+      ],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "activity-grid invention-stage ",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        },
+        {
+          "selector": "workspace",
+          "clientWidth": 448,
+          "scrollWidth": 448,
+          "clientHeight": 180,
+          "scrollHeight": 180
+        },
+        {
+          "selector": "tools",
+          "clientWidth": 260,
+          "scrollWidth": 260,
+          "clientHeight": 184,
+          "scrollHeight": 184
+        }
+      ],
+      "controlsChecked": 28,
+      "disabledChecked": 0,
+      "textNodesChecked": 34,
+      "smallText": [],
+      "diagrams": [
+        {
+          "selector": "object-scene",
+          "x": 16,
+          "y": 168,
+          "w": 440,
+          "h": 124
+        }
+      ],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      },
+      "screenshot": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline/740x360-S10-lab.jpg"
+    },
+    {
+      "name": "740x360-S10-challenge",
+      "screen": "S10",
+      "view": "challenge",
+      "scope": "page",
+      "issues": [],
+      "containers": [
+        {
+          "selector": "html",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "body",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "activity-shell live-activity",
+          "clientWidth": 740,
+          "scrollWidth": 740,
+          "clientHeight": 360,
+          "scrollHeight": 360
+        },
+        {
+          "selector": "stage-body",
+          "clientWidth": 720,
+          "scrollWidth": 720,
+          "clientHeight": 295,
+          "scrollHeight": 295
+        },
+        {
+          "selector": "transfer-workspace",
+          "clientWidth": 718,
+          "scrollWidth": 718,
+          "clientHeight": 182,
+          "scrollHeight": 182
+        }
+      ],
+      "controlsChecked": 16,
+      "disabledChecked": 1,
+      "textNodesChecked": 23,
+      "smallText": [],
+      "diagrams": [],
+      "openDialogs": [],
+      "viewport": {
+        "width": 740,
+        "height": 360,
+        "scrollX": 0,
+        "scrollY": 0
+      }
+    }
+  ],
+  "dialogEvents": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "network404": [],
+  "requestFailures": [],
+  "fatalErrors": [],
+  "runtime": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/.tmp/fit-runtime-flow-baseline",
+  "evidenceDirectory": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/docs/reviews/fit-20261108/flow-baseline",
+  "rules": {
+    "overflowTolerancePx": 2,
+    "disabledControlsMustFit": true,
+    "scrollingAllowed": false,
+    "intentionalOverlap": "wood block inside its vessel only"
+  },
+  "limitations": [
+    "Headless Chrome only; real iPad/Android hardware is not measured."
+  ],
+  "browserProfile": "/Volumes/T7 Shield/iscreammedia_sc34/9 things/.tmp/fit-runtime-flow-baseline/chrome-profile-eutk51kg",
+  "studentCompletedScreens": 0,
+  "finishedAt": "2026-11-16T15:14:20.982249+00:00",
+  "summary": {
+    "views": 20,
+    "issues": 21,
+    "issuesByKind": {
+      "control-clipped": 7,
+      "text-clipped": 6,
+      "diagram-collapsed": 2,
+      "small-touch-target": 6
+    },
+    "failedViews": [
+      "1280x800-S08-lab",
+      "1280x800-S10-lab",
+      "740x360-S08-lab",
+      "740x360-S10-lab"
+    ],
+    "pageErrors": 0,
+    "consoleErrors": 0,
+    "network404": 0,
+    "requestFailures": 0,
+    "fatalErrors": 0
+  },
+  "passed": false
+}

@@ -26,7 +26,7 @@ function SampleExperiment({sample='rubber_soft',experiment='elastic_return',acti
   water_absorption:m.waterResistant?'물방울이 시료 표면에 둥글게 남아 있어요.':'물방울 자리에 넓고 짙은 자국이 생겼어요.',
  };
  return <figure className={`experiment-canvas experiment-stage sample-simulation ${state} ${reduced?'motion-reduced':''}`} data-experiment={experiment} style={{'--sample-color':color} as CSSProperties}>
-  <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow">{shortNames[m.id]}</span><strong>{instructions[experiment]}</strong><span className={`experiment-state ${state}`}>{!active?'준비':moving?'시험 중':'관찰'}</span></figcaption>
+  <figcaption className="experiment-stage-heading"><span className="experiment-eyebrow"><img className="experiment-specimen" src={`${import.meta.env.BASE_URL}assets/generated/materials/${m.id}.webp`} alt="" aria-hidden="true" onError={e=>{e.currentTarget.style.display='none';}}/>{shortNames[m.id]}</span><strong>{instructions[experiment]}</strong><span className={`experiment-state ${state}`}>{!active?'준비':moving?'시험 중':'관찰'}</span></figcaption>
   <div className="experiment-scene" role="img" aria-label={!active?`${shortNames[m.id]} 시료가 도구 아래에 놓여 있어요.`:moving?'같은 조건으로 시료를 시험하고 있어요.':observations[experiment]}>
    <svg viewBox="0 0 600 260" aria-hidden="true">
     <defs>
@@ -46,7 +46,7 @@ function SampleExperiment({sample='rubber_soft',experiment='elastic_return',acti
     </>}
     <g className="sim-sample">
      <rect x={sx} y={sy} width={width} height={height} rx="10" fill={`url(#${uid}-sample)`} opacity={m.transparent?.68:1} stroke="#647d77" strokeWidth="3"/>
-     {m.id==='wood_raw'&&<image className="sample-material-art" href={`${import.meta.env.BASE_URL}assets/generated/wood-sample.webp`} x={sx} y={sy} width={width} height={height} preserveAspectRatio="none" clipPath={`url(#${uid}-clip)`}/>}
+     <image className="sample-material-art" href={m.id==='wood_raw'?`${import.meta.env.BASE_URL}assets/generated/wood-sample.webp`:`${import.meta.env.BASE_URL}assets/generated/materials/${m.id}.webp`} x={sx-width*.15} y={sy-height*.6} width={width*1.3} height={height*2.2} preserveAspectRatio={m.id==='wood_raw'?'none':'xMidYMid slice'} opacity={m.transparent?.75:1} clipPath={`url(#${uid}-clip)`}/>
      <g clipPath={`url(#${uid}-clip)`} opacity=".35" stroke="#fff" strokeWidth="3">
       {m.id==='wood_raw'?null:m.transparent?<><path d="m211 185 66-67M239 185l66-67" strokeWidth="9"/></>:<path d={`M${sx+10} ${sy+9}h${width-20}`} strokeWidth="4"/>}
      </g>

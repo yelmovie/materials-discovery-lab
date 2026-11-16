@@ -270,7 +270,7 @@ try:
                     if 'challenge' in VIEWS:
                         try:
                             dismiss_dialogs(prefix+'-challenge')
-                            page.locator('.learning-rail button').nth(1).click()
+                            page.locator('.learning-rail button[aria-label*="새 의뢰"]').click()
                             page.locator('.transfer-workspace').wait_for(state='visible')
                             page.evaluate('document.fonts.ready')
                             page.wait_for_timeout(80)

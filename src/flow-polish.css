@@ -1,0 +1,217 @@
+/* 2026-11-17 flow polish: one obvious action per step, readable cards over the painted backgrounds. */
+
+/* Labs: the scene always takes the space (the instruction row is hidden in live activities). */
+.app .live-activity .matter-lab.solid-lab,.app .live-activity .matter-lab.air-lab { grid-template-rows:minmax(0,1fr) auto; }
+
+/* Readable cards: the painting stays visible around them, never behind body text. */
+.app .tool-panel { background:rgba(255,253,245,.93); border-radius:20px; }
+.app .activity-footer>span { background:rgba(255,252,240,.95); }
+.app .choice { border-radius:14px; }
+
+/* Material cards sit on a rounded tray instead of floating over the window art. */
+.app .material-placement-stage .drag-tokens { align-self:center; background:rgba(255,250,236,.95); border:1px solid #d9cfa6; border-radius:18px; padding:8px; gap:6px; box-shadow:0 8px 22px rgba(40,58,40,.14); }
+.app .material-placement-stage .drag-token { border-radius:12px; }
+.app .drag-token-thumb { flex:none; width:34px; height:28px; object-fit:contain; filter:drop-shadow(0 2px 2px rgba(40,50,40,.25)); pointer-events:none; }
+.app .material-placement-stage .drop-slot { border-radius:14px; background:rgba(255,253,245,.95); }
+.app .drop-slot small { display:block; font-size:12px; line-height:1.2; color:#62705b; }
+.app .drop-slot.filled { background:#eef6df; border-color:#78a067; border-style:solid; }
+
+/* S03: the test starts on the scene itself. */
+.app .direct-experiment { position:relative; }
+.app .experiment-run-button { position:absolute; left:50%; bottom:16%; transform:translateX(-50%); z-index:4; min-height:52px; padding:10px 22px; border-radius:999px; font-size:18px; white-space:nowrap; box-shadow:0 10px 24px rgba(35,80,55,.3); animation:run-pulse 1.8s ease-in-out infinite; }
+@keyframes run-pulse { 50% { box-shadow:0 10px 24px rgba(35,80,55,.3),0 0 0 8px rgba(214,177,82,.28); } }
+[data-reduced=true] .app .experiment-run-button { animation:none; }
+.app .material-thumb { flex:none; width:30px; height:24px; object-fit:contain; margin-right:6px; vertical-align:middle; pointer-events:none; }
+.app .choice:has(.material-thumb) .activity-choice-label { display:flex; align-items:center; }
+.app .sample-feedback { margin:4px 0 6px; padding:6px 9px; border-radius:12px; font-size:15px; line-height:1.3; }
+.app .sample-feedback.success { background:#e3f1d6; color:#2f5e35; }
+.app .sample-feedback.retry { background:#fff1d9; color:#7a5320; }
+
+/* Evidence, needs and progress shown as cards instead of dropdowns. */
+.app .evidence-card { margin:6px 0; padding:8px 10px; border-radius:14px; background:#f3f8ea; border:1px solid #c5d7b2; }
+.app .evidence-card small { display:block; font-size:12px; font-weight:700; color:#4f7247; margin-bottom:2px; }
+.app .evidence-card p { margin:0; font-size:15px; line-height:1.35; color:#2e4a35; }
+.app .evidence-card.need { background:#fff6dd; border-color:#e1c886; }
+.app .evidence-card.need small { color:#8a6420; }
+.app .evidence-card.missing { background:#fff0e6; border-color:#e5b99a; color:#7a4a2a; font-size:14px; }
+.app .design-evidence-pair { display:grid; gap:4px; }
+.app .property-choices { display:grid; gap:6px; margin-top:6px; }
+.app .property-choices>small { font-size:14px; font-weight:700; color:#3d5f45; }
+.app .property-choices .choice { margin:0; min-height:44px; padding:6px 10px; font-size:15px; }
+.app .mini-progress { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.app .mini-progress span { padding:3px 9px; border-radius:999px; font-size:13px; background:#eef0e4; color:#66705f; }
+.app .mini-progress span.done { background:#dcebc9; color:#2f5e35; font-weight:700; }
+.app .record-status { margin:6px 0 0; padding:6px 9px; border-radius:12px; font-size:15px; background:#f2f6e8; color:#3a5c40; }
+.app .part-observation-card { position:relative; border-radius:16px; }
+.app .part-observation-card.is-recorded { background:#eef6e3; border-color:#9cbf86; }
+.app .part-observation-card h4 small { font-weight:400; font-size:12px; color:#6a7564; }
+.app .record-stamp { position:absolute; right:8px; top:6px; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; background:#5a8d51; transform:rotate(4deg); }
+
+/* S05·S06: the prediction is the first card in the panel. */
+.app .prediction-inline { border:2px solid #d8b764; background:rgba(255,249,231,.96); }
+.app .prediction-inline h3 { font-size:clamp(18px,1.4vw,24px); border:0; padding-bottom:4px; margin:2px 0 8px; }
+.app .prediction-inline .stack { gap:8px; }
+.app .prediction-inline .choice { margin:0; min-height:48px; }
+.app .prediction-launch>.prediction-summary { flex:1 1 auto; min-width:0; text-align:left; }
+
+/* New requests: picture + instant feedback. */
+.app .challenge-heading { align-items:center; }
+.app .challenge-art { flex:none; width:clamp(84px,9vw,150px); aspect-ratio:3/2; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(40,60,40,.18)); }
+.app .challenge-feedback { border-radius:14px; padding:8px 12px; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; }
+.app .challenge-feedback.success { background:#e3f1d6; color:#2a5a32; border:1px solid #9cc487; }
+.app .challenge-feedback.retry { background:#fff1d9; color:#74501c; border:1px solid #e3c07d; }
+.app .challenge-skip { min-height:36px; padding:4px 12px; border-radius:999px; font-size:14px; margin-left:auto; }
+
+/* Core: parts light up as the lever charges. */
+.app .core-links { list-style:none; margin:0 0 8px; padding:0; display:grid; gap:6px; }
+.app .core-links li { display:grid; grid-template-columns:1fr auto; gap:2px 8px; padding:8px 12px; border-radius:14px; background:#f4f3ea; border:1px solid #d6d5c4; transition:background .3s,border-color .3s; }
+.app .core-links li span { grid-column:1; font-size:14px; color:#5d6a5a; }
+.app .core-links li i { grid-column:2; grid-row:1/3; align-self:center; font-style:normal; font-weight:700; color:#8a9284; }
+.app .core-links li.lit { background:#e3f2d4; border-color:#87b373; }
+.app .core-links li.lit i { color:#2f6a37; }
+
+@media (max-height:520px) {
+ .app .experiment-run-button { min-height:44px; padding:6px 14px; font-size:15px; bottom:10%; }
+ .app .challenge-art { width:64px; }
+ .app .evidence-card { padding:5px 8px; margin:4px 0; }
+ .app .evidence-card p { font-size:13px; }
+ .app .mini-progress { margin-top:4px; }
+ .app .prediction-inline .choice { min-height:44px; }
+}
+.app .experiment-eyebrow { display:inline-flex; align-items:center; gap:6px; }
+.app .experiment-specimen { width:38px; height:30px; object-fit:contain; filter:drop-shadow(0 2px 3px rgba(40,50,40,.25)); }
+/* The tall vessel's glass art extends past its box; keep its rim inside the lab. */
+.app .matter-lab .vessel-2 .vessel-outline { height:calc((100% - var(--vessel-label-space) - 8px) * .86); }
+@media (max-height:520px) {
+ .app .material-placement-stage .drag-tokens { padding:3px; gap:3px; border-radius:12px; align-self:stretch; align-content:center; }
+ .app .material-placement-stage .drag-token-thumb { width:22px; height:18px; }
+ .app .selected-material .material-thumb { width:22px; height:18px; }
+}
+.app .challenge-options .choice.is-wrong { background:#fff1df; border-color:#d9a25c; color:#6f4a1b; }
+@media (min-height:700px) { .app .challenge-art { width:clamp(110px,13vw,210px); } }
+@media (max-height:520px) {
+ .app .material-placement-stage .drag-tokens { padding:2px; gap:2px; border-width:0; box-shadow:none; background:rgba(255,250,236,.85); }
+ .app .material-placement-stage .drop-slot small { display:none; }
+ .app .challenge-art { display:none; }
+}
+@media (max-width:600px) {
+ .app .material-placement-stage .drag-token-thumb { display:none; }
+ .app .material-placement-stage .drag-tokens { padding:3px; }
+}
+@media (max-height:520px) {
+ .app .assignment-stage .selected-material,.app .assignment-stage .mini-progress,.app .property-choices>small { display:none; }
+ .app .umbrella-stage .mini-progress { display:none; }
+}
+/* Painted workbench behind the lab scenes instead of a flat cream box. */
+.app .experiment-stage.sample-simulation,.app .experiment-stage.liquid-simulation,.app .matter-lab.solid-lab,.app .matter-lab.air-lab {
+ background:linear-gradient(rgba(255,251,240,.35),rgba(255,251,240,0) 40%),url(/assets/generated/lab-bench.webp) center bottom/cover no-repeat;
+}
+.app .experiment-stage.sample-simulation .experiment-stage-heading { background:rgba(255,252,242,.88); border-radius:999px; padding:4px 12px; width:fit-content; margin:6px auto 0; }
+.app .experiment-stage .experiment-outline-key { background:rgba(255,252,242,.92); border-radius:999px; padding:3px 12px; width:fit-content; margin-left:auto; margin-right:auto; color:#3c5640; }
+.app .matter-lab .lab-metric { background:rgba(255,252,242,.92); }
+@media (max-height:520px) {
+ .app .material-placement-stage .drag-tokens { padding:0; background:transparent; }
+ .app .property-choices { grid-template-columns:1fr 1fr; gap:4px; }
+ .app .property-choices .choice { font-size:13px; padding:4px 6px; }
+ .app .design-evidence-pair .evidence-card p,.app .evidence-card.need small { display:none; }
+ .app .design-evidence-pair { grid-template-columns:1fr 1fr; }
+}
+/* Four-step rail (with the maker step) stays on one row. */
+.app .learning-rail:has(>button:nth-of-type(4)) { grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); }
+@media (max-width:600px) { .app .learning-rail:has(>button:nth-of-type(4)) button:not([aria-current]) .rail-label { display:none; } }
+/* S10 test rows: full touch height; the result button never squeezes the test name. */
+.app .invention-stage .compact-test-row>button,.app .invention-stage .compact-test-row>.stage-info-button { min-height:44px; }
+
+/* Very short screens: the failing test's reason is read in the hint bar instead of a dialog. */
+@media (max-height:520px),(max-width:600px) { .app .invention-stage .compact-test-row>.stage-info-button { display:none; } .app .invention-stage .compact-test-row>button { min-width:0; } }
+/* Hand-motion controls sit on the scene they act on. */
+.app .gesture-button.experiment-run-button { padding:6px 16px 6px 6px; border-radius:999px; font-size:inherit; white-space:normal; }
+.app .invention-stage .workspace { position:relative; }
+.app .compact-test-row>button[aria-pressed=true] { box-shadow:inset 0 0 0 2px #2f7a5e; }
+/* Umbrella parts glow as drop targets while a material card is dragged. */
+[data-dragging=true] .app .object-marker[data-drop-slot] { box-shadow:0 0 0 6px rgba(214,177,82,.55); transform:translate(-50%,-50%) scale(1.25)!important; }
+/* S09: the need is written on each drop slot; the panel repeats it only when slot notes are hidden. */
+@media (min-height:521px) { .app .invention-stage .evidence-card.need { display:none; } }
+/* Core: compact on short screens so the lever and hold button stay in view. */
+@media (max-height:520px) {
+ .app .core-panel h1 { font-size:20px; margin:0; }
+ .app .core-links { gap:3px; margin-bottom:4px; }
+ .app .core-links li { padding:3px 10px; }
+ .app .core-links li span { display:none; }
+}
+/* Painted material core: three sockets light up as the parts connect. */
+.app .painted-core { position:relative; aspect-ratio:600/660; height:auto; width:min(100%,300px); max-height:100%; margin:0 auto; display:block; }
+.app .painted-core .core-art { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 10px 18px rgba(30,60,50,.25)) saturate(calc(.75 + var(--charge,0) * .4)); }
+.app .painted-core::before { content:""; position:absolute; left:28%; right:28%; top:2%; height:42%; border-radius:50%; background:radial-gradient(#9ff5e3,transparent 70%); opacity:calc(var(--charge,0) * .9); pointer-events:none; }
+.app .core-socket { position:absolute; top:70%; width:12%; aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%); background:radial-gradient(#5a4a33,#2d2418); box-shadow:inset 0 2px 4px #0008; transition:background .3s,box-shadow .3s; }
+.app .core-socket.socket-0 { left:30%; } .app .core-socket.socket-1 { left:50%; } .app .core-socket.socket-2 { left:70%; }
+.app .core-socket.lit { background:radial-gradient(#e9fff8,#5fe0c4 55%,#1f8f78); box-shadow:0 0 18px #6ff0d2; }
+.app .painted-core>span { position:absolute; left:50%; bottom:2%; transform:translateX(-50%); padding:2px 12px; border-radius:999px; background:rgba(255,252,242,.92); font-weight:800; color:#2f6a4f; }
+@media (max-height:520px) { .app .painted-core { width:auto; height:100%; max-height:180px; } }
+/* Air lab: painted glass tank over the water. */
+.app .matter-lab .water-tank { border-color:transparent; background:transparent; box-shadow:none; }
+.app .matter-lab .water-tank::before { content:""; position:absolute; inset:-14% -2% -4%; background:url(/assets/generated/glass-tank.webp) center/100% 100% no-repeat; z-index:3; pointer-events:none; }
+
+/* ===== Design system pass (yelsam-design · game-screen exception: warm gold accents follow the painted art) ===== */
+.app {
+ --fs-display:clamp(26px,2.1vw,36px); --fs-title:clamp(21px,1.6vw,28px); --fs-body:clamp(16px,1.15vw,20px); --fs-label:clamp(13px,.95vw,16px); --fs-caption:clamp(12px,.85vw,14px);
+ --surface:#fffcf3; --surface-soft:#f6f3e6; --surface-line:#e2dcc4; --accent:#2f7a5e; --accent-strong:#1f5f48; --accent-gold:#d7a53c; --accent-gold-soft:#fbefcf; --ink-soft:#56685c;
+ --radius-card:20px; --radius-control:14px; --radius-pill:999px;
+ --shadow-pop:0 2px 0 rgba(255,255,255,.7) inset,0 24px 60px rgba(18,46,34,.28),0 6px 16px rgba(18,46,34,.12);
+ --dur-base:250ms; --dur-slow:400ms; --ease-out:cubic-bezier(.16,1,.3,1);
+}
+/* Popups: one shell, a warm header band, clear type steps, gentle entrance. */
+.app .modal { background:var(--surface); border:1px solid var(--surface-line); border-radius:28px; box-shadow:var(--shadow-pop); backdrop-filter:none; -webkit-backdrop-filter:none; overflow:hidden; }
+.app .modal::before { content:""; position:absolute; inset:0 0 auto; height:6px; background:linear-gradient(90deg,var(--accent),#5fae8c 45%,var(--accent-gold)); z-index:1; }
+.app .modal[open] { animation:pop-in var(--dur-slow) var(--ease-out); }
+.app .modal::backdrop,.app .modal-backdrop { background:rgba(16,40,30,.48); backdrop-filter:blur(3px); }
+@keyframes pop-in { from { opacity:0; transform:scale(.95) translateY(8px); } to { opacity:1; transform:none; } }
+[data-reduced=true] .app .modal[open] { animation:none; }
+@media (prefers-reduced-motion:reduce) { .app .modal[open] { animation:none; } }
+.app .modal .modal-content { padding:clamp(22px,2.2vw,36px) clamp(22px,2.4vw,40px) clamp(20px,2vw,32px); }
+.app .modal h2 { font-size:var(--fs-display); line-height:1.3; letter-spacing:-.01em; color:#1f3f36; margin:4px 0 16px; }
+.app .modal h3 { font-size:var(--fs-title); color:#24473c; margin:18px 0 8px; }
+.app .modal p { font-size:var(--fs-body); line-height:1.6; color:#2f4a40; }
+.app .modal .eyebrow { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:var(--radius-pill); background:var(--accent-gold-soft); color:#7a5617; font-size:var(--fs-label); font-weight:800; letter-spacing:.02em; margin-bottom:10px; }
+.app .modal-close { width:44px; height:44px; min-width:44px; min-height:44px; padding:10px; border-radius:50%; background:var(--surface-soft); border:1px solid var(--surface-line); box-shadow:none; top:16px; right:16px; transition:background var(--dur-base),transform var(--dur-base) var(--ease-out); }
+.app .modal-close:hover { background:#efe9d3; transform:rotate(90deg); }
+.app .modal .choice { min-height:52px; padding:10px 16px; font-size:var(--fs-body); border-radius:var(--radius-control); }
+.app .modal .primary,.app .modal .secondary { border-radius:var(--radius-control); font-size:var(--fs-title); }
+.app .modal .primary.full,.app .modal .secondary.full { min-height:56px; }
+/* Story: the character speaks from a bubble instead of floating text. */
+.app .modal-story .mission-dialogue { align-items:center; gap:18px; margin:8px 0 14px; }
+.app .modal-story .mission-dialogue img { width:clamp(96px,10vw,132px); max-height:150px; padding:8px; border-radius:50%; background:radial-gradient(circle at 50% 60%,#fff7df,#f3e6bf); box-shadow:inset 0 0 0 3px #fff,0 6px 16px rgba(60,60,30,.15); object-fit:contain; }
+.app .modal-story .mission-dialogue p { position:relative; padding:16px 18px; border-radius:18px; background:#fff; border:1px solid var(--surface-line); box-shadow:0 4px 12px rgba(40,60,40,.08); }
+.app .modal-story .mission-dialogue p::before { content:""; position:absolute; left:-9px; top:50%; width:16px; height:16px; background:#fff; border-left:1px solid var(--surface-line); border-bottom:1px solid var(--surface-line); transform:translateY(-50%) rotate(45deg); }
+.app .npc-voice { display:flex; align-items:center; gap:10px; margin:0 0 16px; color:var(--ink-soft); font-size:var(--fs-caption); }
+.app .npc-voice .secondary { min-height:44px; padding:6px 14px; border-radius:var(--radius-pill); font-size:var(--fs-label); }
+/* Settings: locked shortcuts read as hints, not broken buttons. */
+.app .settings-dialog .settings-shortcuts button:disabled { background:repeating-linear-gradient(135deg,var(--surface-soft) 0 10px,#f1ecdb 10px 20px); border:1px dashed var(--surface-line); color:#7d8a80; opacity:1; font-size:var(--fs-label); }
+.app .settings-dialog .settings-section { border-radius:var(--radius-control); }
+.app .settings-dialog .settings-section>summary { font-size:var(--fs-body); }
+.app .settings-dialog .setting-toggle { border-radius:var(--radius-control); }
+/* Concept film dialog keeps the same shell. */
+.app .concept-dialog .concept-header h2 { margin-bottom:8px; }
+/* Workspace cards share one corner radius and soft lift. */
+.app .workspace,.app .tool-panel { border-radius:var(--radius-card); }
+.app .activity-footer>.primary { border-radius:var(--radius-control); }
+.app .activity-heading h1 { letter-spacing:-.01em; }
+.app .settings-dialog .settings-shortcuts .full { font-size:var(--fs-body); }
+/* Home: one bold start button, readable secondary pills that never wrap mid-word. */
+.app .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px 10px; }
+.app .hero-actions .primary { white-space:nowrap; min-height:60px; padding:14px 26px; border-radius:18px; font-size:clamp(20px,1.6vw,26px); }
+.app .hero-actions .ghost { white-space:nowrap; min-height:48px; padding:10px 18px; border-radius:var(--radius-pill); background:rgba(255,252,240,.92); color:#24473c; border:1px solid rgba(255,255,255,.85); box-shadow:0 4px 12px rgba(20,50,35,.18); font-size:var(--fs-label); font-weight:800; backdrop-filter:none; }
+.app .hero-actions .ghost:hover { background:#fff; }
+.app .hero-actions .ghost:nth-child(4) { background:transparent; border-color:transparent; box-shadow:none; color:#fff8e3; text-decoration:underline; text-underline-offset:4px; text-shadow:0 1px 3px rgba(0,0,0,.45); padding:10px 8px; }
+/* S10: the hand-motion test control sits under the test list, never over the part markers. */
+.app .gesture-button.test-gesture { display:flex; width:100%; min-width:0; margin-top:10px; }
+@media (max-height:520px) { .app .gesture-button.test-gesture { margin-top:6px; } .app .gesture-button.test-gesture .gesture-text small { display:none; } }
+@media (max-height:400px) { .app .invention-stage:not(.material-placement-stage) .tool-panel>h3 { display:none; } .app .gesture-button.test-gesture { min-height:44px; } }
+@media (max-height:400px) { .app .invention-stage .compact-test-row>button { white-space:nowrap; font-size:13px; gap:0; padding:2px 3px; } .app .invention-stage .compact-test-row .test-name-short { white-space:nowrap; } }
+@media (max-height:520px) {
+ .app .core-links { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .app .core-links li { grid-template-columns:1fr; text-align:center; font-size:13px; }
+ .app .core-links li i { grid-row:auto; grid-column:1; font-size:12px; }
+ .app .core-panel .field { font-size:13px; margin:0; }
+ .app .core-panel>p { margin:2px 0; font-size:13px; }
+}
