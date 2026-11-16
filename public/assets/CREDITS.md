@@ -192,4 +192,5 @@ THE SOFTWARE.
 ## 학습 흐름 그림 · 2026-11-17
 
 - `generated/materials/`의 재료 시료 6종(나무·금속·유리·투명 플라스틱·불투명 플라스틱·고무)과 `generated/quests/`의 공방별 새 의뢰 그림 5장, 실험대 배경 `generated/lab-bench.webp`는 메인 키아트를 화풍 참조로 붙여 ChatGPT 구독의 Codex 내장 이미지 생성(GPT 이미지)으로 만들었다. 글자·인물은 넣지 않았다.
+- 엔딩 공방 장치 5종(`generated/workshops/`)과 주문 제작 소품(`generated/maker/`: 천 조각·바람개비·별 받침대·작업대·플라스틱 판·나무 받침)도 같은 방식으로 만들었다(원본 `workshops.png`, `maker-props.png`).
 - 원본 PNG는 `references/generated/ux-20261116/`, 자르기·WebP 변환은 `scripts/prepare-flow-art.mjs`로 다시 만들 수 있다. 상업 이용 근거(ChatGPT 요금제·이미지 약관)는 계정 기록과 함께 별도 보관이 필요하다.

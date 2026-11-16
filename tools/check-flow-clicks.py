@@ -116,6 +116,8 @@ def maker(page, screen, orders):
         tap(page.locator('.maker-choice-row', has_text=slot['label']).locator('button', has_text=choice['label']))
         tap(page.locator(f'.maker-socket[aria-label^="{slot["label"]} 자리"]'))
     tap(page.get_by_role('button', name=order['trial']))
+    page.locator('.maker-deliver').wait_for(timeout=6000)
+    page.screenshot(path=str(OUT / f'{screen}-maker.png'))
     tap(page.locator('.maker-deliver'), timeout=6000)
 
 
@@ -243,6 +245,7 @@ def main():
             page.screenshot(path=str(OUT / 'core.png'))
             page.wait_for_function('()=>location.hash.includes("ending")||location.hash.includes("certificate")', timeout=10000)
             if 'ending' in route(page):
+                page.wait_for_timeout(3600); page.screenshot(path=str(OUT / 'ending.png'))
                 tap(page.get_by_role('button', name=re.compile('연출 건너뛰기')))
             page.wait_for_selector('#certificate', timeout=10000)
             page.screenshot(path=str(OUT / 'certificate.png'))

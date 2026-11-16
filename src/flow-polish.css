@@ -215,3 +215,12 @@
  .app .core-panel .field { font-size:13px; margin:0; }
  .app .core-panel>p { margin:2px 0; font-size:13px; }
 }
+
+/* Ending: painted workshop machines switch on one by one. */
+.app .restored-buildings>div { align-items:center; text-align:center; }
+.app .restored-buildings .workshop-art { display:block; width:clamp(40px,9dvh,86px); height:clamp(40px,9dvh,86px); object-fit:contain; margin:0 auto 4px; filter:grayscale(.85) brightness(.95); transition:filter var(--dur-base,.25s) ease, transform var(--dur-base,.25s) ease; }
+.app .restored-buildings>div.lit .workshop-art { filter:drop-shadow(0 0 10px rgb(255 214 120 / .85)); transform:translateY(-2px); }
+@media (max-height:420px) { .app .restored-buildings .workshop-art { width:clamp(30px,8dvh,44px); height:clamp(30px,8dvh,44px); margin-bottom:1px; } }
+@media (prefers-reduced-motion:reduce) { .app .restored-buildings .workshop-art { transition:none; } }
+/* Short landscape phones: there is no room for the box picture, so keep the material cards whole instead of squeezing them under the skip button. */
+@media (max-height:420px) { .app .final-activity .ending-panel .object-area.learning-object { flex:0 0 auto; } .app .final-activity .ending-panel .object-canvas { display:none; } }

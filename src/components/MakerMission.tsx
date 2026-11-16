@@ -57,11 +57,11 @@ function Bench({order}:{order:MakerOrder}){
     {phase!=='build'&&<div className="maker-trial" aria-hidden="true">{running?'⋮':pass?'✓':'↻'}</div>}
     <div className="maker-sockets">{order.slots.map(s=>{
      const part=s.choices.find(c=>c.id===parts[s.id]),result=results.find(r=>r.id===s.id)!;
-     return <button key={s.id} className={`maker-socket ${part?'fitted':''} ${phase==='result'&&!result.pass?'needs-fix':''}`} disabled={running} data-next-action={selected?.slot===s.id||undefined} aria-label={`${s.label} 자리${part?': '+part.label:''}`} onClick={()=>{if(selected?.slot===s.id)place(s.id,selected.id);else{setSelected(null);setLookingAt(s.id);}}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const [slot,id]=e.dataTransfer.getData('text/plain').split(':');if(slot===s.id)place(slot,id);}}><b>{s.label}</b><i style={{background:part?.color??'transparent'}} aria-hidden="true">{phase==='result'&&!result.pass?'!':part?'✓':'＋'}</i><span>{part?.label??'재료 놓기'}</span></button>;
+     return <button key={s.id} className={`maker-socket ${part?'fitted':''} ${phase==='result'&&!result.pass?'needs-fix':''}`} disabled={running} data-next-action={selected?.slot===s.id||undefined} aria-label={`${s.label} 자리${part?': '+part.label:''}`} onClick={()=>{if(selected?.slot===s.id)place(s.id,selected.id);else{setSelected(null);setLookingAt(s.id);}}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const [slot,id]=e.dataTransfer.getData('text/plain').split(':');if(slot===s.id)place(slot,id);}}><b>{s.label}</b><i style={part?chipStyle(s.id,part.id,part.color):{background:'transparent'}} aria-hidden="true">{phase==='result'&&!result.pass?'!':part?'✓':'＋'}</i><span>{part?.label??'재료 놓기'}</span></button>;
     })}</div>
    </div>
    <div className="maker-controls">
-    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row" data-choose={!running&&!selected&&nextChoice?.id===s.id||undefined}><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>{setLookingAt(s.id);setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id});}}><i style={{background:c.color}} aria-hidden="true"/><span>{c.label}</span></button>)}</div></fieldset>)}</div>
+    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row" data-choose={!running&&!selected&&nextChoice?.id===s.id||undefined}><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>{setLookingAt(s.id);setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id});}}><i style={chipStyle(s.id,c.id,c.color)} aria-hidden="true"/><span>{c.label}</span></button>)}</div></fieldset>)}</div>
     <div className="maker-actions"><button className="primary" disabled={!ready||running||!!selected} aria-describedby={guideId} data-next-action={ready&&phase==='build'&&!selected&&!lookingAt||undefined} onClick={run}>{running?'시험 중…':order.trial}</button><button className="secondary" disabled={running||(!selected&&missing===order.slots.length)} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);setLookingAt(null);}}>부품 비우기</button></div>
    </div>
   </div>
@@ -73,18 +73,25 @@ function Bench({order}:{order:MakerOrder}){
  </section>;
 }
 
+// Painted swatches for choices that are real materials. Neutral A/B choices (cups, tubes) stay plain so the picture does not give the answer away.
+const choiceArt:Record<string,string>={'roof:cloth':'/assets/generated/maker/cloth.webp','roof:plastic':'/assets/generated/maker/plastic-sheet.webp','support:rubber':'/assets/generated/materials/rubber_soft.webp','support:metal':'/assets/generated/materials/metal_plate.webp','tray:solid':'/assets/generated/materials/wood_raw.webp'};
+const chipStyle=(slot:string,id:string,color:string)=>{const src=choiceArt[`${slot}:${id}`];return src?{background:`${color} url(${src}) center/cover`}:{background:color};};
+
 function Apparatus({order,parts,active}:{order:MakerOrder;parts:Record<string,string>;active:boolean}){
+ const art=(slot:string)=>choiceArt[`${slot}:${parts[slot]}`];
  const color=(slot:string)=>order.slots.find(s=>s.id===slot)?.choices.find(c=>c.id===parts[slot])?.color??'#eff7ed';
  const star='M250 125 L259 147 L283 149 L265 165 L270 189 L250 177 L230 189 L235 165 L217 149 L241 147Z';
  if(order.screen==='S02'){
   const bends=active&&parts.support==='rubber',leaks=active&&parts.roof==='cloth';
   return <svg className="maker-apparatus" viewBox="0 0 500 260" role="img" aria-label="지붕 아래 전시품과 지붕을 받치는 막대">
    <ellipse cx="250" cy="230" rx="187" ry="16" fill="#557d5a" opacity=".16"/>
-   <path d="M86 223 H414 L396 240 H104Z" fill="#e0cba7" stroke="#8a7657" strokeWidth="4"/>
+   <defs>{(['roof','support'] as const).map(slot=>art(slot)&&<pattern key={slot} id={`maker-tex-${slot}`} patternUnits="userSpaceOnUse" width="500" height="260"><image href={art(slot)} width="500" height="260" preserveAspectRatio="xMidYMid slice"/></pattern>)}</defs>
+   <image href="/assets/generated/maker/plank.webp" x="80" y="204" width="340" height="52" preserveAspectRatio="none"/>
    <path d={bends?'M151 222 Q168 171 140 114 M351 222 Q370 169 339 137':'M151 222 V113 M351 222 V113'} fill="none" stroke="#54706b" strokeWidth="18" strokeLinecap="round"/>
    <path d={bends?'M151 222 Q168 171 140 114 M351 222 Q370 169 339 137':'M151 222 V113 M351 222 V113'} fill="none" stroke={color('support')} strokeWidth="12" strokeLinecap="round"/>
-   <path d="M105 103 L250 49 L395 103 L387 119 H113Z" fill={color('roof')} stroke="#54706b" strokeWidth="6" strokeLinejoin="round" transform={bends?'rotate(7 250 113)':undefined}/>
-   <path d={star} fill="#f1c958" stroke="#b3924d" strokeWidth="3" transform="translate(0 23)"/>
+   {art('support')&&<path d={bends?'M151 222 Q168 171 140 114 M351 222 Q370 169 339 137':'M151 222 V113 M351 222 V113'} fill="none" stroke="url(#maker-tex-support)" strokeWidth="12" strokeLinecap="round" opacity=".85"/>}
+   <path d="M105 103 L250 49 L395 103 L387 119 H113Z" fill={art('roof')?'url(#maker-tex-roof)':color('roof')} stroke="#54706b" strokeWidth="6" strokeLinejoin="round" transform={bends?'rotate(7 250 113)':undefined}/>
+   <image href="/assets/generated/maker/star-pedestal.webp" x="212" y="132" width="76" height="86"/>
    {active&&<><path className="maker-flow-line" d="M155 5 V80 M219 0 V58 M284 0 V60 M349 5 V83" stroke="#458cb5" strokeWidth="5" strokeLinecap="round" strokeDasharray="11 15"/>{leaks?<><path className="maker-flow-line" d="M215 121 V219 M285 121 V219" stroke="#4faed8" strokeWidth="6" strokeDasharray="8 17"/><ellipse cx="250" cy="224" rx="54" ry="6" fill="#65badb" opacity=".7"/></>:<path className="maker-flow-line" d="M112 122 V195 M389 122 V195" stroke="#4faed8" strokeWidth="5" strokeDasharray="8 17"/>}</>}
   </svg>;
  }
@@ -92,7 +99,7 @@ function Apparatus({order,parts,active}:{order:MakerOrder;parts:Record<string,st
   const leaks=active&&parts.cup==='hole',plate=parts.tray!=='liquid';
   return <svg className="maker-apparatus" viewBox="0 0 500 260" role="img" aria-label="받침 위에 놓인 투명한 물컵과 물이 새는 자리">
    <ellipse cx="250" cy="230" rx="172" ry="16" fill="#557d5a" opacity=".16"/>
-   {plate?<><path d="M96 220 H404 L389 238 H111Z" fill={color('tray')} stroke="#957551" strokeWidth="4"/><path d="M194 189 H221 V220 H194Z M279 189 H306 V220 H279Z" fill={color('tray')} stroke="#957551" strokeWidth="4"/></>:<path d="M120 226 Q159 213 216 220 Q269 217 326 221 Q355 214 383 226 Q320 246 250 236 Q175 246 120 226Z" fill="#71c6e5" stroke="#4597bf" strokeWidth="3"/>}
+   {plate?<image href="/assets/generated/maker/tray.webp" x="110" y="176" width="280" height="66" preserveAspectRatio="none" opacity={parts.tray?1:.42}/>:<path d="M120 226 Q159 213 216 220 Q269 217 326 221 Q355 214 383 226 Q320 246 250 236 Q175 246 120 226Z" fill="#71c6e5" stroke="#4597bf" strokeWidth="3"/>}
    {parts.cup&&<path d={leaks?'M205 151 Q250 145 295 151 V177 Q250 192 205 177Z':'M205 101 Q250 95 295 101 V177 Q250 192 205 177Z'} fill="#66bedf"/>}
    <image href="/assets/generated/lab-glass.webp" x="194" y="30" width="112" height="160" opacity={parts.cup?1:.42}/>
    {parts.cup==='hole'&&<ellipse cx="250" cy="186" rx="5" ry="2" fill="#477478"/>}
@@ -112,8 +119,7 @@ function Apparatus({order,parts,active}:{order:MakerOrder;parts:Record<string,st
    {active&&<path className="maker-flow-line" d={flow} fill="none" stroke="white" strokeWidth="5" strokeLinecap="round" strokeDasharray="5 13"/>}
    <path d="M370 115 V226" stroke="#597e79" strokeWidth="9"/>
    <g className={spin?'maker-spin':''} style={{transformOrigin:'370px 100px'}}>
-    <path d="M370 100 Q310 30 370 30 Q410 30 370 100 Q440 40 440 100 Q440 140 370 100 Q430 170 370 170 Q330 170 370 100 Q300 160 300 100 Q300 60 370 100" fill="#f3ce72" stroke="#a18857" strokeWidth="3"/>
-    <circle cx="370" cy="100" r="12" fill="#597e79"/>
+    <image href="/assets/generated/maker/pinwheel.webp" x="296" y="26" width="148" height="148"/>
    </g>
    {spin&&<path d="M417 49 Q437 63 441 81 M416 151 Q434 142 440 128" fill="none" stroke="#678c83" strokeWidth="4" strokeLinecap="round"/>}
   </svg>;
