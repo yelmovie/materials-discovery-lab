@@ -11,7 +11,7 @@ import {Modal} from './components/Modal';
 import {ConceptVideo} from './components/ConceptVideo';
 import {SettingsDialog} from './components/SettingsDialog';
 import {worldDestinations,type MapDirection,type MapPoint} from './domain/worldMap';
-import {startAudio,updateAudio,clickSound,stopAudio} from './services/audio';
+import {startAudio,updateAudio,clickSound,stopAudio,setMusic} from './services/audio';
 import {registerOffline} from './services/offline';
 let worldModule:Promise<typeof import('./game/WorldCanvas')>|undefined;
 function loadWorld(){
@@ -96,6 +96,7 @@ export default function App(){
  function navigate(next:Route,nextPhase:Phase='activity'){history.current.push({route,phase});dispatch({type:'navigate',route:next,phase:nextPhase});setModal(null);clickSound();}
  function back(){if(modal){setModal(null);return;}const previous=history.current.pop();if(previous&&(demo||canAccess(save,previous.route,previous.phase)))dispatch({type:'navigate',...previous});else if(route==='world')dispatch({type:'navigate',route:'home'});else if(screen)dispatch({type:'navigate',route:'world'});}
  useEffect(()=>updateAudio(save.settings),[save.settings]);
+ useEffect(()=>setMusic(phase==='ending'||phase==='certificate'?'finale':'main'),[phase]);
  useEffect(()=>{document.addEventListener('pointerdown',startAudio,{once:true});document.addEventListener('keydown',startAudio,{once:true});return()=>{document.removeEventListener('pointerdown',startAudio);document.removeEventListener('keydown',startAudio);stopAudio();};},[]);
  useEffect(()=>{document.documentElement.dataset.reduced=String(save.settings.reducedMotion);},[save.settings.reducedMotion]);
  useEffect(()=>{

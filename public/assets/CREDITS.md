@@ -15,7 +15,7 @@
 | 신규 생성 이미지5 | 지도·연구원·모루·우산·보관함 | OpenAI image generation, 2026-10-22, generated/manifest.json | 생성 계정·요금제·상업 이용 근거 별도 보관 필요 |
 | 메인 키아트1 | generated/title-keyart.webp (토리·모루·공방 마을) | Higgsfield GPT Image 2.5, 2026-10-29, 토리·모루 시트와 지도 그림을 참조로 생성. 원본 references/generated/title-keyart/ | 생성 계정·요금제·상업 이용 근거 별도 보관 필요 |
 | 지도 걷기 시트2 | generated/walk 연구원·모루 4방향 프레임32 | Canva 이미지 생성, 2026-11-07, 기존 researcher·companion을 참조로 생성. 원본 references/generated/walk, 자르기 scripts/prepare-walk-sprites.mjs | Canva 계정 요금제·AI 생성물 이용 조건 별도 보관 필요 |
-| 합성 BGM | src/services/audio.ts | Web Audio 코드에서 직접 합성 | 외부 음악 파일 사용 없음 |
+| 배경음 2곡 (Suno 생성) | audio/bgm/main-theme.mp3 (시작·지도·활동 반복), audio/bgm/finale.mp3 (엔딩·인증서) | 2026-11-17 사용자가 Suno로 생성해 제공. 프롬프트는 docs/SUNO-BGM-PROMPTS.md | 원본은 references/suno 보관. 상업 이용 근거(생성 당시 Suno 유료 요금제) 확인 필요 |
 | Kenney Interface Sounds 1.0 | 선택·놓기·발견·힌트·도구 등 효과음 8종 | 공식 사이트 CC0 표시 및 다운로드 ZIP License.txt 대조 | audio/Kenney-CC0.txt 원문·sources.json 매핑 보존 |
 | 개념 모션 영상 10개 (2026-11-09 교체) | 활동 완료·다시 보기 | HyperFrames 0.9.26(오픈소스 CLI, 로컬 렌더)로 직접 만든 HTML 장면 → FFmpeg. 게임 안 그림(모루·NPC4·우산·보관함·나무 시료)과 Jua 글꼴을 재사용, 새 생성 이미지·음원 없음. 애니메이션 라이브러리 GSAP 3.15.0(GreenSock Standard License, 제작 소스에만 포함, 앱 번들에는 없음) | films/concept-clips(소스·SPEC·REVIEW), concepts/manifest.json |
 | SVG 공통 아이콘 | src/components/Icon.tsx | 프로젝트 코드의 직접 작성 SVG | 별도 유료 아이콘 팩 없음 |
