@@ -94,7 +94,7 @@ export function NpcDialogue({npc,name,lines,kind,muted,reducedMotion,children,de
         <span className="workshop-visual" aria-hidden="true">{visible}</span>
       </button>
       <span className="workshop-readable" role="status">{text}</span>
-      <div className="workshop-footer"><button className="secondary" onClick={listen} disabled={muted} aria-pressed={playing}>{playing?'목소리 멈추기':'목소리 듣기'}</button><span className="workshop-page">{kind==='mission'?`${index+1} / ${lines.length}`:'발견 완료'}</span><div className="workshop-actions">{index<lines.length-1?<button className="primary" onClick={advance}>{visible!==text?'대사 모두 보기':'이야기 계속'} ▾</button>:children}</div></div>
+      <div className="workshop-footer"><button className="secondary" onClick={listen} disabled={muted} aria-pressed={playing}>{playing?'목소리 멈추기':'목소리 듣기'}</button><span className="workshop-page">{kind==='mission'?`${index+1} / ${lines.length}`:'발견 완료'}</span><div className="workshop-actions">{kind==='mission'&&index<lines.length-1&&<button className="text-action" onClick={advance}>{visible!==text?'대사 모두 보기':'이야기 더 듣기'} ▾</button>}{kind==='mission'||index>=lines.length-1?children:<button className="primary" onClick={advance}>{visible!==text?'대사 모두 보기':'이야기 계속'} ▾</button>}</div></div>
       {message&&<p className="workshop-message" role="status">{message}</p>}
     </section>
   </div>;

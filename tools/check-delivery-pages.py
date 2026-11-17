@@ -143,7 +143,7 @@ with sync_playwright() as p:
             for i in range(3):
                 where=prefix+f'-story-{i+1}'
                 capture(where)
-                if i<2:page.get_by_role('button',name=re.compile(r'^이야기 계속 듣기')).click()
+                if i<2:page.get_by_role('button',name=re.compile(r'^이야기 더 듣기')).click()
             page.get_by_role('button',name=re.compile(r'^모루와 공방으로 출발!')).click()
             where=prefix+'-world'
             page.locator('.app.route-world').wait_for();wait_world();capture(where)

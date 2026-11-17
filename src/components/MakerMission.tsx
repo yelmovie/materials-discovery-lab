@@ -1,4 +1,4 @@
-import {useEffect,useId,useRef,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {makerOrders,evaluateOrder,type MakerOrder} from '../domain/maker';
 import {canCompleteInvestigation,type Screen} from '../domain/model';
 import {useGame} from '../state/GameContext';
@@ -6,13 +6,14 @@ import {playSound} from '../services/audio';
 import {Modal} from './Modal';
 import './maker-mission.css';
 
-export function MakerMission({screen}:{screen:string}){
+type Guide=(text:string,focus?:string)=>void;
+export function MakerMission({screen,onGuide}:{screen:string;onGuide?:Guide}){
  const order=makerOrders.find(o=>o.screen===screen);
- return order?<Bench key={screen} order={order}/>:null;
+ return order?<Bench key={screen} order={order} onGuide={onGuide}/>:null;
 }
 
-function Bench({order}:{order:MakerOrder}){
- const {save,dispatch}=useGame(),old=save.deliveries?.[order.screen],guideId=useId();
+function Bench({order,onGuide}:{order:MakerOrder;onGuide?:Guide}){
+ const {save,dispatch}=useGame(),old=save.deliveries?.[order.screen];
  const [parts,setParts]=useState<Record<string,string>>(old?.parts??{});
  const [selected,setSelected]=useState<{slot:string;id:string}|null>(null);
  const [lookingAt,setLookingAt]=useState<string|null>(null);
@@ -24,9 +25,9 @@ function Bench({order}:{order:MakerOrder}){
  const canDeliver=canCompleteInvestigation(save,order.screen as Screen),pending=useRef(false);
  const chosenSlot=order.slots.find(s=>s.id===selected?.slot)?.label;
  const nextChoice=order.slots.find(s=>s.id===(lookingAt??(phase==='result'&&!pass?failed[0]?.id:undefined)))??order.slots.find(s=>!parts[s.id]);
- const guide=running?order.watch:chosenSlot?`그림 아래 ${chosenSlot} 자리를 눌러 끼워 봐.`:nextChoice?`${nextChoice.label}에 쓸 재료를 먼저 골라 봐.`:order.watch;
- const briefGuide=running?'그림의 변화를 봐':chosenSlot?`${chosenSlot} 자리 누르기`:nextChoice?`${nextChoice.label} 재료 고르기`:'시험 버튼 누르기';
- const success=delivered?'주민에게 전달했어! 이제 새 의뢰에서 써 봐.':order.success;
+ // One instruction for the whole bench; it is shown in the activity footer's single guide row.
+ const guide:{text:string;focus?:string}=running?{text:order.watch}:chosenSlot?{text:`그림 아래 ${chosenSlot} 자리를 눌러 끼워 봐.`,focus:`${chosenSlot} 자리`}:phase==='result'&&pass&&!lookingAt?(delivered?{text:'주민에게 전달했어! 이제 새 의뢰에서 써 봐.',focus:'새 의뢰'}:!canDeliver?{text:`${order.success} 탐구 기록을 먼저 완성해 줘.`}:{text:`${order.success} 「주민에게 전달하기」를 눌러.`,focus:'주민에게 전달하기'}):phase==='result'&&!pass&&!lookingAt&&nextChoice?{text:`결과를 읽고 ${nextChoice.label} 재료를 바꿔 봐.`,focus:nextChoice.label}:nextChoice?{text:`${nextChoice.label}에 쓸 재료를 먼저 골라 봐.`,focus:nextChoice.label}:{text:`부품을 다 끼웠어. 「${order.trial}」을 눌러 봐.`,focus:order.trial};
+ useEffect(()=>{onGuide?.(guide.text,guide.focus);},[guide.text,guide.focus,onGuide]);
  useEffect(()=>{
   if(!running)return;
   const timer=setTimeout(()=>{setPhase('result');pending.current=false;playSound(pass?'success':'retry');},save.settings.reducedMotion?450:1600);
@@ -48,7 +49,7 @@ function Bench({order}:{order:MakerOrder}){
  return <section className="maker-mission" aria-label="주문 제작 작업대">
   <header className="maker-order">
    <img src={order.npc==='moru'?'/assets/generated/companion.webp':`/assets/characters/${order.npc}.webp`} alt=""/>
-   <div><small>{delivered?'납품 완료':'공방 제작 의뢰'}</small><h2>{order.title}</h2><p>{order.request}</p></div>
+   <h2>{order.title}{delivered&&<span className="maker-delivered-mark"> · 납품 ✓</span>}</h2>
    <button className="maker-condition-button" onClick={()=>setDetail('conditions')}>시험 조건</button>
   </header>
   <div className="maker-layout">
@@ -57,19 +58,15 @@ function Bench({order}:{order:MakerOrder}){
     {phase!=='build'&&<div className="maker-trial" aria-hidden="true">{running?'⋮':pass?'✓':'↻'}</div>}
     <div className="maker-sockets">{order.slots.map(s=>{
      const part=s.choices.find(c=>c.id===parts[s.id]),result=results.find(r=>r.id===s.id)!;
-     return <button key={s.id} className={`maker-socket ${part?'fitted':''} ${phase==='result'&&!result.pass?'needs-fix':''}`} disabled={running} data-next-action={selected?.slot===s.id||undefined} aria-label={`${s.label} 자리${part?': '+part.label:''}`} onClick={()=>{if(selected?.slot===s.id)place(s.id,selected.id);else{setSelected(null);setLookingAt(s.id);}}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const [slot,id]=e.dataTransfer.getData('text/plain').split(':');if(slot===s.id)place(slot,id);}}><b>{s.label}</b><i style={part?chipStyle(s.id,part.id,part.color):{background:'transparent'}} aria-hidden="true">{phase==='result'&&!result.pass?'!':part?'✓':'＋'}</i><span>{part?.label??'재료 놓기'}</span></button>;
+     return <button key={s.id} className={`maker-socket ${part?'fitted':''} ${phase==='result'&&!result.pass?'needs-fix':''}`} disabled={running} data-next-action={selected?.slot===s.id||undefined} aria-label={`${s.label} 자리${part?': '+part.label:''}`} onClick={()=>{if(selected?.slot===s.id)place(s.id,selected.id);else{setSelected(null);setLookingAt(s.id);}}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const [slot,id]=e.dataTransfer.getData('text/plain').split(':');if(slot===s.id)place(slot,id);}}><b>{s.label}</b><i style={part?chipStyle(s.id,part.id,part.color):{background:'transparent'}} aria-hidden="true">{phase==='result'&&!result.pass?'!':part?'✓':'＋'}</i>{!part&&<span>재료 놓기</span>}</button>;
     })}</div>
    </div>
    <div className="maker-controls">
-    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row" data-choose={!running&&!selected&&nextChoice?.id===s.id||undefined}><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>{setLookingAt(s.id);setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id});}}><i style={chipStyle(s.id,c.id,c.color)} aria-hidden="true"/><span>{c.label}</span></button>)}</div></fieldset>)}</div>
-    <div className="maker-actions"><button className="primary" disabled={!ready||running||!!selected} aria-describedby={guideId} data-next-action={ready&&phase==='build'&&!selected&&!lookingAt||undefined} onClick={run}>{running?'시험 중…':order.trial}</button><button className="secondary" disabled={running||(!selected&&missing===order.slots.length)} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);setLookingAt(null);}}>부품 비우기</button></div>
+    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row" data-choose={!running&&!selected&&nextChoice?.id===s.id||undefined}><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} data-fitted={parts[s.id]===c.id||undefined} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>{setLookingAt(s.id);setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id});}}><i style={chipStyle(s.id,c.id,c.color)} aria-hidden="true"/><span>{c.label}</span>{parts[s.id]===c.id&&<b className="maker-fitted-mark" aria-label="끼움">✓</b>}</button>)}</div></fieldset>)}{phase==='result'&&!pass&&<div className="maker-fix-list" aria-live="polite">{resultDetails}<div className="maker-failure-compact"><p>고칠 부품 {failed.length}개</p><button onClick={()=>setDetail('result')}>원인 보기</button></div></div>}</div>
+    <div className="maker-actions">{phase==='result'&&pass?<button className="primary maker-deliver" disabled={delivered||!canDeliver||!!selected} data-next-action={!delivered&&canDeliver&&!selected&&!lookingAt||undefined} onClick={deliver}>{delivered?'주민에게 납품했어 ✓':!canDeliver?'먼저 탐구 기록을 완성해 줘':'주민에게 전달하기 →'}</button>:<button className="primary" disabled={!ready||running||!!selected} data-next-action={ready&&phase==='build'&&!selected&&!lookingAt||undefined} onClick={run}>{running?'시험 중…':order.trial}</button>}<button className="secondary" disabled={running||(!selected&&missing===order.slots.length)} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);setLookingAt(null);}}>부품 비우기</button></div>
    </div>
   </div>
-  <div className={`maker-feedback ${phase==='result'&&!pass?'has-failures':''}`}>
-   {phase==='result'?(pass?<><p id={guideId} className="maker-success" role="status"><span className="maker-success-full">{chosenSlot||lookingAt?guide:success}</span><span className="maker-success-short">{chosenSlot||lookingAt?briefGuide:delivered?'납품 완료':'시험 통과'}</span></p><button className="primary maker-deliver" disabled={delivered||!canDeliver||!!selected} data-next-action={!delivered&&canDeliver&&!selected&&!lookingAt||undefined} onClick={deliver}>{delivered?'주민에게 납품했어 ✓':!canDeliver?'먼저 탐구 기록을 완성해 줘':'주민에게 전달하기 →'}</button></>:<><div aria-live="polite">{resultDetails}</div><div className="maker-failure-compact"><p id={guideId} role="status">{chosenSlot||lookingAt?briefGuide:`고칠 부품 ${failed.length}개`}</p><button onClick={()=>setDetail('result')}>원인 보기</button></div></>):<p id={guideId} role="status"><span className="maker-success-full">{guide}</span><span className="maker-success-short">{briefGuide}</span></p>}
-  </div>
-  <small className="maker-note">{order.note}</small>
-  {detail&&<Modal title={detail==='conditions'?'의뢰와 시험 조건':'시험 결과'} className="maker-detail-dialog" onClose={()=>setDetail(null)}><h2>{detail==='conditions'?'의뢰와 시험 조건':'시험 결과'}</h2>{detail==='conditions'?<><p>{order.watch}</p><p>{order.note}</p></>:resultDetails}<button className="primary full" onClick={()=>setDetail(null)}>작업대로 돌아가기</button></Modal>}
+  {detail&&<Modal title={detail==='conditions'?'의뢰와 시험 조건':'시험 결과'} className="maker-detail-dialog" onClose={()=>setDetail(null)}><h2>{detail==='conditions'?'의뢰와 시험 조건':'시험 결과'}</h2>{detail==='conditions'?<><p>{order.request}</p><p>{order.watch}</p><p>{order.note}</p></>:resultDetails}<button className="primary full" onClick={()=>setDetail(null)}>작업대로 돌아가기</button></Modal>}
  </section>;
 }
 

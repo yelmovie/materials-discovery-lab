@@ -47,7 +47,7 @@ SCAN = next(n.value.value for n in ast.parse((ROOT/'tools/check-fit.py').read_te
             if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='SCAN' for t in n.targets))
 MAKER_SCAN = """() => {
  const issues=[],tol=2;
- for(const e of document.querySelectorAll('.maker-mission,.maker-layout,.maker-controls,.maker-fields,.maker-feedback')){
+ for(const e of document.querySelectorAll('.maker-mission,.maker-layout,.maker-controls,.maker-fields,.maker-fix-list')){
   if(!e.getClientRects().length)continue;
   const size={width:e.clientWidth,height:e.clientHeight,scrollWidth:e.scrollWidth,scrollHeight:e.scrollHeight,scrollTop:e.scrollTop,scrollLeft:e.scrollLeft};
   if(size.scrollHeight>size.height+tol||size.scrollWidth>size.width+tol||Math.abs(size.scrollTop)>tol||Math.abs(size.scrollLeft)>tol)
@@ -131,7 +131,7 @@ def run_case(page,case):
     select_parts(bench,case['screen'],False)
     trial(page,bench,case,'first')
     assert bench.locator('.maker-scene.trial-fail').count()==1
-    assert bench.locator('.maker-feedback .fix').count()>0
+    assert bench.locator('.maker-fix-list .fix').count()>0
     capture(page,case,'fail',keep=True)
     reasons=bench.get_by_role('button',name='원인 보기',exact=True)
     if reasons.is_visible():
@@ -142,7 +142,7 @@ def run_case(page,case):
     select_parts(bench,case['screen'],True)
     trial(page,bench,case,'repair')
     assert bench.locator('.maker-scene.trial-pass').count()==1
-    assert bench.locator('.maker-feedback .fix').count()==0
+    assert bench.locator('.maker-fix-list .fix').count()==0
     capture(page,case,'pass')
     bench.get_by_role('button',name='주민에게 전달하기',exact=False).tap()
     assert bench.get_by_role('button',name='주민에게 납품했어',exact=False).is_disabled()

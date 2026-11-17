@@ -83,7 +83,7 @@ with sync_playwright() as p:
   page.get_by_role('button',name='공방으로 출발!').click()
   for story in range(3):
    shot(page,f'{width}-story-{story+1}')
-   if story<2:page.get_by_role('button',name='이야기 계속 듣기').click()
+   if story<2:page.get_by_role('button',name='이야기 더 듣기').click()
   page.get_by_role('button',name='패널 닫기').click()
   page.get_by_role('button',name='설정',exact=True).click();page.get_by_role('button',name='나의 연구 수첩 펼치기').click();shot(page,f'{width}-notebook');page.get_by_role('button',name='패널 닫기').click()
   page.get_by_role('button',name='설정',exact=True).click();page.get_by_role('button',name='연구 기록 초기화',exact=True).click();shot(page,f'{width}-reset');page.get_by_role('button',name='취소',exact=True).click();page.get_by_role('button',name='닫기',exact=True).click()

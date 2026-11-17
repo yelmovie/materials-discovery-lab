@@ -55,12 +55,11 @@
 .app .prediction-launch>.prediction-summary { flex:1 1 auto; min-width:0; text-align:left; }
 
 /* New requests: picture + instant feedback. */
-.app .challenge-heading { align-items:center; }
+.app .challenge-heading { align-items:center; justify-content:flex-start; }
 .app .challenge-art { flex:none; width:clamp(84px,9vw,150px); aspect-ratio:3/2; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(40,60,40,.18)); }
 .app .challenge-feedback { border-radius:14px; padding:8px 12px; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; }
 .app .challenge-feedback.success { background:#e3f1d6; color:#2a5a32; border:1px solid #9cc487; }
 .app .challenge-feedback.retry { background:#fff1d9; color:#74501c; border:1px solid #e3c07d; }
-.app .challenge-skip { min-height:36px; padding:4px 12px; border-radius:999px; font-size:14px; margin-left:auto; }
 
 /* Core: parts light up as the lever charges. */
 .app .core-links { list-style:none; margin:0 0 8px; padding:0; display:grid; gap:6px; }
@@ -185,6 +184,10 @@
 .app .modal-story .mission-dialogue p::before { content:""; position:absolute; left:-9px; top:50%; width:16px; height:16px; background:#fff; border-left:1px solid var(--surface-line); border-bottom:1px solid var(--surface-line); transform:translateY(-50%) rotate(45deg); }
 .app .npc-voice { display:flex; align-items:center; gap:10px; margin:0 0 16px; color:var(--ink-soft); font-size:var(--fs-caption); }
 .app .npc-voice .secondary { min-height:44px; padding:6px 14px; border-radius:var(--radius-pill); font-size:var(--fs-label); }
+/* Quiet text action: the extra story pages sit under the one start button. */
+.app .text-action { min-height:44px; padding:6px 10px; background:transparent; border:0; box-shadow:none; color:var(--accent-strong); font-size:var(--fs-label); font-weight:700; text-decoration:underline; text-underline-offset:4px; }
+.app .modal-story .story-more { display:block; margin:8px auto 0; }
+.app .workshop-actions { align-items:center; }
 /* Settings: locked shortcuts read as hints, not broken buttons. */
 .app .settings-dialog .settings-shortcuts button:disabled { background:repeating-linear-gradient(135deg,var(--surface-soft) 0 10px,#f1ecdb 10px 20px); border:1px dashed var(--surface-line); color:#7d8a80; opacity:1; font-size:var(--fs-label); }
 .app .settings-dialog .settings-section { border-radius:var(--radius-control); }
