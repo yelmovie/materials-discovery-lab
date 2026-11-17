@@ -4,7 +4,7 @@
 
 ## 1. 기술과 파일 책임
 
-기존 Vite·TypeScript·React·Phaser를 유지하고 package-lock.json을 기준으로 설치한다. 새 상태 관리·UI·3D 라이브러리는 추가하지 않는다. Three.js 의존성이 남아 있더라도 이번 시설 화면은 생성 이미지와 2D 조작이 기준이다.
+기존 Vite·TypeScript·React·Phaser를 유지하고 package-lock.json을 기준으로 설치한다. 새 상태 관리·UI·3D 라이브러리는 추가하지 않는다. 이미 설치돼 있던 Three.js(0.180.0)는 2026-11-17부터 S03의 3D 시험 길에서만 쓴다. 학생이 3D 화면을 열 때 따로 불러오고, 걷기·점프의 충돌 계산은 three에 든 `Octree`·`Capsule`로 한다(물리 엔진 없음). 시료가 보여 주는 결과와 정답은 `model.ts`의 `resultFor`가 정하고, 기록은 기존 `observe` 동작으로 남긴다. 기존 S03 2D 화면은 대체 화면으로 남아 있다(WebGL 없음·불러오기 실패·움직임 줄이기·교사 시연·폰 높이 화면·탐구를 이미 마친 기록). 그 밖의 시설 화면은 생성 이미지와 2D 조작이 기준이다.
 
 | 경로 | 책임 |
 |---|---|
@@ -18,6 +18,9 @@
 | src/game/ExperimentCanvas.tsx | 시료·고체·액체·공기 2D 시각화 |
 | src/game/ObjectViewport.tsx | 우산·보관함 이미지·부품 선택 계약 |
 | src/domain/model.ts | 진행·완료·근거·설계·시험 판정·reducer |
+| src/domain/runStage.ts | S03 3D 시험 길의 구역·시료 위치·선택지(판정은 model.ts) |
+| src/game/run-stage/ | 3D 무대(scene)·세운 그림 캐릭터(character)·입력(input)·걷기·충돌·시료 반응(engine) |
+| src/screens/SampleRunStage.tsx | 3D 화면 위의 방향판·버튼·진행 표시·설명 고르기와 관찰 기록 연결 |
 | src/domain/challenges.ts | 적용 과제·정답·피드백 데이터 |
 | src/components/ChallengePanel.tsx | 적용 과제 단계·입력·피드백 |
 | src/state/GameContext.tsx | 학생과 메모리 시연 상태 분리 |
@@ -45,7 +48,7 @@ React Context+reducer를 단일 학습 상태로 쓴다. 렌더러는 명령만 
 
 ## 3. 지도와 입력
 
-래스터 2.5D 픽셀 배경 위에 스프라이트와 DOM 목적지 버튼을 배치한다. 실제 3D 카메라는 쓰지 않는다. 배경 크기와 공방 입구·길·초기 위치의 좌표계를 맞추며 그림을 교체하면 입구·길도 함께 검수한다.
+래스터 2.5D 픽셀 배경 위에 스프라이트와 DOM 목적지 버튼을 배치한다. 지도에서는 실제 3D 카메라를 쓰지 않는다(3D는 S03 시험 길뿐이다). 배경 크기와 공방 입구·길·초기 위치의 좌표계를 맞추며 그림을 교체하면 입구·길도 함께 검수한다.
 
 - 목적지 탭·키보드·방향판은 같은 이동 상태를 쓴다. delta time으로 이동하고 비활성 탭 복귀 때 큰 delta를 제한한다.
 - 길을 따라 입구까지 이동하고 도착 뒤 입장한다. 모달이나 탭 숨김 때 입력을 비운다.

@@ -1,7 +1,7 @@
 import {MakerMission} from '../components/MakerMission';
 import {makerOrders} from '../domain/maker';
 import {CONCEPT_SECONDS,keyConcepts} from '../domain/concepts';
-import {createContext,useContext,lazy,Suspense,useId,useState,useEffect,useRef,type ReactNode} from 'react';
+import {createContext,useCallback,useContext,lazy,Suspense,useId,useState,useEffect,useRef,type ReactNode} from 'react';
 import {useGame} from '../state/GameContext';
 import {parts,partNames,shortNames,materials,experiments,experimentNames,requiredComparisons,requiredLinks,resultFor,observationId,canComplete,canCompleteInvestigation,designReady,linkedCorrectly,currentResults,currentPass,testNames,tests,transfer,comparableAir,evaluateTest,sampleColors,type Part,type Screen,type UmbrellaPart,type Experiment,type Test} from '../domain/model';
 import {ChallengePanel,type ChallengeControls} from '../components/ChallengePanel';
@@ -15,6 +15,7 @@ import {guidance} from '../domain/guidance';
 import {playSound} from '../services/audio';
 import {DesignModel} from '../game/DesignModel';
 import ObjectViewport from '../game/ObjectViewport';
+import SampleRunStage from './SampleRunStage';
 import './activity-stages.css';
 const ExperimentCanvas=lazy(()=>import('../game/ExperimentCanvas'));
 export const needText={body:'모양을 유지하고 물에 쉽게 젖지 않기',window:'빛이 지나가 안쪽이 보이기',bumper:'눌렀다 놓으면 원래 모양으로 돌아오기'};
@@ -29,12 +30,27 @@ function GuideText({text,focus}:ActivityCue){
  if(start<0||!focus)return text;
  return <>{text.slice(0,start)}<strong className="guide-focus">{focus}</strong>{text.slice(start+focus.length)}</>;
 }
+// S03 opens as the 3D walkway; the classic screen stays as the fallback and for extra samples.
+const RUN_VIEW_KEY='material-workshop-mission.s03-view';
+let webgl:boolean|undefined;
+function canDraw3d(){if(webgl===undefined){try{const canvas=document.createElement('canvas');webgl=!!(canvas.getContext('webgl2')||canvas.getContext('webgl'));}catch{webgl=false;}}return webgl;}
+function firstSampleView(reduced:boolean,demo:boolean,finished:boolean):'3d'|'2d'{
+ if(!canDraw3d())return '2d';
+ let chosen:string|null=null;try{chosen=sessionStorage.getItem(RUN_VIEW_KEY);}catch{/* no stored choice */}
+ if(chosen==='3d'||chosen==='2d')return chosen;
+ // Reduced motion, the teacher demo (autoplay lives there), a finished investigation and
+ // phone-height screens (too short for the walkway and its buttons) start on the classic screen.
+ return reduced||demo||finished||matchMedia('(prefers-reduced-motion: reduce),(max-height: 499px)').matches?'2d':'3d';
+}
 type ActivityProps={screen:Screen;onFinish:()=>void;onConcept:()=>void;onNavigate:(s:Screen)=>void;onMessage:(s:string)=>void};
 export function Activity(props:ActivityProps){return <ExperimentPlaybackProvider><ActivityInner {...props}/></ExperimentPlaybackProvider>;}
 function ActivityInner({screen,onFinish,onConcept,onNavigate,onMessage}:ActivityProps){
  const {save,demo}=useGame(),baseReady=canCompleteInvestigation(save,screen),ready=canComplete(save,screen);
  const guideId=useId(),[instruction,setInstruction]=useState<ActivityCue>({text:''});
  const [view,setView]=useState<'lab'|'challenge'|'build'>('lab'),[challengeControls,setChallengeControls]=useState<ChallengeControls|null>(null);
+ const [sampleView,setSampleView]=useState<'3d'|'2d'>(()=>screen==='S03'?firstSampleView(save.settings.reducedMotion,demo,canCompleteInvestigation(save,'S03')):'2d'),[runFailed,setRunFailed]=useState(false);
+ function chooseSampleView(next:'3d'|'2d',failed=false){setSampleView(next);if(failed){setRunFailed(true);onMessage('3D 시험 길을 열지 못해서 기존 방식으로 이어 가요.');}else try{sessionStorage.setItem(RUN_VIEW_KEY,next);}catch{/* the choice just lasts for this visit */}}
+ const runStage=screen==='S03'&&sampleView==='3d';
  const hasMaker=makerOrders.some(o=>o.screen===screen);
  const done=save.challengeResults.filter(r=>r.id.startsWith(screen+'-')).length;
  const makerDone=!!save.deliveries?.[screen],offersMaker=hasMaker&&!makerDone&&view==='lab'&&baseReady&&!ready;
@@ -43,9 +59,9 @@ function ActivityInner({screen,onFinish,onConcept,onNavigate,onMessage}:Activity
  const cue:ActivityCue=view==='build'?(makerDone?{text:'납품했어요! 새 의뢰를 풀어 봐요.',focus:'새 의뢰'}:{text:'재료를 놓고 시험해요. 결과를 보고 고쳐도 돼요.',focus:'시험'}):ready?{text:'개념 영상에서 발견한 내용을 다시 봐요.',focus:'개념 영상'}:view==='challenge'?(challengeControls?.enabled?{text:`「${nextLabel}」를 눌러 이어 가요.`,focus:nextLabel}:{text:'의뢰를 읽고 네 생각을 골라요.',focus:'네 생각'}):baseReady?offersMaker?{text:'「주문 제작 시작」에서 발견을 써 봐요.',focus:'주문 제작 시작'}:{text:'「새 의뢰 풀기」에서 발견을 써 봐요.',focus:'새 의뢰 풀기'}:instruction.text?instruction:{text:guidance(save,screen)[0]};
  function continueActivity(){if(view==='build')setView('challenge');else if(ready)onFinish();else if(offersMaker)setView('build');else if(view==='challenge')challengeControls?.action();else setView('challenge');}
  return <GuideContext.Provider value={setInstruction}>
-  <div className="activity-toolbar"><nav className="learning-rail" aria-label="활동 순서"><button aria-label="1 직접 탐구" aria-current={view==='lab'?'step':undefined} onClick={()=>setView('lab')}><b>1</b><span className="rail-label">탐구 {baseReady?'✓':''}</span></button>{hasMaker&&<><span>→</span><button aria-label={`2 주문 제작${makerDone?' 완료':''}`} disabled={!baseReady} aria-current={view==='build'?'step':undefined} onClick={()=>setView('build')}><b>2</b><span className="rail-label">주문 제작 {makerDone?'✓':''}</span></button></>}<span>→</span><button aria-label={`${hasMaker?3:2} 새 의뢰 ${done}/2`} disabled={!baseReady} aria-current={view==='challenge'?'step':undefined} onClick={()=>setView('challenge')}><b>{hasMaker?3:2}</b><span className="rail-label">새 의뢰 {done}/2</span></button><span>→</span><button aria-label={`${hasMaker?4:3} ${CONCEPT_SECONDS}초 개념 보기`} disabled={!baseReady} onClick={onConcept}><b>{hasMaker?4:3}</b><span className="rail-label">개념 보기</span></button></nav>{demo&&view==='lab'&&<PlaybackButton/>}</div>
+  <div className="activity-toolbar"><nav className="learning-rail" aria-label="활동 순서"><button aria-label="1 직접 탐구" aria-current={view==='lab'?'step':undefined} onClick={()=>setView('lab')}><b>1</b><span className="rail-label">탐구 {baseReady?'✓':''}</span></button>{hasMaker&&<><span>→</span><button aria-label={`2 주문 제작${makerDone?' 완료':''}`} disabled={!baseReady} aria-current={view==='build'?'step':undefined} onClick={()=>setView('build')}><b>2</b><span className="rail-label">주문 제작 {makerDone?'✓':''}</span></button></>}<span>→</span><button aria-label={`${hasMaker?3:2} 새 의뢰 ${done}/2`} disabled={!baseReady} aria-current={view==='challenge'?'step':undefined} onClick={()=>setView('challenge')}><b>{hasMaker?3:2}</b><span className="rail-label">새 의뢰 {done}/2</span></button><span>→</span><button aria-label={`${hasMaker?4:3} ${CONCEPT_SECONDS}초 개념 보기`} disabled={!baseReady} onClick={onConcept}><b>{hasMaker?4:3}</b><span className="rail-label">개념 보기</span></button></nav>{screen==='S03'&&view==='lab'&&!runStage&&!runFailed&&canDraw3d()&&<button type="button" className="run-view-switch" onClick={()=>chooseSampleView('3d')}>3D 시험 길로 하기</button>}{demo&&view==='lab'&&!runStage&&<PlaybackButton/>}</div>
   {view==='build'&&baseReady?<MakerMission screen={screen}/>:view==='challenge'&&baseReady?<ChallengePanel screen={screen} onControlsChange={setChallengeControls}/>:<Suspense fallback={<div className="loading">실험 도구를 준비하고 있어…</div>}>
-   {screen==='S01'||screen==='S02'?<Umbrella screen={screen} onMessage={onMessage}/>:screen==='S03'?<Samples/>:screen==='S04'?<Assignments onMessage={onMessage}/>:screen==='S05'?<Solid/>:screen==='S06'?<Liquid/>:screen==='S07'||screen==='S08'?<Air screen={screen}/>:<Invent screen={screen} onNavigate={onNavigate}/>}
+   {screen==='S01'||screen==='S02'?<Umbrella screen={screen} onMessage={onMessage}/>:screen==='S03'?(runStage?<SampleRun onClassic={failed=>chooseSampleView('2d',failed)}/>:<Samples/>):screen==='S04'?<Assignments onMessage={onMessage}/>:screen==='S05'?<Solid/>:screen==='S06'?<Liquid/>:screen==='S07'||screen==='S08'?<Air screen={screen}/>:<Invent screen={screen} onNavigate={onNavigate}/>}
   </Suspense>}
   <footer className="activity-footer"><Companion key={screen} screen={screen}/><span id={guideId} className="next-step" role="status"><GuideText {...cue}/></span><button className={`primary ${view==='build'&&!makerDone?'optional-action':''}`} aria-describedby={guideId} data-next-action={(!nextDisabled&&(view==='build'?makerDone:true))||undefined} disabled={nextDisabled} onClick={continueActivity}>{nextLabel} <span aria-hidden="true">→</span></button></footer>
  </GuideContext.Provider>;
@@ -75,6 +91,12 @@ const sampleGestures:Record<Experiment,{gesture:Gesture;icon:string;label:string
  water_absorption:{gesture:'hold',icon:'💧',label:'스포이트 짜기',hint:'꾹 눌러 물방울을 떨어뜨려요'},
  compression_recovery:{gesture:'hold',icon:'⬇',label:'꾹 눌렀다 놓기',hint:'누름판을 꾹 눌러요'},
 };
+function SampleRun({onClassic}:{onClassic:(failed?:boolean)=>void}){
+ const [cue,setCue]=useState<ActivityCue>({text:''});
+ useActivityGuide(cue.text,cue.focus);
+ const report=useCallback((text:string,focus?:string)=>setCue({text,focus}),[]);
+ return <div className="activity-grid samples-stage run-stage-grid"><SampleRunStage onGuide={report} onClassic={onClassic}/></div>;
+}
 function Samples(){
  const {save,dispatch}=useGame();const [experiment,setExperiment]=useState<Experiment>('elastic_return'),[sample,setSample]=useState('rubber_soft'),[phase,setPhase]=useState<'ready'|'running'|'observed'>('ready'),[answer,setAnswer]=useState(''),[feedback,setFeedback]=useState(''),[extra,setExtra]=useState(false);
  const automatic=useRef(false);

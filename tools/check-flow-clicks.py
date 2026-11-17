@@ -128,6 +128,8 @@ def main():
     with sync_playwright() as p:
         b = p.chromium.launch(channel='chrome', args=['--autoplay-policy=no-user-gesture-required'])
         ctx = b.new_context(viewport={'width': W, 'height': H}, service_workers='block')
+        # This run counts taps on the classic S03 screen; the 3D walkway has its own check (tools/check-run-stage.mjs).
+        ctx.add_init_script("try{sessionStorage.setItem('material-workshop-mission.s03-view','2d')}catch(e){}")
         page = ctx.new_page()
         PAGE[0] = page
         page.on('pageerror', lambda e: errors.append(f'pageerror {e}'))
