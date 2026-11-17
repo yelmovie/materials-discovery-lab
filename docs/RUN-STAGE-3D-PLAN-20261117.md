@@ -239,5 +239,6 @@
 | 직전(롤백 기준) | `d6cbeb5` | `00177286-6ca7-4a5d-bdec-c654ba4f985a` | 3D 이전 |
 | 1 | `8834cb1` | `b57d673e-5ca2-466d-ab69-56a1ff56be53` | 3D 시험 길과 기존 화면 전환 |
 | 2 | `8637f65` | `5ed0aa62-09ca-48da-9a14-6c61f33d42c0` | 새 그림 적용, 겹침·착지 정리 |
+| 3 (현재 운영) | `65e173a` | `1b63f6bf-499a-41a9-9b12-4a1541ce73ef` | 걸어가면 기뻐하기 자세가 끝나게 수정 |
 
-배포는 `.tmp/release/wrangler.json`(assets-only, 호환 날짜 2026-11-11)으로 `wrangler deploy`를 실행했다. 배포마다 운영 주소 https://materials-discovery-lab.yelsam.workers.dev/ 에서 `index.html`·`sw.js`·화면 묶음·3D 그림의 SHA256이 빌드와 같은지 대조하고(2차 28/28 일치) 같은 주소에서 완주 검사를 다시 통과시켰다. 이미 열어 둔 탭은 모두 닫고 다시 열어야 새 버전이 적용된다.
+배포는 `.tmp/release/wrangler.json`(assets-only, 호환 날짜 2026-11-11)으로 `wrangler deploy`를 실행했다. 배포마다 운영 주소 https://materials-discovery-lab.yelsam.workers.dev/ 에서 `index.html`·`sw.js`·화면 묶음·3D 그림의 SHA256이 빌드와 같은지 대조하고(2·3차 28/28 일치) 같은 주소에서 완주 검사를 다시 통과시켰다. 이미 열어 둔 탭은 모두 닫고 다시 열어야 새 버전이 적용된다.
