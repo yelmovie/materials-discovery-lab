@@ -207,7 +207,9 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
     updateStations(dt);updatePatrols(dt);
     const moving=Math.hypot(velocity.x,velocity.z)>.6;
     if(!active&&moving)facing=Math.abs(velocity.x)>=Math.abs(velocity.z)?(velocity.x>0?'right':'left'):(velocity.z>0?'down':'up');
-    pose=flinch>0?'flinch':active?.station.action==='pull'&&active.phase==='acting'?'pull':landing>0||!grounded()?'jump':cheer>0?'cheer':moving&&!active?'walk':'idle';
+    // The cheer is for standing still after a record; walking on or starting the next test ends it.
+    if(moving||active)cheer=0;
+    pose=flinch>0?'flinch':active?.station.action==='pull'&&active.phase==='acting'?'pull':landing>0||!grounded()?'jump':moving&&!active?'walk':cheer>0?'cheer':'idle';
    }
    // A squashed sample carries the researcher down with it, and back up.
    // The shadow lies on whatever is below: the floor, or the sample under a jump.
