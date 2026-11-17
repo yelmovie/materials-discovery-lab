@@ -52,7 +52,7 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
  const start=new THREE.Vector3(runCourse.startX,0,LANE.z);
  const body=new Capsule(new THREE.Vector3(start.x,RADIUS,start.z),new THREE.Vector3(start.x,BODY,start.z),RADIUS);
  const velocity=new THREE.Vector3(),step=new THREE.Vector3();
- let onFloor=true,sinceFloor=0,facing:Facing='right',pose:Pose='idle',flinch=0,safe=0,cheer=0,padUnder:Live|null=null,padTime=0,active:Live|null=null,status:RunStatus={near:null,canAct:false,onPad:false,busy:false};
+ let onFloor=true,sinceFloor=0,landing=0,facing:Facing='right',pose:Pose='idle',flinch=0,safe=0,cheer=0,padUnder:Live|null=null,padTime=0,active:Live|null=null,status:RunStatus={near:null,canAct:false,onPad:false,busy:false};
  const live=runStations.map(station=>({view:world.views.get(station.id)!,station,phase:'idle' as Phase,t:0,k:0,recorded:false,done:false}));
  const byId=new Map(live.map(item=>[item.station.id,item]));
  const patrols=world.patrols.map((patrol,i)=>({...patrol,z:LANE.z as number,direction:i%2?1:-1,rest:0,bumps:0,clock:i*.4}));
@@ -78,7 +78,8 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
   }
  }
  function simulate(dt:number){
-  const moveX=active?0:input.moveX,moveZ=active?0:input.moveZ,length=Math.hypot(moveX,moveZ)||1,push=(onFloor?ACCEL:AIR_ACCEL)*dt;
+  // Landing on a sample holds the researcher there for a moment, so a running jump presses it instead of skimming over.
+  const held=!!active||landing>0,moveX=held?0:input.moveX,moveZ=held?0:input.moveZ,length=Math.hypot(moveX,moveZ)||1,push=(onFloor?ACCEL:AIR_ACCEL)*dt;
   if(flinch<=0){velocity.x+=moveX/length*push;velocity.z+=moveZ/length*push;}
   // Unlike the example, the air slows the run-up as much as the floor does: jumps stay short,
   // so a child holding "right" lands on the sample instead of flying over it.
@@ -107,7 +108,7 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
   let under:Live|null=null;
   const over=(item:Live)=>Math.abs(item.station.x-body.start.x)<PAD.width/2+.2&&Math.abs(LANE.z-body.start.z)<PAD.depth/2+.2;
   if(grounded()&&Math.abs(feet()-PAD.height)<.1)for(const item of live)if(item.station.action==='stomp'&&over(item))under=item;
-  if(under!==padUnder){padUnder=under;padTime=0;}
+  if(under!==padUnder){if(under&&!padUnder){landing=.45;velocity.x*=.2;velocity.z*=.2;}padUnder=under;padTime=0;}
   for(const item of live){
    if(item.station.action!=='stomp')continue;
    const pressed=padUnder===item;
@@ -184,7 +185,7 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
   if(!element)return;
   projected.copy(at).project(camera);
   // Labels leave before they would be cut by the edge of the scene.
-  const visible=projected.z<1&&Math.abs(projected.x)<.9&&Math.abs(projected.y)<1;
+  const visible=projected.z<1&&Math.abs(projected.x)<.8&&Math.abs(projected.y)<1;
   element.style.visibility=visible?'visible':'hidden';
   if(visible)element.style.transform=`translate(${((projected.x+1)/2*canvas.clientWidth).toFixed(1)}px,${((1-projected.y)/2*canvas.clientHeight).toFixed(1)}px) translate(-50%,-100%)`;
  }
@@ -200,13 +201,13 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
   const dt=Math.min(.05,(now-last)/1000);last=now;if(dt>0)fps+=(1/dt-fps)*.05;
   if(!document.hidden){
    if(!paused){
-    flinch=Math.max(0,flinch-dt);safe=Math.max(0,safe-dt);cheer=Math.max(0,cheer-dt);
+    flinch=Math.max(0,flinch-dt);safe=Math.max(0,safe-dt);cheer=Math.max(0,cheer-dt);landing=Math.max(0,landing-dt);
     if(!active&&grounded()&&flinch<=0&&velocity.y<=0&&input.consumeJump()){velocity.y=JUMP;onFloor=false;sinceFloor=1;}else input.consumeJump();
     for(let i=0;i<STEPS;i++)simulate(dt/STEPS);
     updateStations(dt);updatePatrols(dt);
     const moving=Math.hypot(velocity.x,velocity.z)>.6;
     if(!active&&moving)facing=Math.abs(velocity.x)>=Math.abs(velocity.z)?(velocity.x>0?'right':'left'):(velocity.z>0?'down':'up');
-    pose=flinch>0?'flinch':active?.station.action==='pull'&&active.phase==='acting'?'pull':cheer>0?'cheer':!grounded()?'jump':moving&&!active?'walk':'idle';
+    pose=flinch>0?'flinch':active?.station.action==='pull'&&active.phase==='acting'?'pull':landing>0||!grounded()?'jump':cheer>0?'cheer':moving&&!active?'walk':'idle';
    }
    // A squashed sample carries the researcher down with it, and back up.
    // The shadow lies on whatever is below: the floor, or the sample under a jump.

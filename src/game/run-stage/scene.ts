@@ -149,11 +149,11 @@ export async function buildScene(maxAnisotropy:number):Promise<RunScene> {
   }else{
    const z=-1.05,slabTop=LANE.counterTop+.26,tipY=LANE.counterTop+.95;
    const slab=box(1,.2,.8,material);slab.position.set(0,LANE.counterTop+.16,z);group.add(slab);
-   const arm=box(.08,1.2,.08,stand);arm.position.set(.46,LANE.counterTop+.6,z-.55);group.add(arm);
-   const reach=box(.5,.07,.07,stand);reach.position.set(.24,LANE.counterTop+1.2,z-.3);reach.rotation.y=Math.atan2(.5,.46);group.add(reach);
+   const holder=flat(0x4e8f86),arm=box(.08,1.5,.08,holder);arm.position.set(0,LANE.counterTop+.75,z-.62);group.add(arm);
+   const reach=box(.07,.07,.62,holder);reach.position.set(0,LANE.counterTop+1.46,z-.31);group.add(reach);
    // The squeezed part: a painted pipette when the picture is there, otherwise a plain tube and bulb.
    let squeeze:(pressed:boolean)=>void;
-   if(pipetteArt){const pipette=prop(pipetteArt,.56,x,tipY,z),wide=pipette.scale.x;squeeze=pressed=>{pipette.scale.x=wide*(pressed?.86:1);};}
+   if(pipetteArt){const pipette=prop(pipetteArt,.62,x,tipY,z),wide=pipette.scale.x;squeeze=pressed=>{pipette.scale.x=wide*(pressed?.86:1);};}
    else{
     const tube=new THREE.Mesh(keep(new THREE.CylinderGeometry(.045,.02,.3,10)),keep(new THREE.MeshLambertMaterial({color:0xd9f1f5,transparent:true,opacity:.75})));tube.position.set(0,tipY+.15,z);group.add(tube);
     const bulb=new THREE.Mesh(keep(new THREE.SphereGeometry(.1,12,10)),flat(0xd96f6a));bulb.position.set(0,tipY+.38,z);group.add(bulb);squeeze=pressed=>{bulb.scale.y=pressed?.75:1;};
@@ -184,12 +184,12 @@ export async function buildScene(maxAnisotropy:number):Promise<RunScene> {
   if(wallArt){wall.wrapS=THREE.MirroredRepeatWrapping;wall.repeat.set(tiles,1);}
   const mesh=new THREE.Mesh(keep(new THREE.PlaneGeometry(tile*tiles,height)),keep(new THREE.MeshBasicMaterial({map:wall,depthWrite:false})));
   mesh.position.set(mid,0,-9);mesh.renderOrder=-1;scene.add(mesh);
-  backdrop={mesh,height,rows:wallArt?[.1,.8]:[.2,.47]};
+  backdrop={mesh,height,rows:wallArt?[.19,.775]:[.2,.47]};
  }
  // Small painted things along the empty stretches of the counter.
  const decor=[plantArt,jarsArt,crateArt].filter((map):map is THREE.Texture=>!!map);
  if(decor.length){
-  const spots=[-1.6,1.3,4.1,6.6,13.4,21.4,runCourse.endX+1.2];
+  const spots=[-1.6,1.3,4.1,6.6,13.75,21.4,runCourse.endX+1.2];
   spots.forEach((x,i)=>prop(decor[i%decor.length],.78,x,LANE.counterTop+.05,-1.75-(i%2)*.25,.04));
  }
  // The lab keeper waits behind the counter at the far end.

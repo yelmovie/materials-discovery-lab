@@ -55,7 +55,7 @@ export async function createCharacter():Promise<RunCharacter> {
    let map:THREE.Texture,aspect=walkAspect,scale=HEIGHT;
    if(actions){
     const index=pose==='jump'?(height>.12?0:1):Math.floor(clock*(pose==='cheer'?4:5))%actions.length;
-    map=(facing==='left'?stripMirrored:stripFrames)[actions[index]];aspect=stripAspect;scale=HEIGHT*1.12;
+    map=(facing==='left'?stripMirrored:stripFrames)[actions[index]];aspect=stripAspect;scale=HEIGHT*1.1;
    }else{
     const frames=walk[pose==='pull'?'left':facing];
     map=frames[pose==='walk'?Math.floor(clock*WALK_FPS)%4:pose==='jump'?1:0];

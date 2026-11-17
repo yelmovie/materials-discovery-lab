@@ -11,16 +11,17 @@ export interface RunZone {experiment:Experiment;action:RunAction;name:string;act
 export interface RunStation {id:string;experiment:Experiment;sampleId:string;zone:number;x:number;action:RunAction}
 
 const SPACING=2.2;
-const zonePlan:{experiment:Experiment;action:RunAction;name:string;actionLabel:string;lookFor:string;firstX:number}[]=[
+// Pull samples stand further apart: a stretched sample and the researcher holding it need the room.
+const zonePlan:{experiment:Experiment;action:RunAction;name:string;actionLabel:string;lookFor:string;firstX:number;spacing?:number}[]=[
  {experiment:'compression_recovery',action:'stomp',name:'누르기',actionLabel:'뛰어올라 밟기',lookFor:'누른 뒤의 모양',firstX:3},
- {experiment:'elastic_return',action:'pull',name:'당기기',actionLabel:'당기기',lookFor:'당긴 뒤의 모양',firstX:9.4},
+ {experiment:'elastic_return',action:'pull',name:'당기기',actionLabel:'당기기',lookFor:'당긴 뒤의 모양',firstX:9.4,spacing:2.8},
  {experiment:'light_transmission',action:'light',name:'비추기',actionLabel:'비추기',lookFor:'뒤쪽 표시',firstX:15.2},
  {experiment:'water_absorption',action:'drop',name:'적시기',actionLabel:'물 떨어뜨리기',lookFor:'물방울',firstX:23.6},
 ];
 export const runCourse={startX:0,endX:28,patrols:[7.3,21.6]} as const;
-export const runZones:RunZone[]=zonePlan.map(({firstX,...zone})=>({...zone,checkpointX:firstX-1.6}));
+export const runZones:RunZone[]=zonePlan.map(({firstX,spacing,...zone})=>({...zone,checkpointX:firstX-1.6}));
 export const runStations:RunStation[]=zonePlan.flatMap((zone,index)=>requiredComparisons[zone.experiment].map((sampleId,i)=>({
- id:observationId(zone.experiment,sampleId),experiment:zone.experiment,sampleId,zone:index,x:Math.round((zone.firstX+i*SPACING)*10)/10,action:zone.action,
+ id:observationId(zone.experiment,sampleId),experiment:zone.experiment,sampleId,zone:index,x:Math.round((zone.firstX+i*(zone.spacing??SPACING))*10)/10,action:zone.action,
 })));
 
 export function stationAnswer(station:Pick<RunStation,'experiment'|'sampleId'>){return resultFor(station.experiment,station.sampleId);}
