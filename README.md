@@ -150,4 +150,4 @@ npm run concepts:render
 - **적용 의뢰 20개 점검:** 성취기준 [4과05-01~03]과 거리가 먼 문항 9개(관찰 순서 맞추기, 확인 자료 고르기, 보호대 충격 시험 순서, 연구자 태도, 발명 설명 등)를 바꿨어. 새 문항은 연필 부분의 재료 분류, 같은 재료(금속) 물체 고르기, 장화가 고무인 까닭, 관찰창 재료 고르기, 고체·액체 분류, 공기가 공간을 차지하는 예, 고체·액체·기체 정리, 비옷 재료, 자전거 부분과 성질이야. 남은 11개도 문장을 짧고 분명하게 다듬었어.
 - **이전 기록 호환:** 바뀐 문항의 예전 답(`retiredChallengeIds`)은 불러올 때 빼고, 이미 마친 활동과 남은 문항 기록은 그대로 둬.
 - **화면 균형:** 적용 의뢰 카드가 화면 위쪽에 작게 몰리고 아래가 비던 것을 가운데 정렬하고 글자·선택지를 화면 높이에 맞춰 키웠어(높이 640px 이상). S01·S02 오른쪽 패널은 우산 세 부분을 모두 보여 주는 관찰 수첩으로 바꿨고, 다른 활동의 오른쪽 패널은 내용 높이만 차지해 남는 자리에 배경 그림이 보이게 했어.
-- **음악·영상 준비:** 수노 배경음 프롬프트는 [docs/SUNO-BGM-PROMPTS.md](docs/SUNO-BGM-PROMPTS.md), 인트로·파이널 그림과 영상 프롬프트는 [docs/INTRO-FINALE-VIDEO-PROMPTS.md](docs/INTRO-FINALE-VIDEO-PROMPTS.md)에 있어.
+- **음악·영상 준비:** 수노 배경음(메인 테마·파이널) 프롬프트는 [docs/SUNO-BGM-PROMPTS.md](docs/SUNO-BGM-PROMPTS.md), 인트로·파이널 그림과 영상 프롬프트는 [docs/INTRO-FINALE-VIDEO-PROMPTS.md](docs/INTRO-FINALE-VIDEO-PROMPTS.md)에 있어.
