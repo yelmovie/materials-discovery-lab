@@ -1,7 +1,9 @@
 import {useEffect,useRef} from 'react';
 import {mountMapEncounters,type MapReaction} from '../map-encounters.js';
 import {mapVillainStages} from '../domain/map-villain-content';
-import {playSound} from '../services/audio';
+import {playSound,type MapSound} from '../services/audio';
+// Wood, metal and a heavy thump for the three hits, so the attack sounds like the materials unit.
+const mapTones:Record<'swing'|'exit'|'contact'|'appear'|'victory',MapSound>={swing:'map-swing',exit:'map-exit',contact:'map-bump',appear:'map-appear',victory:'map-victory'};
 
 import Phaser from 'phaser';
 import {drawWorkshopChange} from './workshop-change';
@@ -333,7 +335,7 @@ export default function WorldCanvas(props:Props){
       blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0,
       reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
       art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-right.webp',frames:6},
-      palette:'#43e2dc',reach:112,contact:26,tone:(kind,hits)=>playSound(kind==='finish'?'air':kind==='contact'?'pour':hits===1?'drop':'retry'),
+      palette:'#43e2dc',reach:112,contact:26,tone:(kind,hits)=>playSound(kind==='hit'||kind==='finish'?(hits===1?'map-hit-1':hits===2?'map-hit-2':'map-hit-3'):mapTones[kind]),
      });
     }
     const camera=this.cameras.main;

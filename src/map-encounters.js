@@ -39,7 +39,7 @@ function layoutSpeech(host, entries){
  }
 }
 
-const REPEAT=380;
+const REPEAT=380,PREP=90,EXIT_TONE=380;
 const CUES={
   cap:'M9 10h14v12H9zm3-4h8v4h-8z', pane:'M6 7h20v18H6zm4 4v10h12V11z',
   file:'M7 5h12l6 6v16H7zm12 2v6h5M11 17h10m-10 4h8', label:'M5 10h15l7 6-7 6H5zm5 4h5m-5 4h7',
@@ -112,6 +112,7 @@ export function mountMapEncounters({
   const paused=()=>doc.hidden||blocked()||Boolean(host.closest('[inert]'))||Boolean(doc.querySelector('dialog[open]'));
   const pose={hero:null,ally:null};
   let current=null,lastNear=null,lastHit=-Infinity,lastTone=-Infinity,saved={},last=null,closed=false;
+  const timers=new Set();
 
   function speak(foe,text,time){
     for(const other of foes)if(other!==foe){other.saidUntil=0;other.bubble.hidden=true;}
@@ -132,19 +133,30 @@ export function mountMapEncounters({
     if(closed||!last||paused())return;
     if(!current){nudge();return;}
     const time=view?.performance.now()??performance.now();
-    if(time-lastHit<REPEAT||current.hits>=HITS||distance(last.hero,current.point)>reach)return;
-    const foe=current,n=++foe.hits;lastHit=time;
+    if(time-lastHit<REPEAT||current.hits>=HITS||current.landing||distance(last.hero,current.point)>reach)return;
+    const foe=current;lastHit=time;foe.landing=true;
     clearUntil=0;callback.hidden=true;
     if(Math.abs(foe.point.x-last.hero.x)>3)foe.facing=last.hero.x<foe.point.x?-1:1;
-    const calm=still(),duration=calm?170:n===HITS?660:360;
+    // Swing on input, then the hit lands after a short wind-up so sound, flinch and meter change together.
+    foe.poseUntil=time+PREP+660;
+    pose.hero={kind:'attack',direction:-foe.facing,start:time,end:time+(still()?140:320)};
+    tone('swing',foe.hits+1);
+    later(()=>land(foe),PREP);
+  }
+  function land(foe){
+    foe.landing=false;
+    if(closed)return;
+    const time=view?.performance.now()??performance.now();
+    const n=++foe.hits,calm=still(),duration=calm?170:n===HITS?660:360;
     foe.poseUntil=time+duration;foe.hitAt=time;foe.hurtAt=undefined;
-    pose.hero={kind:'attack',direction:-foe.facing,start:time,end:time+(calm?140:320)};
     saved={...saved,[foe.s.id]:n};onSave({...saved});tone(n===HITS?'finish':'hit',n);
+    if(n===HITS)later(()=>tone('exit',n),EXIT_TONE);
     speak(foe, n===HITS?foe.s.finish??'앗, 물러날게!':foe.s.hit?.[n-1]??(n===1?'앗, 들켰네!':'이번 건 제법인데!'),time+(n===HITS?2750:1800));
     live.textContent+=n===HITS?' 세 번 명중! 악당이 물러나요.':` ${n}번 명중. ${HITS-n}번 남았어요.`;
     if(n===HITS&&requiredFoes>0&&stages.length===requiredFoes&&stages.every(s=>(saved[s.id]??record[s.id])===HITS))finaleAt=time+2920;
-    update({...last,now:time});
+    if(last)update({...last,now:time});
   }
+  const later=(run,delay)=>{const id=(view??globalThis).setTimeout(()=>{timers.delete(id);if(!closed)run();},delay);timers.add(id);};
   attack.addEventListener('click',hit,{signal});
   attack.addEventListener('pointerdown',event=>event.stopPropagation(),{signal});
   let swallowSpace=false;
@@ -253,12 +265,15 @@ export function mountMapEncounters({
       if(id!=null&&id!==clearId&&now-clearReady>=1250){
         const stage=stages.find(s=>String(s.id)===String(id));
         if(stage?.lines?.[0]){
-          clearId=id;clearUntil=now+4200;lastSpeechLayout=-Infinity;callback.textContent=`${stage.speaker??stage.name} · “${stage.lines[0]}”`;
+          clearId=id;clearUntil=now+4200;
+          // The new villain's first entrance only: reveal is cleared when the map is left, so re-entry stays quiet.
+          if(foes.some(f=>String(f.s.id)===String(id)&&f.hits===0))tone('appear',0);
+          lastSpeechLayout=-Infinity;callback.textContent=`${stage.speaker??stage.name} · “${stage.lines[0]}”`;
         }
       }
       callback.hidden=now>=clearUntil;
     }
-    if(finaleAt&&now>=finaleAt&&!stop){finaleAt=0;openMapFinale(host,"/assets/map-encounters/map-finale.mp4");}
+    if(finaleAt&&now>=finaleAt&&!stop){finaleAt=0;tone('victory',HITS);openMapFinale(host,"/assets/map-encounters/map-finale.mp4");}
     current=nearest;
     if(current&&current!==lastNear&&current.saidUntil<=now&&now-lastHit>REPEAT&&now>=clearUntil){
       const message=current.say[current.sayIndex++%current.say.length]??'다가왔구나!';
@@ -278,7 +293,7 @@ export function mountMapEncounters({
     }
     return {hero:output('hero',now),ally:output('ally',now)};
   }
-  return {update,destroy(){closed=true;handles.abort();attack.remove();layer.remove();}};
+  return {update,destroy(){closed=true;for(const id of timers)(view??globalThis).clearTimeout(id);timers.clear();handles.abort();attack.remove();layer.remove();}};
 }
 
 const STYLES=`

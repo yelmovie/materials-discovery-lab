@@ -17,6 +17,7 @@
 | 지도 걷기 시트2 | generated/walk 연구원·모루 4방향 프레임32 | Canva 이미지 생성, 2026-11-07, 기존 researcher·companion을 참조로 생성. 원본 references/generated/walk, 자르기 scripts/prepare-walk-sprites.mjs | Canva 계정 요금제·AI 생성물 이용 조건 별도 보관 필요 |
 | 배경음 2곡 (Suno 생성) | audio/bgm/main-theme.mp3 (시작·지도·활동 반복), audio/bgm/finale.mp3 (엔딩·인증서) | 2026-11-17 사용자가 Suno로 생성해 제공. 프롬프트는 docs/SUNO-BGM-PROMPTS.md | 원본은 references/suno 보관. 상업 이용 근거(생성 당시 Suno 유료 요금제) 확인 필요 |
 | Kenney Interface Sounds 1.0 | 선택·놓기·발견·힌트·도구 등 효과음 8종 | 공식 사이트 CC0 표시 및 다운로드 ZIP License.txt 대조 | audio/Kenney-CC0.txt 원문·sources.json 매핑 보존 |
+| 지도 악당 효과음 8종 (CC0, Freesound) | audio/map-*.mp3 (공격 휘두름·1~3타·퇴장·등장·접촉·전체 격퇴) | 과학34 공통 효과음 라이브러리(2026-11-17)에서 원본 페이지 CC0 재확인된 파일만 사용 | 아래 「지도 악당 효과음 · 2026-11-17」 표 |
 | 개념 모션 영상 10개 (2026-11-09 교체) | 활동 완료·다시 보기 | HyperFrames 0.9.26(오픈소스 CLI, 로컬 렌더)로 직접 만든 HTML 장면 → FFmpeg. 게임 안 그림(모루·NPC4·우산·보관함·나무 시료)과 Jua 글꼴을 재사용, 새 생성 이미지·음원 없음. 애니메이션 라이브러리 GSAP 3.15.0(GreenSock Standard License, 제작 소스에만 포함, 앱 번들에는 없음) | films/concept-clips(소스·SPEC·REVIEW), concepts/manifest.json |
 | SVG 공통 아이콘 | src/components/Icon.tsx | 프로젝트 코드의 직접 작성 SVG | 별도 유료 아이콘 팩 없음 |
 | NanumSquare Neo Regular·Bold·ExtraBold (400·700·800) / Jua 400 | NanumSquare Neo는 앱 UI·실험 Canvas, Jua는 기존 개념 영상 제작 | 자체 호스팅 WOFF2. NanumSquare Neo는 NAVER Corporation 저작권 및 SIL OFL 1.1, Jua는 기존 프로젝트에서 SIL OFL 1.1 고지와 함께 재사용 | `fonts/NanumSquareNeo-OFL.txt`·`fonts/Jua-OFL.txt` 원문과 저작권 고지 보존. 글꼴 적용 검증: `docs/FONT-QA-20261111.md` |
@@ -194,3 +195,21 @@ THE SOFTWARE.
 - `generated/materials/`의 재료 시료 6종(나무·금속·유리·투명 플라스틱·불투명 플라스틱·고무)과 `generated/quests/`의 공방별 새 의뢰 그림 5장, 실험대 배경 `generated/lab-bench.webp`는 메인 키아트를 화풍 참조로 붙여 ChatGPT 구독의 Codex 내장 이미지 생성(GPT 이미지)으로 만들었다. 글자·인물은 넣지 않았다.
 - 엔딩 공방 장치 5종(`generated/workshops/`)과 주문 제작 소품(`generated/maker/`: 천 조각·바람개비·별 받침대·작업대·플라스틱 판·나무 받침)도 같은 방식으로 만들었다(원본 `workshops.png`, `maker-props.png`).
 - 원본 PNG는 `references/generated/ux-20261116/`, 자르기·WebP 변환은 `scripts/prepare-flow-art.mjs`로 다시 만들 수 있다. 상업 이용 근거(ChatGPT 요금제·이미지 약관)는 계정 기록과 함께 별도 보관이 필요하다.
+
+## 지도 악당 효과음 · 2026-11-17
+
+`_shared/sfx-library-20261117`(과학34 공통 효과음 라이브러리)에서 고른 파일을 이름만 바꿔 `audio/`에 복사했다. 라이브러리 처리는 앞뒤 무음 제거·짧은 페이드·음량 정규화(목표 -18 LUFS)·모노 MP3이며 피치·속도는 바꾸지 않았다. 모두 원본 페이지에서 CC0을 다시 확인한 파일이다(라이선스: https://creativecommons.org/publicdomain/zero/1.0/).
+
+| 배포 파일 | 쓰임 | 라이브러리 파일 | 원본 제목 · 만든 사람 | 출처 |
+|---|---|---|---|---|
+| audio/map-swing.mp3 | 공격 버튼을 누를 때 휘두름 | sfx/attack-swing-03.mp3 | SWOSH-01 · qubodup | https://freesound.org/people/qubodup/sounds/59988 |
+| audio/map-hit-1.mp3 | 1타 명중(나무 똑) | sfx/wood-knock-01.mp3 | Wood knock · Raclure | https://freesound.org/people/Raclure/sounds/405549 |
+| audio/map-hit-2.mp3 | 2타 명중(금속 챙) | sfx/metal-clank-02.mp3 | Metallic Clank 1 · HenKonen | https://freesound.org/people/HenKonen/sounds/682148 |
+| audio/map-hit-3.mp3 | 3타 명중(묵직한 타격) | sfx/hit-heavy-03.mp3 | body_hit · insanity54 | https://freesound.org/people/insanity54/sounds/276600 |
+| audio/map-exit.mp3 | 악당 퇴장(퍽 사라짐) | sfx/villain-exit-03.mp3 | Dry Puff · valeofhearts | https://freesound.org/people/valeofhearts/sounds/532234 |
+| audio/map-appear.mp3 | 새 악당 첫 등장(작게) | sfx/villain-appear-02.mp3 | Mouth Pop 1 · michorvath | https://freesound.org/people/michorvath/sounds/269501 |
+| audio/map-bump.mp3 | 아군이 악당에 닿아 움찔(고무 보잉) | sfx/hit-light-04.mp3 | Funny Boing · se2001 | https://freesound.org/people/se2001/sounds/543641 |
+| audio/map-victory.mp3 | 모든 악당 격퇴, 피날레 영상 직전 | sfx/victory-jingle-04.mp3 | game-win · mickleness | https://freesound.org/people/mickleness/sounds/269198 |
+
+기존 효과음 설정(음소거·효과음 크기·탭 숨김·인물 목소리/영상 재생 중 정지)을 그대로 거친다. 지도 피날레 영상은 소리 없이 재생되므로 승리 징글과 겹치지 않는다.
+
