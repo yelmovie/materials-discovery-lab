@@ -19,6 +19,9 @@ html body button.map-attack-dock[data-map-attack-dock]:hover{background:#583c78!
 html body button.map-attack-dock[data-map-attack-dock]:active{background:#2e2043!important}
 html body button.map-attack-dock[data-map-attack-dock]:focus-visible{outline:3px solid #fff!important;outline-offset:3px}
 html body button.map-attack-dock[data-map-attack-dock][aria-disabled="true"]{opacity:.72}
+html body button.map-attack-dock[data-map-attack-dock][aria-disabled="false"]{background:#7a2fb0!important;border-color:#ffe066!important;animation:map-attack-ready 1s ease-in-out infinite}
+@keyframes map-attack-ready{50%{scale:1.1}}
+@media (prefers-reduced-motion:reduce){html body button.map-attack-dock[data-map-attack-dock]{animation:none!important}}
 @media (max-width:440px){html body button.map-attack-dock[data-map-attack-dock]:not([hidden]){flex-basis:48px!important;width:48px!important;min-width:48px!important;height:48px!important;min-height:48px!important}}
 `;
 export function dockMapAttack(button,findHand){

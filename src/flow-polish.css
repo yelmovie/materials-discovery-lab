@@ -224,3 +224,52 @@
 @media (prefers-reduced-motion:reduce) { .app .restored-buildings .workshop-art { transition:none; } }
 /* Short landscape phones: there is no room for the box picture, so keep the material cards whole instead of squeezing them under the skip button. */
 @media (max-height:420px) { .app .final-activity .ending-panel .object-area.learning-object { flex:0 0 auto; } .app .final-activity .ending-panel .object-canvas { display:none; } }
+
+/* 2026-11-17 request cards: centre the card in the stage and scale type to the room it has,
+   instead of a small block at the top with an empty lower half. Short screens keep stage-fit rules. */
+@media (min-height:640px) and (min-width:900px) {
+ .app .live-activity .transfer-workspace:not(.transfer-complete) { display:flex; flex-direction:column; justify-content:center; padding:clamp(20px,3.2vh,44px) clamp(24px,4vw,72px); overflow:auto; }
+ .app .live-activity .transfer-workspace>* { width:100%; max-width:1040px; margin-inline:auto; }
+ .app .live-activity .challenge-heading { margin-bottom:clamp(10px,2vh,22px); gap:16px; }
+ .app .live-activity .challenge-heading h2 { font-size:clamp(26px,2.3vw,40px); line-height:1.2; }
+ .app .live-activity .challenge-count { font-size:clamp(15px,1.15vw,20px); padding:6px 14px; }
+ .app .live-activity .challenge-prompt { font-size:clamp(22px,1.9vw,34px); line-height:1.4; margin:0 0 6px; text-wrap:balance; }
+ .app .live-activity .challenge-instruction { font-size:clamp(16px,1.2vw,21px); margin:0 0 clamp(12px,2.4vh,26px); }
+ .app .live-activity .challenge-options { gap:clamp(10px,1.6vh,16px); }
+ .app .live-activity .challenge-options.mode-choice,.app .live-activity .challenge-options.mode-sequence { grid-template-columns:minmax(0,1fr); }
+ .app .live-activity .challenge-options .choice { min-height:clamp(60px,8.5vh,88px); padding:12px 22px; font-size:clamp(19px,1.55vw,27px); line-height:1.35; gap:14px; }
+ .app .live-activity .challenge-options .choice.selected { padding:11px 21px; }
+ .app .live-activity .challenge-options.mode-choice .choice::before,.app .live-activity .challenge-options.mode-multi .choice::before { width:26px; height:26px; }
+ .app .live-activity .sequence-number { min-width:34px; height:34px; font-size:clamp(17px,1.3vw,22px); }
+ .app .live-activity .challenge-feedback { margin-top:clamp(10px,2vh,20px); padding:10px 16px; font-size:clamp(17px,1.3vw,22px); line-height:1.45; }
+ .app .live-activity .challenge-classify .drag-board { padding:4px 0; background:transparent; border:0; }
+ .app .live-activity .challenge-classify .drag-tokens { gap:12px; margin-bottom:clamp(12px,2.4vh,24px); }
+ .app .live-activity .challenge-classify .drag-token { min-height:clamp(56px,7.5vh,76px); padding:10px 22px; font-size:clamp(19px,1.5vw,26px); border-radius:14px; }
+ .app .live-activity .challenge-classify .drop-slots { gap:14px; }
+ .app .live-activity .challenge-classify .drop-slot { min-height:clamp(96px,15vh,150px); padding:12px 14px; gap:8px; justify-content:center; align-items:center; text-align:center; }
+ .app .live-activity .challenge-classify .drop-slot b { font-size:clamp(19px,1.5vw,26px); line-height:1.25; }
+ .app .live-activity .challenge-classify .drop-slot span { font-size:clamp(16px,1.25vw,22px); line-height:1.3; }
+ .app .live-activity .classification-result { gap:14px; }
+ .app .live-activity .classification-result article { padding:16px 18px; font-size:clamp(18px,1.4vw,24px); text-align:center; }
+}
+
+/* S01: the three part notes stay listed, so the panel reads as a notebook instead of one card and empty space. */
+.app .umbrella-stage .part-notebook { list-style:none; margin:10px 0 0; padding:0; display:grid; gap:10px; }
+.app .umbrella-stage .part-notebook .part-observation-card { margin:0; padding:12px 14px; }
+.app .umbrella-stage .part-notebook .part-observation-card.is-empty { background:transparent; border-style:dashed; }
+.app .umbrella-stage .part-notebook .part-observation-card.is-empty p { color:#6a7564; }
+.app .umbrella-stage .part-notebook .part-observation-card.is-current { box-shadow:0 0 0 3px #e9b44c; }
+.app .live-activity .umbrella-stage .part-notebook .part-observation-card h4 { display:block; }
+@media (min-height:700px) { .app .umbrella-stage .part-notebook .part-observation-card { padding:14px 16px; } .app .umbrella-stage .part-notebook .part-observation-card p { font-size:clamp(16px,1.25vw,21px); line-height:1.45; } }
+@media (max-height:560px) { .app .umbrella-stage .part-notebook { gap:5px; margin-top:5px; } .app .umbrella-stage .part-notebook .part-observation-card { padding:5px 8px; } .app .umbrella-stage .part-notebook .part-texture { width:24px; height:30px; } }
+.app .umbrella-stage .part-notebook .part-link { margin-left:8px; font-size:.92em; color:#2f6147; }
+.app .umbrella-stage .part-notebook .part-observation-card:not(.is-recorded) .part-link { color:#9a6a1f; }
+
+/* Right panels size to their content; the painted room shows below instead of a tall empty white box. */
+.app .live-activity .activity-grid>.tools>.tool-panel { flex:0 1 auto; overflow:auto; }
+@media (min-height:700px) and (min-width:1000px) {
+ .app .property-choices .choice { min-height:50px; padding:8px 12px; font-size:17px; }
+ .app .live-activity .mini-progress span { font-size:15px; padding:4px 11px; }
+ .app .live-activity .tool-panel .stage-count { font-size:15px; }
+}
+@media (max-height:560px) { .app .umbrella-stage .part-notebook .part-observation-card:not(.is-current) p { display:none; } .app .umbrella-stage .part-notebook .record-stamp { top:4px; } }

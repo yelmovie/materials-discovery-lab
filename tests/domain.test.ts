@@ -17,7 +17,7 @@ describe('progress and evidence',()=>{
   s=reduceSave(s,{type:'challenge',id:first.id,answer:['color']});expect(s.challengeResults).toEqual([]);
   s=reduceSave(s,{type:'challenge',id:'S02-a',answer:challengesFor('S02')[0].answer});expect(s.challengeResults).toEqual([]);
   s=reduceSave(s,{type:'challenge',id:first.id,answer:first.answer});expect(canComplete(s,'S01')).toBe(false);
-  s=reduceSave(s,{type:'challenge',id:second.id,answer:[...second.answer].reverse()});expect(s.challengeResults).toHaveLength(1);
+  s=reduceSave(s,{type:'challenge',id:second.id,answer:['body:metal','eraser:rubber','band:wood']});expect(s.challengeResults).toHaveLength(1);
   s=reduceSave(s,{type:'challenge',id:second.id,answer:second.answer});expect(canComplete(s,'S01')).toBe(true);
   s=reduceSave(s,{type:'challenge',id:second.id,answer:second.answer});expect(s.challengeResults).toHaveLength(2);
  });

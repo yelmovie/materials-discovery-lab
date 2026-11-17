@@ -52,6 +52,9 @@ describe('teacher curriculum guide',()=>{
   };
   const challengeResults=Object.entries(legacy).map(([id,answer])=>({id,answer}));
   const restored=decodeSave(JSON.stringify({...freshSave(),challengeResults}));
-  expect(restored.challengeResults).toEqual(challengeResults);
+  // Cards replaced for the standards review drop out; the kept cards stay solved.
+  const retired=new Set(['S01-b','S02-b','S04-a','S04-b','S05-b','S07-b','S08-b','S09-b','S10-b']);
+  expect(restored.challengeResults).toEqual(challengeResults.filter(r=>!retired.has(r.id)));
+  expect(restored.challengeResults).toHaveLength(11);
  });
 });

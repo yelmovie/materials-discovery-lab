@@ -2,7 +2,7 @@ import {normalizeMapHits} from '../map-encounters.js';
 import {mapEncounterIds} from '../domain/model';
 import {validDelivery} from '../domain/maker';
 import {activityToResume, canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
-import {challenges,correctChallenge} from '../domain/challenges';
+import {challenges,correctChallenge,retiredChallengeIds} from '../domain/challenges';
 export const SAVE_KEY='material-workshop-mission.student.v1';
 export const RECOVERY_KEY=`${SAVE_KEY}.recovery`;
 export interface StorageLike {getItem(key:string):string|null;setItem(key:string,value:string):void;removeItem(key:string):void}
@@ -19,6 +19,8 @@ export function decodeSave(raw:string):Save {
  // Older MVP saves retain earned progress. New transfer tasks start unfilled.
  s.deliveries=Object.fromEntries(Object.entries(object(s.deliveries)?s.deliveries:{}).filter(([k,v])=>object(v)&&object(v.parts)&&Object.values(v.parts).every(x=>typeof x==='string')&&validDelivery(k,v.parts as Record<string,string>)&&Number.isInteger(v.attempts)&&Number(v.attempts)>0));
  if(s.challengeResults===undefined)s.challengeResults=[];
+ // Cards replaced in a content update are dropped; finished activities stay finished.
+ if(array(s.challengeResults))s.challengeResults=s.challengeResults.filter(r=>!(object(r)&&retiredChallengeIds.includes(r.id as string)));
  // Do not invent a first prediction for records created before this field existed.
  if(s.initialPredictions===undefined)s.initialPredictions={};
  assert(object(s.initialPredictions)&&Object.entries(s.initialPredictions).every(([k,v])=>['S05','S06'].includes(k)&&['same','change'].includes(v))); 

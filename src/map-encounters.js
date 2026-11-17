@@ -121,8 +121,16 @@ export function mountMapEncounters({
     foe.saidUntil=time;
     live.textContent=text;
   }
+  function nudge(){
+    // Out of reach: keep the button useful and say where to go instead of doing nothing.
+    if(closed||!last||paused()||!foes.some(f=>f.hits<HITS))return;
+    const time=view?.performance.now()??performance.now();
+    clearUntil=time+1900;lastSpeechLayout=-Infinity;
+    callback.textContent='악당 가까이 걸어가서 공격해!';callback.hidden=false;live.textContent=callback.textContent;
+  }
   function hit(){
-    if(closed||!current||!last||paused())return;
+    if(closed||!last||paused())return;
+    if(!current){nudge();return;}
     const time=view?.performance.now()??performance.now();
     if(time-lastHit<REPEAT||current.hits>=HITS||distance(last.hero,current.point)>reach)return;
     const foe=current,n=++foe.hits;lastHit=time;
@@ -139,13 +147,20 @@ export function mountMapEncounters({
   }
   attack.addEventListener('click',hit,{signal});
   attack.addEventListener('pointerdown',event=>event.stopPropagation(),{signal});
+  let swallowSpace=false;
   view?.addEventListener('keydown',event=>{
-    if(!current||attack.hidden||event.defaultPrevented||event.isComposing||event.ctrlKey||event.metaKey||event.altKey||paused()||
+    if(attack.hidden||event.defaultPrevented||event.isComposing||event.ctrlKey||event.metaKey||event.altKey||paused()||
       !(event.code==='KeyJ'||event.code==='Space'))return;
     const el=event.target;
-    if(el instanceof view.HTMLElement&&(el.closest('input,textarea,select,[contenteditable]')||event.code==='Space'&&el!==attack&&el.closest('button,a,summary,[role=button]')))return;
-    event.preventDefault();if(!event.repeat)hit();
+    if(el instanceof view.HTMLElement){
+      if(el.closest('input,textarea,select,[contenteditable],dialog'))return;
+      // A map button keeps focus after a tap. Space still attacks a nearby villain;
+      // with nothing in reach the focused button keeps its own Space action.
+      if(event.code==='Space'&&el!==attack&&el.closest('button,a,summary,[role=button]')&&!current)return;
+    }
+    event.preventDefault();if(event.code==='Space')swallowSpace=true;if(!event.repeat)hit();
   },{signal,capture:true});
+  view?.addEventListener('keyup',event=>{if(event.code==='Space'&&swallowSpace){swallowSpace=false;event.preventDefault();}},{signal,capture:true});
 
   function output(actor,time){
     const p=pose[actor];
@@ -186,7 +201,9 @@ export function mountMapEncounters({
       el.style.transform=`translate(${point.x.toFixed(1)}px,${point.y.toFixed(1)}px)`;
       el.style.setProperty('--encounter-size',size.toFixed(1)+'px');
       const d=distance(hero,foe.point);
-      if(!stop&&foe.hits<HITS&&point.x>=0&&point.x<=width&&point.y>=0&&point.y<=height&&d<=reach&&d<best){nearest=foe;best=d;}
+      // A little extra reach for the current target stops the button flickering while it patrols.
+      const inReach=d<=reach||foe===current&&d<=reach*1.3;
+      if(!stop&&foe.hits<HITS&&point.x>=0&&point.x<=width&&point.y>=0&&point.y<=height&&inReach&&d<best){nearest=foe;best=d;}
       if(now>=foe.poseUntil){
         if(animate&&d>reach)foe.facing=patrol.direction;
         else if(hero&&Math.abs(hero.x-foe.point.x)>4)foe.facing=hero.x<foe.point.x?-1:1;
@@ -249,12 +266,11 @@ export function mountMapEncounters({
     }
     lastNear=current;
     const hasFocus=doc.activeElement===attack;
-    attack.hidden=!(syncDock()&&current);
-    if(current){
-      const remaining=HITS-current.hits;
-      const description=`${current.s.name}의 악당 공격, ${remaining}번 남음`;
-      if(attack.getAttribute('aria-label')!==description)attack.setAttribute('aria-label',description);
-    }
+    attack.hidden=!(syncDock()&&foes.some(f=>f.hits<HITS));
+    const description=current?`${current.s.name}의 악당 공격, ${HITS-current.hits}번 남음`:'악당 공격 · 가까이 가면 공격할 수 있어';
+    if(attack.getAttribute('aria-label')!==description)attack.setAttribute('aria-label',description);
+    const ready=current?'false':'true';
+    if(attack.getAttribute('aria-disabled')!==ready)attack.setAttribute('aria-disabled',ready);
     if(attack.hidden&&hasFocus){host.querySelector('canvas,[tabindex="0"]')?.focus({preventScroll:true});}
     if(now-lastSpeechLayout>=110){
       lastSpeechLayout=now;
