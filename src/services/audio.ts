@@ -48,3 +48,5 @@ export function playSound(name:Sound){if(!started||settings.muted||settings.sfx=
 export function startAudio(){if(!started)document.addEventListener('visibilitychange',visibility);started=true;try{if(!context)context=new AudioContext();if(context.state==='suspended')void context.resume().catch(()=>{});}catch{/* Silent play retains all visual feedback. */}sync();}
 export function clickSound(success=false){playSound(success?'success':'select');}
 export function stopAudio(){document.removeEventListener('visibilitychange',visibility);stopEffects();players.clear();music?.pause();music=null;stopLoop();loopGain=null;if(context)void context.close().catch(()=>{});context=null;started=false;quiet=false;}
+// Character lines (services/lineVoice.ts) follow the same mute and effect switches.
+export const voiceMuted=()=>settings.muted||settings.sfx===0;

@@ -7,6 +7,8 @@ import {MapEntryBoundary} from './components/MapEntryBoundary';
 import {NpcVoice} from './components/NpcVoice';
 import {NpcDialogue} from './components/NpcDialogue';
 import {Icon} from './components/Icon';
+import {playLine,stopLine} from './services/lineVoice';
+import {voiceFor} from './domain/voiceLines';
 import {Modal} from './components/Modal';
 import {ConceptVideo} from './components/ConceptVideo';
 import {SettingsDialog} from './components/SettingsDialog';
@@ -71,6 +73,8 @@ export default function App(){
   const timer=window.setTimeout(warm,300);
   return()=>clearTimeout(timer);
  },[route,modal]);
+ // 모루의 길 안내 말풍선을 열면 그 글을 읽는다.
+ useEffect(()=>{if(!guide||route!=='world')return;playLine(voiceFor(document.getElementById('map-moru-hint')?.textContent));return stopLine;},[guide,route,save.evidence.length,save.coreComplete]);
  useEffect(()=>{
   if(!screen||!focusActivity.current)return;
   focusActivity.current=false;

@@ -3,6 +3,8 @@ import {useGame} from '../state/GameContext';
 import {shortNames} from '../domain/model';
 import {runStations,runZones,stationOptions,stationAnswer,zoneProgress,isRecorded,nextStation,type RunAction} from '../domain/runStage';
 import {playSound} from '../services/audio';
+import {playLine,stopLine} from '../services/lineVoice';
+import {voiceFor} from '../domain/voiceLines';
 import type {RunStage,RunStatus,RunHint} from '../game/run-stage/engine';
 import './run-stage.css';
 const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
@@ -60,6 +62,9 @@ export default function SampleRunStage({onGuide,onClassic}:Props){
  const nearStation=runStations.find(s=>s.id===run.near),nearZone=nearStation?runZones[nearStation.zone]:null;
  const asked=prompt?runStations.find(s=>s.id===prompt.id)!:null,askedZone=asked?runZones[asked.zone]:null;
  const stuck=!!asked&&(misses.current[asked.id]??0)>=3;
+ // 단단이가 막힌 관찰의 볼 곳을 읽어 준다.
+ const stuckLine=stuck?watch[asked.action]:'';
+ useEffect(()=>{if(!stuckLine)return;playLine(voiceFor(stuckLine));return stopLine;},[stuckLine]);
  function pick(option:string){
   if(!asked||!prompt)return;
   if(option===stationAnswer(asked)){

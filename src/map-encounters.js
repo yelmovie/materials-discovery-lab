@@ -67,7 +67,7 @@ export function normalizeMapHits(value,ids) {
  */
 export function mountMapEncounters({
   host,controls=host,stages,progress={},onSave=()=>{},blocked=()=>false,reduced=()=>false,
-  clearStage=()=>null,requiredFoes=0,art,tone=()=>{},palette='#a855f7',reach=90,contact=22,
+  clearStage=()=>null,requiredFoes=0,art,tone=()=>{},say=()=>{},palette='#a855f7',reach=90,contact=22,
 }) {
   const handles=new AbortController(),{signal}=handles;
   const doc=host.ownerDocument,view=doc.defaultView;
@@ -120,6 +120,7 @@ export function mountMapEncounters({
     foe.bubble.hidden=false;
     lastSpeechLayout=-Infinity;
     foe.saidUntil=time;
+    say(text);
     live.textContent=text;
   }
   function nudge(){
