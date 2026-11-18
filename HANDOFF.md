@@ -6,7 +6,7 @@
 - 지도(src/game/WorldCanvas.tsx): 누르고 있으면 걷기, 경로 점선, 문 앞 도착 판정, 재마운트 후 위치 유지, 한눈에 보기·손으로 둘러보기 카메라, 어스름·창문 불빛, 복구 직후 빛 이동 연출, 4방향 걷기 프레임·발먼지.
 - 화면(src/App.tsx, src/styles.css): 친구 얼굴 간판 이름표·활동 진행 점, 상단 목표 표시, 황금 다음 행동 버튼, 화면 밖 다음 목표 고정 이름표.
 - 걷기 그림: Canva 이미지 생성으로 연구원·모루 앞·옆·뒤 4프레임 시트를 만들어(참조: 기존 researcher·companion) references/generated/walk에 보관. scripts/prepare-walk-sprites.mjs로 자르고 왼쪽은 오른쪽을 뒤집음. 32프레임 약 310KiB.
-남은 것: 걷기 시트의 상업 이용 근거(Canva 요금제·AI 약관) 보관. 실제 태블릿 터치·전자칠판 시청 거리 실측. 공개 배포는 안 함(시트의 5번 ‘물체와 물질’도 대기 그대로).
+남은 것: 걷기 시트의 상업 이용 근거(Canva 요금제·AI 약관) 보관. 실제 태블릿 터치·전자칠판 시청 거리 실측. 운영 배포는 자동 승인으로 바로 진행한다(2026-11-16 사용자 지시). 운영 주소 https://materials-discovery-lab.yelsam.workers.dev (Cloudflare Workers, wrangler 직접 배포).
 
 # 이전 인계 · 2026-10-30
 목표: 참고작 1~4번 기준으로 메인 화면·지도·교사 시연을 납품 직전 수준으로 고도화.
