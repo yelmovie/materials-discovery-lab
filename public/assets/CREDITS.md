@@ -189,6 +189,7 @@ THE SOFTWARE.
 ## 시작 이야기 음성 · 2026-11-14
 
 - 모루와 방울이의 시작 이야기 음성은 각각 기존 합성 캐릭터 음원을 참조해 Higgsfield에서 생성했다. 대사와 배포 파일 정보는 `audio/npc-higgsfield/manifest.json`에 기록한다. 토리의 기존 음원은 유지했다.
+- (2026-11-18 목소리 통일) 모루·방울이 시작 이야기는 각자의 ElevenLabs 목소리(모루 Klamon, 방울이 Jisun)로 다시 만든 `audio/npc-elevenlabs/moru-story.mp3`, `banguli-story.mp3`를 재생한다. 엔딩 문구 3줄은 토리(Aria) 목소리 `tori-ending-0~2.mp3`. 원문·voiceId·받아쓰기 검수·SHA-256은 `docs/VOICE-FILL-20261118.json`. `npc-higgsfield/`의 예전 파일은 더 이상 재생하지 않는다(파일만 남김).
 
 ## 학습 흐름 그림 · 2026-11-17
 

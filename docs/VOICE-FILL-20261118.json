@@ -1,0 +1,147 @@
+{
+ "project": "09",
+ "date": "2026-11-18",
+ "provider": "ElevenLabs (유료 요금제, 상업 이용 가능)",
+ "takes": "generations_count 1, 지시 태그 없음(기존 09 ElevenLabs 대사와 같은 방식)",
+ "voices": [
+  {
+   "speaker": "토리",
+   "voiceId": "O2KReOFLpoR65nz6C9Se",
+   "voiceName": "Aria",
+   "why": "시작 이야기 1쪽(가장 먼저 들림)"
+  },
+  {
+   "speaker": "모루",
+   "voiceId": "dnZGOA54w68T7vLLPFTp",
+   "voiceName": "Klamon",
+   "why": "의뢰·복구 대사 ElevenLabs 목소리. 시작 이야기의 Higgsfield 클론을 교체"
+  },
+  {
+   "speaker": "방울이",
+   "voiceId": "7Tms2JpTU4QYeCNp0Gtn",
+   "voiceName": "Jisun",
+   "why": "의뢰·복구 대사 ElevenLabs 목소리. 시작 이야기의 Higgsfield 클론을 교체"
+  },
+  {
+   "speaker": "단단이",
+   "voiceId": "rCm09Tf1yMYbOyCRLDyB",
+   "voiceName": "Taek",
+   "why": "변경 없음"
+  },
+  {
+   "speaker": "바람이",
+   "voiceId": "AiutpBawf78dyoTpoaHl",
+   "voiceName": "Rumi",
+   "why": "변경 없음"
+  },
+  {
+   "speaker": "재료 바꿔치기 봇",
+   "voiceId": "wMrz30qBeYiSkAtnZGtn",
+   "voiceName": "Harry - Character",
+   "why": "정해 둠(한국어 코믹 캐릭터, 다른 캐릭터와 겹치지 않음). 일일 생성 한도로 아직 생성 전"
+  }
+ ],
+ "lines": [
+  {
+   "key": "moru-story",
+   "speaker": "모루",
+   "voiceId": "dnZGOA54w68T7vLLPFTp",
+   "voiceName": "Klamon",
+   "model": "eleven_v4",
+   "flowId": "SbHXS33fTIY5e0zXxyt9",
+   "generationId": "cVi2X0Mzb4rNxLpHDgJg",
+   "text": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요.",
+   "prompt": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요.",
+   "asr": "한 번에 한 가지를 바꿔 실험해요 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요",
+   "match": 1.0,
+   "end": 1.0,
+   "lufs": -17.39,
+   "peakDbtp": -1.69,
+   "duration": 6.79,
+   "sha256": "9639d52fdb51099067deb548bc21692caea1a905627cb6d7f24642f8b83f9ffd",
+   "file": "public/assets/audio/npc-elevenlabs/moru-story.mp3"
+  },
+  {
+   "key": "banguli-story",
+   "speaker": "방울이",
+   "voiceId": "7Tms2JpTU4QYeCNp0Gtn",
+   "voiceName": "Jisun",
+   "model": "eleven_v4",
+   "flowId": "SbHXS33fTIY5e0zXxyt9",
+   "generationId": "5vg4xFQ4xiY7u0Nz4jJD",
+   "text": "마지막에는 나만의 보관함을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요.",
+   "prompt": "마지막에는 나만의 보관함을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요.",
+   "asr": "마지막에는 나만의 복원함을 만들어요. 관찰 기록으로 재료를 고르고 시험 결과를 보고 고쳐요.",
+   "match": 0.947,
+   "end": 1.0,
+   "lufs": -16.76,
+   "peakDbtp": -1.82,
+   "duration": 7.68,
+   "sha256": "12c49dccc20dfd21f4682ced83e0ce96829924c94764a30b0ca9cce3207de43d",
+   "file": "public/assets/audio/npc-elevenlabs/banguli-story.mp3"
+  },
+  {
+   "key": "tori-ending-0",
+   "speaker": "토리",
+   "voiceId": "O2KReOFLpoR65nz6C9Se",
+   "voiceName": "Aria",
+   "model": "eleven_v4",
+   "flowId": "SbHXS33fTIY5e0zXxyt9",
+   "generationId": "xwHLJgXyJt1fkfIpLwb5",
+   "text": "코어에 빛이 돌아왔어!",
+   "prompt": "코어에 빛이 돌아왔어!",
+   "asr": "코어에 빛이 돌아왔어",
+   "match": 1.0,
+   "end": 1.0,
+   "lufs": -16.42,
+   "peakDbtp": -2.24,
+   "duration": 2.4,
+   "sha256": "781cffe114fca603de0eca3685906677881c871ac44844c3e019b4b679f3604c",
+   "file": "public/assets/audio/npc-elevenlabs/tori-ending-0.mp3"
+  },
+  {
+   "key": "tori-ending-1",
+   "speaker": "토리",
+   "voiceId": "O2KReOFLpoR65nz6C9Se",
+   "voiceName": "Aria",
+   "model": "eleven_v4",
+   "flowId": "SbHXS33fTIY5e0zXxyt9",
+   "generationId": "QIopQFK8UPav2mlhSxed",
+   "text": "다섯 공방이 다시 움직여!",
+   "prompt": "다섯 공방이 다시 움직여!",
+   "asr": "다섯 공방이 다시 움직여!",
+   "match": 1.0,
+   "end": 1.0,
+   "lufs": -16.78,
+   "peakDbtp": -1.94,
+   "duration": 2.32,
+   "sha256": "f3c71df5272827ee1437b3483fc898f7b0968f8176106f51694c0d2600aa3837",
+   "file": "public/assets/audio/npc-elevenlabs/tori-ending-1.mp3"
+  },
+  {
+   "key": "tori-ending-2",
+   "speaker": "토리",
+   "voiceId": "O2KReOFLpoR65nz6C9Se",
+   "voiceName": "Aria",
+   "model": "eleven_v4",
+   "flowId": "SbHXS33fTIY5e0zXxyt9",
+   "generationId": "GjVv55PlZcx34WQqEb1S",
+   "text": "관찰 기록이 발명에 쓰였어!",
+   "prompt": "관찰 기록이 발명에 쓰였어!",
+   "asr": "관찰 기록이 발명에 쓰였어.",
+   "match": 1.0,
+   "end": 1.0,
+   "lufs": -16.43,
+   "peakDbtp": -2.12,
+   "duration": 2.64,
+   "sha256": "d8f3375dd53e9d543bfc81c23f76197ba77d3824ae7c585456f8bab7b692547b",
+   "file": "public/assets/audio/npc-elevenlabs/tori-ending-2.mp3"
+  }
+ ],
+ "remaining": "일일 생성 한도(429)로 개념 40줄·지도 안내 6줄·힌트 78줄·악당 30줄은 아직 없음. 목록은 _scratch/voice-fill-20261118/09/remaining.json",
+ "unusedOldFiles": [
+  "public/assets/audio/npc-higgsfield/moru-story.mp3",
+  "public/assets/audio/npc-higgsfield/banguli-story.mp3",
+  "public/assets/audio/npc-welcome.m4a"
+ ]
+}

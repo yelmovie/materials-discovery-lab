@@ -23,8 +23,8 @@ const portrait=(npc:string)=>npc==='moru'?'/assets/generated/companion.webp':`/a
 const npcNames=['모루','단단이','방울이','바람이','토리'];
 const openingStory=[
  {npc:'tori',name:'토리',voice:'/assets/audio/npc-elevenlabs/tori-welcome.mp3',title:'멈춰 버린 숲속 공방',text:'물질 코어가 멈추면서 재료 정보가 뒤섞였어요. 친구들과 공방을 다시 움직여 주세요.'},
- {npc:'moru',name:'모루',voice:'/assets/audio/npc-higgsfield/moru-story.mp3',title:'발견을 모으면, 마을이 깨어나요',text:'한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요.'},
- {npc:'banguli',name:'방울이',voice:'/assets/audio/npc-higgsfield/banguli-story.mp3',title:'마지막 발명가는 바로 나!',text:'마지막에는 나만의 보관함을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요.'},
+ {npc:'moru',name:'모루',voice:'/assets/audio/npc-elevenlabs/moru-story.mp3',title:'발견을 모으면, 마을이 깨어나요',text:'한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요.'},
+ {npc:'banguli',name:'방울이',voice:'/assets/audio/npc-elevenlabs/banguli-story.mp3',title:'마지막 발명가는 바로 나!',text:'마지막에는 나만의 보관함을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요.'},
 ];
 const missions=[
  ['비를 막는 작은 지붕을 부탁해!','먼저 우산의 천, 살, 손잡이를 살펴봐요. 알아낸 성질을 작은 지붕 만들기에 써요.','부품 조사 기록을 얻으면 재료 선반과 간판에 불이 들어와요.'],
