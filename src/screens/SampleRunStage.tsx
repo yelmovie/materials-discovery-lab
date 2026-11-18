@@ -5,6 +5,7 @@ import {runStations,runZones,stationOptions,stationAnswer,zoneProgress,isRecorde
 import {playSound} from '../services/audio';
 import type {RunStage,RunStatus,RunHint} from '../game/run-stage/engine';
 import './run-stage.css';
+const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
 
 /** S03 as a 3D walkway. This file is the overlay (pad, buttons, progress,
  * description choices) and the rule link: a right description is sent through
@@ -66,7 +67,7 @@ export default function SampleRunStage({onGuide,onClassic}:Props){
    playSound('success');setPrompt(null);setHint(`${shortNames[asked.sampleId]} 관찰 기록 완료!`);stage.current?.celebrate();
   }else{
    misses.current[asked.id]=(misses.current[asked.id]??0)+1;playSound('retry');
-   setPrompt({...prompt,answer:option,feedback:`「다시 시험하기」로 ${askedZone!.lookFor}을 한 번 더 보고 비교해요.`});
+   setPrompt({...prompt,answer:option,feedback:`「다시 시험하기」로 ${askedZone!.lookFor}${hasBatchim(askedZone!.lookFor)?'을':'를'} 한 번 더 보고 비교해요.`});
   }
  }
  function retest(){if(!prompt)return;stage.current?.resetStation(prompt.id);setPrompt(null);}

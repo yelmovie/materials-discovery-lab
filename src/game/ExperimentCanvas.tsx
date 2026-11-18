@@ -20,7 +20,7 @@ function SampleExperiment({sample='rubber_soft',experiment='elastic_return',acti
  const height=experiment==='compression_recovery'&&moving&&m.cushioning?38:70;
  const sx=300-width/2,sy=153-height/2;
  const observations={
-  elastic_return:m.cushioning?'당기는 동안 양끝 사이가 멀어졌고, 놓은 뒤 점선 안에 들어왔어요.':'당기는 동안 양끝 위치가 거의 같았어요.',
+  elastic_return:m.cushioning?'당기는 동안 양 끝 사이가 멀어졌고, 놓은 뒤 점선 안에 들어왔어요.':'당기는 동안 양 끝 위치가 거의 같았어요.',
   compression_recovery:m.cushioning?'누르는 동안 높이가 낮아졌고, 놓은 뒤 점선 높이로 돌아왔어요.':'누르는 동안 높이가 거의 같았어요.',
   light_transmission:m.transparent?'손전등을 켜니 시료 뒤 별 표시가 밝게 보여요.':'손전등을 켜도 시료 뒤 별 표시가 어둡게 가려져 있어요.',
   water_absorption:m.waterResistant?'물방울이 시료 표면에 둥글게 남아 있어요.':'물방울 자리에 넓고 짙은 자국이 생겼어요.',

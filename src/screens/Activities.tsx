@@ -17,6 +17,7 @@ import {DesignModel} from '../game/DesignModel';
 import ObjectViewport from '../game/ObjectViewport';
 import SampleRunStage from './SampleRunStage';
 import './activity-stages.css';
+const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
 const ExperimentCanvas=lazy(()=>import('../game/ExperimentCanvas'));
 export const needText={body:'모양을 유지하고 물에 쉽게 젖지 않기',window:'빛이 지나가 안쪽이 보이기',bumper:'눌렀다 놓으면 원래 모양으로 돌아오기'};
 export function Panel({title,children}:{title:string;children:ReactNode}){return <section className="tool-panel"><h3>{title}</h3>{children}</section>;}
@@ -111,7 +112,7 @@ function Samples(){
  function continueComparing(){if(advanceExperiment){const next=requiredComparisons[advanceExperiment].find(m=>!save.observations.some(o=>o.id===observationId(advanceExperiment,m)));choose(advanceExperiment,next??requiredComparisons[advanceExperiment][0]);}else choose(experiment,nextSample??requiredComparisons[experiment].find(m=>m!==sample)??sample);}
  // After a correct record the next sample is set up by itself; the student still starts each test.
  useEffect(()=>{if(!(recorded&&phase==='observed'&&feedback&&hasNext))return;const t=setTimeout(continueComparing,save.settings.reducedMotion?700:1600);return()=>clearTimeout(t);},[recorded,phase,feedback,hasNext]);
- function pick(o:string){if(recorded)return;setAnswer(o);if(o===result){dispatch({type:'observe',experiment,sampleId:sample,answer:o});setFeedback('관찰 기록 완료!');playSound('success');}else{setFeedback(`「다시 실험 보기」로 ${lookFor}을 한 번 더 보고 비교해요.`);playSound('retry');}}
+ function pick(o:string){if(recorded)return;setAnswer(o);if(o===result){dispatch({type:'observe',experiment,sampleId:sample,answer:o});setFeedback('관찰 기록 완료!');playSound('success');}else{setFeedback(`「다시 실험 보기」로 ${lookFor}${hasBatchim(lookFor)?'을':'를'} 한 번 더 보고 비교해요.`);playSound('retry');}}
  const lookFor={elastic_return:'당긴 뒤의 모양',light_transmission:'뒤쪽 표시',water_absorption:'물방울',compression_recovery:'누른 뒤의 모양'}[experiment];
  const allDone=experiments.every(e=>requiredComparisons[e].every(m=>save.observations.some(o=>o.id===observationId(e,m))));
  useActivityGuide(phase==='ready'?`「${sampleGestures[experiment].label}」로 직접 실험해요.`:phase==='running'?`${lookFor}의 변화에 주목해요.`:recorded?(allDone?'네 가지 시험을 모두 비교했어요!':advanceExperiment?'좋아요! 곧 다음 시험으로 넘어가요.':'좋아요! 곧 다른 재료로 같은 시험을 해요.'):feedback?`${lookFor}부터 다시 보고 설명을 골라요.`:`${lookFor}의 변화를 보고 맞는 설명을 눌러요.`,phase==='ready'?sampleGestures[experiment].label:recorded?(advanceExperiment?'다음 시험':'다른 재료'):lookFor);

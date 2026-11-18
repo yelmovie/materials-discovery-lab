@@ -1,6 +1,7 @@
 import {validDelivery} from './maker';
 import spec from '../../docs/screen-spec.json';
 import {challenges,challengesFor,correctChallenge} from './challenges';
+const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
 
 export const screens = spec.screens;
 export const stages = spec.stages;
@@ -66,7 +67,7 @@ export function evaluateTest(s:Save,testId:Test):TestResult {
  const p:Part=testId==='rain'?'body':testId==='light'?'window':'bumper';
  const m=materials.find(x=>x.id===s.design.parts[p].sampleId)!;
  const pass=linkedCorrectly(s,p)&&(testId==='rain'?m.rigid&&m.waterResistant:testId==='light'?m.transparent:m.cushioning);
- const feedback=pass?(testId==='impact'?'이 모형에서 모서리가 눌렸다 원래 모습으로 돌아왔어.':`${partNames[p]}가 필요한 성질을 보여 줬어!`):testId==='rain'?'몸체가 물에 젖거나 형태를 유지하지 못했어. 물방울·누르기 기록을 다시 보자.':testId==='light'?'안쪽 표시가 보이지 않아. 빛이 통과한 시료를 찾아보자.':'이 모형에서 모서리의 모양이 거의 그대로였어. 눌렀다 놓은 기록을 비교해 보자.';
+ const feedback=pass?(testId==='impact'?'이 모형에서 모서리가 눌렸다 원래 모습으로 돌아왔어.':`${partNames[p]}${hasBatchim(partNames[p])?'이':'가'} 필요한 성질을 보여 줬어!`):testId==='rain'?'몸체가 물에 젖거나 형태를 유지하지 못했어. 물방울·누르기 기록을 다시 보자.':testId==='light'?'안쪽 표시가 보이지 않아. 빛이 통과한 시료를 찾아보자.':'이 모형에서 모서리의 모양이 거의 그대로였어. 눌렀다 놓은 기록을 비교해 보자.';
  return {testId,attemptId:s.design.attemptId,designRevision:s.design.revision,pass,feedback};
 }
 export function currentResults(s:Save){return s.testResults.filter(t=>t.attemptId===s.design.attemptId&&t.designRevision===s.design.revision);}

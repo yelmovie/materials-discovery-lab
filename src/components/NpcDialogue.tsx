@@ -1,6 +1,7 @@
 import {useEffect,useRef,useState,type ReactNode} from 'react';
 import {setMediaQuiet} from '../services/audio';
 import './npc-dialogue.css';
+const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
 
 type Props = {
   npc:string;
@@ -86,7 +87,7 @@ export function NpcDialogue({npc,name,lines,kind,muted,reducedMotion,children,de
 
   return <div className={`workshop-conversation ${playing?'is-speaking':''}`} data-emotion={emotion}>
     <div ref={character} className="workshop-character"><img src={`/assets/npc-expressions/${npc}-${emotion}.webp`} alt={`${name}의 ${emotion==='happy'?'기쁜':emotion==='think'?'생각하는':'반가운'} 표정`} onError={e=>{e.currentTarget.onerror=null;e.currentTarget.src=npc==='moru'?'/assets/generated/companion.webp':`/assets/characters/${npc}.webp`;}} draggable={false}/></div>
-    <section className="workshop-paper" aria-label={`${name}과의 대화`}>
+    <section className="workshop-paper" aria-label={`${name}${hasBatchim(name)?'과':'와'}의 대화`}>
       <div className="workshop-speaker"><strong>{name}</strong><span>{kind==='mission'?'공방 의뢰':'공방 복구'}</span></div>
       {detail&&<div className="workshop-detail">{detail}</div>}
       <button className="workshop-line" onClick={advance} aria-label={visible!==text?'대사 모두 보기':index<lines.length-1?'다음 대사':'대사 다시 읽기'}>
