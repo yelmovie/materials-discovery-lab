@@ -317,3 +317,13 @@
 }
 /* The screen-reader status inside a request card must not take the card's full width. */
 .app .live-activity .transfer-workspace>.sr-only { width:1px; max-width:1px; }
+/* Portrait phones: the lower panel is short, so (as on short screens) only the part being looked at
+   keeps its note open, and the toolbar extras wrap below the step rail instead of covering it. */
+@media (max-width:699px) {
+ .app .umbrella-stage .part-notebook { gap:5px; margin-top:5px; }
+ .app .umbrella-stage .part-notebook .part-observation-card { padding:6px 9px; }
+ .app .umbrella-stage .part-notebook .part-observation-card:not(.is-current) p { display:none; }
+ .app .umbrella-stage .part-notebook .record-stamp { top:4px; }
+ .app .live-activity .activity-toolbar:has(>.run-view-switch) { flex-wrap:wrap; }
+ .app .live-activity .activity-toolbar:has(>.run-view-switch)>.learning-rail { flex:1 0 100%; }
+}
