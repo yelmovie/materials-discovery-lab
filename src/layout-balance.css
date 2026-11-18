@@ -1,0 +1,54 @@
+/* 놀이 화면 비율 (2026-11-18, docs/LAYOUT-BALANCE-20261118.md)
+   태블릿·노트북·넓은 창에서 학생이 조작하는 판이 배경보다 작아 보이지 않게, 판의 크기와 위치만 맞춘다.
+   배경 그림·글 내용·버튼 동작은 그대로다. 높이 700px 미만(폰 가로·소형 태블릿)은 기존 규칙을 쓴다. */
+
+/* 새 의뢰: 넓은 창에서 판이 왼쪽 1320px에 멈춰 오른쪽 30%가 비던 것을 활동 판과 같은 폭으로 */
+.app .live-activity .transfer-workspace { max-width:none; background:linear-gradient(150deg,rgba(255,253,245,.78),rgba(240,246,232,.7)); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); }
+@media (min-width:1500px) {
+ .app .live-activity .transfer-workspace>* { max-width:min(1320px,100%); }
+}
+
+@media screen and (min-width:1000px) and (min-height:700px) {
+ /* 마무리 네 화면: 가운데 위에 작게 뜨던 카드를 화면 높이에 맞춰 놓는다 */
+ .app .final-toprail,.app .final-activity>.stage-body { width:min(1560px,100%); }
+ .app .final-activity>.stage-body { display:flex; flex-direction:column; }
+ .app .final-activity :is(.final-card,.ending-panel) { max-width:none; flex:1 1 0; min-height:0; background:rgba(255,253,242,.5); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); }
+ /* 판은 배경이 비치는 유리, 읽는 글 카드만 불투명하게 */
+ .app .final-activity .final-card.report .evidence-report article,.app .final-activity .core-links li { background:#f6f8ecf5; }
+
+ /* 연구 보고: 글과 다섯 기록 카드를 화면 높이에 맞춰 키운다 */
+ .app .final-activity .final-card.report { justify-content:center; gap:clamp(10px,2.6dvh,30px); padding:clamp(16px,3dvh,40px) clamp(20px,3vw,56px); overflow:auto; }
+ .app .final-activity .final-card.report h1 { font-size:clamp(26px,4.4dvh,48px); }
+ .app .final-activity .final-card.report>p { font-size:clamp(18px,2.4dvh,26px); }
+ .app .final-activity .final-card.report .evidence-report { gap:clamp(8px,1.4vw,18px); margin:0; }
+ .app .final-activity .final-card.report .evidence-report article { min-height:clamp(120px,24dvh,280px); padding:clamp(12px,2.6dvh,28px) clamp(10px,1.1vw,20px); }
+ .app .final-activity .final-card.report .evidence-report article>span { font-size:clamp(18px,2.2dvh,24px); }
+ .app .final-activity .final-card.report .evidence-report h3 { font-size:clamp(18px,2.4dvh,26px); }
+ .app .final-activity .final-card.report .evidence-report p { font-size:clamp(18px,2.2dvh,24px); }
+ .app .final-activity .final-card.report>.primary { min-height:clamp(52px,7dvh,72px); padding-inline:clamp(20px,2vw,36px); font-size:clamp(19px,2.4dvh,26px); }
+
+ /* 코어: 레버 장치 그림이 카드 가운데를 채운다 */
+ .app .final-activity .core-panel { justify-content:flex-start; }
+ .app .final-activity .core-layout { align-items:center; width:min(1300px,100%); max-width:none; margin-inline:auto; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); }
+ .app .final-activity .core-device { max-height:none; height:100%; }
+ .app .final-activity .core-device.painted-core { width:min(100%,calc(62dvh * 600 / 660)); height:auto; max-height:100%; }
+ .app .final-activity .core-panel>p { font-size:clamp(18px,2.3dvh,24px); }
+ .app .final-activity .core-links li b,.app .final-activity .core-links li span,.app .final-activity .core-links li i { font-size:clamp(18px,2.1dvh,23px); }
+ .app .final-activity .core-layout .primary { min-height:clamp(52px,7dvh,72px); font-size:clamp(19px,2.4dvh,26px); }
+ .app .final-activity .core-links li { padding:clamp(8px,1.4dvh,16px) 14px; }
+
+ /* 엔딩: 넓어진 카드 안에서 복구된 공방 줄과 장치 그림도 함께 넓힌다 */
+ .app .final-activity .restored-buildings { width:min(1000px,100%); }
+ .app .final-activity .ending-panel .object-area.learning-object { width:min(820px,100%); }
+
+ /* 인증서: 종이 비율은 두고 화면 높이에 맞춰 키운다 */
+ .app .final-activity .certificate-wrap { max-width:min(1400px,100%); flex:1 1 0; align-content:center; }
+ .app .final-activity .certificate-border { padding:clamp(12px,3.4dvh,44px) clamp(12px,2vw,36px); }
+ .app .final-activity .certificate h1 { font-size:clamp(24px,4.2dvh,46px); }
+ .app .final-activity .certificate h2 { font-size:clamp(20px,3.6dvh,38px); margin:clamp(6px,1.8dvh,22px) 0; }
+ .app .final-activity .certificate p,.app .final-activity .certificate .certificate-motto { font-size:clamp(18px,2.3dvh,24px); }
+ .app .final-activity .certificate-seal svg { width:clamp(32px,7dvh,72px); height:clamp(32px,7dvh,72px); }
+ .app .final-activity .certificate-badges { margin:clamp(6px,2.2dvh,26px) 0; }
+ .app .final-activity .certificate-badges span,.app .final-activity .certificate-sign,.app .final-activity .certificate-sign span { font-size:clamp(18px,2.2dvh,22px); }
+ .app .final-activity .certificate-badges small { font-size:clamp(18px,2dvh,20px); }
+}
