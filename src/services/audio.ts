@@ -1,9 +1,11 @@
 import type {Settings} from '../domain/model';
-export type Sound='select'|'drop'|'success'|'hint'|'experiment'|'pour'|'air'|'retry'|MapSound;
+export type Sound='select'|'drop'|'success'|'hint'|'experiment'|'pour'|'air'|'retry'|MapSound|CardSound;
 // Map villain cues (CC0, see assets/CREDITS.md): swing, three material hits, exit, entrance, bump and the all-clear jingle.
 export type MapSound='map-swing'|'map-hit-1'|'map-hit-2'|'map-hit-3'|'map-exit'|'map-appear'|'map-bump'|'map-victory';
+// Achievement card cues (CC0, same library): fly in, reveal (the rarest cards use the longer jingle), land in the slot, full set.
+export type CardSound='card-whoosh'|'card-reveal'|'card-epic'|'card-slot'|'card-complete';
 // Levels bring the library files near the Kenney UI sounds; the entrance stays soft.
-const levels:Partial<Record<Sound,number>>={'map-hit-2':.85,'map-exit':.8,'map-appear':.55,'map-bump':.6,'map-victory':.75};
+const levels:Partial<Record<Sound,number>>={'map-hit-2':.85,'map-exit':.8,'map-appear':.55,'map-bump':.6,'map-victory':.75,'card-epic':.8,'card-complete':.75};
 let context:AudioContext|null=null,quiet=false,started=false;
 export type Music='main'|'finale';
 // Suno tracks (references/suno). The main theme loops; the finale plays once and then rests.

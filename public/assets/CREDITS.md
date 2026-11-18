@@ -18,6 +18,8 @@
 | 배경음 2곡 (Suno 생성) | audio/bgm/main-theme.mp3 (시작·지도·활동 반복), audio/bgm/finale.mp3 (엔딩·인증서) | 2026-11-17 사용자가 Suno로 생성해 제공. 프롬프트는 docs/SUNO-BGM-PROMPTS.md | Suno Premier 요금제로 생성(2026-11-18 사용자 확인). 원본은 references/suno 보관, 메인 테마는 반복용 26마디로 편집 |
 | Kenney Interface Sounds 1.0 | 선택·놓기·발견·힌트·도구 등 효과음 8종 | 공식 사이트 CC0 표시 및 다운로드 ZIP License.txt 대조 | audio/Kenney-CC0.txt 원문·sources.json 매핑 보존 |
 | 지도 악당 효과음 8종 (CC0, Freesound) | audio/map-*.mp3 (공격 휘두름·1~3타·퇴장·등장·접촉·전체 격퇴) | 과학34 공통 효과음 라이브러리(2026-11-17)에서 원본 페이지 CC0 재확인된 파일만 사용 | 아래 「지도 악당 효과음 · 2026-11-17」 표 |
+| 성취 카드 그림 6종 (GPT 이미지) | reward-cards/card-{1..6}-*.webp, thumb-{1..6}-*.webp (지도 악당 격퇴 보상) | 2026-11-18 ChatGPT 구독의 Codex 내장 이미지 생성(GPT 이미지). 연구원·모루 그림과 각 공방 배경을 화풍 참조로 붙임 | 아래 「성취 카드 · 2026-11-18」. 생성 계정·요금제·상업 이용 근거 별도 보관 필요 |
+| 성취 카드 효과음 5종 (CC0, Freesound) | audio/card-*.mp3 (날아오기·공개·희귀 공개·칸 도착·6장 완성) | 과학34 공통 효과음 라이브러리(2026-11-17)에서 원본 페이지 CC0 재확인된 파일만 사용 | 아래 「성취 카드 · 2026-11-18」 표 |
 | 개념 모션 영상 10개 (2026-11-09 교체) | 활동 완료·다시 보기 | HyperFrames 0.9.26(오픈소스 CLI, 로컬 렌더)로 직접 만든 HTML 장면 → FFmpeg. 게임 안 그림(모루·NPC4·우산·보관함·나무 시료)과 Jua 글꼴을 재사용, 새 생성 이미지·음원 없음. 애니메이션 라이브러리 GSAP 3.15.0(GreenSock Standard License, 제작 소스에만 포함, 앱 번들에는 없음) | films/concept-clips(소스·SPEC·REVIEW), concepts/manifest.json |
 | SVG 공통 아이콘 | src/components/Icon.tsx | 프로젝트 코드의 직접 작성 SVG | 별도 유료 아이콘 팩 없음 |
 | NanumSquare Neo Regular·Bold·ExtraBold (400·700·800) / Jua 400 | NanumSquare Neo는 앱 UI·실험 Canvas, Jua는 기존 개념 영상 제작 | 자체 호스팅 WOFF2. NanumSquare Neo는 NAVER Corporation 저작권 및 SIL OFL 1.1, Jua는 기존 프로젝트에서 SIL OFL 1.1 고지와 함께 재사용 | `fonts/NanumSquareNeo-OFL.txt`·`fonts/Jua-OFL.txt` 원문과 저작권 고지 보존. 글꼴 적용 검증: `docs/FONT-QA-20261111.md` |
@@ -213,4 +215,21 @@ THE SOFTWARE.
 | audio/map-victory.mp3 | 모든 악당 격퇴, 피날레 영상 직전 | sfx/victory-jingle-04.mp3 | game-win · mickleness | https://freesound.org/people/mickleness/sounds/269198 |
 
 기존 효과음 설정(음소거·효과음 크기·탭 숨김·인물 목소리/영상 재생 중 정지)을 그대로 거친다. 지도 피날레 영상은 소리 없이 재생되므로 승리 징글과 겹치지 않는다.
+
+## 성취 카드 · 2026-11-18
+
+지도 악당을 물리치면 받는 카드 6장(공방 5장 + 중앙 코어 보너스 1장)이다. 화면 구성과 연출은 과학34 공통 모듈 `src/reward-cards.js`·`reward-cards.css`(프로젝트 자체 제작, 외부 의존성 없음)를 고치지 않고 복사했다.
+
+- 카드 그림 6종(`reward-cards/card-{1..6}-*.webp` 640×960, `thumb-{1..6}-*.webp` 96×144)은 ChatGPT 구독의 Codex 내장 이미지 생성(GPT 이미지)으로 만들었다. 연구원·모루 전신 그림과 걷기 프레임, 각 공방 배경을 화풍 참조로 붙였고 글자 없이 생성했다. 테두리·별·이름은 코드로 올린다. 상업 이용 근거(ChatGPT 요금제·이미지 약관)는 계정 기록과 함께 별도 보관이 필요하다.
+- 효과음 5종은 `_shared/sfx-library-20261117`(과학34 공통 효과음 라이브러리)에서 이름만 바꿔 `audio/`에 복사했다. 라이브러리 처리는 지도 악당 효과음과 같고(앞뒤 무음 제거·짧은 페이드·음량 정규화·모노 MP3, 피치·속도 변경 없음), 모두 원본 페이지에서 CC0을 다시 확인한 파일이다(라이선스: https://creativecommons.org/publicdomain/zero/1.0/).
+
+| 배포 파일 | 쓰임 | 라이브러리 파일 | 원본 제목 · 만든 사람 | 출처 |
+|---|---|---|---|---|
+| audio/card-whoosh.mp3 | 카드가 날아올 때·칸으로 들어갈 때 휙 | sfx/wind-whoosh-03.mp3 | Slow Swosh 40 · qubodup | https://freesound.org/people/qubodup/sounds/60027 |
+| audio/card-reveal.mp3 | 카드 공개(별 1~3개) | sfx/reward-01.mp3 | Fantasy_ui_Button_3 · ZenithInfinitiveStudios | https://freesound.org/people/ZenithInfinitiveStudios/sounds/376745 |
+| audio/card-epic.mp3 | 카드 공개(홀로·레전드·보너스) | sfx/reward-03.mp3 | Achievement Happy Beeps Jingle · CogFireStudios | https://freesound.org/people/CogFireStudios/sounds/619838 |
+| audio/card-slot.mp3 | 카드가 칸에 도착 | sfx/pickup-01.mp3 | item-pickup-v1 · DeltaCode | https://freesound.org/people/DeltaCode/sounds/678384 |
+| audio/card-complete.mp3 | 6장 완성 축하 | sfx/victory-jingle-01.mp3 | Game Success Fanfare Short · el_boss | https://freesound.org/people/el_boss/sounds/677858 |
+
+기존 효과음 설정(음소거·효과음 크기·탭 숨김·인물 목소리/영상 재생 중 정지)을 그대로 거친다. 지도 피날레의 승리 징글이 시작되면 카드 완성 징글은 멈춘다.
 

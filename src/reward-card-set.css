@@ -1,0 +1,31 @@
+/* Achievement cards in this app. The shared look lives in reward-cards.css (copied unchanged). */
+.reward-card-slots { display: contents; }
+
+/* glass-surfaces.css gives every button a glass face; the card buttons keep their own surfaces.
+   :is(#root, body) lifts these above that rule for the layer, which sits outside #root. */
+#root .rc-slots {
+  background: linear-gradient(180deg, #fffdf6, color-mix(in srgb, var(--rc-accent) 14%, #fff));
+  border-color: color-mix(in srgb, var(--rc-accent) 55%, #fff);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--rc-accent2) 45%, #0000), 0 6px 14px #0002;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  padding-block: 4px; /* 50px, the height of the header buttons */
+}
+#root .rc-slots.is-complete { border-color: #ffd34d; box-shadow: 0 3px 0 #d9a21e, 0 0 16px #ffd34d99; }
+:is(#root, body) .rc-layer .rc-take {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--rc-accent) 85%, #fff), var(--rc-accent));
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--rc-accent) 60%, #000), 0 10px 22px #0005;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+:is(#root, body) .rc-layer .rc-take:active { box-shadow: 0 2px 0 color-mix(in srgb, var(--rc-accent) 60%, #000); }
+:is(#root, body) .rc-layer .rc-album-item { background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+:is(#root, body) .rc-layer .rc-album-close { background: #0000000f; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* Activity screens use 44px header buttons (stage-fit.css). */
+#root .app:has(>.live-activity)>.topbar .rc-slots { min-height: 44px; padding-block: 2px; }
+#root .app:has(>.live-activity)>.topbar .rc-slot { width: 24px; height: 36px; }
+
+/* Six slots stay clear of the map title in the middle of the header on upright tablets and phones. */
+@media (max-width: 960px) {
+  #root .rc-slots { gap: 2px; padding: 5px 3px; }
+  #root .rc-slot, #root .app:has(>.live-activity)>.topbar .rc-slot { width: 17px; height: 26px; }
+}
