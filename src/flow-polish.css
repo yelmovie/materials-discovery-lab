@@ -153,7 +153,7 @@
 
 /* ===== Design system pass (yelsam-design · game-screen exception: warm gold accents follow the painted art) ===== */
 .app {
- --fs-display:clamp(26px,2.1vw,36px); --fs-title:clamp(21px,1.6vw,28px); --fs-body:clamp(16px,1.15vw,20px); --fs-label:clamp(13px,.95vw,16px); --fs-caption:clamp(12px,.85vw,14px);
+ --fs-display:clamp(26px,2.1vw,36px); --fs-title:clamp(21px,1.6vw,28px); --fs-body:clamp(20px,1.3vw,22px); --fs-label:clamp(18px,1.1vw,20px); --fs-caption:18px;
  --surface:#fffcf3; --surface-soft:#f6f3e6; --surface-line:#e2dcc4; --accent:#2f7a5e; --accent-strong:#1f5f48; --accent-gold:#d7a53c; --accent-gold-soft:#fbefcf; --ink-soft:#56685c;
  --scrim:rgba(16,40,30,.26); --radius-card:20px; --radius-control:14px; --radius-pill:999px;
  --shadow-pop:0 2px 0 rgba(255,255,255,.7) inset,0 24px 60px rgba(18,46,34,.28),0 6px 16px rgba(18,46,34,.12);
@@ -281,3 +281,39 @@
 
 /* Final report, core and ending: lighter, narrower cards so the restored workshop shows around them. */
 .app .final-activity :is(.final-card,.ending-panel) { background:rgba(255,253,242,.84); max-width:min(1040px,100%); margin-inline:auto; }
+
+/* Readable floor (2026-11-17, 3-second pass): on tablet and larger screens every student-facing
+   label uses the type tokens, so nothing a student reads is below 18px. Phones keep stage-fit sizes. */
+@media (min-width:1000px) and (min-height:700px) {
+ .app .live-activity .learning-rail button,.app .live-activity .learning-rail .rail-label { font-size:var(--fs-label); }
+ .app .live-activity .learning-rail b { width:28px; height:28px; font-size:var(--fs-caption); }
+ .app .activity-heading :is(.stage-badge,.activity-number) { font-size:var(--fs-caption); }
+ .app .live-activity .companion-button b { font-size:var(--fs-label); }
+ .app .hero-actions .ghost { font-size:var(--fs-label); }
+ .app .hero-copy :is(.save-note,.eyebrow.light) { font-size:var(--fs-caption); }
+ .app .workshop-page,.app .workshop-speaker span,.app .workshop-stage .workshop-message,.app .workshop-detail { font-size:var(--fs-caption); }
+}
+@media (min-width:1000px) and (min-height:700px) {
+ .app .live-activity :is(.drop-slot b,.drop-slot span,.drop-slot small,.water-balance,.water-balance :is(span,b,strong),.evidence-card small,.evidence-card p,.selected-material,.selected-material :is(b,span),.property-choices small,.gesture-text small,.assignment-visual p,.vessel-label small) { font-size:var(--fs-caption); }
+ .app .live-activity .gesture-text b { font-size:var(--fs-label); }
+}
+@media (min-width:1000px) and (max-width:1499px) and (min-height:700px) {
+ .app .live-activity .learning-rail>span { font-size:var(--fs-caption); }
+ .app .live-activity .activity-footer>.next-step,.app .live-activity .next-step .guide-focus { font-size:var(--fs-caption); line-height:1.3; }
+ .app .live-activity .activity-footer>.primary,.app .live-activity .choice,.app .live-activity .activity-choice-label,.app .live-activity .drag-token,
+ .app .live-activity :is(.tool-panel,.tools,.maker-mission) :is(.primary,.secondary),.app .live-activity :is(.stage-info-button,.tab-row button,.run-view-switch,.experiment-playback-button,.prediction-launch,.maker-choice-row button) { font-size:var(--fs-label); }
+ .app .live-activity :is(.experiment-outline-key,.part-observation-card h4,.part-observation-card p,.part-link,.field,.lab-metric,.lab-metric b,.liquid-vessel-name,.vessel-label,.maker-socket b,.maker-socket span,.material-preview b,.material-preview span,.object-selected-badge,.prediction-summary,.stage-count,.test-name-long,.test-state,.tissue,.water-line,.vent-switch,.experiment-stage-heading,.experiment-eyebrow,.sequence-number,.mini-progress span,.comparison-progress) { font-size:var(--fs-caption); }
+ .app .final-activity :is(.evidence-report h3,.evidence-report span,.final-card>p,.certificate p,.core-layout .field) { font-size:var(--fs-caption); }
+ .app .npc-voice>small,.app.route-world .label-text b { font-size:var(--fs-caption); }
+}
+@media (min-width:1000px) and (min-height:700px) {
+ .app .core-links li span,.app .live-activity .activity-grid .object-selected-badge,.app .live-activity .experiment-stage .experiment-stage-heading,.app .live-activity .experiment-stage .experiment-stage-heading strong,.app .live-activity .experiment-tabs button span,
+ .app .live-activity .challenge-classify .drop-slot span,.app .live-activity .umbrella-stage .part-notebook .part-observation-card :is(p,h4,.part-link),
+ .app .final-activity .ending-panel .material-preview>div,.app .final-activity .ending-panel .material-preview :is(b,span),.app .final-activity .certificate-actions :is(.field,button,input),.app.route-world .map-label .label-text b { font-size:var(--fs-caption); }
+ .app .live-activity .activity-toolbar .run-view-switch { font-size:var(--fs-label); }
+}
+@media (min-width:1000px) and (max-width:1499px) and (min-height:700px) {
+ .app .live-activity .sample-grid .choice,.app .live-activity .sample-grid .activity-choice-label { font-size:var(--fs-caption); white-space:normal; overflow-wrap:anywhere; }
+}
+/* The screen-reader status inside a request card must not take the card's full width. */
+.app .live-activity .transfer-workspace>.sr-only { width:1px; max-width:1px; }

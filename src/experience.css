@@ -616,7 +616,7 @@ html[data-reduced=true] .air-bubbles i { animation:none; opacity:.7; }
  .final-activity .certificate-actions .field { width:100%; grid-column:1/-1; }
 }
 @media screen and (min-width:1024px) {
- :root { --delivery-reading:14px; }
+ :root { --delivery-reading:18px; }
  .route-world .label-text small,.concept-dialog .concept-focus>small { font-size:var(--delivery-reading); }
  .final-activity :is(.final-card,.ending-panel)>.eyebrow,.final-activity .certificate-wrap>.small-note { font-size:var(--delivery-reading); }
  .final-activity .evidence-report p { font-size:clamp(var(--delivery-reading),1.3vw,20px); }
