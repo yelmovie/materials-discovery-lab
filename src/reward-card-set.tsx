@@ -33,6 +33,10 @@ const flying=new Set<number>();
 /** A card is owned once its villain has been driven off (three hits). Nothing extra is saved. */
 export const ownedRewardCards=(hits:Hits)=>cards.map(card=>hits[card.id]===3);
 const shown=(hits:Hits)=>ownedRewardCards(hits).map((owned,i)=>owned&&!flying.has(i));
+// Cards whose turn has come (the villain's exit has played) and that are not in their slot yet. Module state: re-renders do not reset it.
+const due=new Set<number>();
+/** True from a card's turn until it is put away. WorldCanvas adds it to the villains' blocked(), so the all-villains finale cannot slip in ahead of a card that waits for a dialog. */
+export const rewardCardDue=()=>due.size>0;
 
 /** The slot strip before the sound button. The shared module draws and fills it; React only hosts it. */
 export function RewardCardSlots({hits}:{hits:Hits}){
@@ -48,12 +52,14 @@ export function earnRewardCard(id:string,hits:Hits,reduced:boolean){
  flying.add(index);
  const open=()=>{
   // The map was left first: the card simply sits in its slot.
-  if(!document.querySelector('.world-page')){flying.delete(index);rewardCards().syncSlots(shown(hits));return;}
+  if(!document.querySelector('.world-page')){flying.delete(index);due.delete(index);rewardCards().syncSlots(shown(hits));return;}
+  // It is the card's turn from here, also while it waits.
+  due.add(index);
   // A dialog opened in the meantime goes first.
   if(appRoot()?.inert||document.querySelector('dialog[open]')){window.setTimeout(open,300);return;}
   const foe=document.querySelector<HTMLElement>(`.map-encounter-foe[data-encounter="${id}"]`),box=foe&&!foe.hidden?foe.getBoundingClientRect():undefined;
   const origin=box&&{x:box.left,y:box.top-(parseFloat(foe!.style.getPropertyValue('--encounter-size'))||0)/2};
-  void rewardCards().reveal(index,origin,ownedRewardCards(hits)).finally(()=>flying.delete(index));
+  void rewardCards().reveal(index,origin,ownedRewardCards(hits)).finally(()=>{flying.delete(index);due.delete(index);});
  };
  window.setTimeout(open,reduced?520:760);
 }
