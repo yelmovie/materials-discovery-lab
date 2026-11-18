@@ -126,6 +126,7 @@ def run_case(page,case):
     if conditions.is_visible():
         conditions.tap()
         page.get_by_role('heading',name='의뢰와 시험 조건',exact=True).wait_for()
+        page.wait_for_timeout(500)  # let the dialog's pop-in finish before measuring
         capture(page,case,'conditions',dialog=True)
         page.get_by_role('button',name='작업대로 돌아가기',exact=True).tap()
     select_parts(bench,case['screen'],False)
@@ -137,6 +138,7 @@ def run_case(page,case):
     if reasons.is_visible():
         reasons.tap()
         page.locator('dialog[open] .maker-result-list .fix').first.wait_for()
+        page.wait_for_timeout(500)
         capture(page,case,'failure-details',dialog=True)
         page.get_by_role('button',name='작업대로 돌아가기',exact=True).tap()
     select_parts(bench,case['screen'],True)
