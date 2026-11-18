@@ -40,6 +40,8 @@ function layoutSpeech(host, entries){
 }
 
 const REPEAT=380,PREP=90,EXIT_TONE=380;
+// Hit and exit lines start this long after their fight cue (see speak).
+const VOICE_AFTER_SFX=300;
 const CUES={
   cap:'M9 10h14v12H9zm3-4h8v4h-8z', pane:'M6 7h20v18H6zm4 4v10h12V11z',
   file:'M7 5h12l6 6v16H7zm12 2v6h5M11 17h10m-10 4h8', label:'M5 10h15l7 6-7 6H5zm5 4h5m-5 4h7',
@@ -114,13 +116,16 @@ export function mountMapEncounters({
   let current=null,lastNear=null,lastHit=-Infinity,lastTone=-Infinity,saved={},last=null,closed=false;
   const timers=new Set();
 
-  function speak(foe,text,time){
+  // A hit or exit line is read aloud VOICE_AFTER_SFX after its fight cue so the cue is heard first; a taunt at once.
+  let speech=0;
+  function speak(foe,text,time,voiceDelay=0){
     for(const other of foes)if(other!==foe){other.saidUntil=0;other.bubble.hidden=true;}
     foe.bubble.textContent=text;
     foe.bubble.hidden=false;
     lastSpeechLayout=-Infinity;
     foe.saidUntil=time;
-    say(text);
+    const mine=++speech;
+    if(voiceDelay>0)later(()=>{if(mine===speech)say(text);},voiceDelay);else say(text);
     live.textContent=text;
   }
   function nudge(){
@@ -152,7 +157,7 @@ export function mountMapEncounters({
     foe.poseUntil=time+duration;foe.hitAt=time;foe.hurtAt=undefined;
     saved={...saved,[foe.s.id]:n};onSave({...saved});tone(n===HITS?'finish':'hit',n);
     if(n===HITS)later(()=>tone('exit',n),EXIT_TONE);
-    speak(foe, n===HITS?foe.s.finish??'앗, 물러날게!':foe.s.hit?.[n-1]??(n===1?'앗, 들켰네!':'이번 건 제법인데!'),time+(n===HITS?2750:1800));
+    speak(foe, n===HITS?foe.s.finish??'앗, 물러날게!':foe.s.hit?.[n-1]??(n===1?'앗, 들켰네!':'이번 건 제법인데!'),time+(n===HITS?2750:1800),VOICE_AFTER_SFX);
     live.textContent+=n===HITS?' 세 번 명중! 악당이 물러나요.':` ${n}번 명중. ${HITS-n}번 남았어요.`;
     if(n===HITS&&requiredFoes>0&&stages.length===requiredFoes&&stages.every(s=>(saved[s.id]??record[s.id])===HITS))finaleAt=time+2920;
     if(last)update({...last,now:time});
