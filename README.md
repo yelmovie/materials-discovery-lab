@@ -159,3 +159,11 @@ npm run concepts:render
 - **저장:** 새 저장 값은 없어. 보유 여부는 기존 격퇴 기록(`mapHits`의 3)에서 계산하니까 이미 물리친 악당의 카드는 처음부터 채워져 있고 연출은 다시 나오지 않아.
 - **지도 멈춤:** 카드나 보관함이 열린 동안 앱 루트(`#root`)가 inert가 돼. 지도와 악당은 이걸 대화창이 열린 것처럼 보고 걷기·방향키·방향판·공격을 멈춰.
 - **파일:** 연결 코드는 `src/reward-card-set.tsx`(카드 설정·보유 계산·칸·등장 시점)와 `src/reward-card-set.css`(유리 버튼 스타일 덮어쓰기, 폭 960px 이하의 작은 칸)야. 화면과 연출은 과학34 공통 모듈 `src/reward-cards.js`·`reward-cards.css`·`reward-cards.d.ts`를 고치지 않고 복사했어. 카드 그림은 `public/assets/reward-cards/`, 효과음 5개는 `public/assets/audio/card-*.mp3`(CC0)이고 출처는 [public/assets/CREDITS.md](public/assets/CREDITS.md)에 있어. 빌드하면 오프라인 사전 저장 목록에 함께 들어가.
+
+## 놀이 화면 비율 · 중복 조작 정리 (2026-11-18 밤)
+
+- **넓은 창 새 의뢰:** 1920×1080에서 판이 왼쪽 1320px에 멈춰 오른쪽 30%가 비던 것을 활동 판과 같은 폭으로 맞추고, 배경이 비치는 유리 판으로 바꿨어(면적 54%→77%).
+- **마무리 네 화면(연구 보고·코어·엔딩·인증서):** 위쪽에 작게 뜨던 카드를 화면 높이에 맞추고 글·기록 카드·코어 장치 그림을 화면 높이 기준으로 키웠어. 1920 보고 21%→70%, 1280 보고 40%→78%, 인증서 31%→63%. 높이 700px 미만과 인쇄는 그대로야.
+- **중복 조작:** 코어의 「코어 레버」 밀기 막대와 「길게 눌러 코어 재가동」 버튼이 같은 일을 해서 버튼 하나만 남겼어(키보드 Enter·Space 길게 누르기 유지).
+- **파일:** `src/layout-balance.css`(새 파일, 마지막에 불러옴), `src/screens/FinalPanels.tsx`. 화면별 수치와 그대로 둔 버튼의 이유는 [docs/LAYOUT-BALANCE-20261118.md](docs/LAYOUT-BALANCE-20261118.md), 최종 점검은 [RELEASE-REVIEW-20261118](docs/reviews/RELEASE-REVIEW-20261118.md)·[SCORE-20261118](docs/reviews/SCORE-20261118.md)(조건부 배포 가능, 84점).
+- **검증·배포:** typecheck·테스트 144개·빌드 통과, 학생 S01→새 의뢰 2개→개념 영상→S02와 새로고침 복원, 코어 길게 누르기→엔딩을 직접 눌러 확인. 커밋 `e496da4`, Worker 버전 `28b43911`, `cmp.sh` MATCH, 운영 주소 1920 재측정 같은 값. 배포는 `KEEP_DOCS=1 deploy.sh 09e …`로 해야 해(설정 화면이 `docs/screen-spec.json`을 읽어).
