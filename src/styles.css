@@ -330,13 +330,11 @@ select { max-width: 100%; text-overflow: ellipsis; }
 /* Dialogs: a fixed title and footer surround the only scrolling region. */
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; background: #244e43; color: #fffbed; box-shadow: 0 8px 25px #142e3e30; border: 1px solid #9cb98a; border-radius: 15px; padding: 14px 15px 14px 23px; display: flex; align-items: center; gap: 15px; max-width: min(760px,90vw); font-size: 18px; }
 .toast button { background: transparent; color: inherit; font-size: 25px; padding: 0; border: 0; }
-.modal-backdrop { position: fixed; inset: 0; background: #153b36a6; backdrop-filter: blur(4px); z-index: 70; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .modal { width: 570px; max-width: calc(100vw - 32px); max-height: calc(100dvh - 40px); overflow: auto; background: #fffcf1; color: var(--ink); border: 3px solid #c7bb87; border-radius: 24px; box-shadow: 0 20px 80px #102d3466; padding: 30px; position: relative; }
 .modal h2 { font-size: 28px; padding-right: 36px; line-height: 1.4; }
 .modal h3 { font-size: 22px; }
 .modal p { font-size: 18px; }
 .native-modal { margin: auto; }
-.native-modal::backdrop { background: #153b36ac; backdrop-filter: blur(4px); }
 .modal-close { position: absolute; right: 12px; top: 12px; background: #ecedd9; padding: 11px; display: grid; place-items: center; z-index: 2; }
 .modal .eyebrow { padding-right: 35px; }
 .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 25px; }

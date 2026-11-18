@@ -5,7 +5,6 @@ button:not([aria-pressed=true]):not(.primary):not(.selected):not(.text-action):n
 .tool-panel,.activity-heading>div:first-child,.tools>.small-note,.activity-footer>span,.map-guide>button{background:var(--glass-face);border:1px solid var(--glass-line);box-shadow:var(--glass-shadow);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
 .workspace{background:linear-gradient(150deg,rgba(255,253,245,.64),rgba(234,244,228,.54));box-shadow:var(--glass-shadow)}
 .modal,.map-guide-bubble{background:var(--glass-reading);border:1px solid var(--glass-line);box-shadow:0 16px 48px #1b352833;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.modal-backdrop{background:rgba(18,42,31,.27);backdrop-filter:blur(2px)}
 button[aria-pressed=true],.choice.selected{background:#e2edcf;border-color:#55794d}
 .modal-actions{flex-wrap:wrap}
 @media(prefers-reduced-transparency:reduce){:root{--glass-face:#fffdf3;--glass-reading:#fffdf6}.workspace{background:#fffdf3}}

@@ -155,7 +155,7 @@
 .app {
  --fs-display:clamp(26px,2.1vw,36px); --fs-title:clamp(21px,1.6vw,28px); --fs-body:clamp(16px,1.15vw,20px); --fs-label:clamp(13px,.95vw,16px); --fs-caption:clamp(12px,.85vw,14px);
  --surface:#fffcf3; --surface-soft:#f6f3e6; --surface-line:#e2dcc4; --accent:#2f7a5e; --accent-strong:#1f5f48; --accent-gold:#d7a53c; --accent-gold-soft:#fbefcf; --ink-soft:#56685c;
- --radius-card:20px; --radius-control:14px; --radius-pill:999px;
+ --scrim:rgba(16,40,30,.26); --radius-card:20px; --radius-control:14px; --radius-pill:999px;
  --shadow-pop:0 2px 0 rgba(255,255,255,.7) inset,0 24px 60px rgba(18,46,34,.28),0 6px 16px rgba(18,46,34,.12);
  --dur-base:250ms; --dur-slow:400ms; --ease-out:cubic-bezier(.16,1,.3,1);
 }
@@ -163,7 +163,9 @@
 .app .modal { background:var(--surface); border:1px solid var(--surface-line); border-radius:28px; box-shadow:var(--shadow-pop); backdrop-filter:none; -webkit-backdrop-filter:none; overflow:hidden; }
 .app .modal::before { content:""; position:absolute; inset:0 0 auto; height:6px; background:linear-gradient(90deg,var(--accent),#5fae8c 45%,var(--accent-gold)); z-index:1; }
 .app .modal[open] { animation:pop-in var(--dur-slow) var(--ease-out); }
-.app .modal::backdrop,.app .modal-backdrop { background:rgba(16,40,30,.48); backdrop-filter:blur(3px); }
+/* One scrim for every dialog: the scene stays readable behind results and requests (concept films excepted). */
+.app .modal::backdrop { background:var(--scrim,rgba(16,40,30,.26)); backdrop-filter:none; }
+.app .modal.concept-dialog::backdrop { background:rgba(16,40,30,.62); }
 @keyframes pop-in { from { opacity:0; transform:scale(.95) translateY(8px); } to { opacity:1; transform:none; } }
 [data-reduced=true] .app .modal[open] { animation:none; }
 @media (prefers-reduced-motion:reduce) { .app .modal[open] { animation:none; } }
@@ -276,3 +278,6 @@
  .app .live-activity .tool-panel .stage-count { font-size:15px; }
 }
 @media (max-height:560px) { .app .umbrella-stage .part-notebook .part-observation-card:not(.is-current) p { display:none; } .app .umbrella-stage .part-notebook .record-stamp { top:4px; } }
+
+/* Final report, core and ending: lighter, narrower cards so the restored workshop shows around them. */
+.app .final-activity :is(.final-card,.ending-panel) { background:rgba(255,253,242,.84); max-width:min(1040px,100%); margin-inline:auto; }
