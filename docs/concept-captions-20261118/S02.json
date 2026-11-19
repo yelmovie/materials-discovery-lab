@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S02.mp4",
+ "out": "../../public/assets/concepts/S02.mp4",
+ "out_webm": "../../public/assets/concepts/S02.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "우산 [부품]을 벌려 하나씩 살펴봐요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "천·금속·나무를 이 우산의 [관찰] 기록과 연결해요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "겉모습이 비슷해도 다른 [재료]일 수 있어요. 확인 자료도 근거예요."
+  }
+ ]
+}

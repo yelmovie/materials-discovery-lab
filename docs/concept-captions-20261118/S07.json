@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S07.mp4",
+ "out": "../../public/assets/concepts/S07.mp4",
+ "out_webm": "../../public/assets/concepts/S07.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "마른 휴지를 컵 안쪽 위에 붙여요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "입구를 아래로 향하게 곧게 넣어요. 아래에 물이 조금 들어와요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "위쪽에 남은 [공기]가 [공간]을 차지해 휴지는 마른 채였어요."
+  }
+ ]
+}

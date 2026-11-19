@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S08.mp4",
+ "out": "../../public/assets/concepts/S08.mp4",
+ "out_webm": "../../public/assets/concepts/S08.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "컵의 크기, 입구 방향, 물속 깊이를 같게 해요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "배출구에서 [공기]가 [기포]로 빠져나오는 모습을 봐요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "열린 쪽에 물이 더 들어와요. 닫힌 쪽에는 [공기]가 남아요."
+  }
+ ]
+}

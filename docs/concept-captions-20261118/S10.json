@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S10.mp4",
+ "out": "../../public/assets/concepts/S10.mp4",
+ "out_webm": "../../public/assets/concepts/S10.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "모형에서 비·빛·모서리 [시험]의 결과를 봐요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "창 뒤쪽이 보이지 않으면 빛 [시험] 기록을 참고해 창 재료를 고쳐요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "현재 [설계]로 [같은 조건]의 세 모형 [시험]을 다시 확인해요."
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S04.mp4",
+ "out": "../../public/assets/concepts/S04.mp4",
+ "out_webm": "../../public/assets/concepts/S04.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "빛을 비춰 창 뒤쪽이 보이는지 살펴봐요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "누름판을 떼자 고무 조각이 돌아오는 모습을 봐요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "[쓰임]에 맞는 관찰 [근거]로 후보를 골라요. 실제 보호 성능은 따로 시험해야 해요."
+  }
+ ]
+}

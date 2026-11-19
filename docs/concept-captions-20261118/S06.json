@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S06.mp4",
+ "out": "../../public/assets/concepts/S06.mp4",
+ "out_webm": "../../public/assets/concepts/S06.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "물은 액체예요. 처음 컵의 물[높이]를 표시해요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "같은 [양]의 물도 용기에 따라 [높이]와 [모양]이 달라져요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "흘리지 않고 처음 컵으로 돌아오니 물[높이]가 기준선과 같아요."
+  }
+ ]
+}

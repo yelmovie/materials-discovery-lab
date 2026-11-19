@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S09.mp4",
+ "out": "../../public/assets/concepts/S09.mp4",
+ "out_webm": "../../public/assets/concepts/S09.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "보관함의 세 부분은 맡은 일이 달라요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "비를 막을 몸체, 안이 보일 창, 닿는 곳에 붙일 보호대를 살펴봐요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "실제로 남긴 시료 기록을 근거로 재료 후보를 골라 조립해요."
+  }
+ ]
+}

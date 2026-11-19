@@ -11,30 +11,57 @@
 .reduced .concept-chapters button,[data-reduced=true] .concept-chapters button{transition:none!important}
 @media(max-height:650px){.concept-focus{padding:6px 10px;gap:5px}.concept-focus strong{padding:1px 7px}}
 
-.concept-dialog .concept-chapters{padding:6px 24px}.concept-dialog .concept-focus{margin:8px 24px 0}.concept-dialog .concept-picture video{max-height:42dvh}.concept-dialog .concept-caption{min-height:70px}.concept-dialog .concept-caption p{line-height:1.45}@media(max-height:650px){.concept-dialog .concept-picture video{max-height:33dvh}.concept-dialog .concept-header{padding-top:10px}.concept-dialog .concept-actions{padding-block:8px}.concept-dialog .concept-caption{padding:8px 16px}}
+/* 전체 화면 개념 영상 (2026-11-18): 자막은 영상 그림 안 아래쪽에 입혀 있다(docs/concept-captions-20261118).
+   조작은 위쪽에 얹고, 재생 중에는 아래 30%(자막 자리)를 아무것도 덮지 않는다.
+   화면 자막·기억할 낱말은 영상이 끝났을 때(정리 문장)나 영상을 못 틀 때만 아래에 보인다. */
+.app .native-modal.concept-dialog{position:fixed;inset:0;width:100dvw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;border-radius:0;background:#000;box-shadow:none;overflow:hidden}
+.app .native-modal.concept-dialog::before{display:none}
+.app .native-modal.concept-dialog>.modal-content{position:relative;flex:1;width:100%;height:100%;padding:0;overflow:hidden;display:block}
+.app .concept-dialog .modal-close{z-index:4;top:12px;right:14px}
+.app .concept-dialog .concept-picture{position:absolute;inset:0;background:#000;display:block}
+.app .concept-dialog .concept-picture video{display:block;width:100%;height:100%;max-height:none;aspect-ratio:auto;object-fit:contain;background:#000}
+.app .concept-dialog .concept-fallback{inset:0;padding:clamp(130px,24dvh,190px) max(24px,8vw) clamp(150px,26dvh,220px);background:#f8f5e8;color:#214d43}
 
-.concept-dialog .concept-header{padding-inline-end:64px}
-.concept-dialog .concept-actions :is(.concept-play,.concept-pause){position:static;inset:auto;transform:none;width:auto;max-width:none;min-inline-size:8em;min-height:48px;font-size:clamp(16px,1.2vw,20px);line-height:1.25}
+.app .concept-dialog .concept-top{position:absolute;inset:0 0 auto;z-index:3;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 78px 26px 20px;background:linear-gradient(180deg,rgba(8,22,17,.86),rgba(8,22,17,.6) 70%,rgba(8,22,17,0))}
+.app .concept-dialog .concept-top .concept-timeline{position:absolute;inset:0 0 auto;height:4px;background:#ffffff2e}
+.app .concept-dialog .concept-top .concept-timeline i{background:#e7b23a}
+.app .concept-dialog .concept-header{padding:0;min-width:0}
+.app .concept-dialog .concept-header .eyebrow{margin:0 0 4px;padding:2px 10px;font-size:clamp(13px,1vw,16px)}
+.app .concept-dialog .concept-header h2{margin:0;padding:0;color:#fff;font-size:clamp(20px,2vw,30px);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app .concept-dialog .concept-actions{padding:0;display:flex;gap:8px;justify-content:flex-end}
+.app .concept-dialog .concept-actions button{min-height:46px;padding:8px 16px;font-size:clamp(16px,1.3vw,21px)}
+.app .concept-dialog .concept-chapters{grid-column:1/-1;padding:0;max-width:780px}
+.app .concept-dialog .concept-chapters button{min-height:42px;color:#214d43}
+/* glass-surfaces.css 의 공통 버튼 면(:not 여러 개라 우선순위가 높음)보다 앞서야 지금 장면이 보인다. */
+.app .concept-dialog .concept-chapters button[aria-current=step]{background:#d8eedf!important;border-color:#407961!important;box-shadow:inset 0 -3px #407961!important;color:#1f4a3c}
+.app .concept-dialog .concept-top .concept-focus{grid-column:1/-1;justify-self:start;margin:0}
+.concept-dialog .concept-actions :is(.concept-play,.concept-pause){position:static;inset:auto;transform:none;width:auto;max-width:none;min-inline-size:8em;line-height:1.25}
 .concept-dialog .concept-actions :is(.concept-play,.concept-pause):is(:hover,:active){transform:none}
 .concept-dialog .concept-actions :is(.concept-play,.concept-pause)[aria-disabled=true]{cursor:progress}
 
-@media(max-width:500px){
- .concept-dialog .concept-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
- .concept-dialog .concept-actions :is(.concept-play,.concept-pause){min-inline-size:0}
-}
+.app .concept-dialog .concept-bottom{position:absolute;inset:auto 0 0;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;padding:30px 16px max(14px,env(safe-area-inset-bottom));background:linear-gradient(0deg,rgba(8,22,17,.8),rgba(8,22,17,0))}
+.app .concept-dialog .concept-bottom .concept-focus{margin:0}
+.app .concept-dialog .concept-caption{width:min(1100px,100%);min-height:0;padding:10px 20px;border-radius:18px;background:#f0f2ddf5}
+.app .concept-dialog .concept-caption p{line-height:1.45}
+/* 영상이 보이는 동안: 영상 속 자막과 겹치지 않게 화면에서는 숨기고 스크린리더용(aria-live)으로만 남긴다. */
+.app .concept-dialog .concept-bottom.is-burned{position:absolute;inset:auto auto 0 0;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;background:none}
 
-@media(max-height:480px) and (min-width:600px){
- .concept-dialog>.modal-content{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,1fr);grid-template-areas:'header header' 'picture caption' 'picture timeline' 'picture words' 'picture chapters' 'actions actions'}
- .concept-dialog .concept-header{grid-area:header;padding-block:8px 4px}
- .concept-dialog .concept-header h2{font-size:22px;margin-bottom:4px}
- .concept-dialog .concept-picture{grid-area:picture;align-items:center}
- .concept-dialog .concept-picture video{max-height:54dvh}
- .concept-dialog .concept-caption{grid-area:caption;min-height:0;padding:6px 10px;gap:8px}
- .concept-dialog .concept-caption img{width:30px;height:36px}
- .concept-dialog .concept-caption p{font-size:17px;line-height:1.35}
- .concept-dialog .concept-timeline{grid-area:timeline}
- .concept-dialog .concept-focus{grid-area:words;margin:5px 10px 0}
- .concept-dialog .concept-chapters{grid-area:chapters;padding:4px 10px 0}
- .concept-dialog .concept-chapters button{padding-inline:4px}
- .concept-dialog .concept-actions{grid-area:actions}
+@media(max-height:560px){
+ .app .concept-dialog .concept-top{padding:8px 70px 16px 14px;gap:6px 12px}
+ .app .concept-dialog .concept-header .eyebrow{display:none}
+ .app .concept-dialog .concept-header h2{font-size:20px}
+ .app .concept-dialog .concept-actions button{min-height:44px;padding:6px 12px;font-size:16px}
+ .app .concept-dialog .concept-chapters button{min-height:40px;padding:4px 8px;font-size:15px}
+ .app .concept-dialog .concept-caption{padding:6px 12px;gap:10px}
+ .app .concept-dialog .concept-caption img{width:34px;height:42px}
+ .app .concept-dialog .concept-caption p{font-size:18px;line-height:1.35}
+ .app .concept-dialog .concept-bottom{padding-top:16px;gap:5px}
+ .app .concept-dialog .modal-close{top:8px;right:10px}
+ /* 재생 중에는 장면 버튼을 접어 그림을 덜 가린다(일시 정지하면 다시 보임). */
+ .app .concept-dialog.is-playing .concept-chapters{display:none}
+}
+@media(max-width:600px){
+ .app .concept-dialog .concept-top{grid-template-columns:minmax(0,1fr);padding-right:66px}
+ .app .concept-dialog .concept-actions{justify-content:flex-start}
+ .app .concept-dialog .concept-actions :is(.concept-play,.concept-pause){min-inline-size:0}
 }

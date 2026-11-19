@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S05.mp4",
+ "out": "../../public/assets/concepts/S05.mp4",
+ "out_webm": "../../public/assets/concepts/S05.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "같은 나무토막을 처음 컵에 넣어요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "넓은 용기와 길쭉한 용기로 옮겨 윤곽을 비교해요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "점선과 토막을 겹쳐 봐요. 위치는 달라져도 토막은 그대로예요."
+  }
+ ]
+}

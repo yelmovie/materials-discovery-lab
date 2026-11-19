@@ -1,0 +1,29 @@
+{
+ "src": "../../../_scratch/caption-motion-20261118/concepts/09/src/S01.mp4",
+ "out": "../../public/assets/concepts/S01.mp4",
+ "out_webm": "../../public/assets/concepts/S01.webm",
+ "theme": {
+  "box": "#214d43",
+  "accent": "#d99a1e",
+  "hot": "#ffe98a"
+ },
+ "bottom": 18,
+ "sweep": false,
+ "cues": [
+  {
+   "s": 0.0,
+   "e": 4.9,
+   "text": "우산 천, 살, 손잡이를 따로 살펴봐요."
+  },
+  {
+   "s": 5.0,
+   "e": 9.9,
+   "text": "천은 펼쳐지고, 살은 천을 받쳐요. 손잡이는 손으로 잡아요."
+  },
+  {
+   "s": 10.0,
+   "e": 15.0,
+   "text": "한 [물체]도 부분의 쓰임에 맞춰 여러 [재료]로 만들 수 있어요."
+  }
+ ]
+}
