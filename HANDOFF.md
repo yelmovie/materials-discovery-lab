@@ -8,6 +8,7 @@
 - 첫 입력 전(`src/services/lineVoice.ts`): 새로고침 직후 지도에 서면 악당 도발 대사가 입력 전에 재생을 시도했다(실제 브라우저에서는 거부됨). 이제 첫 탭·키 전에는 시도하지 않고 마지막으로 요청된 줄을 첫 입력 직후 한 번 읽는다(그 입력이 다른 줄을 시작하거나 화면을 떠나면 생략).
 - 개념 영상(1-2): 10편 모두 소리 트랙이 없고 항상 `muted`라 해당 없음.
 검증: 테스트 21파일 162개, typecheck·빌드 통과. 헤드리스(`.tmp/audio-fix3-20261120/verify3.mjs` 44/44, 1·2차 회귀 `regress.mjs` 52/52). 설정 스크린숏 `.tmp/audio-fix3-20261120/shots/`.
+배포: 2026-11-20 Workers `materials-discovery-lab` 버전 20ccd397-a81e-4859-9e88-cac9a1618fa8(커밋 bba7876, `KEEP_DOCS=1 deploy.sh 09 "9 things" worker-cfg materials-discovery-lab`). `cmp.sh` 메인 스크립트·sw.js·index MATCH, 개념 영상 Range 206. 운영 헤드리스 28/28(스위치·저장 호환·첫 입력).
 
 # 인계 · 2026-11-19 (소리 2차 수정)
 목표: `_shared/AUDIO-FIX2-BRIEF-20261119.md` 09번 줄 — 지도·시험 길 발자국, 공방 열림 소리, 목소리 겹침, 효과음 갈래. 음량 기본값은 바꾸지 않았다(배경음 0.288, 목소리 0.8, 효과음 0.4).
