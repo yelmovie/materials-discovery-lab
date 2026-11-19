@@ -2,7 +2,7 @@ import {lazy,Suspense,useState,useEffect,useRef} from 'react';
 import {useGame} from '../state/GameContext';
 import {Icon} from '../components/Icon';
 import {clickSound,setMediaQuiet,voiceTurn} from '../services/audio';
-import {evidenceNames,parts,partNames,shortNames,canFinalize,type Phase} from '../domain/model';
+import {evidenceNames,parts,partNames,shortNames,canFinalize,voiceOff,type Phase} from '../domain/model';
 import {needText} from './Activities';
 const ObjectViewport=lazy(()=>import('../game/ObjectViewport'));
 export default function FinalPanels({navigate}:{navigate:(phase:Phase)=>void}){
@@ -13,7 +13,7 @@ export default function FinalPanels({navigate}:{navigate:(phase:Phase)=>void}){
  useEffect(()=>{if(phase!=='ending')return;setTime(0);const started=Date.now();const t=setInterval(()=>setTime(Date.now()-started),100);return()=>clearInterval(t);},[phase]);
  useEffect(()=>{if(phase==='ending'&&time>=8000)navigate('certificate');},[time,phase]);
  // 엔딩 문구가 바뀔 때마다 공방장 토리가 그 문구를 읽는다(ElevenLabs Aria, docs/VOICE-FILL-20261118.json).
- const endingLine=phase==='ending'?(time<2500?0:time<5000?1:2):-1,quietVoice=save.settings.muted||save.settings.sfx===0;
+ const endingLine=phase==='ending'?(time<2500?0:time<5000?1:2):-1,quietVoice=voiceOff(save.settings);
  // 탭을 숨기면 다른 목소리처럼 그 자리에서 멈춘다(문구는 화면에 남아 있다).
  useEffect(()=>{
   if(endingLine<0||quietVoice||document.hidden)return;

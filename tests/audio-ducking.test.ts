@@ -17,7 +17,7 @@ g.document=doc;g.Audio=FakeAudio;
 g.AudioContext=undefined;
 const emit=(type:string,detail?:unknown)=>listeners[type]?.forEach(fn=>fn({detail}));
 const song=(name:string)=>created.filter(a=>a.src.endsWith(`/bgm/${name}.mp3`)).at(-1);
-const settings={muted:false,bgm:.18,sfx:.4,reducedMotion:false};
+const settings={muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false};
 const full=Math.min(1,settings.bgm*1.6);
 
 describe('music ducking by name tag',()=>{
@@ -87,7 +87,7 @@ describe('music ducking by name tag',()=>{
   audio.stopAudio();
  });
 
- it('switching sound or effects off stops a line that is being read, and its waiter goes on',async()=>{
+ it('switching sound or the voice off stops a line that is being read, and its waiter goes on',async()=>{
   const audio=await import('../src/services/audio');
   const {playLine,lineBusy}=await import('../src/services/lineVoice');
   audio.updateAudio(settings);audio.startAudio();
@@ -97,9 +97,30 @@ describe('music ducking by name tag',()=>{
   expect(lineBusy(),'busy while the file is still loading').toBe(true);expect(audio.mediaQuiet()).toBe(false);
   line.onplaying?.();
   expect(audio.mediaQuiet()).toBe(true);
+  audio.updateAudio({...settings,voice:false});
+  expect(line.paused).toBe(true);expect(lineBusy()).toBe(false);expect(audio.mediaQuiet(),'the music comes back at once').toBe(false);expect(ended).toBe(1);
+  expect(playLine('/assets/audio/npc-elevenlabs/villain-core-4.mp3',()=>ended++),'no line while the voice is off; the waiter goes on at once').toBe(false);
+  expect(ended).toBe(2);
+  audio.updateAudio(settings);audio.stopAudio();
+ });
+
+ it('the effect switch no longer silences voices, and the voice switch leaves the effects alone',async()=>{
+  const audio=await import('../src/services/audio');
+  const {playLine,stopLine}=await import('../src/services/lineVoice');
+  audio.updateAudio(settings);audio.startAudio();
+  expect(playLine('/assets/audio/npc-elevenlabs/villain-core-1.mp3')).toBe(true);
+  const line=created.filter(a=>a.src.endsWith('villain-core-1.mp3')).at(-1)!;line.onplaying?.();
   audio.updateAudio({...settings,sfx:0});
-  expect(line.paused).toBe(true);expect(lineBusy()).toBe(false);expect(audio.mediaQuiet()).toBe(false);expect(ended).toBe(1);
-  expect(playLine('/assets/audio/npc-elevenlabs/villain-core-4.mp3'),'no line while effects are off').toBe(false);
+  expect(line.paused,'effects off: the line goes on').toBe(false);expect(audio.voiceMuted()).toBe(false);
+  audio.playSound('select');expect(created.some(a=>a.src.endsWith('/select.mp3')&&!a.paused),'effects off: no click').toBe(false);
+  stopLine();
+  audio.updateAudio({...settings,voice:false});expect(audio.voiceMuted()).toBe(true);
+  audio.playSound('select');const click=created.filter(a=>a.src.endsWith('/select.mp3')).at(-1)!;
+  expect(click.paused,'voice off: the click still sounds').toBe(false);expect(click.volume).toBeCloseTo(.4);
+  // The effect volume scales every effect: 50 % in the settings is sfx 0.2.
+  audio.updateAudio({...settings,sfx:.2});audio.playSound('select');expect(click.volume).toBeCloseTo(.2);
+  audio.playSound('map-hit-2');expect(created.filter(a=>a.src.endsWith('/map-hit-2.mp3')).at(-1)!.volume).toBeCloseTo(.2*.85);
+  audio.updateAudio({...settings,muted:true});expect(audio.voiceMuted(),'the header mute silences voices too').toBe(true);
   audio.updateAudio(settings);audio.stopAudio();
  });
 });

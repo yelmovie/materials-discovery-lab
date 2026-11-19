@@ -1,4 +1,4 @@
-import type {Settings} from '../domain/model';
+import {voiceOff as voiceSwitchOff,type Settings} from '../domain/model';
 export type Sound='select'|'drop'|'success'|'hint'|'experiment'|'pour'|'air'|'retry'|MapSound|CardSound|OpenSound;
 // Map villain cues (CC0, see assets/CREDITS.md): swing, three material hits, exit, entrance, bump and the all-clear jingle.
 export type MapSound='map-swing'|'map-hit-1'|'map-hit-2'|'map-hit-3'|'map-exit'|'map-appear'|'map-bump'|'map-victory';
@@ -29,7 +29,7 @@ const LOOP={start:11616/48000,end:2900786/48000};
 let loopBuffer:AudioBuffer|null=null,loopLoad:Promise<void>|null=null,loopSource:AudioBufferSourceNode|null=null,loopGain:GainNode|null=null,loopFailed=false;
 const musicVolume=()=>Math.min(1,settings.bgm*1.6)*(quiet()?.25:1)*(afterFinale()?AFTER_FINALE:1);
 function stopLoop(){if(!loopSource)return;try{loopSource.stop();}catch{}loopSource.disconnect();loopSource=null;}
-let settings:Settings={muted:false,bgm:.18,sfx:.4,reducedMotion:false};
+let settings:Settings={muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false};
 const activeCues=new Set<{osc:OscillatorNode;gain:GainNode}>();
 const players=new Map<Sound,HTMLAudioElement>();
 // Map villain fight cues keep playing under a character voice; a voice never mutes or drops them. Card cues are not map cues.
@@ -94,7 +94,7 @@ function restartFinale(){finaleDone=false;if(music?.dataset.track==='finale'){mu
 export function setMusic(next:Music){if(next===track)return;track=next;if(next==='finale'&&!mapFinale)restartFinale();sync();}
 function visibility(){sync();if(document.hidden){stopEffects();if(context?.state==='running')void context.suspend().catch(()=>{});}else if(started&&context?.state==='suspended')void context.resume().catch(()=>{});}
 const voiceOff=new Set<()=>void>();
-/** Voice players that are not tied to a component (services/lineVoice.ts) register here: turning sound or effects off stops their line at once. */
+/** Voice players that are not tied to a component (services/lineVoice.ts) register here: turning sound or the voice switch off stops their line at once. */
 export function onVoiceOff(stop:()=>void){voiceOff.add(stop);}
 export function updateAudio(value:Settings){settings=value;if(voiceMuted())voiceOff.forEach(stop=>stop());sync();}
 // One character voice at a time across the players (line, dialogue, story, ending): the one that starts stops the others.
@@ -129,5 +129,5 @@ export function soundPlaying(name:Sound,limit=4000){const a=players.get(name);re
 /** A workshop is seen restored on the map: the latch, then the bell 0.12 s later. */
 export function playOpen(){playSound('open-door');setTimeout(()=>playSound('open-shine'),120);}
 export function stopAudio(){document.removeEventListener('visibilitychange',visibility);document.removeEventListener('map-finale',mapFinaleChange);stopEffects();players.clear();startedAt.clear();kept=null;voices.clear();moveLoad=null;music?.pause();music=null;stopLoop();loopGain=null;if(context)void context.close().catch(()=>{});context=null;started=false;quietTags.clear();mapFinale=false;}
-// Character lines (services/lineVoice.ts) follow the same mute and effect switches.
-export const voiceMuted=()=>settings.muted||settings.sfx===0;
+// Character lines (services/lineVoice.ts) follow the mute and the voice switch, not the effect switch.
+export const voiceMuted=()=>voiceSwitchOff(settings);

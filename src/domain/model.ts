@@ -36,7 +36,10 @@ export interface Observation {id:string; experiment:Experiment; sampleId:string;
 export interface Design {attemptId:string; revision:number; needs:Part[]; parts:Record<Part,{sampleId:string;observationIds:string[]}>}
 export interface TestResult {testId:Test;attemptId:string;designRevision:number;pass:boolean;feedback:string}
 export interface AirTrial {cupId:'cup-1'; depth:80;orientation:'inverted';ventOpen:boolean;waterInside:number;tissueWet:boolean}
-export interface Settings {muted:boolean;bgm:number;sfx:number;reducedMotion:boolean}
+// sfx: effect volume (0.4 = 100% in the settings, 0 = effects off). voice: character lines and narration, apart from the effects.
+export interface Settings {muted:boolean;bgm:number;sfx:number;voice:boolean;reducedMotion:boolean}
+/** Character voices are silent when all sound is muted or the voice switch is off. */
+export const voiceOff=(s:Settings)=>s.muted||!s.voice;
 export interface Evidence {id:string;origin:Origin;observationIds:string[];attemptId?:string;revision?:number}
 export interface Archive {id:string;name:string;date:string;design:Design;evidence:Evidence[];tests:TestResult[]}
 export const mapEncounterIds=['materials','properties','states','air','invention','core'] as const;
@@ -49,7 +52,7 @@ export interface Save {
  initialPredictions:Partial<Record<'S05'|'S06',string>>;predictions:Record<string,string>;design:Design;testResults:TestResult[];reportedRevision:number|null;coreComplete:boolean;completionArchive:Archive[];name:string;settings:Settings;
 }
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
-export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,reducedMotion:false}};}
+export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false}};}
 export function observationId(experiment:Experiment,sampleId:string){return `${experiment}:${sampleId}:standard`;}
 export function resultFor(experiment:Experiment,sampleId:string):string {
  const m=materials.find(x=>x.id===sampleId)!;

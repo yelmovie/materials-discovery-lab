@@ -19,7 +19,7 @@ class El{ownerDocument:any;style={setProperty(){}};dataset:Record<string,string>
 describe('villain voice lines and map fight cues',()=>{
  it('fight cues play at their level under a voice; other effects still wait for it',async()=>{
   const audio=await import('../src/services/audio');
-  audio.updateAudio({muted:false,bgm:0,sfx:.4,reducedMotion:false});audio.startAudio();
+  audio.updateAudio({muted:false,bgm:0,sfx:.4,voice:true,reducedMotion:false});audio.startAudio();
   audio.playSound('map-swing');
   audio.setMediaQuiet('line',true);
   audio.playSound('map-hit-1');audio.playSound('select');audio.playSound('card-reveal');

@@ -3,14 +3,19 @@ import {settingsContent as text} from '../settingsContent';
 import {Modal} from './Modal';
 import type {Phase} from '../domain/model';
 import {screens as activitySpecs} from '../../docs/screen-spec.json';
+// The effect level that was the only "on" value before the volume slider: 100% keeps the balance as it was.
+const SFX_FULL=.4;
 export function SettingsDialog({onClose,onStory,onEvidence,onReset,onFinal}:{onClose:()=>void;onStory:()=>void;onEvidence:()=>void;onReset:()=>void;onFinal:(phase:Phase)=>void}){
- const {save,demo,dispatch}=useGame();const s=save.settings;
+ const {save,demo,dispatch}=useGame();const s=save.settings,sfxPercent=Math.round(s.sfx/SFX_FULL*20)*5;
  return <Modal title="설정" className="settings-dialog" onClose={onClose}>
  <div data-science-settings=""><h2 className="science-settings-title">설정</h2>
  <div className="settings-body science-settings-body"><div className="science-settings-audio">
  <label className="setting-toggle"><span>배경 음악</span><input type="checkbox" role="switch" checked={s.bgm>0&&!s.muted} onChange={e=>dispatch({type:'settings',value:e.target.checked?{bgm:.2,muted:false}:{bgm:0}})}/></label>
- <label className="setting-toggle"><span>효과음</span><input type="checkbox" role="switch" checked={s.sfx>0&&!s.muted} onChange={e=>dispatch({type:'settings',value:e.target.checked?{sfx:.4,muted:false}:{sfx:0}})}/></label>
- <label className="field">배경 음악 크기 · {Math.round(s.bgm*20)*5}%<input aria-label="배경 음악 크기" type="range" min="0" max="100" step="5" disabled={s.bgm===0||s.muted} value={Math.round(s.bgm*20)*5} onChange={e=>dispatch({type:'settings',value:{bgm:Number(e.target.value)/100}})}/></label>
+  <label className="field">배경 음악 크기 · {Math.round(s.bgm*20)*5}%<input aria-label="배경 음악 크기" type="range" min="0" max="100" step="5" disabled={s.bgm===0||s.muted} value={Math.round(s.bgm*20)*5} onChange={e=>dispatch({type:'settings',value:{bgm:Number(e.target.value)/100}})}/></label>
+ {/* 효과음 크기 100% = sfx 0.4(3차 전에 켜져 있던 크기). 0%는 효과음 끔과 같다. */}
+ <label className="setting-toggle"><span>효과음</span><input type="checkbox" role="switch" checked={s.sfx>0&&!s.muted} onChange={e=>dispatch({type:'settings',value:e.target.checked?{sfx:SFX_FULL,muted:false}:{sfx:0}})}/></label>
+ <label className="field">효과음 크기 · {sfxPercent}%<input aria-label="효과음 크기" type="range" min="0" max="100" step="5" disabled={s.sfx===0||s.muted} value={sfxPercent} onChange={e=>dispatch({type:'settings',value:{sfx:Number(e.target.value)/100*SFX_FULL}})}/></label>
+ <label className="setting-toggle"><span>목소리</span><input type="checkbox" role="switch" checked={s.voice&&!s.muted} onChange={e=>dispatch({type:'settings',value:e.target.checked?{voice:true,muted:false}:{voice:false}})}/></label>
  <label className="setting-toggle"><span>움직임 줄이기</span><input type="checkbox" role="switch" checked={s.reducedMotion} onChange={e=>dispatch({type:'settings',value:{reducedMotion:e.target.checked}})}/></label>
  </div><div className="settings-shortcuts science-settings-actions"><button className="secondary full" onClick={onEvidence}>나의 연구 수첩 펼치기</button><button className="secondary full" onClick={onStory}>공방을 깨우는 이유 다시 보기</button>
  <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFinal('ending')}>{save.coreComplete||demo?'공방 복구 이야기 다시 보기':'끝까지 마치면 복구 이야기가 열려요'}</button>

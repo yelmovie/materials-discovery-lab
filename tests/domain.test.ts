@@ -124,3 +124,18 @@ describe('prediction history and concurrent saves',()=>{
  it('blocks persistence after the other tab resets the slot',()=>{const mem=new Memory(),s=freshSave();persist(mem,s);const base=mem.getItem(SAVE_KEY);mem.removeItem(SAVE_KEY);expect(persistIfUnchanged(mem,s,base)).toBe('conflict');expect(mem.getItem(SAVE_KEY)).toBeNull();});
  it('keeps demo and student data intact on conflict',()=>{const student=freshSave(),demo=demoSave(student.settings);const state=sessionReducer({student,demo,blocked:false,notice:''},{type:'saveConflict'});expect(state.blocked).toBe(true);expect(state.student).toBe(student);expect(state.demo).toBe(demo);});
 });
+
+describe('sound settings carried over from older saves',()=>{
+ const older=(settings:Record<string,unknown>)=>{const s=freshSave() as unknown as {settings:Record<string,unknown>};s.settings=settings;return JSON.stringify(s);};
+ it('a new student starts with music, effects at 100 % and voices on',()=>{expect(freshSave().settings).toEqual({muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false});});
+ it('voices take the effect switch of a save from before the voice switch, and the effect level stays',()=>{
+  expect(decodeSave(older({muted:false,bgm:.18,sfx:0,reducedMotion:false})).settings).toEqual({muted:false,bgm:.18,sfx:0,voice:false,reducedMotion:false});
+  expect(decodeSave(older({muted:false,bgm:.18,sfx:.4,reducedMotion:false})).settings).toEqual({muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false});
+  expect(decodeSave(older({muted:true,bgm:0,sfx:.4,reducedMotion:true})).settings).toEqual({muted:true,bgm:0,sfx:.4,voice:true,reducedMotion:true});
+ });
+ it('a saved voice switch is kept as it is, apart from the effects',()=>{
+  expect(decodeSave(older({muted:false,bgm:.18,sfx:0,voice:true,reducedMotion:false})).settings.voice).toBe(true);
+  expect(decodeSave(older({muted:false,bgm:.18,sfx:.4,voice:false,reducedMotion:false})).settings.voice).toBe(false);
+  expect(()=>decodeSave(older({muted:false,bgm:.18,sfx:.4,voice:'yes',reducedMotion:false}))).toThrow();
+ });
+});

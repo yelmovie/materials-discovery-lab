@@ -30,7 +30,7 @@ g.document=doc;g.Audio=FakeAudio;g.AudioContext=FakeContext;
 g.fetch=(url:string)=>url.includes('/bgm/')?new Promise(()=>{}):Promise.resolve({ok:true,arrayBuffer:()=>Promise.resolve({file:url})});
 const emit=(type:string,detail?:unknown)=>listeners[type]?.forEach(fn=>fn({detail}));
 const sound=(name:string)=>created.filter(a=>a.src.endsWith(`/${name}.mp3`)).at(-1)!;
-const settings={muted:false,bgm:0,sfx:.4,reducedMotion:false};
+const settings={muted:false,bgm:0,sfx:.4,voice:true,reducedMotion:false};
 const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
 
 describe('effect lanes, footsteps and voice turns',()=>{

@@ -39,7 +39,9 @@ export function decodeSave(raw:string):Save {
  validateDesign(s.design,s.observations);validateTests(s.testResults);
  assert(s.reportedRevision===null||Number.isInteger(s.reportedRevision)&&s.reportedRevision===s.design.revision);
  assert(typeof s.coreComplete==='boolean'&&typeof s.name==='string'&&s.name.length<=24);
- assert(object(s.settings)&&typeof s.settings.muted==='boolean'&&typeof s.settings.reducedMotion==='boolean'&&num(s.settings.bgm)&&s.settings.bgm>=0&&s.settings.bgm<=1&&num(s.settings.sfx)&&s.settings.sfx>=0&&s.settings.sfx<=1);
+ // Saves from before the voice switch: voices followed the effect switch, so they keep its value.
+ if(object(s.settings)&&s.settings.voice===undefined)s.settings.voice=num(s.settings.sfx)&&s.settings.sfx>0;
+ assert(object(s.settings)&&typeof s.settings.voice==='boolean'&&typeof s.settings.muted==='boolean'&&typeof s.settings.reducedMotion==='boolean'&&num(s.settings.bgm)&&s.settings.bgm>=0&&s.settings.bgm<=1&&num(s.settings.sfx)&&s.settings.sfx>=0&&s.settings.sfx<=1);
  assert(array(s.completionArchive));for(const r of s.completionArchive){assert(object(r)&&typeof r.id==='string'&&typeof r.name==='string'&&typeof r.date==='string'&&array(r.evidence)&&r.evidence.length===5&&r.evidence.every(e=>e.origin==='student'));validateDesign(r.design,s.observations);validateTests(r.tests);}
  s.restoration=Object.fromEntries(Object.entries(object(s.restoration)?s.restoration:{}).filter(([k,v])=>/^[0-4]$/.test(k)&&Number.isInteger(v)&&v>=0&&v<=3&&s.evidence.some(e=>e.id===`E0${Number(k)+1}`)));
  s.mapHits=normalizeMapHits(s.mapHits,mapEncounterIds.filter((_,i)=>i===5?s.coreComplete:s.evidence.some(e=>e.id===`E0${i+1}`)));
