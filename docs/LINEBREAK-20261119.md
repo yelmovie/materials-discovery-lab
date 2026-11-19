@@ -44,3 +44,4 @@
 - 운영 배포: 2026-11-19 Cloudflare Workers `materials-discovery-lab` 버전 `877fd16f-18c7-423b-8798-a9880db6a750`(커밋 `ba3c247`, `KEEP_DOCS=1 deploy.sh 09 "9 things" worker-cfg materials-discovery-lab`, 영상 Range 워커가 든 `cfg/09.json`).
   - `cmp.sh`: `assets/index-CAkUtOfZ.css`·`sw.js`·`index.html` 빌드와 운영 SHA-256 MATCH. 개념 영상 Range 요청 206.
   - 운영 측정: `run.mjs 09 - 18 1280x800`은 위의 성취 카드 1건(통과로 판단)만, 운영 NPC 대사 20줄 × 3크기는 0개.
+- 추가 수정(2026-11-20, 사용자 승인, 공통 지침 8절): 위 성취 카드 문구를 `src/reward-cards.css`의 `.rc-locked` 컨테이너 규칙 네 줄로 「악당을 / 물리치면 / 열려요」 세 줄로 바꿨다(커밋 `7ce00c9`). 로컬 빌드·운영 모두 1280·1024·1920에서 여섯 장 세 줄, 카드 넘침 없음. Worker `c328d34e-3377-47c1-876c-89271ffc1067`, `cmp.sh` `assets/index-TEZ7i9V8.css`·`sw.js`·index MATCH, 영상 Range 206.
