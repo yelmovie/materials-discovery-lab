@@ -21,7 +21,7 @@ describe('villain voice lines and map fight cues',()=>{
   const audio=await import('../src/services/audio');
   audio.updateAudio({muted:false,bgm:0,sfx:.4,reducedMotion:false});audio.startAudio();
   audio.playSound('map-swing');
-  audio.setMediaQuiet(true);
+  audio.setMediaQuiet('line',true);
   audio.playSound('map-hit-1');audio.playSound('select');audio.playSound('card-reveal');
   const played=(name:string)=>created.filter(a=>a.src.endsWith(`/${name}.mp3`));
   expect(played('map-swing')[0].paused,'the voice starting does not cut the swing').toBe(false);
@@ -29,7 +29,7 @@ describe('villain voice lines and map fight cues',()=>{
   expect(played('map-hit-1')[0].volume).toBeGreaterThanOrEqual(.4*.7);
   expect(played('select')).toHaveLength(0);
   expect(played('card-reveal'),'card cues are not fight cues').toHaveLength(0);
-  audio.setMediaQuiet(false);audio.stopAudio();
+  audio.setMediaQuiet('line',false);audio.stopAudio();
  });
 
  it('a hit or exit line starts 300 ms after its fight cue; a taunt at once',async()=>{

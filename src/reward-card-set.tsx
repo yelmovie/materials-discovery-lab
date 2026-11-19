@@ -3,7 +3,8 @@ import './reward-cards.css';
 import './reward-card-set.css';
 import {createRewardCards,type RewardCards} from './reward-cards.js';
 import {worldDestinations} from './domain/worldMap';
-import {playSound} from './services/audio';
+import {playSound,mediaQuiet} from './services/audio';
+import {lineBusy} from './services/lineVoice';
 
 // One achievement card per map villain, in map order. The core's last villain is the bonus sixth card.
 const titles=['물체와 재료 감정사','재료 성질 시험왕','고체 액체 구별왕','숨은 공기 추적 탐정','맞춤 재료 발명왕','물질 공방 전설 영웅'];
@@ -33,10 +34,16 @@ const flying=new Set<number>();
 /** A card is owned once its villain has been driven off (three hits). Nothing extra is saved. */
 export const ownedRewardCards=(hits:Hits)=>cards.map(card=>hits[card.id]===3);
 const shown=(hits:Hits)=>ownedRewardCards(hits).map((owned,i)=>owned&&!flying.has(i));
-// Cards whose turn has come (the villain's exit has played) and that are not in their slot yet. Module state: re-renders do not reset it.
+// Cards whose turn has come (the villain's exit has played and its parting line is over) and that are not in their slot yet. Module state: re-renders do not reset it.
 const due=new Set<number>();
-/** True from a card's turn until it is put away. WorldCanvas adds it to the villains' blocked(), so the all-villains finale cannot slip in ahead of a card that waits for a dialog. */
-export const rewardCardDue=()=>due.size>0;
+// Cards that still wait for the villain's parting line, with the time its speech bubble has gone.
+const held=new Map<number,number>();
+/** True from a card's turn until it is put away, and while a card still waits for a voice once the villain's bubble has gone.
+ * WorldCanvas adds it to the villains' blocked(), so the all-villains finale (2.92 s after the last hit) cannot slip in ahead of a card that waits for a voice or a dialog. */
+export const rewardCardDue=(now=Date.now())=>due.size>0||[...held.values()].some(at=>now>=at);
+// The villain leaves in about 0.7 s, but its parting line is still being read then and effects stay silent under a voice
+// (services/audio.ts playSound). So the card waits until no voice has sounded for CLEAR ms (a line that is still loading counts); PATIENCE caps that wait.
+const EXIT=760,EXIT_CALM=520,POLL=120,CLEAR=360,PATIENCE=8000,BUBBLE=2750;
 
 /** The slot strip before the sound button. The shared module draws and fills it; React only hosts it. */
 export function RewardCardSlots({hits}:{hits:Hits}){
@@ -50,16 +57,23 @@ export function earnRewardCard(id:string,hits:Hits,reduced:boolean){
  const index=cards.findIndex(card=>card.id===id);
  if(index<0||flying.has(index))return;
  flying.add(index);
+ const earned=Date.now(),ready=earned+(reduced?EXIT_CALM:EXIT);
+ let clearSince=0,origin:{x:number;y:number}|undefined;
+ held.set(index,earned+BUBBLE);
  const open=()=>{
   // The map was left first: the card simply sits in its slot.
-  if(!document.querySelector('.world-page')){flying.delete(index);due.delete(index);rewardCards().syncSlots(shown(hits));return;}
-  // It is the card's turn from here, also while it waits.
-  due.add(index);
+  if(!document.querySelector('.world-page')){flying.delete(index);due.delete(index);held.delete(index);rewardCards().syncSlots(shown(hits));return;}
+  // The villain is gone before a long line ends: the card still flies out of the place where it was last seen.
+  const foe=document.querySelector<HTMLElement>(`.map-encounter-foe[data-encounter="${id}"]`),box=foe&&!foe.hidden?foe.getBoundingClientRect():undefined;
+  if(box)origin={x:box.left,y:box.top-(parseFloat(foe!.style.getPropertyValue('--encounter-size'))||0)/2};
+  const now=Date.now();
+  clearSince=mediaQuiet()||lineBusy()?0:clearSince||now;
+  if(now<ready||(!clearSince||now-clearSince<CLEAR)&&now-earned<PATIENCE){window.setTimeout(open,POLL);return;}
+  // It is the card's turn from here, also while it waits for a dialog.
+  due.add(index);held.delete(index);
   // A dialog opened in the meantime goes first.
   if(appRoot()?.inert||document.querySelector('dialog[open]')){window.setTimeout(open,300);return;}
-  const foe=document.querySelector<HTMLElement>(`.map-encounter-foe[data-encounter="${id}"]`),box=foe&&!foe.hidden?foe.getBoundingClientRect():undefined;
-  const origin=box&&{x:box.left,y:box.top-(parseFloat(foe!.style.getPropertyValue('--encounter-size'))||0)/2};
   void rewardCards().reveal(index,origin,ownedRewardCards(hits)).finally(()=>{flying.delete(index);due.delete(index);});
  };
- window.setTimeout(open,reduced?520:760);
+ window.setTimeout(open,ready-CLEAR-earned);
 }

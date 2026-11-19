@@ -60,12 +60,12 @@ export function NpcDialogue({npc,name,lines,kind,muted,reducedMotion,children,de
     const update=()=>{
       const active=!audio.paused&&!audio.ended&&!document.hidden;
       if(alive)setPlaying(active);
-      setMediaQuiet(active);
+      setMediaQuiet('dialogue',active);
     };
     const stop=()=>{audio.pause();update();};
     const hidden=()=>{if(document.hidden)stop();};
     audio.onplaying=update;
-    audio.onpause=audio.onended=()=>{if(alive)setPlaying(false);setMediaQuiet(false);};
+    audio.onpause=audio.onended=()=>{if(alive)setPlaying(false);setMediaQuiet('dialogue',false);};
     audio.onwaiting=()=>{if(alive)setPlaying(false);};
     audio.onerror=()=>{stop();if(alive)setMessage('목소리를 불러오지 못했어요. 글로도 읽을 수 있어요.');};
     setMessage('');setPlaying(false);
@@ -76,7 +76,7 @@ export function NpcDialogue({npc,name,lines,kind,muted,reducedMotion,children,de
     return()=>{
       alive=false;cancelAnimationFrame(frame);
       audio.onplaying=audio.onpause=audio.onended=audio.onwaiting=audio.onerror=null;
-      audio.pause();audio.removeAttribute('src');audio.load();setMediaQuiet(false);
+      audio.pause();audio.removeAttribute('src');audio.load();setMediaQuiet('dialogue',false);
       if(player.current===audio)player.current=null;
       document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',stop);
     };

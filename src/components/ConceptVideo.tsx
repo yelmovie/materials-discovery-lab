@@ -22,13 +22,13 @@ export function ConceptVideo({screen,onClose,onContinue,continueLabel}:{screen:S
  const burned=shown&&!failed&&!ended;
  // 모루가 자막을 읽는다. 앞 줄을 다 읽기 전에 다음 장면이 오면 영상을 잠깐 세웠다가 이어 간다(영상 속 앞 장면 자막이 아직 다 보이는 0.35초 전 자리에서 기다림). 끝나면 정리 문장을 읽는다.
  const spoken=useRef(-1),holding=useRef(false);
- const narrate=useCallback((i:number)=>{spoken.current=i;playLine(voiceFor(concept.cues[i]),()=>{setMediaQuiet(true);const v=video.current;if(holding.current&&v){holding.current=false;v.play().catch(()=>{});}});},[concept]);
- const resetNarration=()=>{const wasHolding=holding.current;holding.current=false;spoken.current=-1;stopLine();setMediaQuiet(true);if(wasHolding)setPlayback('paused');};
+ const narrate=useCallback((i:number)=>{spoken.current=i;playLine(voiceFor(concept.cues[i]),()=>{const v=video.current;if(holding.current&&v){holding.current=false;v.play().catch(()=>{});}});},[concept]);
+ const resetNarration=()=>{const wasHolding=holding.current;holding.current=false;spoken.current=-1;stopLine();if(wasHolding)setPlayback('paused');};
  useEffect(()=>{if(playback!=='playing'||cue===spoken.current)return;const v=video.current;if(v&&spoken.current>=0&&cue===spoken.current+1&&linePlaying()){holding.current=true;v.pause();v.currentTime=Math.max(0,cue*CONCEPT_CHAPTER_SECONDS-.35);setTime(v.currentTime);return;}narrate(cue);},[cue,playback,narrate]);
- useEffect(()=>{if(ended||failed)playLine(voiceFor(concept.summary),()=>setMediaQuiet(true));},[ended,failed,concept]);
+ useEffect(()=>{if(ended||failed)playLine(voiceFor(concept.summary));},[ended,failed,concept]);
  useEffect(()=>()=>{holding.current=false;stopLine();},[]);
  const play=useCallback((v:HTMLVideoElement)=>{setPlayback('loading');void v.play().catch(error=>{if(v.isConnected&&error.name!=='AbortError')setPlayback(error.name==='NotAllowedError'?'paused':'failed');});},[]);
- useEffect(()=>{setMediaQuiet(true);const v=video.current;if(v&&!reduced)play(v);const visibility=()=>{if(document.hidden)v?.pause();};document.addEventListener('visibilitychange',visibility);return()=>{document.removeEventListener('visibilitychange',visibility);if(v){v.pause();v.removeAttribute('src');v.querySelectorAll('source').forEach(s=>s.removeAttribute('src'));v.load();}setMediaQuiet(false);};},[]);
+ useEffect(()=>{setMediaQuiet('clip',true);const v=video.current;if(v&&!reduced)play(v);const visibility=()=>{if(document.hidden)v?.pause();};document.addEventListener('visibilitychange',visibility);return()=>{document.removeEventListener('visibilitychange',visibility);if(v){v.pause();v.removeAttribute('src');v.querySelectorAll('source').forEach(s=>s.removeAttribute('src'));v.load();}setMediaQuiet('clip',false);};},[]);
  useEffect(()=>{if(!loading)return;const t=setTimeout(()=>{video.current?.pause();setPlayback('failed');},8000);return()=>clearTimeout(t);},[loading]);
  function togglePlayback(){const v=video.current;if(!v||loading)return;resetNarration();if(playing){v.pause();return;}if(failed)v.load();if(ended||failed){v.currentTime=0;setTime(0);}play(v);}
  const playbackLabel=failed?'다시 불러오기':ended?'다시 보기':playing?'일시 정지':loading?'불러오는 중':time>0?'이어서 보기':'영상 보기';
