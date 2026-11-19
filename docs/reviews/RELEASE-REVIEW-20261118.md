@@ -173,3 +173,5 @@ F1~F11·F13·F15 PASS. F12 기존 제공 그림의 상업 이용 근거 미보�
 - G19 인쇄: 인증서 화면에서 인쇄 → A4 가로 한 장, 버튼이 안 찍히는지 실물로 본다.
 
 검증: `npm run typecheck` 통과, `npm test` 21파일 155개 통과, `npm run build` 통과(precache 403개 32.49MiB, jua 제외), `check:layout` 305화면 지적 0.
+
+배포: 커밋 `e72f45a`, Worker `ff404c87-18f5-48a1-acaf-7feff9430282`(`cfg/09.json`, 영상 Range 206), CSS·index cmp MATCH, 운영 `sw.js`에 jua 0건.
