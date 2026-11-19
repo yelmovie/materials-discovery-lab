@@ -65,8 +65,9 @@ function syncMusic(){
   // Ducked under character voices and concept clips instead of stopping. A loop that starts now starts at its level.
   if(loopSource)loopGain.gain.setTargetAtTime(musicVolume(),c.currentTime,.08);else{loopGain.gain.cancelScheduledValues(c.currentTime);loopGain.gain.setValueAtTime(musicVolume(),c.currentTime);}
   if(!loopSource&&loopBuffer){const src=c.createBufferSource();src.buffer=loopBuffer;src.loop=true;src.loopStart=LOOP.start;src.loopEnd=Math.min(LOOP.end,loopBuffer.duration);src.connect(loopGain);src.start();loopSource=src;}
-  else if(!loopSource&&!loopLoad)loopLoad=fetch(musicFiles.main).then(r=>{if(!r.ok)throw new Error(String(r.status));return r.arrayBuffer();}).then(b=>c.decodeAudioData(b)).then(b=>{loopBuffer=b;}).catch(()=>{loopFailed=true;}).finally(()=>{loopLoad=null;syncMusic();});
  }
+ // The loop file is fetched as soon as music may play, also while the finale is on: the theme then follows the song without a gap on a page that opened at the certificate.
+ if(!off&&c&&!loopFailed&&!loopBuffer&&!loopLoad)loopLoad=fetch(musicFiles.main).then(r=>{if(!r.ok)throw new Error(String(r.status));return r.arrayBuffer();}).then(b=>c.decodeAudioData(b)).then(b=>{loopBuffer=b;}).catch(()=>{loopFailed=true;}).finally(()=>{loopLoad=null;syncMusic();});
  // Finale (and the main theme if Web Audio cannot decode it) use a media element.
  const element=song==='finale'?'finale':loopFailed||!c?'main':null;
  if(off||document.hidden||!element||element==='finale'&&finaleDone){music?.pause();return;}
