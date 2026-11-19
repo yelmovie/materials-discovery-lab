@@ -20,6 +20,7 @@
 | 지도 악당 효과음 8종 (CC0, Freesound) | audio/map-*.mp3 (공격 휘두름·1~3타·퇴장·등장·접촉·전체 격퇴) | 과학34 공통 효과음 라이브러리(2026-11-17)에서 원본 페이지 CC0 재확인된 파일만 사용 | 아래 「지도 악당 효과음 · 2026-11-17」 표 |
 | 성취 카드 그림 6종 (GPT 이미지) | reward-cards/card-{1..6}-*.webp, thumb-{1..6}-*.webp (지도 악당 격퇴 보상) | 2026-11-18 ChatGPT 구독의 Codex 내장 이미지 생성(GPT 이미지). 연구원·모루 그림과 각 공방 배경을 화풍 참조로 붙임 | 아래 「성취 카드 · 2026-11-18」. 생성 계정·요금제·상업 이용 근거 별도 보관 필요 |
 | 성취 카드 효과음 5종 (CC0, Freesound) | audio/card-*.mp3 (날아오기·공개·희귀 공개·칸 도착·6장 완성) | 과학34 공통 효과음 라이브러리(2026-11-17)에서 원본 페이지 CC0 재확인된 파일만 사용 | 아래 「성취 카드 · 2026-11-18」 표 |
+| 발자국·점프·공방 복구 효과음 5종 (CC0, Freesound·Kenney) | audio/step-1.mp3, step-2.mp3 (지도·시험 길 발자국), jump.mp3 (시험 길 점프), open-door.mp3, open-shine.mp3 (지도에서 공방이 복구될 때) | 과학34 공통 효과음 라이브러리(2026-11-17)에서 원본 페이지 CC0 재확인된 파일만 사용 | 아래 「발자국·공방 복구 소리 · 2026-11-19」 표 |
 | 개념 모션 영상 10개 (2026-11-09 교체) | 활동 완료·다시 보기 | HyperFrames 0.9.26(오픈소스 CLI, 로컬 렌더)로 직접 만든 HTML 장면 → FFmpeg. 게임 안 그림(모루·NPC4·우산·보관함·나무 시료)과 Jua 글꼴을 재사용, 새 생성 이미지·음원 없음. 애니메이션 라이브러리 GSAP 3.15.0(GreenSock Standard License, 제작 소스에만 포함, 앱 번들에는 없음) | films/concept-clips(소스·SPEC·REVIEW), concepts/manifest.json |
 | SVG 공통 아이콘 | src/components/Icon.tsx | 프로젝트 코드의 직접 작성 SVG | 별도 유료 아이콘 팩 없음 |
 | NanumSquare Neo Regular·Bold·ExtraBold (400·700·800) / Jua 400 | NanumSquare Neo는 앱 UI·실험 Canvas, Jua는 기존 개념 영상 제작 | 자체 호스팅 WOFF2. NanumSquare Neo는 NAVER Corporation 저작권 및 SIL OFL 1.1, Jua는 기존 프로젝트에서 SIL OFL 1.1 고지와 함께 재사용 | `fonts/NanumSquareNeo-OFL.txt`·`fonts/Jua-OFL.txt` 원문과 저작권 고지 보존. 글꼴 적용 검증: `docs/FONT-QA-20261111.md` |
@@ -233,3 +234,17 @@ THE SOFTWARE.
 
 기존 효과음 설정(음소거·효과음 크기·탭 숨김·인물 목소리/영상 재생 중 정지)을 그대로 거친다. 지도 피날레의 승리 징글이 시작되면 카드 완성 징글은 멈춘다.
 
+
+## 발자국·공방 복구 소리 · 2026-11-19
+
+`_shared/sfx-library-20261117`(과학34 공통 효과음 라이브러리)에서 이름만 바꿔 `audio/`에 복사했다. 라이브러리 처리는 지도 악당 효과음과 같고(앞뒤 무음 제거·짧은 페이드·음량 정규화·모노 44.1 kHz MP3, 피치·속도 변경 없음), 모두 라이브러리 `manifest.json`에 원본 페이지 CC0 재확인(2026-11-17)이 기록된 파일이다(라이선스: https://creativecommons.org/publicdomain/zero/1.0/).
+
+| 배포 파일 | 쓰임 | 라이브러리 파일 | 원본 제목 · 만든 사람 | 출처 |
+|---|---|---|---|---|
+| audio/step-1.mp3 | 지도·시험 길(S03) 발자국(번갈아 재생) | sfx/step-01.mp3 | Footstep on Stone · sgossner | https://freesound.org/people/sgossner/sounds/197778 |
+| audio/step-2.mp3 | 지도·시험 길(S03) 발자국(번갈아 재생) | sfx/step-02.mp3 | concrete footstep 4 · Yoyodaman234 | https://freesound.org/people/Yoyodaman234/sounds/166506 |
+| audio/jump.mp3 | 시험 길(S03) 점프 | sfx/wind-whoosh-02.mp3 | swosh windy 36 · qubodup | https://freesound.org/people/qubodup/sounds/60023 |
+| audio/open-door.mp3 | 지도에서 공방이 복구되어 보일 때(딸깍 열림) | sfx/open-01.mp3 | maximize_008 · Kenney (Interface Sounds 1.0) | https://kenney.nl/assets/interface-sounds |
+| audio/open-shine.mp3 | 위 소리 0.12초 뒤 작은 종소리 | sfx/twinkle-03.mp3 | Fantasy_ui_Button_2 · ZenithInfinitiveStudios | https://freesound.org/people/ZenithInfinitiveStudios/sounds/376746 |
+
+발자국은 재생할 때마다 속도를 ±6% 안에서 바꾼다(파일은 그대로). 음소거·효과음 크기·탭 숨김을 따르고, 인물 목소리가 나오는 동안에는 절반 크기로 난다.

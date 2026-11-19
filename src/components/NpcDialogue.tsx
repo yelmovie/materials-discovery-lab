@@ -1,5 +1,5 @@
 import {useEffect,useRef,useState,type ReactNode} from 'react';
-import {setMediaQuiet} from '../services/audio';
+import {setMediaQuiet,voiceTurn} from '../services/audio';
 import './npc-dialogue.css';
 const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
 
@@ -64,6 +64,8 @@ export function NpcDialogue({npc,name,lines,kind,muted,reducedMotion,children,de
     };
     const stop=()=>{audio.pause();update();};
     const hidden=()=>{if(document.hidden)stop();};
+    // Its turn starts with play(): a guide or villain line that is still being read stops, and a later voice stops this one.
+    audio.onplay=()=>voiceTurn('dialogue',()=>audio.pause());
     audio.onplaying=update;
     audio.onpause=audio.onended=()=>{if(alive)setPlaying(false);setMediaQuiet('dialogue',false);};
     audio.onwaiting=()=>{if(alive)setPlaying(false);};
@@ -75,8 +77,8 @@ export function NpcDialogue({npc,name,lines,kind,muted,reducedMotion,children,de
     window.addEventListener('pagehide',stop);
     return()=>{
       alive=false;cancelAnimationFrame(frame);
-      audio.onplaying=audio.onpause=audio.onended=audio.onwaiting=audio.onerror=null;
-      audio.pause();audio.removeAttribute('src');audio.load();setMediaQuiet('dialogue',false);
+      audio.onplay=audio.onplaying=audio.onpause=audio.onended=audio.onwaiting=audio.onerror=null;
+      audio.pause();audio.removeAttribute('src');audio.load();setMediaQuiet('dialogue',false);voiceTurn('dialogue',null);
       if(player.current===audio)player.current=null;
       document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',stop);
     };

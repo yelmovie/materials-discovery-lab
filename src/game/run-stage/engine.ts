@@ -20,6 +20,8 @@ export interface RunCallbacks {
  onTested(stationId:string):void;
  onStatus(status:RunStatus):void;
  onHint(hint:RunHint):void;
+ /** A footstep (every 0.3 s while walking on the ground) or the start of a jump, for the sound. */
+ onMove?(kind:'step'|'jump'):void;
  /** The drawing context was lost; the caller switches to the classic screen. */
  onLost():void;
 }
@@ -52,7 +54,7 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
  const start=new THREE.Vector3(runCourse.startX,0,LANE.z);
  const body=new Capsule(new THREE.Vector3(start.x,RADIUS,start.z),new THREE.Vector3(start.x,BODY,start.z),RADIUS);
  const velocity=new THREE.Vector3(),step=new THREE.Vector3();
- let onFloor=true,sinceFloor=0,landing=0,facing:Facing='right',pose:Pose='idle',flinch=0,safe=0,cheer=0,padUnder:Live|null=null,padTime=0,active:Live|null=null,status:RunStatus={near:null,canAct:false,onPad:false,busy:false};
+ let onFloor=true,sinceFloor=0,landing=0,stepIn=0,facing:Facing='right',pose:Pose='idle',flinch=0,safe=0,cheer=0,padUnder:Live|null=null,padTime=0,active:Live|null=null,status:RunStatus={near:null,canAct:false,onPad:false,busy:false};
  const live=runStations.map(station=>({view:world.views.get(station.id)!,station,phase:'idle' as Phase,t:0,k:0,recorded:false,done:false}));
  const byId=new Map(live.map(item=>[item.station.id,item]));
  const patrols=world.patrols.map((patrol,i)=>({...patrol,z:LANE.z as number,direction:i%2?1:-1,rest:0,bumps:0,clock:i*.4}));
@@ -202,7 +204,7 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
   if(!document.hidden){
    if(!paused){
     flinch=Math.max(0,flinch-dt);safe=Math.max(0,safe-dt);cheer=Math.max(0,cheer-dt);landing=Math.max(0,landing-dt);
-    if(!active&&grounded()&&flinch<=0&&velocity.y<=0&&input.consumeJump()){velocity.y=JUMP;onFloor=false;sinceFloor=1;}else input.consumeJump();
+    if(!active&&grounded()&&flinch<=0&&velocity.y<=0&&input.consumeJump()){velocity.y=JUMP;onFloor=false;sinceFloor=1;callbacks.onMove?.('jump');}else input.consumeJump();
     for(let i=0;i<STEPS;i++)simulate(dt/STEPS);
     updateStations(dt);updatePatrols(dt);
     const moving=Math.hypot(velocity.x,velocity.z)>.6;
@@ -210,6 +212,10 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
     // The cheer is for standing still after a record; walking on or starting the next test ends it.
     if(moving||active)cheer=0;
     pose=flinch>0?'flinch':active?.station.action==='pull'&&active.phase==='acting'?'pull':landing>0||!grounded()?'jump':moving&&!active?'walk':cheer>0?'cheer':'idle';
+    // Standing still, pushing against a wall, the air and a test are all silent. Steps are never closer than 0.3 s, also when the pad is tapped.
+    stepIn-=dt;
+    if(pose!=='walk')stepIn=Math.max(0,stepIn);
+    else if(stepIn<=0&&!blocked()){stepIn=Math.max(stepIn,-.05)+.3;callbacks.onMove?.('step');}
    }
    // A squashed sample carries the researcher down with it, and back up.
    // The shadow lies on whatever is below: the floor, or the sample under a jump.

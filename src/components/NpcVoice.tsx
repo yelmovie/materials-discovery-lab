@@ -1,5 +1,5 @@
 import {useCallback,useEffect,useRef,useState} from 'react';
-import {setMediaQuiet} from '../services/audio';
+import {setMediaQuiet,voiceTurn} from '../services/audio';
 
 export function NpcVoice({voice,muted,autoPlay=false}:{voice:string;muted:boolean;autoPlay?:boolean}){
  const request=useRef(0),player=useRef<HTMLAudioElement|null>(null),[playing,setPlaying]=useState(false),[message,setMessage]=useState('');
@@ -7,13 +7,13 @@ export function NpcVoice({voice,muted,autoPlay=false}:{voice:string;muted:boolea
   request.current++;
   const audio=player.current;
   if(audio){player.current=null;audio.onplaying=audio.onended=audio.onerror=null;audio.pause();audio.removeAttribute('src');audio.load();}
-  setPlaying(false);setMediaQuiet('story',false);
+  setPlaying(false);setMediaQuiet('story',false);voiceTurn('story',null);
  },[]);
  const play=useCallback(async()=>{
   stop();setMessage('');
   const ticket=request.current;
   const audio=new Audio(voice);
-  player.current=audio;audio.preload='none';audio.volume=.75;
+  player.current=audio;audio.preload='none';audio.volume=.75;voiceTurn('story',stop);
   audio.onplaying=()=>{if(ticket===request.current){setPlaying(true);setMediaQuiet('story',true);}};
   audio.onended=stop;
   audio.onerror=()=>{if(ticket===request.current){stop();setMessage('음성을 불러오지 못했어요. 위의 글로 안내를 읽어 주세요.');}};

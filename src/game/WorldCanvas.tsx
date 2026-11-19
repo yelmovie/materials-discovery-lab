@@ -1,7 +1,7 @@
 import {useEffect,useRef} from 'react';
 import {mountMapEncounters,type MapReaction} from '../map-encounters.js';
 import {mapVillainStages} from '../domain/map-villain-content';
-import {playSound,type MapSound} from '../services/audio';
+import {playSound,playMove,playOpen,type MapSound} from '../services/audio';
 import {playLine} from '../services/lineVoice';
 import {voiceFor} from '../domain/voiceLines';
 import {rewardCardDue} from '../reward-card-set';
@@ -16,6 +16,8 @@ interface Props {clearStage?:string|null;encounterIds:string[];mapHits:Record<st
 // Zoom past "cover" so the map always fills the screen and shows a close, walkable area like the sibling games.
 const ZOOM_OVER_COVER=1.45,DRAG_THRESHOLD=10,WALK_SPEED=250,ROUTE_SPEED=340,FOLLOW_GAP=52;
 const DUSK=.42,DUSK_SCALE=.25,REVEAL_LIGHT=1200,REVEAL_TRAVEL=1500,REVEAL_END=3000;
+// One footstep every STEP ms while the researcher really moves. The restored-workshop cue waits OPEN_CUE ms, so it follows the button click that led here.
+const STEP=300,OPEN_CUE=250;
 const VECTORS:Record<MapDirection,MapPoint>={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}};
 // Frames come from scripts/prepare-walk-sprites.mjs: <direction>-<1..4>.webp on one shared canvas per character.
 const WALKERS={researcher:{height:96},companion:{height:78}} as const;
@@ -51,7 +53,7 @@ export default function WorldCanvas(props:Props){
    avatar!:Phaser.GameObjects.Image;friend!:Phaser.GameObjects.Image;shadow!:Phaser.GameObjects.Ellipse;friendShadow!:Phaser.GameObjects.Ellipse;
    overlay!:Phaser.GameObjects.Graphics;orb!:Phaser.GameObjects.Image;duskImage!:Phaser.GameObjects.Image;dusk!:Phaser.Textures.CanvasTexture;duskBase=document.createElement('canvas');duskKey='';duskSpot='';
    pos:MapPoint={...roadNodes.spawn};friendPos:MapPoint={...roadNodes.spawn};trail:MapPoint[]=[];path:MapPoint[]=[];
-   lastTarget:number|null=null;doorPath=false;doorLatch=-1;announced=-1;manualOn=false;keys=new Set<string>();elapsed=0;dustAt=0;facing:MapDirection='down';friendFacing:MapDirection='down';
+   lastTarget:number|null=null;doorPath=false;doorLatch=-1;announced=-1;manualOn=false;keys=new Set<string>();elapsed=0;dustAt=0;stepAt=0;facing:MapDirection='down';friendFacing:MapDirection='down';
    drag:{id:number;x:number;y:number;center:MapPoint;moved:boolean}|null=null;center:MapPoint={...roadNodes.spawn};cameraReady=false;lastCamera='';
    freeCenter:MapPoint|null=null;freeZoom=1;handWas=false;pinch:{gap:number;ratio:number;point:MapPoint}|null=null;
    fingers=new Map<number,MapPoint>();
@@ -363,12 +365,15 @@ export default function WorldCanvas(props:Props){
     const p=live.current;
     if(p.reveal!==this.lastReveal){
      this.lastReveal=p.reveal;
-     if(p.reveal!==null&&p.reveal!==undefined){if(p.reduced)p.onRevealEnd?.();else this.startReveal(p.reveal);}
+     // App sets reveal once per newly earned record (never on a reload or a later visit), so the cue sounds once per restored workshop.
+     if(p.reveal!==null&&p.reveal!==undefined){this.time.delayedCall(OPEN_CUE,playOpen);if(p.reduced)p.onRevealEnd?.();else this.startReveal(p.reveal);}
     }
     const paused=this.isPaused();let walking=false;
     if(this.reveal)this.stepReveal(delta);
     else if(paused){this.keys.clear();}
     else{this.watchTarget();walking=this.walk(delta);if(walking)this.elapsed+=delta;this.watchDoors();}
+    // Footsteps only while the position changes: not against a wall, not while a dialog, a card or the reveal pauses the map.
+    if(walking&&time>=this.stepAt){this.stepAt=(time-this.stepAt<50?this.stepAt:time)+STEP;playMove('step');}
     this.paintDusk();this.drawLights(time);this.drawOverlay(time);this.drawCharacters(time,walking);this.updateCamera(delta);this.drawReactions();
    }
   }

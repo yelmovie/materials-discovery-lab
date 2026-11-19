@@ -1,7 +1,7 @@
 import {lazy,Suspense,useState,useEffect,useRef} from 'react';
 import {useGame} from '../state/GameContext';
 import {Icon} from '../components/Icon';
-import {clickSound,setMediaQuiet} from '../services/audio';
+import {clickSound,setMediaQuiet,voiceTurn} from '../services/audio';
 import {evidenceNames,parts,partNames,shortNames,canFinalize,type Phase} from '../domain/model';
 import {needText} from './Activities';
 const ObjectViewport=lazy(()=>import('../game/ObjectViewport'));
@@ -18,9 +18,10 @@ export default function FinalPanels({navigate}:{navigate:(phase:Phase)=>void}){
  useEffect(()=>{
   if(endingLine<0||quietVoice||document.hidden)return;
   const audio=new Audio(`/assets/audio/npc-elevenlabs/tori-ending-${endingLine}.mp3`),release=()=>setMediaQuiet('ending',false);
-  const stop=()=>{audio.onplaying=audio.onended=audio.onerror=null;audio.pause();audio.removeAttribute('src');audio.load();release();};
+  const stop=()=>{audio.onplaying=audio.onended=audio.onerror=null;audio.pause();audio.removeAttribute('src');audio.load();release();voiceTurn('ending',null);};
   const hidden=()=>{if(document.hidden)stop();};
   audio.volume=.8;audio.onplaying=()=>setMediaQuiet('ending',true);audio.onended=audio.onerror=release;
+  voiceTurn('ending',stop);
   void audio.play().catch(release);
   document.addEventListener('visibilitychange',hidden);window.addEventListener('pagehide',stop);
   return()=>{document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',stop);stop();};

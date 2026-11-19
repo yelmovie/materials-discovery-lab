@@ -2,7 +2,7 @@ import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
 import {useGame} from '../state/GameContext';
 import {shortNames} from '../domain/model';
 import {runStations,runZones,stationOptions,stationAnswer,zoneProgress,isRecorded,nextStation,type RunAction} from '../domain/runStage';
-import {playSound} from '../services/audio';
+import {playSound,playMove} from '../services/audio';
 import {playLine,stopLine} from '../services/lineVoice';
 import {voiceFor} from '../domain/voiceLines';
 import type {RunStage,RunStatus,RunHint} from '../game/run-stage/engine';
@@ -47,6 +47,7 @@ export default function SampleRunStage({onGuide,onClassic}:Props){
     onTested:id=>{setPrompt({id,answer:'',feedback:''});},
     onStatus:status=>{setRun(status);if(status.near)setMoved(true);},
     onHint:kind=>{setHint(hintText[kind]);if(kind==='bump')playSound('retry');},
+    onMove:kind=>{playMove(kind);},
     onLost:()=>classic.current(true),
    });
    if(cancelled){made.dispose();return;}
