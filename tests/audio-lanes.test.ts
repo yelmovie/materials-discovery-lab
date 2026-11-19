@@ -127,4 +127,61 @@ describe('effect lanes, footsteps and voice turns',()=>{
   expect(dialogueStopped).toBe(1);
   audio.stopAudio();
  });
+
+ it('the activity-complete chime rings out under the clip and voice that follow it; any other UI sound still gives way',async()=>{
+  const audio=await import('../src/services/audio');
+  audio.updateAudio(settings);audio.startAudio();
+  audio.clickSound(true,true);
+  expect(audio.soundPlaying('success')).toBe(true);
+  audio.setMediaQuiet('clip',true);audio.setMediaQuiet('line',true);
+  expect(sound('success').paused,'kept under the concept clip and its first caption').toBe(false);
+  audio.setMediaQuiet('clip',false);audio.setMediaQuiet('line',false);
+  audio.playSound('select');
+  expect(sound('success').paused,'the next UI sound replaces it as usual').toBe(true);expect(audio.soundPlaying('success')).toBe(false);
+  audio.clickSound(true);audio.setMediaQuiet('line',true);
+  expect(sound('success').paused,'not kept unless asked').toBe(true);
+  audio.setMediaQuiet('line',false);
+  // A kept chime is forgotten once replaced: the same sound played plainly later is cut again.
+  audio.clickSound(true,true);audio.playSound('drop');audio.clickSound(true);audio.setMediaQuiet('clip',true);
+  expect(sound('success').paused).toBe(true);
+  audio.setMediaQuiet('clip',false);audio.stopAudio();
+ });
+
+ it('map voices take turns: a villain line waits for the guide (2 s, then skipped), the guide waits for a villain (2 s at most)',async()=>{
+  const audio=await import('../src/services/audio');
+  const {playTurnLine,stopLine,lineBusy}=await import('../src/services/lineVoice');
+  audio.updateAudio(settings);audio.startAudio();
+  const voice=(name:string)=>created.filter(a=>a.src===name);
+  vi.useFakeTimers();
+  try{
+   // The guide is being read; the villain's line comes after it.
+   playTurnLine('guide-a','guide');const guideA=voice('guide-a')[0];guideA.onplaying?.();
+   playTurnLine('villain-a','villain');
+   expect(guideA.paused,'the guide is not cut').toBe(false);expect(voice('villain-a')).toHaveLength(0);expect(lineBusy()).toBe(true);
+   vi.advanceTimersByTime(1000);expect(voice('villain-a')).toHaveLength(0);
+   guideA.onended?.();vi.advanceTimersByTime(100);
+   expect(voice('villain-a')).toHaveLength(1);expect(voice('villain-a')[0].paused).toBe(false);
+   // A villain line is being read; the guide's line comes after it, and closing the bubble does not stop the villain.
+   const villainA=voice('villain-a')[0];
+   playTurnLine('guide-b','guide');
+   expect(villainA.paused).toBe(false);expect(voice('guide-b')).toHaveLength(0);
+   stopLine('guide');vi.advanceTimersByTime(3000);
+   expect(villainA.paused,'closing the guide leaves the villain line').toBe(false);expect(voice('guide-b'),'the waiting guide line was given up').toHaveLength(0);
+   playTurnLine('guide-c','guide');vi.advanceTimersByTime(700);villainA.onended?.();vi.advanceTimersByTime(100);
+   expect(voice('guide-c')).toHaveLength(1);
+   // The guide goes on for more than 2 s: the villain's line is skipped.
+   playTurnLine('villain-b','villain');vi.advanceTimersByTime(2300);
+   expect(voice('villain-b')).toHaveLength(0);expect(voice('guide-c')[0].paused).toBe(false);
+   voice('guide-c')[0].onended?.();expect(lineBusy()).toBe(false);
+   // A long villain line: the guide starts after 2 s anyway.
+   playTurnLine('villain-c','villain');expect(voice('villain-c')).toHaveLength(1);
+   playTurnLine('guide-d','guide');vi.advanceTimersByTime(1900);expect(voice('guide-d')).toHaveLength(0);
+   vi.advanceTimersByTime(200);expect(voice('guide-d')).toHaveLength(1);expect(voice('villain-c')[0].paused).toBe(true);
+   // A villain's next line replaces its own at once (hit line over a taunt).
+   stopLine();playTurnLine('villain-d','villain');playTurnLine('villain-e','villain');
+   expect(voice('villain-d')[0].paused).toBe(true);expect(voice('villain-e')[0].paused).toBe(false);
+   stopLine();
+  }finally{vi.useRealTimers();}
+  audio.stopAudio();
+ });
 });

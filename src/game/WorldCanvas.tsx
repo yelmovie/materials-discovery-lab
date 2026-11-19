@@ -2,9 +2,9 @@ import {useEffect,useRef} from 'react';
 import {mountMapEncounters,type MapReaction} from '../map-encounters.js';
 import {mapVillainStages} from '../domain/map-villain-content';
 import {playSound,playMove,playOpen,type MapSound} from '../services/audio';
-import {playLine} from '../services/lineVoice';
+import {playTurnLine,dropTurnLine} from '../services/lineVoice';
 import {voiceFor} from '../domain/voiceLines';
-import {rewardCardDue} from '../reward-card-set';
+import {rewardCardDue,rewardSetCelebrated} from '../reward-card-set';
 // Wood, metal and a heavy thump for the three hits, so the attack sounds like the materials unit.
 const mapTones:Record<'swing'|'exit'|'contact'|'appear'|'victory',MapSound>={swing:'map-swing',exit:'map-exit',contact:'map-bump',appear:'map-appear',victory:'map-victory'};
 
@@ -341,7 +341,10 @@ export default function WorldCanvas(props:Props){
       blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0||rewardCardDue(),
       reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
       art:{left:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-left.webp',right:import.meta.env.BASE_URL+'assets/map-encounter/map-villain-poses-right.webp',frames:6},
-      palette:'#43e2dc',reach:112,contact:26,tone:(kind,hits)=>playSound(kind==='hit'||kind==='finish'?(hits===1?'map-hit-1':hits===2?'map-hit-2':'map-hit-3'):mapTones[kind]),say:text=>{const src=voiceFor(text);if(src)playLine(src);},
+      palette:'#43e2dc',reach:112,contact:26,// The victory jingle is for a finale without cards: after the full-set jingle it stays silent.
+      tone:(kind,hits)=>{if(kind==='victory'&&rewardSetCelebrated())return;playSound(kind==='hit'||kind==='finish'?(hits===1?'map-hit-1':hits===2?'map-hit-2':'map-hit-3'):mapTones[kind]);},
+      // A villain's line waits for Moru's guide line (2 s at most, else it is skipped) instead of cutting it.
+      say:text=>playTurnLine(voiceFor(text),'villain'),
      });
     }
     const camera=this.cameras.main;
@@ -381,7 +384,7 @@ export default function WorldCanvas(props:Props){
   const size=()=>({width:Math.max(1,Math.round(host.current?.clientWidth||MAP_WIDTH)),height:Math.max(1,Math.round(host.current?.clientHeight||MAP_HEIGHT))});
   const game=new Phaser.Game({type:Phaser.CANVAS,canvas:document.createElement('canvas'),parent:host.current,...size(),transparent:true,pixelArt:true,roundPixels:true,scene:WorldScene,scale:{mode:Phaser.Scale.NONE},input:{activePointers:3},banner:false,audio:{noAudio:true}});
   const observer=new ResizeObserver(()=>{const next=size();if(next.width!==game.scale.width||next.height!==game.scale.height)game.scale.resize(next.width,next.height);});observer.observe(host.current);
-  return()=>{observer.disconnect();encounters?.destroy();game.destroy(true);};
+  return()=>{observer.disconnect();encounters?.destroy();dropTurnLine('villain');game.destroy(true);};
  },[]);
  return <div ref={host} className="world-canvas" role="region" aria-label="연구원과 모루가 함께 걷는 숲속 공방 지도. 방향판이나 방향키를 누르고 있으면 길을 따라 걷고, 땅이나 건물 이름을 누르면 그곳까지 걸어가요. 손으로 끌면 둘러볼 수 있어요."/>;
 }

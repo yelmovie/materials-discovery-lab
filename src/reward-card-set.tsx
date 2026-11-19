@@ -3,7 +3,7 @@ import './reward-cards.css';
 import './reward-card-set.css';
 import {createRewardCards,type RewardCards} from './reward-cards.js';
 import {worldDestinations} from './domain/worldMap';
-import {playSound,mediaQuiet} from './services/audio';
+import {playSound,mediaQuiet,soundPlaying} from './services/audio';
 import {lineBusy} from './services/lineVoice';
 
 // One achievement card per map villain, in map order. The core's last villain is the bonus sixth card.
@@ -22,7 +22,7 @@ function rewardCards(){
   // The material core crystal of components/Icon.tsx.
   emblem:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 1 7 7 2 9-9 6-9-6 2-9Z" fill="currentColor" fill-opacity=".3"/><path d="m12 1 3 10-3 12-3-12Zm-7 7 4 3h6l4-3M3 17l6-6m6 0 6 6"/></svg>',
   // The app's effect player: follows mute, effect volume, a hidden tab and playing voices or clips.
-  sound:name=>playSound(`card-${name}`),
+  sound:name=>{if(name==='complete')celebratedAt=Date.now();playSound(`card-${name}`);},
   // An inert root pauses the map: WorldCanvas and the villains both treat it like an open dialog.
   inertRoot:appRoot,
  });
@@ -38,9 +38,13 @@ const shown=(hits:Hits)=>ownedRewardCards(hits).map((owned,i)=>owned&&!flying.ha
 const due=new Set<number>();
 // Cards that still wait for the villain's parting line, with the time its speech bubble has gone.
 const held=new Map<number,number>();
-/** True from a card's turn until it is put away, and while a card still waits for a voice once the villain's bubble has gone.
- * WorldCanvas adds it to the villains' blocked(), so the all-villains finale (2.92 s after the last hit) cannot slip in ahead of a card that waits for a voice or a dialog. */
-export const rewardCardDue=(now=Date.now())=>due.size>0||[...held.values()].some(at=>now>=at);
+// When the full-set celebration last began. Its jingle is the all-villains cheer, so the map's own victory jingle stays silent after it.
+let celebratedAt=0;
+export const rewardSetCelebrated=(now=Date.now())=>celebratedAt>0&&now-celebratedAt<60000;
+/** True from a card's turn until it is put away, while a card still waits for a voice once the villain's bubble has gone, and while the full-set jingle is still sounding.
+ * WorldCanvas adds it to the villains' blocked(), so the all-villains finale (2.92 s after the last hit) cannot slip in ahead of a card that waits for a voice or a dialog,
+ * and its dialog and song open only after the jingle has ended, also when the celebration is closed early. */
+export const rewardCardDue=(now=Date.now())=>due.size>0||[...held.values()].some(at=>now>=at)||soundPlaying('card-complete');
 // The villain leaves in about 0.7 s, but its parting line is still being read then and effects stay silent under a voice
 // (services/audio.ts playSound). So the card waits until no voice has sounded for CLEAR ms (a line that is still loading counts); PATIENCE caps that wait.
 const EXIT=760,EXIT_CALM=520,POLL=120,CLEAR=360,PATIENCE=8000,BUBBLE=2750;

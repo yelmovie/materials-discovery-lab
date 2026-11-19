@@ -7,7 +7,7 @@ import {MapEntryBoundary} from './components/MapEntryBoundary';
 import {NpcVoice} from './components/NpcVoice';
 import {NpcDialogue} from './components/NpcDialogue';
 import {Icon} from './components/Icon';
-import {playLine,stopLine} from './services/lineVoice';
+import {playTurnLine,stopLine} from './services/lineVoice';
 import {voiceFor} from './domain/voiceLines';
 import {Modal} from './components/Modal';
 import {ConceptVideo} from './components/ConceptVideo';
@@ -73,8 +73,8 @@ export default function App(){
   const timer=window.setTimeout(warm,300);
   return()=>clearTimeout(timer);
  },[route,modal]);
- // 모루의 길 안내 말풍선을 열면 그 글을 읽는다.
- useEffect(()=>{if(!guide||route!=='world')return;playLine(voiceFor(document.getElementById('map-moru-hint')?.textContent));return stopLine;},[guide,route,save.evidence.length,save.coreComplete]);
+ // 모루의 길 안내 말풍선을 열면 그 글을 읽는다. 악당 대사가 나오는 중이면 그 뒤에(최대 2초) 읽고, 말풍선을 닫아도 악당 대사는 끊지 않는다.
+ useEffect(()=>{if(!guide||route!=='world')return;playTurnLine(voiceFor(document.getElementById('map-moru-hint')?.textContent),'guide');return()=>stopLine('guide');},[guide,route,save.evidence.length,save.coreComplete]);
  useEffect(()=>{
   if(!screen||!focusActivity.current)return;
   focusActivity.current=false;
@@ -115,7 +115,7 @@ export default function App(){
  useEffect(()=>{const hash=()=>{const [r,p]=location.hash.slice(1).split('/');if(['home','world',...screens.map(s=>s.id)].includes(r))dispatch({type:'navigate',route:r as Route,phase:(['report','core','ending','certificate'].includes(p)?p:'activity') as Phase});};hash();window.addEventListener('hashchange',hash);return()=>window.removeEventListener('hashchange',hash);},[]);
  useEffect(()=>{if(!demo)window.history.replaceState(null,'',`#${route}${route==='S10'&&phase!=='activity'?'/'+phase:''}`);},[route,phase,demo]);
  useEffect(()=>{if(!toast)return;const t=setTimeout(()=>setToast(''),5000);return()=>clearTimeout(t);},[toast]);
- function finish(){if(!screen||!canComplete(save,screen.id as Screen))return;if(screen.next==='world'&&stage&&!save.evidence.some(e=>e.id===`E0${stage.id}`))pendingReveal.current=stage.id-1;dispatch({type:'complete',screen:screen.id as Screen});clickSound(true);setConceptAdvance(true);setModal('concept');}
+ function finish(){if(!screen||!canComplete(save,screen.id as Screen))return;if(screen.next==='world'&&stage&&!save.evidence.some(e=>e.id===`E0${stage.id}`))pendingReveal.current=stage.id-1;dispatch({type:'complete',screen:screen.id as Screen});clickSound(true,true);setConceptAdvance(true);setModal('concept');}
  function continueAfterConcept(){if(!screen)return;setConceptAdvance(false);if(screen.next==='world')setModal('reward');else navigate(screen.next as Route);}
  function isOpen(i:number){return demo||(i===5?canFinalize(save)||save.coreComplete:canAccess(save,stages[i].screens[0] as Screen));}
  function cancelMapWalk(){guidedDoor.current=null;setTarget(null);setArrived(null);}

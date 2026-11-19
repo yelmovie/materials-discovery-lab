@@ -3,22 +3,48 @@ import {setMediaQuiet,voiceMuted,onVoiceOff,voiceTurn} from './audio';
 /** One character line at a time (concept captions, hints, map guide, villain bubbles).
  * A new line stops the previous one and any other voice player (dialogue, story, ending); music ducks while it plays (name tag 'line'); mute and the effect volume apply. */
 let current:HTMLAudioElement|null=null,currentEnd:(()=>void)|undefined;
-export function stopLine(){
- const audio=current;if(!audio)return;current=null;currentEnd=undefined;
+// The two map speakers take turns (playTurnLine). Other lines carry no name.
+export type Speaker='villain'|'guide';
+let speaker:Speaker|undefined;
+const waiting=new Map<Speaker,ReturnType<typeof setTimeout>>();
+const TURN_WAIT=2000,TURN_POLL=100;
+/** A line of this speaker that still waits for its turn is given up. */
+export function dropTurnLine(who:Speaker){const timer=waiting.get(who);if(timer!==undefined){clearTimeout(timer);waiting.delete(who);}}
+function halt(){
+ const audio=current;if(!audio)return;current=null;currentEnd=undefined;speaker=undefined;
  audio.onplaying=audio.onended=audio.onerror=null;audio.pause();audio.removeAttribute('src');audio.load();setMediaQuiet('line',false);voiceTurn('line',null);
 }
-export function playLine(src:string|undefined,onEnd?:()=>void){
- stopLine();
+/** Stops the line. With a speaker: only that speaker's line and its waiting line (closing the guide bubble leaves a villain's line alone). */
+export function stopLine(who?:Speaker){
+ if(who===undefined)waiting.forEach((_,name)=>dropTurnLine(name));else dropTurnLine(who);
+ if(who===undefined||speaker===who)halt();
+}
+export function playLine(src:string|undefined,onEnd?:()=>void,who?:Speaker){
+ halt();
  if(!src||voiceMuted()||document.hidden){onEnd?.();return false;}
- const audio=new Audio(src);current=audio;currentEnd=onEnd;audio.volume=.8;voiceTurn('line',yieldLine);
- const done=()=>{if(current!==audio)return;current=null;currentEnd=undefined;setMediaQuiet('line',false);voiceTurn('line',null);onEnd?.();};
+ const audio=new Audio(src);current=audio;currentEnd=onEnd;speaker=who;audio.volume=.8;voiceTurn('line',yieldLine);
+ const done=()=>{if(current!==audio)return;current=null;currentEnd=undefined;speaker=undefined;setMediaQuiet('line',false);voiceTurn('line',null);onEnd?.();};
  audio.onplaying=()=>{if(current===audio)setMediaQuiet('line',true);};audio.onended=done;audio.onerror=done;
  void audio.play().catch(done);
  return true;
 }
+/** Map voices take turns instead of cutting each other. A villain's short line waits while another character's line is read and is skipped
+ * if that takes more than 2 s. The guide's line waits for a villain's line and starts after 2 s at the latest. A speaker's newer line replaces its own. */
+export function playTurnLine(src:string|undefined,who:Speaker){
+ dropTurnLine(who);
+ if(!src)return;
+ const asked=Date.now();
+ const turn=()=>{
+  waiting.delete(who);
+  const busy=!!current&&speaker!==who&&(who==='villain'||speaker==='villain');
+  if(!busy||who==='guide'&&Date.now()-asked>=TURN_WAIT){playLine(src,undefined,who);return;}
+  if(Date.now()-asked<TURN_WAIT)waiting.set(who,setTimeout(turn,TURN_POLL));
+ };
+ turn();
+}
 export const linePlaying=()=>!!current&&!current.paused;
-/** A line has been asked for and has not ended: also true while its file is still loading. */
-export const lineBusy=()=>!!current;
+/** A line has been asked for and has not ended: also true while its file is still loading or it waits for its turn. */
+export const lineBusy=()=>!!current||waiting.size>0;
 // Sound or effects switched off in the middle of a line, or another voice player starts: it stops at once, and whoever waits for its end (a held concept clip) goes on.
 function yieldLine(){const end=currentEnd;stopLine();end?.();}
 onVoiceOff(yieldLine);

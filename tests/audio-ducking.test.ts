@@ -63,6 +63,30 @@ describe('music ducking by name tag',()=>{
   audio.setMusic('main');audio.stopAudio();
  });
 
+ it('when the finale has played to its end the main theme carries on at 0.45, and at full level after leaving',async()=>{
+  const audio=await import('../src/services/audio');
+  audio.updateAudio(settings);audio.startAudio();
+  // The ending and certificate screens.
+  audio.setMusic('finale');
+  const finale=song('finale')!;
+  expect(finale.paused).toBe(false);expect(song('main-theme')!.paused).toBe(true);
+  finale.paused=true;finale.onended?.();
+  const after=song('main-theme')!;
+  expect(after.paused,'no silence after the song').toBe(false);expect(after.volume).toBeCloseTo(full*.45);
+  audio.setMediaQuiet('ending',true);expect(after.volume).toBeCloseTo(full*.45*.25);audio.setMediaQuiet('ending',false);
+  audio.setMusic('main');
+  expect(song('main-theme')!.paused).toBe(false);expect(song('main-theme')!.volume,'leaving the screen').toBeCloseTo(full);
+  // The map finale dialog.
+  emit('map-finale',{open:true});
+  const again=song('finale')!;
+  expect(again.paused,'the song starts over').toBe(false);expect(again.volume).toBeCloseTo(full);expect(song('main-theme')!.paused).toBe(true);
+  again.paused=true;again.onended?.();
+  expect(song('main-theme')!.paused).toBe(false);expect(song('main-theme')!.volume).toBeCloseTo(full*.45);
+  emit('map-finale',{open:false});
+  expect(song('main-theme')!.volume,'closing the dialog').toBeCloseTo(full);
+  audio.stopAudio();
+ });
+
  it('switching sound or effects off stops a line that is being read, and its waiter goes on',async()=>{
   const audio=await import('../src/services/audio');
   const {playLine,lineBusy}=await import('../src/services/lineVoice');
