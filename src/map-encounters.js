@@ -42,6 +42,8 @@ function layoutSpeech(host, entries){
 const REPEAT=380,PREP=90,EXIT_TONE=380;
 // Hit and exit lines start this long after their fight cue (see speak).
 const VOICE_AFTER_SFX=300;
+// A bubble whose recorded line is still being read stays until 0.2 s after the voice, six seconds at most after it was shown.
+const SPEECH_TAIL=200,SPEECH_LIMIT=6000;
 const CUES={
   cap:'M9 10h14v12H9zm3-4h8v4h-8z', pane:'M6 7h20v18H6zm4 4v10h12V11z',
   file:'M7 5h12l6 6v16H7zm12 2v6h5M11 17h10m-10 4h8', label:'M5 10h15l7 6-7 6H5zm5 4h5m-5 4h7',
@@ -69,7 +71,7 @@ export function normalizeMapHits(value,ids) {
  */
 export function mountMapEncounters({
   host,controls=host,stages,progress={},onSave=()=>{},blocked=()=>false,reduced=()=>false,
-  clearStage=()=>null,requiredFoes=0,art,tone=()=>{},say=()=>{},palette='#a855f7',reach=90,contact=22,
+  clearStage=()=>null,requiredFoes=0,art,tone=()=>{},say=()=>{},speaking=()=>false,palette='#a855f7',reach=90,contact=22,
 }) {
   const handles=new AbortController(),{signal}=handles;
   const doc=host.ownerDocument,view=doc.defaultView;
@@ -123,7 +125,7 @@ export function mountMapEncounters({
     foe.bubble.textContent=text;
     foe.bubble.hidden=false;
     lastSpeechLayout=-Infinity;
-    foe.saidUntil=time;
+    foe.saidUntil=time;foe.voiceHeld=false;foe.saidAt=view?.performance.now()??performance.now();
     const mine=++speech;
     if(voiceDelay>0)later(()=>{if(mine===speech)say(text);},voiceDelay);else say(text);
     live.textContent=text;
@@ -197,6 +199,10 @@ export function mountMapEncounters({
     let nearest=null,best=Infinity;
     const width=host.clientWidth,height=host.clientHeight;
     for(const foe of foes){
+      // Only the bubble (and the villain holding it) lasts longer: hits, poses and the exit keep their own times. No voice or voices off: the old times.
+      // It also holds while the map waits behind the achievement card, which itself waits for this line.
+      const talking=foe.saidUntil>0&&speaking(foe.bubble.textContent);
+      if(talking){foe.voiceHeld=true;foe.saidUntil=Math.max(foe.saidUntil,Math.min(now+SPEECH_TAIL,foe.saidAt+SPEECH_LIMIT));}
       if(foe.hits>=HITS&&now>=Math.max(foe.poseUntil,foe.saidUntil)){foe.el.hidden=true;continue;}
       const dHome=distance(hero,foe.s),patrol=villainPatrol(now,foe.i);
       const animate=!stop&&!calm&&foe.hits<HITS&&now>=foe.poseUntil;
@@ -259,7 +265,7 @@ export function mountMapEncounters({
       if(foe.hits===HITS)el.dataset.exited=String(now>=foe.poseUntil);
       const marks='●'.repeat(HITS-foe.hits)+'○'.repeat(foe.hits);
       if(foe.meter.textContent!==marks)foe.meter.textContent=marks;
-      foe.bubble.hidden=now>=foe.saidUntil||stop;
+      foe.bubble.hidden=now>=foe.saidUntil||stop&&!foe.voiceHeld;
     }
     if(stop){
       clearReady=null;

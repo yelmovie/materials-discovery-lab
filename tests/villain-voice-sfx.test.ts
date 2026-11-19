@@ -17,7 +17,7 @@ class El{ownerDocument:any;style={setProperty(){}};dataset:Record<string,string>
  getBoundingClientRect(){return {left:0,top:0,right:0,bottom:0,width:0,height:0};}getClientRects(){return [];}focus(){}}
 
 describe('villain voice lines and map fight cues',()=>{
- it('fight cues play at their level under a voice; other effects still wait for it',async()=>{
+ it('fight cues play at their level under a voice; UI sounds play at ×0.4, card cues still wait',async()=>{
   const audio=await import('../src/services/audio');
   audio.updateAudio({muted:false,bgm:0,sfx:.4,voice:true,reducedMotion:false});audio.startAudio();
   audio.playSound('map-swing');
@@ -27,7 +27,8 @@ describe('villain voice lines and map fight cues',()=>{
   expect(played('map-swing')[0].paused,'the voice starting does not cut the swing').toBe(false);
   expect(played('map-hit-1')[0].plays).toBe(1);
   expect(played('map-hit-1')[0].volume).toBeGreaterThanOrEqual(.4*.7);
-  expect(played('select')).toHaveLength(0);
+  expect(played('select')).toHaveLength(1);expect(played('select')[0].volume,'a click under a voice: 0.4 × 0.4').toBeCloseTo(.16);
+  audio.setMediaQuiet('line',false);audio.playSound('select');expect(played('select')[0].volume,'back to its level').toBeCloseTo(.4);audio.setMediaQuiet('line',true);
   expect(played('card-reveal'),'card cues are not fight cues').toHaveLength(0);
   audio.setMediaQuiet('line',false);audio.stopAudio();
  });
@@ -66,3 +67,29 @@ describe('villain voice lines and map fight cues',()=>{
 });
 const created:FakeAudio[]=[];
 g.Audio=class extends FakeAudio{constructor(src:string){super(src);created.push(this);}};
+
+describe('a villain bubble waits for its own voice',()=>{
+ it('stays until 0.2 s after the line (6 s at most); without a voice the old time; the exit hits keep their time',async()=>{
+  vi.useFakeTimers();
+  try{
+   const {mountMapEncounters}=await import('../src/map-encounters.js');
+   for(const mode of ['voice','none','long'] as const){
+    let clock=1000,talking=mode!=='none';
+    const view={performance:{now:()=>clock},setTimeout:(fn:()=>void,ms:number)=>setTimeout(fn,ms),clearTimeout:(id:number)=>clearTimeout(id),addEventListener(){},HTMLElement:El,matchMedia:()=>({matches:false})};
+    const doc:any={defaultView:view,hidden:false,activeElement:null,createElement:()=>new El(doc),createElementNS:()=>new El(doc),querySelector:()=>null,querySelectorAll:()=>[]};
+    doc.head=new El(doc);
+    const host=new El(doc);
+    const map=mountMapEncounters({host:host as never,stages:[{id:'0',name:'공방',x:100,y:100,lines:['도발!']}] as never,art:{left:'a.png'} as never,speaking:()=>talking,say:()=>{}});
+    const all=(el:El):El[]=>[el,...el.children.flatMap(all)];
+    const bubble=all(host).find(el=>el.className==='map-encounter-say')!;
+    const frame=()=>map.update({hero:{x:110,y:100},ally:null,project:(p:{x:number;y:number})=>p,scale:1,now:clock} as never);
+    frame();expect(bubble.hidden).toBe(false);expect(bubble.textContent).toBe('도발!');
+    clock+=2300;frame(); // the taunt bubble alone lasts 2.2 s
+    expect(bubble.hidden,mode).toBe(mode==='none');
+    if(mode==='voice'){talking=false;clock+=150;frame();expect(bubble.hidden,'0.2 s after the voice').toBe(false);clock+=100;frame();expect(bubble.hidden).toBe(true);}
+    if(mode==='long'){clock=1000+5900;frame();expect(bubble.hidden).toBe(false);clock=1000+6050;frame();expect(bubble.hidden,'6 s at most').toBe(true);}
+    map.destroy();
+   }
+  }finally{vi.useRealTimers();}
+ });
+});

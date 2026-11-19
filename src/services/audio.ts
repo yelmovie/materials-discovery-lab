@@ -72,8 +72,17 @@ function syncMusic(){
  const element=song==='finale'?'finale':loopFailed||!c?'main':null;
  if(off||document.hidden||!element||element==='finale'&&finaleDone){music?.pause();return;}
  if(!music||music.dataset.track!==element){music?.pause();music=new Audio(musicFiles[element]);music.dataset.track=element;music.loop=element==='main';music.preload='auto';music.onended=()=>{if(nowPlaying()==='finale'){finaleDone=true;syncMusic();}};}
- music.volume=musicVolume();
+ setMusicVolume(music,musicVolume());
  if(music.paused)void music.play().catch(()=>{});
+}
+// The song element follows a duck or its return over about 0.2 s, like the Web Audio main theme. A paused element (about to start) takes its level at once.
+const FADE_MS=200;let fade=0;
+function setMusicVolume(a:HTMLAudioElement,target:number){
+ if(fade)cancelAnimationFrame(fade);fade=0;
+ if(a.paused||typeof requestAnimationFrame!=='function'||Math.abs(a.volume-target)<.002){a.volume=target;return;}
+ const from=a.volume,start=performance.now();
+ const step=(now:number)=>{const k=Math.min(1,Math.max(0,(now-start)/FADE_MS));a.volume=Math.min(1,Math.max(0,from+(target-from)*k));fade=k<1?requestAnimationFrame(step):0;};
+ fade=requestAnimationFrame(step);
 }
 function sync(){syncMusic();if(settings.muted||settings.sfx===0||document.hidden)stopEffects();}
 /** One footstep or jump. Steps take the two files in turn at a slightly different speed each time. It never stops another sound;
@@ -114,14 +123,17 @@ function mapFinaleChange(event:Event){
  sync();
 }
 /** `keep`: this UI sound is not cut by a voice or clip that starts while it sounds (the next UI sound still replaces it). */
-export function playSound(name:Sound,keep=false){if(!started||settings.muted||settings.sfx===0||document.hidden||quiet()&&!fightCue(name))return;
+// Under a voice or clip a UI sound still plays at UI_UNDER_VOICE of its level; card and workshop cues wait as before, fight cues are not ducked.
+const UI_UNDER_VOICE=.4;
+export function playSound(name:Sound,keep=false){if(!started||settings.muted||settings.sfx===0||document.hidden||quiet()&&rewardCue(name)&&!fightCue(name))return;
+ const duck=quiet()&&!rewardCue(name)?UI_UNDER_VOICE:1;
  if(rewardCue(name)){
   // The oldest cue makes room when four others are still sounding.
   const live=[...players].filter(([other,a])=>other!==name&&rewardCue(other)&&!a.paused&&!a.ended).sort((x,y)=>(startedAt.get(x[0])??0)-(startedAt.get(y[0])??0));
   while(live.length>=REWARD_VOICES){const a=live.shift()![1];a.pause();a.currentTime=0;}
  }else{stopEffects('ui');if(keep)kept=name;}
- if((name==='pour'||name==='air')&&context?.state==='running'){const c=context;[0,.075,.15].forEach((delay,i)=>{const osc=c.createOscillator(),gain=c.createGain(),t=c.currentTime+delay;osc.type='sine';osc.frequency.setValueAtTime(name==='pour'?420+i*140:720-i*140,t);osc.frequency.exponentialRampToValueAtTime(name==='pour'?700+i*90:300,t+.14);gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(settings.sfx*.09,t+.008);gain.gain.exponentialRampToValueAtTime(.0001,t+.16);osc.connect(gain);gain.connect(c.destination);const node={osc,gain};activeCues.add(node);osc.onended=()=>{activeCues.delete(node);osc.disconnect();gain.disconnect();};osc.start(t);osc.stop(t+.18);});return;}let a=players.get(name);if(!a){a=new Audio(`/assets/audio/${name}.mp3`);a.preload='none';players.set(name,a);}else a.currentTime=0;
- startedAt.set(name,performance.now());a.volume=Math.min(1,settings.sfx*(levels[name]??1));void a.play().catch(()=>{});}
+ if((name==='pour'||name==='air')&&context?.state==='running'){const c=context;[0,.075,.15].forEach((delay,i)=>{const osc=c.createOscillator(),gain=c.createGain(),t=c.currentTime+delay;osc.type='sine';osc.frequency.setValueAtTime(name==='pour'?420+i*140:720-i*140,t);osc.frequency.exponentialRampToValueAtTime(name==='pour'?700+i*90:300,t+.14);gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(settings.sfx*.09*duck,t+.008);gain.gain.exponentialRampToValueAtTime(.0001,t+.16);osc.connect(gain);gain.connect(c.destination);const node={osc,gain};activeCues.add(node);osc.onended=()=>{activeCues.delete(node);osc.disconnect();gain.disconnect();};osc.start(t);osc.stop(t+.18);});return;}let a=players.get(name);if(!a){a=new Audio(`/assets/audio/${name}.mp3`);a.preload='none';players.set(name,a);}else a.currentTime=0;
+ startedAt.set(name,performance.now());a.volume=Math.min(1,settings.sfx*(levels[name]??1)*duck);void a.play().catch(()=>{});}
 export function startAudio(){if(!started){document.addEventListener('visibilitychange',visibility);document.addEventListener('map-finale',mapFinaleChange);}started=true;try{if(!context)context=new AudioContext();if(context.state==='suspended')void context.resume().catch(()=>{});}catch{/* Silent play retains all visual feedback. */}sync();}
 export function clickSound(success=false,keep=false){playSound(success?'success':'select',keep);}
 /** True while an effect that was started is still sounding (`limit` ms at most, in case its end is never reported). */

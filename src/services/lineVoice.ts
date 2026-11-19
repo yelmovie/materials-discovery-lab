@@ -2,7 +2,7 @@ import {setMediaQuiet,voiceMuted,onVoiceOff,voiceTurn} from './audio';
 
 /** One character line at a time (concept captions, hints, map guide, villain bubbles).
  * A new line stops the previous one and any other voice player (dialogue, story, ending); music ducks while it plays (name tag 'line'); mute and the effect volume apply. */
-let current:HTMLAudioElement|null=null,currentEnd:(()=>void)|undefined;
+let current:HTMLAudioElement|null=null,currentEnd:(()=>void)|undefined,currentSrc:string|undefined;
 // The two map speakers take turns (playTurnLine). Other lines carry no name.
 export type Speaker='villain'|'guide';
 let speaker:Speaker|undefined;
@@ -30,7 +30,7 @@ export function playLine(src:string|undefined,onEnd?:()=>void,who?:Speaker){
  if(!src||voiceMuted()||document.hidden){onEnd?.();return false;}
  // Not tried before the first input (it would be refused): whoever waits for its end goes on now, the line itself comes after the input.
  if(!activated()){early={play:()=>{playLine(src,undefined,who);},who};onEnd?.();return false;}
- const audio=new Audio(src);current=audio;currentEnd=onEnd;speaker=who;audio.volume=.8;voiceTurn('line',yieldLine);
+ const audio=new Audio(src);current=audio;currentSrc=src;currentEnd=onEnd;speaker=who;audio.volume=.8;voiceTurn('line',yieldLine);
  const done=()=>{if(current!==audio)return;current=null;currentEnd=undefined;speaker=undefined;setMediaQuiet('line',false);voiceTurn('line',null);onEnd?.();};
  audio.onplaying=()=>{if(current===audio)setMediaQuiet('line',true);};audio.onended=done;audio.onerror=done;
  void audio.play().catch(done);
@@ -51,6 +51,8 @@ export function playTurnLine(src:string|undefined,who:Speaker){
  turn();
 }
 export const linePlaying=()=>!!current&&!current.paused;
+/** This file is the line being read now (also while it loads). */
+export const lineSpeaking=(src:string|undefined)=>!!src&&!!current&&currentSrc===src;
 /** A line has been asked for and has not ended: also true while its file is still loading or it waits for its turn. */
 export const lineBusy=()=>!!current||waiting.size>0;
 // Sound or effects switched off in the middle of a line, or another voice player starts: it stops at once, and whoever waits for its end (a held concept clip) goes on.

@@ -1,7 +1,8 @@
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {setMediaQuiet,voiceTurn} from '../services/audio';
 
-export function NpcVoice({voice,muted,autoPlay=false}:{voice:string;muted:boolean;autoPlay?:boolean}){
+/** offNote: why the voice is silent (the header mute or the voice switch in the settings), shown while `muted`. */
+export function NpcVoice({voice,muted,autoPlay=false,offNote='설정에서 목소리를 켜면 안내 음성을 들을 수 있어요.'}:{voice:string;muted:boolean;autoPlay?:boolean;offNote?:string}){
  const request=useRef(0),player=useRef<HTMLAudioElement|null>(null),[playing,setPlaying]=useState(false),[message,setMessage]=useState('');
  const stop=useCallback(()=>{
   request.current++;
@@ -27,5 +28,5 @@ export function NpcVoice({voice,muted,autoPlay=false}:{voice:string;muted:boolea
   return()=>{if(frame!==null)cancelAnimationFrame(frame);document.removeEventListener('visibilitychange',hidden);window.removeEventListener('pagehide',stop);stop();};
  },[autoPlay,muted,play,stop]);
  function toggle(){if(muted)return;if(player.current)stop();else void play();}
- return <div className="npc-voice"><button className="secondary" disabled={muted} aria-pressed={playing} onClick={toggle}>{playing?'안내 음성 멈추기':'안내 음성 듣기'}</button><small> AI 생성 음성 · 위의 안내 글과 같은 내용</small>{muted&&<p>소리를 켜면 안내 음성을 들을 수 있어요.</p>}<p role="status">{message}</p></div>;
+ return <div className="npc-voice"><button className="secondary" disabled={muted} aria-pressed={playing} onClick={toggle}>{playing?'안내 음성 멈추기':'안내 음성 듣기'}</button><small> AI 생성 음성 · 위의 안내 글과 같은 내용</small>{muted&&<p>{offNote}</p>}<p role="status">{message}</p></div>;
 }

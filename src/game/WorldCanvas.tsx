@@ -2,7 +2,7 @@ import {useEffect,useRef} from 'react';
 import {mountMapEncounters,type MapReaction} from '../map-encounters.js';
 import {mapVillainStages} from '../domain/map-villain-content';
 import {playSound,playMove,playOpen,type MapSound} from '../services/audio';
-import {playTurnLine,dropTurnLine} from '../services/lineVoice';
+import {playTurnLine,dropTurnLine,lineSpeaking} from '../services/lineVoice';
 import {voiceFor} from '../domain/voiceLines';
 import {rewardCardDue,rewardSetCelebrated} from '../reward-card-set';
 // Wood, metal and a heavy thump for the three hits, so the attack sounds like the materials unit.
@@ -345,6 +345,8 @@ export default function WorldCanvas(props:Props){
       tone:(kind,hits)=>{if(kind==='victory'&&rewardSetCelebrated())return;playSound(kind==='hit'||kind==='finish'?(hits===1?'map-hit-1':hits===2?'map-hit-2':'map-hit-3'):mapTones[kind]);},
       // A villain's line waits for Moru's guide line (2 s at most, else it is skipped) instead of cutting it.
       say:text=>playTurnLine(voiceFor(text),'villain'),
+      // The bubble stays while its own line is still being read.
+      speaking:text=>lineSpeaking(voiceFor(text)),
      });
     }
     const camera=this.cameras.main;
