@@ -49,26 +49,7 @@
     },
     {
       "name": "1280-S01-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 천, 살, 손잡이를 따로 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천은 펼쳐지고, 살은 천을 받쳐요. 손잡이는 손으로 잡아요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 한 물체도 부분의 쓰임에 맞춰 여러 재료로 만들 수 있어요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -105,26 +86,7 @@
     },
     {
       "name": "1280-S02-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 부품을 벌려 하나씩 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천·금속·나무를 이 우산의 관찰 기록과 연결해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 겉모습이 비슷해도 다른 재료일 수 있어요. 확인 자료도 근거예요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -154,26 +116,7 @@
     },
     {
       "name": "1280-S03-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 도구로 서로 다른 시료를 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 힘으로 눌렀다 놓아 두 시료의 반응을 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 빛, 물, 힘을 비교할 때는 실험마다 같은 조건을 지켜요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -203,26 +146,7 @@
     },
     {
       "name": "1280-S04-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 빛을 비춰 창 뒤쪽이 보이는지 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 누름판을 떼자 고무 조각이 돌아오는 모습을 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 쓰임에 맞는 관찰 근거로 후보를 골라요. 실제 보호 성능은 따로 시험해야 해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -252,26 +176,7 @@
     },
     {
       "name": "1280-S05-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 나무토막을 처음 컵에 넣어요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 넓은 용기와 길쭉한 용기로 옮겨 윤곽을 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 점선과 토막을 겹쳐 봐요. 위치는 달라져도 토막은 그대로예요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -308,26 +213,7 @@
     },
     {
       "name": "1280-S06-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 물은 액체예요. 처음 컵의 물높이를 표시해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 양의 물도 용기에 따라 높이와 모양이 달라져요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 흘리지 않고 처음 컵으로 돌아오니 물높이가 기준선과 같아요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -357,26 +243,7 @@
     },
     {
       "name": "1280-S07-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 마른 휴지를 컵 안쪽 위에 붙여요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 입구를 아래로 향하게 곧게 넣어요. 아래에 물이 조금 들어와요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 위쪽에 남은 공기가 공간을 차지해 휴지는 마른 채였어요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -413,26 +280,7 @@
     },
     {
       "name": "1280-S08-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 컵의 크기, 입구 방향, 물속 깊이를 같게 해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 배출구에서 공기가 기포로 빠져나오는 모습을 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 열린 쪽에 물이 더 들어와요. 닫힌 쪽에는 공기가 남아요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -462,26 +310,7 @@
     },
     {
       "name": "1280-S09-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 보관함의 세 부분은 맡은 일이 달라요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 비를 막을 몸체, 안이 보일 창, 닿는 곳에 붙일 보호대를 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 실제로 남긴 시료 기록을 근거로 재료 후보를 골라 조립해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -511,26 +340,7 @@
     },
     {
       "name": "1280-S10-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 모형에서 비·빛·모서리 시험의 결과를 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 창 뒤쪽이 보이지 않으면 빛 시험 기록을 참고해 창 재료를 고쳐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 현재 설계로 같은 조건의 세 모형 시험을 다시 확인해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -679,26 +489,7 @@
     },
     {
       "name": "1920-S01-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 천, 살, 손잡이를 따로 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천은 펼쳐지고, 살은 천을 받쳐요. 손잡이는 손으로 잡아요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 한 물체도 부분의 쓰임에 맞춰 여러 재료로 만들 수 있어요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -735,26 +526,7 @@
     },
     {
       "name": "1920-S02-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 부품을 벌려 하나씩 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천·금속·나무를 이 우산의 관찰 기록과 연결해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 겉모습이 비슷해도 다른 재료일 수 있어요. 확인 자료도 근거예요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -784,26 +556,7 @@
     },
     {
       "name": "1920-S03-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 도구로 서로 다른 시료를 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 힘으로 눌렀다 놓아 두 시료의 반응을 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 빛, 물, 힘을 비교할 때는 실험마다 같은 조건을 지켜요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -833,26 +586,7 @@
     },
     {
       "name": "1920-S04-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 빛을 비춰 창 뒤쪽이 보이는지 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 누름판을 떼자 고무 조각이 돌아오는 모습을 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 쓰임에 맞는 관찰 근거로 후보를 골라요. 실제 보호 성능은 따로 시험해야 해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -882,26 +616,7 @@
     },
     {
       "name": "1920-S05-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 나무토막을 처음 컵에 넣어요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 넓은 용기와 길쭉한 용기로 옮겨 윤곽을 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 점선과 토막을 겹쳐 봐요. 위치는 달라져도 토막은 그대로예요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -938,26 +653,7 @@
     },
     {
       "name": "1920-S06-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 물은 액체예요. 처음 컵의 물높이를 표시해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 양의 물도 용기에 따라 높이와 모양이 달라져요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 흘리지 않고 처음 컵으로 돌아오니 물높이가 기준선과 같아요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -987,26 +683,7 @@
     },
     {
       "name": "1920-S07-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 마른 휴지를 컵 안쪽 위에 붙여요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 입구를 아래로 향하게 곧게 넣어요. 아래에 물이 조금 들어와요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 위쪽에 남은 공기가 공간을 차지해 휴지는 마른 채였어요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1043,26 +720,7 @@
     },
     {
       "name": "1920-S08-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 컵의 크기, 입구 방향, 물속 깊이를 같게 해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 배출구에서 공기가 기포로 빠져나오는 모습을 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 열린 쪽에 물이 더 들어와요. 닫힌 쪽에는 공기가 남아요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1092,26 +750,7 @@
     },
     {
       "name": "1920-S09-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 보관함의 세 부분은 맡은 일이 달라요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 비를 막을 몸체, 안이 보일 창, 닿는 곳에 붙일 보호대를 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 실제로 남긴 시료 기록을 근거로 재료 후보를 골라 조립해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1141,26 +780,7 @@
     },
     {
       "name": "1920-S10-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 모형에서 비·빛·모서리 시험의 결과를 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 창 뒤쪽이 보이지 않으면 빛 시험 기록을 참고해 창 재료를 고쳐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 현재 설계로 같은 조건의 세 모형 시험을 다시 확인해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1309,26 +929,7 @@
     },
     {
       "name": "1024-S01-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 천, 살, 손잡이를 따로 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천은 펼쳐지고, 살은 천을 받쳐요. 손잡이는 손으로 잡아요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 한 물체도 부분의 쓰임에 맞춰 여러 재료로 만들 수 있어요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1365,26 +966,7 @@
     },
     {
       "name": "1024-S02-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 부품을 벌려 하나씩 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천·금속·나무를 이 우산의 관찰 기록과 연결해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 겉모습이 비슷해도 다른 재료일 수 있어요. 확인 자료도 근거예요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1414,26 +996,7 @@
     },
     {
       "name": "1024-S03-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 도구로 서로 다른 시료를 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 힘으로 눌렀다 놓아 두 시료의 반응을 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 빛, 물, 힘을 비교할 때는 실험마다 같은 조건을 지켜요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1463,26 +1026,7 @@
     },
     {
       "name": "1024-S04-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 빛을 비춰 창 뒤쪽이 보이는지 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 누름판을 떼자 고무 조각이 돌아오는 모습을 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 쓰임에 맞는 관찰 근거로 후보를 골라요. 실제 보호 성능은 따로 시험해야 해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1512,26 +1056,7 @@
     },
     {
       "name": "1024-S05-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 나무토막을 처음 컵에 넣어요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 넓은 용기와 길쭉한 용기로 옮겨 윤곽을 비교해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 점선과 토막을 겹쳐 봐요. 위치는 달라져도 토막은 그대로예요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1568,26 +1093,7 @@
     },
     {
       "name": "1024-S06-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 물은 액체예요. 처음 컵의 물높이를 표시해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 양의 물도 용기에 따라 높이와 모양이 달라져요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 흘리지 않고 처음 컵으로 돌아오니 물높이가 기준선과 같아요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1617,26 +1123,7 @@
     },
     {
       "name": "1024-S07-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 마른 휴지를 컵 안쪽 위에 붙여요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 입구를 아래로 향하게 곧게 넣어요. 아래에 물이 조금 들어와요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 위쪽에 남은 공기가 공간을 차지해 휴지는 마른 채였어요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1673,26 +1160,7 @@
     },
     {
       "name": "1024-S08-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 컵의 크기, 입구 방향, 물속 깊이를 같게 해요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 배출구에서 공기가 기포로 빠져나오는 모습을 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 열린 쪽에 물이 더 들어와요. 닫힌 쪽에는 공기가 남아요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1722,26 +1190,7 @@
     },
     {
       "name": "1024-S09-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 보관함의 세 부분은 맡은 일이 달라요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 비를 막을 몸체, 안이 보일 창, 닿는 곳에 붙일 보호대를 살펴봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 실제로 남긴 시료 기록을 근거로 재료 후보를 골라 조립해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1771,26 +1220,7 @@
     },
     {
       "name": "1024-S10-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 모형에서 비·빛·모서리 시험의 결과를 봐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 창 뒤쪽이 보이지 않으면 빛 시험 기록을 참고해 창 재료를 고쳐요.",
-          "w": 255,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 현재 설계로 같은 조건의 세 모형 시험을 다시 확인해요.",
-          "w": 255,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1939,26 +1369,7 @@
     },
     {
       "name": "915-S01-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 천, 살, 손잡이를 따로 살펴봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천은 펼쳐지고, 살은 천을 받쳐요. 손잡이는 손으로 잡아요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 한 물체도 부분의 쓰임에 맞춰 여러 재료로 만들 수 있어요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -1995,26 +1406,7 @@
     },
     {
       "name": "915-S02-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 부품을 벌려 하나씩 살펴봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천·금속·나무를 이 우산의 관찰 기록과 연결해요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 겉모습이 비슷해도 다른 재료일 수 있어요. 확인 자료도 근거예요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2044,26 +1436,7 @@
     },
     {
       "name": "915-S03-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 도구로 서로 다른 시료를 비교해요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 힘으로 눌렀다 놓아 두 시료의 반응을 비교해요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 빛, 물, 힘을 비교할 때는 실험마다 같은 조건을 지켜요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2093,26 +1466,7 @@
     },
     {
       "name": "915-S04-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 빛을 비춰 창 뒤쪽이 보이는지 살펴봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 누름판을 떼자 고무 조각이 돌아오는 모습을 봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 쓰임에 맞는 관찰 근거로 후보를 골라요. 실제 보호 성능은 따로 시험해야 해요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2142,26 +1496,7 @@
     },
     {
       "name": "915-S05-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 나무토막을 처음 컵에 넣어요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 넓은 용기와 길쭉한 용기로 옮겨 윤곽을 비교해요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 점선과 토막을 겹쳐 봐요. 위치는 달라져도 토막은 그대로예요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2198,26 +1533,7 @@
     },
     {
       "name": "915-S06-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 물은 액체예요. 처음 컵의 물높이를 표시해요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 양의 물도 용기에 따라 높이와 모양이 달라져요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 흘리지 않고 처음 컵으로 돌아오니 물높이가 기준선과 같아요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2247,26 +1563,7 @@
     },
     {
       "name": "915-S07-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 마른 휴지를 컵 안쪽 위에 붙여요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 입구를 아래로 향하게 곧게 넣어요. 아래에 물이 조금 들어와요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 위쪽에 남은 공기가 공간을 차지해 휴지는 마른 채였어요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2303,26 +1600,7 @@
     },
     {
       "name": "915-S08-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 컵의 크기, 입구 방향, 물속 깊이를 같게 해요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 배출구에서 공기가 기포로 빠져나오는 모습을 봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 열린 쪽에 물이 더 들어와요. 닫힌 쪽에는 공기가 남아요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2352,26 +1630,7 @@
     },
     {
       "name": "915-S09-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 보관함의 세 부분은 맡은 일이 달라요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 비를 막을 몸체, 안이 보일 창, 닿는 곳에 붙일 보호대를 살펴봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 실제로 남긴 시료 기록을 근거로 재료 후보를 골라 조립해요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2401,26 +1660,7 @@
     },
     {
       "name": "915-S10-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 모형에서 비·빛·모서리 시험의 결과를 봐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 창 뒤쪽이 보이지 않으면 빛 시험 기록을 참고해 창 재료를 고쳐요.",
-          "w": 255,
-          "h": 40
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 현재 설계로 같은 조건의 세 모형 시험을 다시 확인해요.",
-          "w": 255,
-          "h": 40
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2569,26 +1809,7 @@
     },
     {
       "name": "830-S01-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 천, 살, 손잡이를 따로 살펴봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천은 펼쳐지고, 살은 천을 받쳐요. 손잡이는 손으로 잡아요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 한 물체도 부분의 쓰임에 맞춰 여러 재료로 만들 수 있어요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2625,26 +1846,7 @@
     },
     {
       "name": "830-S02-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 우산 부품을 벌려 하나씩 살펴봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 천·금속·나무를 이 우산의 관찰 기록과 연결해요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 겉모습이 비슷해도 다른 재료일 수 있어요. 확인 자료도 근거예요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2674,26 +1876,7 @@
     },
     {
       "name": "830-S03-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 도구로 서로 다른 시료를 비교해요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 힘으로 눌렀다 놓아 두 시료의 반응을 비교해요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 빛, 물, 힘을 비교할 때는 실험마다 같은 조건을 지켜요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2723,26 +1906,7 @@
     },
     {
       "name": "830-S04-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 빛을 비춰 창 뒤쪽이 보이는지 살펴봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 누름판을 떼자 고무 조각이 돌아오는 모습을 봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 쓰임에 맞는 관찰 근거로 후보를 골라요. 실제 보호 성능은 따로 시험해야 해요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2772,26 +1936,7 @@
     },
     {
       "name": "830-S05-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 같은 나무토막을 처음 컵에 넣어요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 넓은 용기와 길쭉한 용기로 옮겨 윤곽을 비교해요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 점선과 토막을 겹쳐 봐요. 위치는 달라져도 토막은 그대로예요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2828,26 +1973,7 @@
     },
     {
       "name": "830-S06-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 물은 액체예요. 처음 컵의 물높이를 표시해요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 같은 양의 물도 용기에 따라 높이와 모양이 달라져요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 흘리지 않고 처음 컵으로 돌아오니 물높이가 기준선과 같아요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2877,26 +2003,7 @@
     },
     {
       "name": "830-S07-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 마른 휴지를 컵 안쪽 위에 붙여요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 입구를 아래로 향하게 곧게 넣어요. 아래에 물이 조금 들어와요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 위쪽에 남은 공기가 공간을 차지해 휴지는 마른 채였어요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2933,26 +2040,7 @@
     },
     {
       "name": "830-S08-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 컵의 크기, 입구 방향, 물속 깊이를 같게 해요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 배출구에서 공기가 기포로 빠져나오는 모습을 봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 열린 쪽에 물이 더 들어와요. 닫힌 쪽에는 공기가 남아요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -2982,26 +2070,7 @@
     },
     {
       "name": "830-S09-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 보관함의 세 부분은 맡은 일이 달라요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 비를 막을 몸체, 안이 보일 창, 닿는 곳에 붙일 보호대를 살펴봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 실제로 남긴 시료 기록을 근거로 재료 후보를 골라 조립해요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
@@ -3031,26 +2100,7 @@
     },
     {
       "name": "830-S10-concept",
-      "issues": [
-        {
-          "kind": "target",
-          "label": "1번째 장면: 모형에서 비·빛·모서리 시험의 결과를 봐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "2번째 장면: 창 뒤쪽이 보이지 않으면 빛 시험 기록을 참고해 창 재료를 고쳐요.",
-          "w": 239,
-          "h": 42
-        },
-        {
-          "kind": "target",
-          "label": "3번째 장면: 현재 설계로 같은 조건의 세 모형 시험을 다시 확인해요.",
-          "w": 239,
-          "h": 42
-        }
-      ],
+      "issues": [],
       "documentOverflow": false,
       "toolScroll": [],
       "modalCenterOffset": 0
