@@ -7,6 +7,7 @@
 - 엔딩 대사: 탭을 숨기면(visibilitychange·pagehide) 멈춘다.
 - 함께 고친 것: 소리·효과음을 끄면 읽고 있던 lineVoice 대사(길 안내·악당 말풍선·개념 자막·힌트)도 바로 멈춘다(`onVoiceOff`). 엔딩 화면에 다시 들어가면 파이널 곡이 중간이 아니라 처음부터 나온다.
 검증: 테스트 12파일 81개 통과(새 파일 `tests/audio-ducking.test.ts`·`tests/reward-card-wait.test.ts`), typecheck·빌드 통과. 헤드리스 Chrome(`.tmp/audio-fix-20261119/verify.mjs`, 로컬 빌드) 25항목 중 24 통과·콘솔 오류 0: 첫 키 입력 뒤 메인테마 0.288, 이야기 음성 중 0.072 → 복귀, 퇴장 대사 끝 +402ms에 카드, 카드 소리 4개 재생, 대사 중 소리 끄기, 6번째 악당 → 카드 → 완성 → 파이널 창에서 `finale.mp3` 0.288(메인테마 멈춤, 영상 muted) → 닫으면 메인테마, 엔딩 대사 중 파이널 곡 0.072, 탭 숨김. 나머지 1항목은 점검 스크립트가 무음 파이널 영상을 「재생 중인 소리」로 센 것(스크립트만 고침). 귀로 듣는 확인은 하지 못했고 상태 값으로만 확인했다. `check:layout`은 화면을 바꾸지 않아 돌리지 않았다.
+배포: 2026-11-19 Cloudflare Workers `materials-discovery-lab` 버전 d0d427e6-49d2-4875-93bf-f4c0050ff3b2(커밋 78378ec, `KEEP_DOCS=1 deploy.sh 09 "9 things" worker-cfg materials-discovery-lab` — 영상 Range 워커가 들어 있는 `cfg/09.json`). 운영 주소에서 index·sw.js·메인 스크립트·WorldCanvas·FinalPanels·finale.mp3·card-whoosh.mp3의 SHA-256이 빌드와 같았고, 헤드리스 12항목 통과·콘솔 오류 0(첫 입력 뒤 메인테마 0.288, 이야기 음성 중 0.072, 6번째 악당 → 퇴장 대사 끝 → 카드 → 완성 → 파이널 창에서 finale.mp3 0.288 → 닫으면 메인테마). 20:43 배포가 예전 설정(`09e`, 워커 없음)으로 나가 운영에서 영상 Range가 200으로 돌아가 있었는데, 이번 배포로 206이 다시 나온다(`/assets/concepts/S01.mp4`, `/assets/map-encounters/map-finale.mp4`). **이 프로젝트 배포는 `09`(cfg/09.json)로 한다.**
 남은 것: 퇴장 대사가 말풍선(2.75초)보다 길어서 악당이 사라진 뒤에도 목소리가 1~2초 이어진다(전부터 그랬다). 파이널 곡은 `<audio>`라 줄어들 때 크기가 한 번에 바뀐다(메인테마는 0.08초 상수로 부드럽게). 길 안내 대사와 대화창 음성이 겹칠 수 있는 문제·발자국·효과음 크기는 2차.
 
 # 인계 · 2026-11-18 (성취 카드)
