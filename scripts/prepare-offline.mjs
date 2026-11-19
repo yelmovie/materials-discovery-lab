@@ -19,7 +19,8 @@ async function walk(dir,prefix=''){
  }
  return result;
 }
-const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3|m4a)$/.test(p)).sort();
+const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3|m4a)$/.test(p)&&!/^assets\/fonts\/jua-/.test(p)).sort();
+// Jua is kept in public/ for burned-in concept captions only; the app never loads it, so do not precache it.
 if(!files.includes('index.html')||!files.includes('manifest.webmanifest')||!files.some(p=>p.endsWith('.js')))throw new Error('Build the app before preparing offline assets.');
 // A worker logic change also needs a fresh cache, even if the app files did not change.
 const hash=createHash('sha256').update(await readFile(fileURLToPath(import.meta.url)));let bytes=0;

@@ -69,3 +69,9 @@
 /* S09에서 시험하러 S03에 왔을 때의 「설계로 돌아가기」: 머리 줄 오른쪽 끝(성취 카드 보관함 밑)에 깔리지 않게 제목 바로 옆에 둔다 */
 .app .activity-heading { justify-content:flex-start; }
 .app .activity-heading>button { flex:none; position:relative; z-index:3; }
+
+/* 조작 간격 8px(2026-11-19, C4): 높이 621px 이상 화면에서 이웃한 버튼·칸 사이를 8px 이상으로.
+   폰 가로처럼 낮은 화면은 넘침을 막으려고 기존의 좁은 간격(버튼 자체는 44px 이상)을 그대로 둔다. */
+@media screen and (min-height:621px) {
+ .app :is(.certificate-actions,.compact-test-list,.compact-test-row,.demo-step-pad,.drag-tokens,.drop-slots,.experiment-playback-control,.global-controls,.maker-actions,.maker-choice-row,.maker-sockets,.map-direction-pad,.map-tools,.property-choices,.reward-card-slots,.sample-grid,.stage-action-pair,.stage-conclusion-options,.tab-row,.view-controls,.challenge-options) { gap:8px !important; }
+}
