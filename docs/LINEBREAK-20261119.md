@@ -44,4 +44,11 @@
 - 운영 배포: 2026-11-19 Cloudflare Workers `materials-discovery-lab` 버전 `877fd16f-18c7-423b-8798-a9880db6a750`(커밋 `ba3c247`, `KEEP_DOCS=1 deploy.sh 09 "9 things" worker-cfg materials-discovery-lab`, 영상 Range 워커가 든 `cfg/09.json`).
   - `cmp.sh`: `assets/index-CAkUtOfZ.css`·`sw.js`·`index.html` 빌드와 운영 SHA-256 MATCH. 개념 영상 Range 요청 206.
   - 운영 측정: `run.mjs 09 - 18 1280x800`은 위의 성취 카드 1건(통과로 판단)만, 운영 NPC 대사 20줄 × 3크기는 0개.
+- 남은 것 정리(2026-11-20, 공통 지침 9절):
+  - 지도 악당 말풍선: 1차 때 이미 대사 30줄 전부를 실제 `.map-encounter-say`로 띄워 재서 8→0으로 고쳤다. 9절 기준 크기를 맞추려고 출시 상태 그대로(주입 없이) 1280·1024·1920에서 다시 쟀다: 0개. 스크립트 `.tmp/linebreak-20261119/villain.py`(1차 때는 `sweep.py`의 `villain()`), 대사 목록 `villain.json`.
+  - 3D 시험 길(S03 「3D 시험 길로 하기」, DOM 글): `.tmp/linebreak-20261119/runstage.py`로 실제 무대(WebGL 준비됨)에서 처음 화면과 3D 위 이름표(`aria-hidden` 층 포함)를 재고, 안내 글 4개 + 기록 완료 글 9개, 시료 9곳의 질문 판(제목·고르기·다시 시험 안내·막혔을 때 도움말·버튼 두 개)을 실제 무대 안에 넣어 1280·1024·1920에서 쟀다. 전 3개(모두 1920) → 후 2개.
+    - 고침: 1920에서 질문 판 「기존 방식으로 / 하기」(끝줄 두 글자). `src/screens/run-stage.css`에 `@media (min-width:1500px)` 질문 판 두 버튼을 위아래로 쌓음(커밋 `e5014b0`). 글자 크기·문구 그대로, 1280·1024는 그대로.
+    - 그대로 둠: 1920 질문 판 제목 「투명 플라스틱에서 / 본 것은?」·「불투명 플라스틱에서 / 본 것은?」. 이미 `balance`이고 끝줄 41~46%, 「어디에서 / 무엇을」로 뜻이 나뉘는 자리다. 한 줄로 하려면 판을 넓혀 3D 무대를 더 가려야 해서 손대지 않았다.
+  - 캔버스 글: 코드 확인. 3D 무대·지도(Three)는 글을 캔버스에 그리지 않고 DOM 이름표를 쓴다. `ExperimentCanvas`(Phaser) 라벨은 `useAdvancedWrap`(낱말 단위)이고 가운데 라벨은 모두 580px 상자에 한 줄로 들어간다. 강제 줄바꿈은 「노란색은\n공기 위치 표시」 하나로, 두 줄이고 끝줄이 더 길어 문제없음.
+  - 배포: Worker `ca04b0d1-048a-4db2-9a8a-6308332c3775`(커밋 `e5014b0`), `cmp.sh` `assets/Activities-DCAzFLfg.css`·`sw.js`·index MATCH, 영상 Range 206.
 - 추가 수정(2026-11-20, 사용자 승인, 공통 지침 8절): 위 성취 카드 문구를 `src/reward-cards.css`의 `.rc-locked` 컨테이너 규칙 네 줄로 「악당을 / 물리치면 / 열려요」 세 줄로 바꿨다(커밋 `7ce00c9`). 로컬 빌드·운영 모두 1280·1024·1920에서 여섯 장 세 줄, 카드 넘침 없음. Worker `c328d34e-3377-47c1-876c-89271ffc1067`, `cmp.sh` `assets/index-TEZ7i9V8.css`·`sw.js`·index MATCH, 영상 Range 206.
