@@ -51,6 +51,8 @@
 .app .live-activity .run-stage .run-prompt .sample-answer-options { grid-template-columns:minmax(0,1fr); gap:8px; margin-bottom:8px; }
 .app .live-activity .run-stage .run-prompt .choice { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:0; min-height:56px; padding:8px 12px; font-size:clamp(16px,1.2vw,19px); line-height:1.35; }
 .app .live-activity .run-stage .run-prompt .stage-action-pair { grid-template-columns:repeat(auto-fit,minmax(0,1fr)); }
+/* 넓은 화면은 글자가 커져(1.25vw) 380px 판 반쪽에 「기존 방식으로 / 하기」로 끝줄 두 글자가 떨어진다. 두 버튼을 위아래로 쌓아 한 줄씩. */
+@media (min-width:1500px) { .app .live-activity .run-stage .run-prompt .stage-action-pair { grid-template-columns:minmax(0,1fr); } }
 .app .live-activity .run-stage .run-prompt .stage-action-pair>.full { min-height:46px; }
 .run-stuck { display:flex; align-items:center; gap:8px; margin:6px 0; padding:6px 10px; border-radius:12px; background:#eef4e2; font-size:16px; line-height:1.4; }
 .run-stuck img { width:44px; height:48px; object-fit:contain; flex:none; }
