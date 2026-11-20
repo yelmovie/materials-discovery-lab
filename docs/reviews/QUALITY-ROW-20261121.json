@@ -1,0 +1,13 @@
+{
+  "no": "09", "name": "물질 공방 대작전", "appCommit": "50f2cc1", "measuredAt": "2026-11-21T07:20+09:00",
+  "score": {"total": 94, "noDevice": 95,
+    "items": {"learning": 10, "fun": 9, "function": 9, "code": 9, "design": 10, "a11y": 10, "perf": 9, "firstScreen": 10, "data": 8, "deploy": 10}},
+  "structure": {"zones": 5, "activities": 10, "stepsPerActivityMedian": 3, "autoRunSeconds": 186},
+  "interaction": {"kinds": ["누르기", "끌어 옮기기", "길게 누르기", "밀기", "지도 걷기", "3D 시험 길 걷기"], "kindsCount": 6, "zonesWithOwnInteraction": 5},
+  "feedback": {"wrongAnswerLevels": 3, "hintBeforeAnswer": true, "retryGoal": false, "rewardEffects": 4, "transitionEffects": 3},
+  "screen": {"playAreaHeightPctMedian": 71.1, "playAreaAreaPctMedian": 69.5, "bodyTextMinPx": 14, "bodyTextMedianPx": 18, "imagesOnScreenMedian": 6},
+  "sound": {"bgm": true, "sfx": true, "voice": true, "voiceLines": 181},
+  "weight": {"firstScreenKB": 1675, "distMB": 71},
+  "robust": {"reloadRestores": true, "corruptSaveHandled": true, "offlineRevisit": true, "backButtonStaysInApp": false, "certificatePrintsOnePage": true},
+  "notes": "운영 Workers 209f3bb7(=50f2cc1 MATCH)에서 잼. stepsPerActivityMedian은 활동 순서 칸(탐구·[주문 제작]·새 의뢰·개념) 기준, 탭 수 중앙값은 19.5(S01~S10 9~30탭). autoRunSeconds는 학생 새 기록 완주 검사(tools/check-flow-clicks.py, 같은 코드 개발 서버 1280×800, 201탭 PASS) 시간. 오답은 이유가 담긴 힌트와 다시 고르기(3D 시험 길은 세 번 틀리면 더 구체적인 힌트), 답 전 힌트는 「모루의 힌트」. 보상 연출 4: 정답 축하, 성취 카드 획득, 공방 복구(불이 켜진 공방), 엔딩 복구율. 전환 연출 3: 지도 걷기와 공방 문 열림, 개념 영상, 엔딩 순서. 글자 최소 14px은 활동 화면의 작은 상태 글자 3개(18px 미만 3개/28~43개). 첫 화면 1,675KB는 새 방문·캐시 없음·요청 9개(키아트 그림 포함). distMB 71에는 개념 영상 30개 포함. 손상된 기록은 원문 백업 뒤 새로 시작(F14 WARNING이지만 앱은 멈추지 않음). 뒤로 가기는 첫 번에 앱 밖으로 나감(3-2단계에서 고침)."
+}
