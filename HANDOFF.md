@@ -1,3 +1,8 @@
+# 인계 · 2026-11-20 (제작·저작권 표기)
+지침 `_shared/CREDIT-LINE-20261120.md` 09번 줄. 시작 화면(`route==='home'`, `src/App.tsx` `.home-hero` 안 `.home-credit`) 우측 하단에 「기획·제작: 옐샘 & ⓒ 아이스크림미디어」 한 줄. 스타일은 `src/experience.css` `.home-hero .home-credit`: 오른쪽 22px·아래 12px(+safe-area), `clamp(10px,.9vw,13px)`·700, 반투명 바탕 `#0b241ab3`, `pointer-events:none`. 시작 화면에서만 그려진다. 설정 창의 제작 줄·저작권 줄은 `bb2bf68`에서 같은 문구로 바뀌어 있다.
+검증: 테스트 163개·typecheck·빌드 통과. 헤드리스 `.tmp/credit-line-20261120/check.mjs` 로컬 38/38·운영 39/39(1280×800 11.52px, 1024×768·844×390 10px, 1920×1080 13px, 뷰포트 안·조작 요소 겹침 0, 글자 자리 대비 최소 6.08, 「이어서 실험하기」 상태 같은 자리, S01·지도에서는 없음, 콘솔 오류 0).
+배포: 2026-11-20 Workers `materials-discovery-lab` 버전 87d0dd90-9e7d-4f04-b81a-56a54fa20c96(커밋 0f6bc82, `KEEP_DOCS=1 deploy.sh 09 "9 things" worker-cfg materials-discovery-lab`). `cmp.sh` CSS·메인 스크립트·index MATCH, sw.js 해시 같음, 개념 영상 Range 206.
+
 # 인계 · 2026-11-20 (소리 3차 남은 것)
 - 이야기 창 문구: 목소리가 꺼져 있으면 「설정에서 목소리를 켜면 안내 음성을 들을 수 있어요.」, 전체 음소거(목소리는 켜짐)면 「위의 소리 버튼으로 소리를 켜면 …」(`NpcVoice` `offNote`). 앱에 같은 문구는 이것 하나뿐이었다.
 - 악당 말풍선(`src/map-encounters.js` `speaking`, `lineVoice.lineSpeaking`): 자기 음성이 읽히는 동안 말풍선을 음성 끝 +0.2초(보인 뒤 최대 6초)까지 남긴다. 카드를 기다리며 지도가 멈춘 동안에도 유지. 타격·포즈·퇴장 시각, 카드는 퇴장 대사 뒤·파이널은 카드 뒤 그대로. 음성이 없거나 목소리 꺼짐이면 전과 같음(카드가 0.76초에 뜰 때 숨김).
