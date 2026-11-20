@@ -51,4 +51,9 @@
     - 그대로 둠: 1920 질문 판 제목 「투명 플라스틱에서 / 본 것은?」·「불투명 플라스틱에서 / 본 것은?」. 이미 `balance`이고 끝줄 41~46%, 「어디에서 / 무엇을」로 뜻이 나뉘는 자리다. 한 줄로 하려면 판을 넓혀 3D 무대를 더 가려야 해서 손대지 않았다.
   - 캔버스 글: 코드 확인. 3D 무대·지도(Three)는 글을 캔버스에 그리지 않고 DOM 이름표를 쓴다. `ExperimentCanvas`(Phaser) 라벨은 `useAdvancedWrap`(낱말 단위)이고 가운데 라벨은 모두 580px 상자에 한 줄로 들어간다. 강제 줄바꿈은 「노란색은\n공기 위치 표시」 하나로, 두 줄이고 끝줄이 더 길어 문제없음.
   - 배포: Worker `ca04b0d1-048a-4db2-9a8a-6308332c3775`(커밋 `e5014b0`), `cmp.sh` `assets/Activities-DCAzFLfg.css`·`sw.js`·index MATCH, 영상 Range 206.
+- 악당 글자 18px 뒤 다시 재기(2026-11-20, 공통 지침 10절): 18px 커밋 `7281ba6`이 든 `origin/main`을 빌드해(`vite preview`) 지도 화면에서 재었다. 스크립트 `.tmp/linebreak-20261119/villain18.py`, 글 목록 `villain18.json`.
+  - 말풍선 `.map-encounter-say`(18px, 폭 260px): 대사 30줄 + 기본 대사 4줄 = 34줄. 1280·1024·1920 모두 문제 0. `text-wrap: balance`(이 기록의 프로젝트 보정)가 그대로 걸려 있고 줄 수는 1줄 15·2줄 14·3줄 5(최대 3줄).
+  - 격퇴 안내 `.map-encounter-clear`(18px, 폭 440px): 「악당 가까이 걸어가서 공격해!」와 악당 6명의 첫 대사 안내 = 7줄, 세 크기 모두 문제 0(1줄 1·2줄 6). 실제 요소는 `role="status"`라 공통 규칙의 `balance`가 걸린다.
+  - 공격 버튼 `.map-encounter-attack`: 그림(아이콘)만 있고 보이는 글이 없어 줄바꿈 대상이 아니다(글은 `aria-label`·`title`).
+  - 전/후 문제 0 → 0, 고친 것 없음이라 배포하지 않았다.
 - 추가 수정(2026-11-20, 사용자 승인, 공통 지침 8절): 위 성취 카드 문구를 `src/reward-cards.css`의 `.rc-locked` 컨테이너 규칙 네 줄로 「악당을 / 물리치면 / 열려요」 세 줄로 바꿨다(커밋 `7ce00c9`). 로컬 빌드·운영 모두 1280·1024·1920에서 여섯 장 세 줄, 카드 넘침 없음. Worker `c328d34e-3377-47c1-876c-89271ffc1067`, `cmp.sh` `assets/index-TEZ7i9V8.css`·`sw.js`·index MATCH, 영상 Range 206.
