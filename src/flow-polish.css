@@ -45,7 +45,7 @@
 .app .part-observation-card { position:relative; border-radius:16px; }
 .app .part-observation-card.is-recorded { background:#eef6e3; border-color:#9cbf86; }
 .app .part-observation-card h4 small { font-weight:400; font-size:12px; color:#6a7564; }
-.app .record-stamp { position:absolute; right:8px; top:6px; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; background:#5a8d51; transform:rotate(4deg); }
+.app .record-stamp { position:absolute; right:8px; top:6px; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; background:#4c7744; transform:rotate(4deg); }
 
 /* S05·S06: the prediction is the first card in the panel. */
 .app .prediction-inline { border:2px solid #d8b764; background:rgba(255,249,231,.96); }

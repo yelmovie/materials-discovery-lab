@@ -75,3 +75,16 @@
 @media screen and (min-height:621px) {
  .app :is(.certificate-actions,.compact-test-list,.compact-test-row,.demo-step-pad,.drag-tokens,.drop-slots,.experiment-playback-control,.global-controls,.maker-actions,.maker-choice-row,.maker-sockets,.map-direction-pad,.map-tools,.property-choices,.reward-card-slots,.sample-grid,.stage-action-pair,.stage-conclusion-options,.tab-row,.view-controls,.challenge-options) { gap:8px !important; }
 }
+
+
+/* 저사양 대체(2026-11-21, D13): 메모리 4GB 이하·코어 4개 이하(main.tsx가 data-low-power를 붙임)이거나 투명도 줄이기를 켠 기기는
+   유리 흐림(backdrop-filter)을 끄고 glass-surfaces.css의 불투명 대체 면을 쓴다. 보통 기기의 화면은 바뀌지 않는다. */
+:root[data-low-power=true] { --glass-face:#fffdf3; --glass-reading:#fffdf6; }
+:root[data-low-power=true] .workspace { background:#fffdf3; }
+:root[data-low-power=true] .app .live-activity .transfer-workspace,
+:root[data-low-power=true] .app .final-activity :is(.final-card,.ending-panel) { background:#fffdf3; }
+:root[data-low-power=true] *,:root[data-low-power=true] *::before,:root[data-low-power=true] *::after,:root[data-low-power=true] ::backdrop { backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+@media (prefers-reduced-transparency:reduce) {
+ .app .live-activity .transfer-workspace,.app .final-activity :is(.final-card,.ending-panel) { background:#fffdf3; }
+ *,*::before,*::after,::backdrop { backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+}

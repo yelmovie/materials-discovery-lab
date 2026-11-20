@@ -137,7 +137,9 @@ export default function WorldCanvas(props:Props){
     const keyboard=this.input.keyboard;
     keyboard?.on('keydown',(event:KeyboardEvent)=>{if(this.isPaused()||this.typing()||event.ctrlKey||event.altKey||event.metaKey)return;if(this.directionFor(event.code)){event.preventDefault();if(!event.repeat){this.cancelGesture();this.path=[];this.doorPath=false;live.current.onMoveStart?.();live.current.onFollow?.();}this.keys.add(event.code);}});
     keyboard?.on('keyup',(event:KeyboardEvent)=>this.keys.delete(event.code));
-    const clear=()=>{this.keys.clear();this.cancelGesture();};window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);this.events.once('shutdown',()=>{window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);});
+    const clear=()=>{this.keys.clear();this.cancelGesture();};window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);
+    // game.destroy() sends the scene 'destroy', not 'shutdown': remove on both, or every map visit leaves these listeners (and the scene they hold) behind.
+    const off=()=>{window.removeEventListener('blur',clear);document.removeEventListener('visibilitychange',clear);};this.events.once('shutdown',off);this.events.once('destroy',off);
    }
    cancelGesture(){this.drag=null;this.pinch=null;this.fingers.clear();host.current?.classList.remove('dragging');}
    makeUpgrades(){
@@ -384,9 +386,13 @@ export default function WorldCanvas(props:Props){
   }
   // Own canvas + Scale.NONE: Phaser pools canvases, and a lab game torn down before boot could keep restyling a recycled one.
   const size=()=>({width:Math.max(1,Math.round(host.current?.clientWidth||MAP_WIDTH)),height:Math.max(1,Math.round(host.current?.clientHeight||MAP_HEIGHT))});
-  const game=new Phaser.Game({type:Phaser.CANVAS,canvas:document.createElement('canvas'),parent:host.current,...size(),transparent:true,pixelArt:true,roundPixels:true,scene:WorldScene,scale:{mode:Phaser.Scale.NONE},input:{activePointers:3},banner:false,audio:{noAudio:true}});
+  // Phaser 3.90 adds a document 'visibilitychange' listener right after postBoot and never removes it on destroy, so each map visit
+  // left one behind. Note the listener Phaser adds in that same synchronous step and remove it with the game.
+  let phaserVisibility:EventListenerOrEventListenerObject|null=null;
+  const postBoot=()=>{const add=document.addEventListener;document.addEventListener=function(this:Document,type:string,listener:EventListenerOrEventListenerObject,options?:boolean|AddEventListenerOptions){if(type==='visibilitychange'&&!phaserVisibility)phaserVisibility=listener;return add.call(this,type,listener,options);} as typeof add;queueMicrotask(()=>{document.addEventListener=add;});};
+  const game=new Phaser.Game({type:Phaser.CANVAS,canvas:document.createElement('canvas'),parent:host.current,...size(),transparent:true,pixelArt:true,roundPixels:true,scene:WorldScene,scale:{mode:Phaser.Scale.NONE},input:{activePointers:3},banner:false,audio:{noAudio:true},callbacks:{postBoot}});
   const observer=new ResizeObserver(()=>{const next=size();if(next.width!==game.scale.width||next.height!==game.scale.height)game.scale.resize(next.width,next.height);});observer.observe(host.current);
-  return()=>{observer.disconnect();encounters?.destroy();dropTurnLine('villain');game.destroy(true);};
+  return()=>{observer.disconnect();encounters?.destroy();dropTurnLine('villain');game.destroy(true);if(phaserVisibility)document.removeEventListener('visibilitychange',phaserVisibility);};
  },[]);
  return <div ref={host} className="world-canvas" role="region" aria-label="연구원과 모루가 함께 걷는 숲속 공방 지도. 방향판이나 방향키를 누르고 있으면 길을 따라 걷고, 땅이나 건물 이름을 누르면 그곳까지 걸어가요. 손으로 끌면 둘러볼 수 있어요."/>;
 }

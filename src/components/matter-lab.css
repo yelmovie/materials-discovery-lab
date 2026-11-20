@@ -125,7 +125,7 @@
   word-break:keep-all;
   color:#456657;
 }
-.matter-lab .vessel-label small { font-size:.82em; color:#6b7863; }
+.matter-lab .vessel-label small { font-size:.82em; color:#3a4235; }
 .matter-lab .is-current .vessel-label { color:#275f46; font-weight:700; }
 .matter-lab .is-current .vessel-label small { color:#2f6b49; }
 .matter-lab .block-outline {
@@ -188,7 +188,9 @@
 .matter-lab .water-line {
   top:calc(37% + 5px);
   bottom:auto;
-  right:6px;
+  /* 유리 물통 그림(.water-tank::before, z-index 3)의 오른쪽 벽 안쪽에, 그림 위로 놓는다. */
+  right:calc(8% + 2px);
+  z-index:4;
   padding:1px 4px;
   border-radius:5px;
   background:#f4fcfbdd;
@@ -262,6 +264,7 @@
 .matter-lab .air-bubbles { bottom:100%; height:15%; overflow:hidden; }
 .matter-lab .air-flow {
   position:absolute;
+  z-index:4;
   inset:16% auto 10% 8%;
   display:flex;
   flex-direction:column;
