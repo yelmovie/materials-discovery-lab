@@ -52,8 +52,8 @@ K.close(10.6, 11.2, 12.2);`,
  },
  S03: {
   title: '조건은 같게, 재료만 다르게', npc: 'dandani',
-  question: '같은 힘으로 누르면 시료마다 다를까?',
-  conclusion: {words: ['조건은', '같게,', '시료만', '바꿔'], key: [0, 1]},
+  question: '같은 힘으로 누르면 재료마다 다를까?',
+  conclusion: {words: ['조건은', '같게,', '재료만', '바꿔'], key: [0, 1]},
   props: `${floor(300, 820, 556)}${floor(300, 820, 846)}
    <rect x="360" y="470" width="400" height="80" rx="10" fill="none" stroke="#214D43" stroke-width="3" stroke-dasharray="10 9" opacity=".55"/>
    <rect id="rub" x="360" y="470" width="400" height="80" rx="14" fill="#E98981" stroke="#214D43" stroke-width="5"/>

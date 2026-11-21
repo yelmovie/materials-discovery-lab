@@ -11,6 +11,7 @@ const SHEETS = [
   { src: 'maker4.png', names: ['maker-cloth', 'maker-plastic', 'maker-rubber', 'maker-metal'], upright: ['maker-rubber', 'maker-metal'] },
   { src: 'cup-notebook.png', names: ['cup', 'notebook'] },
   { src: 'objects4.png', names: ['clip', 'nail', 'chopsticks', 'gloves'] },
+  { src: 'solid-liquid3.png', names: ['stone', 'milk', 'juice'] },
 ];
 mkdirSync(at(OUT), { recursive: true });
 for (const sheet of SHEETS) {

@@ -34,3 +34,10 @@
 /* 고르기 보기에 붙는 그림(글 왼쪽) */
 .app .challenge-options .choice .choice-art { width: clamp(56px, 6vw, 96px); height: clamp(44px, 7vh, 80px); object-fit: contain; flex: none; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .22)); }
 @media (max-height: 520px) { .app .challenge-options .choice .choice-art { width: 44px; height: 32px; } }
+/* S04 부품 재료 정하기: 재료 카드 여섯 장을 3 × 2 큰 카드로, 왼쪽 상자는 3D 설계 모형(부품 단추·재료 목록은 오른쪽 패널과 겹쳐 숨김) */
+.app .live-activity .assignment-stage .drag-board.cards-board .drag-tokens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.app .live-activity .assignment-stage .drag-board.cards-board .drag-token { width: 100%; flex-direction: column; justify-content: center; gap: 4px; padding: 6px; min-height: 0; }
+.app .live-activity .assignment-stage .drag-board.cards-board .drag-part-art { width: 100%; height: clamp(44px, 9vh, 96px); }
+.app .live-activity .assignment-stage .drag-board.cards-board .drag-part-label { font-size: clamp(15px, 1.2vw, 20px); }
+.app .assignment-model .part-pills, .app .assignment-model .material-preview, .app .assignment-model .object-study-heading { display: none; }
+@media (max-height: 520px) { .app .live-activity .assignment-stage .drag-board.cards-board .drag-part-art { height: 30px; } }

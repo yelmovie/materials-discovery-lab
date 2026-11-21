@@ -65,3 +65,9 @@
  .app .concept-dialog .concept-actions{justify-content:flex-start}
  .app .concept-dialog .concept-actions :is(.concept-play,.concept-pause){min-inline-size:0}
 }
+
+/* 2026-11-21 위 조작판(제목·재생·장면 단추)이 영상 위쪽 글자를 가리던 문제: 조작판을 영상 위에 겹치지 않고 따로 한 줄을 차지하게,
+   영상은 그 아래 남은 자리에 맞춰(contain) 보인다. 아래 자막 자리는 그대로 비워 둔다. */
+.app .native-modal.concept-dialog>.modal-content{display:flex;flex-direction:column}
+.app .concept-dialog .concept-top{position:relative;inset:auto;order:-1;flex:none;background:rgba(8,22,17,.94)}
+.app .concept-dialog .concept-picture{position:relative;inset:auto;flex:1 1 auto;min-height:0}

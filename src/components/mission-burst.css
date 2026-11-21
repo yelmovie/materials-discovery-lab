@@ -20,3 +20,6 @@ html[data-reduced="true"] .mission-stamp { animation: none; }
 html[data-reduced="true"] .live-activity .activity-footer > .primary[data-cta=true],
 html[data-reduced="true"] .live-activity .activity-footer > .primary[data-cta=true] > span[aria-hidden] { animation: none; }
 .transfer-workspace { position: relative; }
+/* 지금 눌러야 할 활동 단추(예: S06 「끝까지 붓기」)도 같은 빛으로 */
+.live-activity button[data-pulse=true]:not(:disabled) { animation: cta-glow 1.6s ease-out infinite; }
+html[data-reduced="true"] .live-activity button[data-pulse=true] { animation: none; }

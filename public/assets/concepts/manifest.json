@@ -67,18 +67,18 @@
       "files": [
         {
           "name": "S03.mp4",
-          "bytes": 313600,
-          "sha256": "35a158baad22658579111f57952d4c2a4c70b5fcbc3bb937f55a4c5a8a74cef1"
+          "bytes": 180920,
+          "sha256": "1153486ad3b9ace4aeae673d5ad1b85e5d445e094078ca5fbcc0c8f7d4c39dc3"
         },
         {
           "name": "S03.webm",
-          "bytes": 319587,
-          "sha256": "d012651fbd62bf5790042ceefa780c0a89c595f8f961a4e5d93c677f5d5e1391"
+          "bytes": 203030,
+          "sha256": "ea6bd73db3ff335690fec73bff4c4ca1173a0c6a730b5b3207fb827573feaa8e"
         },
         {
           "name": "S03.webp",
-          "bytes": 25768,
-          "sha256": "992461c03a00b1a8f092668076759aee69a60efd8c35074fe3300ee36944d352"
+          "bytes": 25726,
+          "sha256": "ef0bb0e53a187b2ef83fb632e01c3351bc329bdc1553c5420f0f0a5468226e21"
         }
       ]
     },

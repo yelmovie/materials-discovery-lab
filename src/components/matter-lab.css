@@ -301,3 +301,12 @@
 }
 html[data-reduced=true] .matter-lab .wood-block,html[data-reduced=true] .matter-lab .air-cup,html[data-reduced=true] .matter-lab .cup-water { transition:none; }
 html[data-reduced=true] .matter-lab .air-bubbles i { animation:none; }
+
+/* 2026-11-21 나무토막이 유리 「안」에 있게: 유리 바닥 두께만큼 올려 안쪽 바닥에 놓고, 유리 앞면(엷은 푸른 빛·세로 반사)과 바닥 앞 테두리를 토막 위에 겹친다. */
+.matter-lab .solid-scene { --glass-floor: clamp(6px, 2.2cqh, 14px); }
+.matter-lab .wood-block.in-glass { isolation: isolate; }
+.matter-lab .wood-block.in-glass::after { content: ''; position: absolute; inset: 0; border-radius: 3px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(186, 228, 234, .22) 0%, rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, .26) 30%, rgba(255, 255, 255, 0) 40%, rgba(186, 228, 234, .1) 75%, rgba(186, 228, 234, .24) 100%); }
+.matter-lab .wood-block.in-glass::before { content: ''; position: absolute; left: -22%; right: -22%; bottom: -16%; height: 30%; border-radius: 50%; pointer-events: none; z-index: 1;
+  border-bottom: 3px solid rgba(116, 190, 196, .75); background: linear-gradient(180deg, rgba(200, 236, 240, 0), rgba(200, 236, 240, .45)); }
+.matter-lab .wood-block.in-glass svg { filter: saturate(.85) brightness(.97); }

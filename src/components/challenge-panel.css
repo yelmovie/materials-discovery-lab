@@ -1,0 +1,20 @@
+/* 2026-11-21 새 의뢰 화면: 뒤 배경이 보이게, 패널은 딱 필요한 만큼만.
+   - 화면 전체를 덮던 흐린 판을 없애고, 제목·문제·보기만 작은 카드(challenge-body)에 담는다.
+   - 고르기 문제는 왼쪽에 큰 그림(challenge-hero)을 배경 위에 띄우고, 카드는 보기 글 길이만큼만 넓다.
+   - 분류 문제(카드 끌어 놓기)는 판 너비만큼 카드가 넓다. */
+.app .live-activity .transfer-workspace:not(.transfer-complete) { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; border: 0; }
+.app .live-activity .transfer-workspace .challenge-body {
+  position: relative; width: 100%; max-width: min(1120px, 100%); margin-inline: auto; min-height: 0; max-height: 100%; overflow: auto;
+  padding: clamp(12px, 2.4vh, 28px) clamp(16px, 2.2vw, 34px); border-radius: 22px;
+  background: linear-gradient(150deg, rgba(255, 253, 245, .9), rgba(240, 246, 232, .86)); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(201, 184, 135, .55); box-shadow: 0 10px 28px rgba(40, 58, 40, .16);
+}
+.app .live-activity .transfer-workspace.has-hero:not(.transfer-complete) { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: clamp(14px, 3vw, 48px); }
+.app .live-activity .transfer-workspace.has-hero > .challenge-hero { flex: none; width: clamp(170px, 26vw, 420px); max-width: none; max-height: 82%; margin: 0; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(40, 58, 40, .28)); }
+.app .live-activity .transfer-workspace.has-hero > .challenge-body { flex: 0 1 auto; width: auto; max-width: min(780px, 100%); margin: 0; }
+:root[data-low-power=true] .app .live-activity .transfer-workspace .challenge-body { background: #fffdf3; backdrop-filter: none; -webkit-backdrop-filter: none; }
+@media (prefers-reduced-transparency: reduce) { .app .live-activity .transfer-workspace .challenge-body { background: #fffdf3; backdrop-filter: none; -webkit-backdrop-filter: none; } }
+@media (max-height: 520px) {
+  .app .live-activity .transfer-workspace.has-hero > .challenge-hero { width: clamp(96px, 15vw, 160px); }
+  .app .live-activity .transfer-workspace .challenge-body { padding: 8px 12px; border-radius: 16px; }
+}

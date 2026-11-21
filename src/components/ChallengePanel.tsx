@@ -5,6 +5,7 @@ import {challengesFor,correctChallenge,type ChallengeOption} from '../domain/cha
 import type {Screen} from '../domain/model';
 import {DragBoard} from './DragBoard';
 import {MissionBurst} from './MissionBurst';
+import './challenge-panel.css';
 import {playSound} from '../services/audio';
 
 function shuffled(options:ChallengeOption[],seed:string){
@@ -20,11 +21,14 @@ const PART_ART:Record<string,Record<string,{src:string;basis:string;join:string;
 // 2026-11-21 그림 카드: 이름만 있던 분류 카드에 그림을 얹는다(scripts/prepare-picture-cards.mjs). 순서는 섞인 그대로, 정답·채점은 그대로.
 const CARD_ART:Record<string,Record<string,string>>={
  'S02-a':{umbrella:'/assets/generated/umbrella.webp',wood:'/assets/generated/cards/material-wood.webp',cup:'/assets/generated/cards/cup.webp',metal:'/assets/generated/cards/material-metal.webp'},
+ 'S05-c':{stone:'/assets/generated/cards/stone.webp',milk:'/assets/generated/cards/milk.webp',block:'/assets/generated/cards/material-wood.webp',juice:'/assets/generated/cards/juice.webp'},
 };
 // 고르기 문제의 보기에도 그림을 함께(글 + 그림). 보기 글은 그대로.
 const CHOICE_ART:Record<string,Record<string,string>>={
  'S02-c':{clip:'/assets/generated/cards/clip.webp',nail:'/assets/generated/cards/nail.webp',chopsticks:'/assets/generated/cards/chopsticks.webp',gloves:'/assets/generated/cards/gloves.webp'},
 };
+// 문제 옆 큰 그림(고르기 문제). 없으면 공방 의뢰 그림을 크게 쓴다. 분류 문제는 카드 자체가 그림이라 옆 그림을 두지 않는다.
+const HERO_ART:Record<string,string>={'S04-c':'/assets/generated/cards/boots.webp'};
 export interface ChallengeControls {label:string;enabled:boolean;action:()=>void;cue?:string}
 export function ChallengePanel({screen,onControlsChange}:{screen:Screen;onControlsChange?:(controls:ChallengeControls)=>void}){
  const {save,dispatch}=useGame();const list=challengesFor(screen),done=list.filter(c=>save.challengeResults.some(r=>r.id===c.id));
@@ -46,13 +50,16 @@ export function ChallengePanel({screen,onControlsChange}:{screen:Screen;onContro
  const instruction=!current?'':current.mode==='choice'?'알맞은 설명 하나를 골라요.':current.mode==='multi'?`맞는 설명 ${current.answer.length}개를 골라요.`:current.mode==='sequence'?'먼저 할 일부터 차례로 눌러요. 다시 누르면 뺄 수 있어요.':'카드를 끌어 놓거나, 카드와 칸을 차례로 눌러요.';
  useLayoutEffect(()=>{onControlsChange?.({label:celebrate?(done.length===list.length?'적용 의뢰 마무리':'다음 의뢰로'):'답 고르기',enabled:!!celebrate,action:celebrate?advance:()=>{},cue:instruction});},[current?.id,celebrate,done.length,onControlsChange,instruction]);
  if(!current)return <section className="transfer-workspace transfer-complete"><MissionBurst/><span className="eyebrow">DISCOVERY COMPLETE</span><h2>새로운 상황에도 적용했어요!</h2><p>직접 관찰한 내용으로 두 가지 의뢰를 해결했어요.<br/>아래 버튼으로 다음 활동을 이어 가요.</p><div className="progress-chips"><span className="done">직접 탐구 ✓</span><span className="done">적용 의뢰 1 ✓</span><span className="done">적용 의뢰 2 ✓</span></div></section>;
- return <section className="transfer-workspace" aria-labelledby="challenge-title">
+ const questArt=`/assets/generated/quests/quest-${Math.ceil(Number(screen.slice(1))/2)}.webp`,hero=current.mode==='classify'?undefined:HERO_ART[current.id]??questArt;
+ return <section className={`transfer-workspace${hero?' has-hero':''}`} aria-labelledby="challenge-title">
+  {hero&&<img className="challenge-hero" src={hero} alt="" aria-hidden="true" onError={e=>{e.currentTarget.style.display='none';}}/>}
+  <div className="challenge-body">
   {celebrate&&done.length===list.length&&<MissionBurst label="의뢰 완료!"/>}
-  <div className="challenge-heading"><img className="challenge-art" src={`/assets/generated/quests/quest-${Math.ceil(Number(screen.slice(1))/2)}.webp`} alt="" aria-hidden="true" onError={e=>{e.currentTarget.style.display='none';}}/><div><span className="eyebrow">관찰한 것을 새 상황에 써 보자</span><h2 id="challenge-title">{current.title}</h2></div></div>
+  <div className="challenge-heading">{!hero&&<img className="challenge-art" src={questArt} alt="" aria-hidden="true" onError={e=>{e.currentTarget.style.display='none';}}/>}<div><span className="eyebrow">관찰한 것을 새 상황에 써 보자</span><h2 id="challenge-title">{current.title}</h2></div></div>
   <p className="challenge-prompt">{current.prompt}</p>
   {current.mode==='classify'?<div className="challenge-classify">{celebrate?<div className="classification-result" style={art||cards?{gridTemplateColumns:`repeat(${current.groups?.length??3},minmax(0,1fr))`}:undefined}>{current.groups?.map(g=><article key={g.id}><b>{g.label}</b>{(art||cards)&&<span className="drop-slot-art" aria-hidden="true">{options.filter(o=>answer.includes(o.id+':'+g.id)).map(o=><img key={o.id} src={picture(o.id)} alt=""/>)}</span>}<p>{options.filter(o=>answer.includes(o.id+':'+g.id)).map(o=>o.label).join(' · ')}</p></article>)}</div>:<DragBoard label="카드를 알맞은 분류 칸으로 끌어 놓아. 눌러서 옮겨도 돼." variant={art?'parts':cards?'cards':undefined} tokens={options.map(o=>({id:o.id,label:o.label,placed:answer.some(a=>a.startsWith(o.id+':')),...(art?.[o.id]&&{image:art[o.id].src,style:{'--part-basis':art[o.id].basis,'--part-join':art[o.id].join,'--part-z':art[o.id].z??1} as CSSProperties}),...(cards?.[o.id]&&{image:cards[o.id]})}))} slots={current.groups?.map(g=>{const ids=options.filter(o=>answer.includes(o.id+':'+g.id));return {id:g.id,label:g.label,filled:ids.map(o=>o.label).join('\n'),images:art||cards?ids.map(o=>picture(o.id)).filter((x):x is string=>!!x):undefined};})??[]} onPlace={place}/>}</div>:<div className={`challenge-options mode-${current.mode}`}>{options.map(o=>{const index=answer.indexOf(o.id);return <button key={o.id} className={`choice ${index>=0?'selected':''} ${index>=0&&wrong?'is-wrong':''}`} aria-pressed={index>=0} disabled={!!celebrate} onClick={()=>select(o.id)}>{current.mode==='sequence'&&<span className="sequence-number">{index>=0?index+1:'·'}</span>}{CHOICE_ART[current.id]?.[o.id]&&<img className="choice-art" src={CHOICE_ART[current.id][o.id]} alt="" aria-hidden="true" draggable={false}/>}<span>{o.label}</span>{current.mode!=='sequence'&&index>=0&&<span aria-hidden="true">{wrong?'✗':'✓'}</span>}</button>;})}</div>}
   {current.mode==='sequence'&&<div className="sr-only" aria-live="polite">{answer.length}개를 순서대로 골랐어요.</div>}
   {feedback&&<div className={`challenge-feedback ${celebrate?'success':wrong?'retry':''}`} role="status">{celebrate?'정답! ':wrong?'다시 생각해 봐: ':''}{feedback}</div>}
-
+  </div>
  </section>;
 }
