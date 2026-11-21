@@ -101,7 +101,11 @@ export default function App(){
  },[isActivity,demo]);
  const resumeActivity=activityToResume(save,save.resumeActivity);
  const hasProgress=!!resumeActivity||student.completedScreens.length>0||student.checkpoints.inspected.length>0||student.observations.length>0;
- useEffect(()=>{if(route==='S10'&&phase==='certificate'&&save.coreComplete&&!demo&&!film&&!filmSeen('outro'))setFilm({kind:'outro'});},[route,phase,save.coreComplete,demo]);
+ // 아웃트로는 이번에 코어를 다시 켠 학생에게만 저절로(옛 완료 기록으로 인증서를 열 때는 뜨지 않음). 인증서 화면의 버튼·설정에서는 언제든 다시 본다.
+ const sawIncomplete=useRef(!save.coreComplete);
+ useEffect(()=>{if(!save.coreComplete)sawIncomplete.current=true;},[save.coreComplete]);
+ useEffect(()=>{if(route==='S10'&&phase==='certificate'&&save.coreComplete&&sawIncomplete.current&&!demo&&!film&&!filmSeen('outro'))setFilm({kind:'outro'});},[route,phase,save.coreComplete,demo]);
+ useEffect(()=>{const replay=(e:Event)=>setFilm({kind:(e as CustomEvent<FilmKind>).detail});window.addEventListener('story-film',replay);return()=>window.removeEventListener('story-film',replay);},[]);
  // 헤더 소리 버튼은 전체 켜기·끄기: 배경 음악·효과음·목소리 중 하나라도 들리면 「끄기」(전체 음소거), 모두 꺼져 있으면 「켜기」(꺼 둔 갈래가 전부면 기본 크기로 켠다).
  const soundOn=!save.settings.muted&&(save.settings.bgm>0||save.settings.sfx>0||save.settings.voice);
  function toggleSound(){const s=save.settings;dispatch({type:'settings',value:soundOn?{muted:true}:s.bgm>0||s.sfx>0||s.voice?{muted:false}:{muted:false,bgm:.2,sfx:.4,voice:true}});}

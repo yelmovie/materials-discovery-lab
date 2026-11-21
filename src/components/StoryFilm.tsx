@@ -1,13 +1,13 @@
 import {useEffect,useRef,useState} from 'react';
 import {useGame} from '../state/GameContext';
-import {setMediaQuiet} from '../services/audio';
 import {playLine,stopLine} from '../services/lineVoice';
 import films from '../domain/story-films.json';
 import './story-film.css';
 
 // 2026-11-21 인트로·아웃트로 이야기 영상(scripts/compose-story-films.py).
 // 영상은 전체 화면·검은 바탕·contain, 자막은 그림 안 아래쪽에 입혀 있다(_shared/FULLSCREEN-CAPTION-FILMS-20261118.md).
-// 영상은 늘 음소거로 틀고, 자막 시각에 기존 목소리 파일을 따로 재생한다: 목소리·전체 소리 설정과 음악 줄이기를 다른 대사와 똑같이 따른다.
+// 영상은 늘 음소거로 틀고, 자막 시각에 ElevenLabs 목소리 파일을 대사 재생기로 따로 튼다: 목소리 스위치·전체 소리를 다른 대사와 똑같이 따른다.
+// 배경 음악은 영상 중에도 평소대로 나고, 목소리가 나오는 동안만 다른 대사처럼 1/4로 줄어든다(_shared/AUDIO-FIX4-BRIEF-20261120.md 2번).
 // 본 적이 있는지는 저장 기록(Save)과 따로 둔다. 진행·저장 구조를 바꾸지 않으려고.
 export type FilmKind='intro'|'outro';
 const SEEN_KEY='material-workshop-mission.films-seen';
@@ -26,10 +26,10 @@ export function StoryFilm({kind,onDone}:{kind:FilmKind;onDone:()=>void}){
  const done=()=>{if(finished.current)return;finished.current=true;stopLine();markFilmSeen(kind);onDone();};
  const play=(v:HTMLVideoElement)=>{setPlayback('loading');void v.play().catch(error=>{if(v.isConnected&&error.name!=='AbortError')setPlayback(error.name==='NotAllowedError'?'paused':'failed');});};
  useEffect(()=>{
-  setMediaQuiet('clip',true);skip.current?.focus();const v=video.current;if(v&&!reduced)play(v);
+  skip.current?.focus();const v=video.current;if(v&&!reduced)play(v);
   const visibility=()=>{if(document.hidden)v?.pause();};const key=(e:KeyboardEvent)=>{if(e.key==='Escape')done();};
   document.addEventListener('visibilitychange',visibility);document.addEventListener('keydown',key);
-  return()=>{document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',key);stopLine();if(v){v.pause();v.removeAttribute('src');v.load();}setMediaQuiet('clip',false);};
+  return()=>{document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',key);stopLine();if(v){v.pause();v.removeAttribute('src');v.load();}};
  },[]);
  useEffect(()=>{if(playback!=='loading')return;const t=setTimeout(()=>{video.current?.pause();setPlayback('failed');},8000);return()=>clearTimeout(t);},[playback]);
  useEffect(()=>{if(playback!=='ended')return;const t=setTimeout(done,900);return()=>clearTimeout(t);},[playback]);
