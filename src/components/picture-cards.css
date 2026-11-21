@@ -41,3 +41,7 @@
 .app .live-activity .assignment-stage .drag-board.cards-board .drag-part-label { font-size: clamp(15px, 1.2vw, 20px); }
 .app .assignment-model .part-pills, .app .assignment-model .material-preview, .app .assignment-model .object-study-heading { display: none; }
 @media (max-height: 520px) { .app .live-activity .assignment-stage .drag-board.cards-board .drag-part-art { height: 30px; } }
+/* S04: 재료를 놓았는데 성질을 아직 안 골랐으면 성질 단추가 빛나 「이걸 눌러야 결정돼요」를 알린다 */
+.app .live-activity .property-choices[data-next-action=true] .choice:not(:disabled) { animation: choose-glow 1.6s ease-out infinite; }
+@keyframes choose-glow { 0% { box-shadow: 0 0 0 2px #f0cd70, 0 0 0 0 rgba(240, 205, 112, .75); } 70% { box-shadow: 0 0 0 2px #f0cd70, 0 0 0 12px rgba(240, 205, 112, 0); } 100% { box-shadow: 0 0 0 2px #f0cd70, 0 0 0 0 rgba(240, 205, 112, 0); } }
+html[data-reduced="true"] .app .live-activity .property-choices .choice { animation: none; }

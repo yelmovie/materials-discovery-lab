@@ -1,6 +1,6 @@
 // 2026-11-21 3-2b: 손상된 기록은 손상된 줄만 건너뛰고(F14), 제작 중 놓은 부품은 새로고침 뒤에도 남긴다(B14).
 import {describe,it,expect} from 'vitest';
-import {freshSave,demoSave,reduceSave,type Save} from '../src/domain/model';
+import {freshSave,demoSave,reduceSave,LEGACY_RESULTS,type Save} from '../src/domain/model';
 import {decodeSave,loadSave,persist,salvageSave,RECOVERY_KEY,SAVE_KEY,type StorageLike} from '../src/services/storage';
 import {challenges,challengesFor} from '../src/domain/challenges';
 
@@ -23,6 +23,15 @@ describe('current and older saves still restore unchanged',()=>{
  it('round trips the current format, including a maker draft',()=>{const s=reduceSave(midRun(),{type:'makerDraft',screen:'S02',parts:{roof:'plastic'}});expect(decodeSave(JSON.stringify(s))).toEqual(s);const {result}=load(JSON.stringify(s));expect(result.save).toEqual(s);expect(result.notice).toBe('');});
  it('restores a record saved before maker drafts existed',()=>{const s=midRun();const old={...s} as Partial<Save>;delete old.makerDrafts;const {result}=load(JSON.stringify(old));expect(result.notice).toBe('');expect(result.save.makerDrafts).toEqual({});expect(result.save.completedScreens).toEqual(s.completedScreens);expect(result.save.checkpoints).toEqual(s.checkpoints);});
  it('restores a finished run without any notice',()=>{const s=ready();const {result}=load(JSON.stringify(s));expect(result.notice).toBe('');expect(result.save).toEqual(s);});
+});
+
+describe('observation wording update (2026-11-21)',()=>{
+ it('reads a record with the old observation sentences as the same progress',()=>{
+  const s=ready(),raw=JSON.parse(JSON.stringify(s));const rev=Object.fromEntries(Object.entries(LEGACY_RESULTS).map(([a,b])=>[b,a]));
+  let changed=0;for(const o of raw.observations)if(rev[o.result]){o.result=rev[o.result];changed++;}
+  expect(changed).toBeGreaterThan(0);
+  const {result}=load(JSON.stringify(raw));expect(result.notice).toBe('');expect(result.save).toEqual(s);
+ });
 });
 
 describe('damaged records keep everything that is still valid (F14)',()=>{

@@ -5,7 +5,7 @@ import {Modal} from '../components/Modal';
 import {playSound} from '../services/audio';
 export const ExperimentCanvas=lazy(()=>import('../game/ExperimentCanvas'));
 export const hasBatchim=(w:string)=>(w.charCodeAt(w.length-1)-0xac00)%28>0;
-export const needText={body:'모양을 유지하고 물에 쉽게 젖지 않기',window:'빛이 지나가 안쪽이 보이기',bumper:'눌렀다 놓으면 원래 모양으로 돌아오기'};
+export const needText={body:'모양을 유지하고 물에 젖지 않기',window:'빛이 지나가 안쪽이 보이기',bumper:'눌렀다 놓으면 원래 모양으로 돌아오기'};
 export function Panel({title,children}:{title:string;children:ReactNode}){return <section className="tool-panel"><h3>{title}</h3>{children}</section>;}
 export function Choice({children,selected,onClick,disabled=false,ariaLabel}:{children:ReactNode;selected:boolean;onClick:()=>void;disabled?:boolean;ariaLabel?:string}){return <button className={`choice activity-choice ${selected?'selected':''}`} aria-label={ariaLabel} aria-pressed={selected} onClick={()=>{playSound('select');onClick();}} disabled={disabled}><span className="activity-choice-label">{children}</span>{selected?<span className="activity-choice-check" aria-hidden="true">✓</span>:<span aria-hidden="true"/>}</button>;}
 export function Info({label,title=label,children,next=false}:{label:string;title?:string;children:ReactNode;next?:boolean}){const [open,setOpen]=useState(false);return <><button className="stage-info-button" data-next-action={next||undefined} onClick={()=>setOpen(true)}>{label}</button>{open&&<Modal title={title} className="stage-detail-modal" onClose={()=>setOpen(false)}><h2>{title}</h2>{children}<button className="primary full" onClick={()=>setOpen(false)}>탐구로 돌아가기</button></Modal>}</>;}

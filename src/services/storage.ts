@@ -1,7 +1,7 @@
 import {normalizeMapHits} from '../map-encounters.js';
 import {mapEncounterIds} from '../domain/model';
 import {validDelivery,cleanDraft} from '../domain/maker';
-import {activityToResume, canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
+import {activityToResume, canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, LEGACY_RESULTS, type Save, type Design, type Observation, type TestResult} from '../domain/model';
 import {challenges,correctChallenge,retiredChallengeIds} from '../domain/challenges';
 export const SAVE_KEY='material-workshop-mission.student.v1';
 export const RECOVERY_KEY=`${SAVE_KEY}.recovery`;
@@ -16,6 +16,8 @@ function validateTests(ts:TestResult[]){assert(array(ts)&&ts.every(t=>object(t)&
 export function decodeSave(raw:string):Save {
  const parsed=JSON.parse(raw);assert(object(parsed));assert(parsed.schemaVersion===1&&parsed.contentVersion==='mvp-1');
  const s=parsed as unknown as Save;const fresh=freshSave();
+ // 2026-11-21: 관찰 문장을 다듬기 전 기록은 같은 관찰의 새 문장으로 읽는다(진행은 그대로).
+ if(Array.isArray(parsed.observations))for(const o of parsed.observations as {result?:unknown}[])if(o&&typeof o.result==='string'&&LEGACY_RESULTS[o.result])o.result=LEGACY_RESULTS[o.result];
  // Older MVP saves retain earned progress. New transfer tasks start unfilled.
  s.deliveries=Object.fromEntries(Object.entries(object(s.deliveries)?s.deliveries:{}).filter(([k,v])=>object(v)&&object(v.parts)&&Object.values(v.parts).every(x=>typeof x==='string')&&validDelivery(k,v.parts as Record<string,string>)&&Number.isInteger(v.attempts)&&Number(v.attempts)>0));
  // Placed but undelivered maker parts (B14). Older saves have none; unknown screens, slots or parts are dropped.

@@ -18,7 +18,7 @@ const finish:Record<string,{roughness:number;metalness:number}>={wood_raw:{rough
 // Average brightness of each part's own texture, so a recoloured part keeps its shading but not its old colour.
 const lumaGain:Record<string,number>={body:2.1,lid:2.1,window:1.25,bumper:1.6};
 
-interface Part {mesh:THREE.Mesh;material:THREE.MeshStandardMaterial;home:THREE.Vector3;homeScale:THREE.Vector3;box:THREE.Box3;tint:{value:number};gain:{value:number};rough:number;metal:number}
+interface Part {mesh:THREE.Mesh;material:THREE.MeshStandardMaterial;home:THREE.Vector3;homeScale:THREE.Vector3;box:THREE.Box3;tint:{value:number};gain:{value:number};flat:{value:number};milk:{value:number};rough:number;metal:number}
 
 export default function ObjectModel3D(props:Props){
  const host=useRef<HTMLDivElement>(null);
@@ -73,6 +73,7 @@ export default function ObjectModel3D(props:Props){
     if(kind==='umbrella'){if(name==='canopy')off.y=.2*s*explode;if(name==='handle')off.y=-.18*s*explode;}
     else{if(name==='lid')off.y=.22*s*explode;if(name==='handle')off.y=.42*s*explode;if(name==='window')off.addScaledVector(front,.28*s*explode);}
     q.mesh.position.copy(q.home).add(off);
+    if(name==='window'){q.mesh.scale.copy(q.homeScale);const shift=new THREE.Vector3();if(winFlat){const c=q.box.getCenter(new THREE.Vector3()),k=new THREE.Vector3(1,1,.01);shift.copy(q.home).sub(c).multiply(k).add(c).sub(q.home);q.mesh.position.add(shift);q.mesh.scale.multiply(k);}q.mesh.userData.flatShift=shift;}
     // Bumpers spread from the box centre and squash toward the floor when pressed. gltfpack stores a dequantising scale on the
     // node, so the part is scaled around a point by moving the node as well, never by overwriting its scale.
     if(name==='bumper'){const k=new THREE.Vector3(1+.12*explode,1+.12*explode,1+.12*explode);
@@ -91,26 +92,37 @@ export default function ObjectModel3D(props:Props){
    const b=q.box,soft=live.current.design?.parts.bumper.sampleId==="rubber_soft",r=radius*.12;
    presser.scale.setScalar(r);presser.position.copy(edge(b,1,-1,b.max.y+r*.09+radius*.32*(1-press)-(soft?radius*.035:0)*press)).addScaledVector(front,-r*.7).addScaledVector(right,r*.7);
   }
+  // 2026-11-21: 창의 별은 모형 모양 자체에 들어 있어서, 불투명한 재료(나무·금속·고무·불투명 플라스틱)를 고르면 창을 앞뒤(두께) 방향으로 납작하게 눌러 별 볼록함을 없앤다(창 가운데를 기준으로).
+  let winFlat=false;
+  const winMaps:{map?:THREE.Texture|null;rough?:THREE.Texture|null;metal?:THREE.Texture|null;ao?:THREE.Texture|null;saved?:boolean}={};
+  function windowMaps(m:THREE.MeshStandardMaterial,id:string|null){
+   if(!winMaps.saved){winMaps.map=m.map;winMaps.rough=m.roughnessMap;winMaps.metal=m.metalnessMap;winMaps.ao=m.aoMap;winMaps.saved=true;}
+   if(id){m.map=winMaps.map??null;m.roughnessMap=null;m.metalnessMap=null;m.aoMap=null;}else{m.map=winMaps.map??null;m.roughnessMap=winMaps.rough??null;m.metalnessMap=winMaps.metal??null;m.aoMap=winMaps.ao??null;}
+  }
   function applyLook(){
    const p=live.current;
+   const winId=p.design?.parts.window.sampleId,winOpaque=!!winId&&!materials.find(x=>x.id===winId)?.transparent;if(winFlat!==winOpaque){winFlat=winOpaque;placeParts();}
    for(const [name,q] of Object.entries(parts)){
     const m=q.material;const on=p.selected===name;
     // In the design screens the part colour is the material, so the highlight stays faint there to keep the colour honest.
     m.emissive.set(on?0xffc94d:0x000000);m.emissiveIntensity=on?(p.design?.12:.24):0;
     const designPart=name==='lid'?'body':name;
     const id=p.design&&(designPart==='body'||designPart==='window'||designPart==='bumper')?p.design.parts[designPart].sampleId:null;
+    q.flat.value=0;q.milk.value=0;if(name==='window'){m.normalScale.set(1,1);if(winMaps.saved)windowMaps(m,null);}
     if(!id){m.color.set(0xffffff);q.tint.value=0;m.roughness=q.rough;m.metalness=q.metal;m.transparent=false;m.opacity=1;m.needsUpdate=true;continue;}
     const see=!!materials.find(x=>x.id===id)?.transparent;
     const f=finish[id]??{roughness:.6,metalness:0};m.roughness=f.roughness;m.metalness=f.metalness;
     // A see-through window keeps the original glass picture (the star stays visible) with a light tint; an opaque one hides it.
-    if(name==='window'&&see){q.tint.value=0;m.color.set(sampleColors[id]).lerp(new THREE.Color(0xffffff),.55);m.transparent=true;m.opacity=.92;}
-    else{q.tint.value=1;q.gain.value=lumaGain[name]??1.5;m.color.set(sampleColors[id]);m.transparent=false;m.opacity=1;}
+    // 2026-11-21: 유리는 맑고 반사가 날카롭게(거의 흰빛, 매끈), 투명 플라스틱은 하늘빛이 돌고 살짝 뿌옇게(덜 매끈).
+    // 불투명한 창(나무·금속·고무·불투명 플라스틱)은 창 그림의 별 무늬가 명암으로 비치지 않게 무늬를 고르게 편다(재료 결은 조금 남김).
+    if(name==='window'&&see){const glass=id==='glass_clear';q.tint.value=0;q.milk.value=glass?0:.16;m.color.set(sampleColors[id]).lerp(new THREE.Color(0xffffff),glass?.82:.4);m.transparent=true;m.opacity=glass?.9:.86;m.roughness=glass?.03:.32;m.metalness=glass?.18:0;}
+    else{q.tint.value=1;q.gain.value=lumaGain[name]??1.5;q.flat.value=0;if(name==='window'){m.normalScale.set(0,0);windowMaps(m,id);q.flat.value=1;}m.color.set(sampleColors[id]);m.transparent=false;m.opacity=1;if(id==='plastic_opaque'){m.roughness=.22;m.metalness=0;}}
     m.needsUpdate=true;
    }
   }
   function report(){
    pivot.updateMatrixWorld(true);const out:Anchors={};
-   for(const name of partList[kind]){const q=parts[name];if(!q)continue;const v=anchorPoint(name).add(q.mesh.position).sub(q.home).applyMatrix4(q.mesh.parent!.matrixWorld).project(camera);out[name]=[Math.round((v.x+1)*500)/10,Math.round((1-v.y)*500)/10];}
+   for(const name of partList[kind]){const q=parts[name];if(!q)continue;const v=anchorPoint(name).add(q.mesh.position).sub(q.home).sub(q.mesh.userData.flatShift??new THREE.Vector3()).applyMatrix4(q.mesh.parent!.matrixWorld).project(camera);out[name]=[Math.round((v.x+1)*500)/10,Math.round((1-v.y)*500)/10];}
    const key=JSON.stringify(out);if(key!==lastAnchors){lastAnchors=key;live.current.onAnchors(out);}
   }
   let dirty=true;
@@ -154,18 +166,19 @@ export default function ObjectModel3D(props:Props){
     const node=root.getObjectByName(name);let mesh:THREE.Mesh|undefined;node?.traverse(o=>{if(!mesh&&(o as THREE.Mesh).isMesh)mesh=o as THREE.Mesh;});
     if(!mesh)continue;
     const material=(mesh.material as THREE.MeshStandardMaterial).clone();mesh.material=material;
-    const tint={value:0},gain={value:1};
-    material.onBeforeCompile=sh=>{sh.uniforms.uTint=tint;sh.uniforms.uGain=gain;
-     sh.fragmentShader='uniform float uTint;uniform float uGain;\n'+sh.fragmentShader.replace('#include <map_fragment>',`#ifdef USE_MAP
+    const tint={value:0},gain={value:1},flat={value:0},milk={value:0};
+    material.onBeforeCompile=sh=>{sh.uniforms.uTint=tint;sh.uniforms.uGain=gain;sh.uniforms.uFlat=flat;sh.uniforms.uMilk=milk;
+     sh.fragmentShader='uniform float uTint;uniform float uGain;uniform float uFlat;uniform float uMilk;\n'+sh.fragmentShader.replace('#include <map_fragment>',`#ifdef USE_MAP
  vec4 sampledDiffuseColor=texture2D(map,vMapUv);
- float luma=dot(sampledDiffuseColor.rgb,vec3(.299,.587,.114));
+ float luma=mix(dot(sampledDiffuseColor.rgb,vec3(.299,.587,.114)),.62,uFlat);
  sampledDiffuseColor.rgb=mix(sampledDiffuseColor.rgb,vec3(min(1.,luma*uGain)),uTint);
+ sampledDiffuseColor.rgb=mix(sampledDiffuseColor.rgb,vec3(1.),uMilk);
  diffuseColor*=sampledDiffuseColor;
 #endif`);};
     material.customProgramCacheKey=()=>'tint-'+name;
     mesh.updateMatrixWorld(true);
     const box=new THREE.Box3().setFromObject(mesh);box.applyMatrix4(new THREE.Matrix4().copy(mesh.parent!.matrixWorld).invert());
-    parts[name]={mesh,material,home:mesh.position.clone(),homeScale:mesh.scale.clone(),box,tint,gain,rough:material.roughness,metal:material.metalness};
+    parts[name]={mesh,material,home:mesh.position.clone(),homeScale:mesh.scale.clone(),box,tint,gain,flat,milk,rough:material.roughness,metal:material.metalness};
    }
    setAxes();
    // Start from a three-quarter view: the box shows its window side, the umbrella shows its curved handle.

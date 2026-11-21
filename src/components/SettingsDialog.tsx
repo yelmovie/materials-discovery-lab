@@ -23,7 +23,7 @@ export function SettingsDialog({onClose,onStory,onEvidence,onReset,onFinal,onFil
  <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFilm('outro')}>{save.coreComplete||demo?'마무리 영상 다시 보기':'끝까지 마치면 마무리 영상이 열려요'}</button>
  <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFinal('certificate')}>{save.coreComplete||demo?'연구원 인증서 받기':'공방을 모두 복구하면 인증서가 열려요'}</button></div>
  <details className="settings-section"><summary>앱 정보 · 배움과 보상</summary><p><b>탐구 목적</b> {text.purpose}</p><p><b>미션 보상</b> {text.reward}</p><p><b>남는 배움</b> {text.learning}</p><p className="settings-note">물질 공방 대작전 v{text.version}<br/>기획·제작: 옐샘 & ⓒ 아이스크림미디어</p></details>
- <details className="settings-section"><summary>학생용 가이드</summary>{text.student.map(t=><p key={t}>{t}</p>)}<p>재료를 바꿔치기하는 봇에게 가까이 가면 원형 버튼이나 스페이스바로 공격할 수 있어요.</p></details>
+ <details className="settings-section"><summary>학생용 가이드</summary><p>살펴보기 → 시험하기 → 새 의뢰에 써 보기 순서로 진행해요. 기록은 자동 저장돼요.</p>{text.student.map(t=><p key={t}>{t}</p>)}<p>재료를 바꿔치기하는 봇에게 가까이 가면 원형 버튼이나 스페이스바로 공격할 수 있어요.</p></details>
  <details className="settings-section"><summary>교사용 가이드</summary>{text.teacher.map(t=><p key={t}>{t}</p>)}
  <details><summary>성취기준</summary><p>2022 개정 교육과정과 연계한 탐구 보조 활동이에요. 이 게임만으로 성취기준 전체를 달성했다고 판단하지 않으며, 수업·토론·후속 평가와 함께 활용해 주세요.</p>{text.standards.map(t=><p key={t}>{t}</p>)}
  <details><summary>활동별 학습 목표 · 교사 검토 대기 {activitySpecs.filter(activity=>activity.needsReview).length}개</summary>

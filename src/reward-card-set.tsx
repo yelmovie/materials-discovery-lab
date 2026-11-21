@@ -31,7 +31,8 @@ function rewardCards(){
 type Hits=Record<string,number>;
 // Cards on their way to a slot stay empty in the header until they land.
 const flying=new Set<number>();
-/** A card is owned once its villain has been driven off (three hits). Nothing extra is saved. */
+/** A card is owned once its villain has been driven off (three hits) or, since 2026-11-21, once its workshop is completed.
+ * App passes the hits with completed workshops already counted as 3 (rewardHits). Nothing extra is saved. */
 export const ownedRewardCards=(hits:Hits)=>cards.map(card=>hits[card.id]===3);
 const shown=(hits:Hits)=>ownedRewardCards(hits).map((owned,i)=>owned&&!flying.has(i));
 // Cards whose turn has come (the villain's exit has played and its parting line is over) and that are not in their slot yet. Module state: re-renders do not reset it.
@@ -56,8 +57,11 @@ export function RewardCardSlots({hits}:{hits:Hits}){
  return <span ref={host} className="reward-card-slots"/>;
 }
 
-/** Call when a villain's third hit is saved. The card follows the exit animation; `hits` is the record after that hit. */
-export function earnRewardCard(id:string,hits:Hits,reduced:boolean){
+/** Hits with every completed workshop counted as driven off: the card is owned either way. */
+export const rewardHits=(hits:Hits,completed:string[])=>({...hits,...Object.fromEntries(completed.map(id=>[id,3]))});
+/** Call when a villain's third hit is saved, or (anywhere=true) when a workshop is completed. The card waits for voices and open dialogs;
+ * `hits` is the record after that event. On the map it flies out of the villain; elsewhere it opens in the middle of the screen. */
+export function earnRewardCard(id:string,hits:Hits,reduced:boolean,anywhere=false){
  const index=cards.findIndex(card=>card.id===id);
  if(index<0||flying.has(index))return;
  flying.add(index);
@@ -66,7 +70,7 @@ export function earnRewardCard(id:string,hits:Hits,reduced:boolean){
  held.set(index,earned+BUBBLE);
  const open=()=>{
   // The map was left first: the card simply sits in its slot.
-  if(!document.querySelector('.world-page')){flying.delete(index);due.delete(index);held.delete(index);rewardCards().syncSlots(shown(hits));return;}
+  if(!anywhere&&!document.querySelector('.world-page')){flying.delete(index);due.delete(index);held.delete(index);rewardCards().syncSlots(shown(hits));return;}
   // The villain is gone before a long line ends: the card still flies out of the place where it was last seen.
   const foe=document.querySelector<HTMLElement>(`.map-encounter-foe[data-encounter="${id}"]`),box=foe&&!foe.hidden?foe.getBoundingClientRect():undefined;
   if(box)origin={x:box.left,y:box.top-(parseFloat(foe!.style.getPropertyValue('--encounter-size'))||0)/2};
@@ -76,7 +80,7 @@ export function earnRewardCard(id:string,hits:Hits,reduced:boolean){
   // It is the card's turn from here, also while it waits for a dialog.
   due.add(index);held.delete(index);
   // A dialog opened in the meantime goes first.
-  if(appRoot()?.inert||document.querySelector('dialog[open]')){window.setTimeout(open,300);return;}
+  if(appRoot()?.inert||document.querySelector('dialog[open],.story-film')){window.setTimeout(open,300);return;}
   void rewardCards().reveal(index,origin,ownedRewardCards(hits)).finally(()=>{flying.delete(index);due.delete(index);});
  };
  window.setTimeout(open,ready-CLEAR-earned);

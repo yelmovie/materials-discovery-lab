@@ -96,9 +96,20 @@ def concept(page, final_text):
         tap(page.get_by_role('button', name=re.compile(final_text)), 'reward', timeout=12000)
 
 
+def take_card(page):
+    # 2026-11-21: 공방을 마치면 성취 카드가 펼쳐진다. 카드를 보관함에 넣어야 지도 단추를 누를 수 있다.
+    for i in range(60):
+        btn = page.locator('.rc-take.is-ready')
+        if btn.count():
+            btn.first.click(force=True); page.wait_for_timeout(1200); return
+        if not page.locator('.rc-layer').count() and i > 6: return
+        page.wait_for_timeout(300)
+
+
 def to_next(page, expect):
     global where
     if route(page) == 'world':
+        take_card(page)
         page.wait_for_function('()=>{const b=document.querySelector(".map-next-action");return b&&!b.disabled}', timeout=30000)
         where = expect
         tap(page.locator('.map-next-action'), 'map next')
@@ -241,6 +252,7 @@ def main():
             challenges(page, 'S10', refs); concept(page, '불이 켜진 공방')
             page.wait_for_function('()=>location.hash==="#world"', timeout=15000)
             where = 'final'
+            take_card(page)
             page.wait_for_function('()=>{const b=document.querySelector(".map-next-action");return b&&!b.disabled}', timeout=30000)
             tap(page.locator('.map-next-action'))
             tap(page.get_by_role('button', name=re.compile('연구 보고서 전달하기')))
@@ -257,6 +269,7 @@ def main():
             page.wait_for_selector('.story-film-outro', timeout=10000); page.wait_for_timeout(1500)
             page.screenshot(path=str(OUT / 'outro-film.png'))
             tap(page.locator('.story-film-skip'))
+            take_card(page)
             page.wait_for_selector('#certificate', timeout=10000)
             page.screenshot(path=str(OUT / 'certificate.png'))
         except Exception:

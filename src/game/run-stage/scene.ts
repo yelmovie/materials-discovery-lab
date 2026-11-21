@@ -137,7 +137,30 @@ export async function buildScene(maxAnisotropy:number):Promise<RunScene> {
     const foot=box(.3,.22,.3,stand);foot.position.set(0,LANE.counterTop+.11,torchZ);group.add(foot);
     const torch=new THREE.Mesh(keep(new THREE.CylinderGeometry(.1,.13,.44,14)),torchBody);torch.rotation.x=Math.PI/2;torch.position.set(0,beamY,torchZ);group.add(torch);
    }
-   const plate=box(.95,.8,.08,material);plate.position.set(0,LANE.counterTop+.4,plateZ);group.add(plate);
+   // 2026-11-21 (사용자 요청) 투명 유리·투명 플라스틱 판은 뒤 그림이 비쳐 보이고 테두리가 또렷하게. 유리는 맑고 얇은 판에 날카로운 반사, 플라스틱은 살짝 뿌연 판에 두껍고 둥근 색 테두리.
+   if(station.sampleId==='glass_clear'||station.sampleId==='plastic_clear'){
+    // 재료 느낌을 그림(캔버스 무늬)으로: 유리는 맑고 가장자리가 청록빛으로 짙어지며 날카로운 사선 반사 두 줄, 두께가 보이는 모서리.
+    // 플라스틱은 살짝 하늘빛으로 뿌옇고 넓고 부드러운 광택, 둥근 모서리의 매끈한 테두리.
+    const isGlass=station.sampleId==='glass_clear',W=.95,H=.8,cy=LANE.counterTop+.4;
+    const c=document.createElement('canvas');c.width=256;c.height=216;const g=c.getContext('2d')!;
+    if(isGlass){
+     const edge=g.createLinearGradient(0,0,256,0);edge.addColorStop(0,'rgba(120,200,205,.55)');edge.addColorStop(.12,'rgba(210,245,247,.16)');edge.addColorStop(.88,'rgba(210,245,247,.16)');edge.addColorStop(1,'rgba(120,200,205,.55)');g.fillStyle=edge;g.fillRect(0,0,256,216);
+     const v=g.createLinearGradient(0,0,0,216);v.addColorStop(0,'rgba(150,215,220,.35)');v.addColorStop(.15,'rgba(255,255,255,0)');v.addColorStop(.85,'rgba(255,255,255,0)');v.addColorStop(1,'rgba(120,195,200,.45)');g.fillStyle=v;g.fillRect(0,0,256,216);
+     g.strokeStyle='rgba(255,255,255,.9)';g.lineCap='round';for(const [x,w] of [[70,12],[100,5],[205,4]]){g.lineWidth=w;g.beginPath();g.moveTo(x,10);g.lineTo(x-70,206);g.stroke();}
+     g.strokeStyle='rgba(70,150,160,.9)';g.lineWidth=6;g.strokeRect(3,3,250,210);g.strokeStyle='rgba(255,255,255,.8)';g.lineWidth=2;g.strokeRect(8,8,240,200);
+    }else{
+     g.fillStyle='rgba(196,228,242,.5)';g.beginPath();g.roundRect(4,4,248,208,22);g.fill();
+     const sheen=g.createLinearGradient(0,0,256,216);sheen.addColorStop(0,'rgba(255,255,255,.55)');sheen.addColorStop(.35,'rgba(255,255,255,.08)');sheen.addColorStop(.6,'rgba(255,255,255,.28)');sheen.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=sheen;g.fill();
+     g.strokeStyle='rgba(80,150,195,.95)';g.lineWidth=10;g.beginPath();g.roundRect(6,6,244,204,20);g.stroke();
+     g.strokeStyle='rgba(255,255,255,.7)';g.lineWidth=3;g.beginPath();g.roundRect(14,14,228,188,14);g.stroke();
+    }
+    const tex=keep(new THREE.CanvasTexture(c));tex.colorSpace=THREE.SRGBColorSpace;
+    const pane=keep(new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,side:THREE.DoubleSide}));
+    const sheet=new THREE.Mesh(keep(new THREE.PlaneGeometry(W,H)),pane);sheet.position.set(0,cy,plateZ);sheet.renderOrder=2;group.add(sheet);
+    // 두께: 유리는 얇고 청록빛 옆면, 플라스틱은 조금 두꺼운 하늘빛 옆면
+    const side=keep(new THREE.MeshLambertMaterial({color:isGlass?0x7cc4c8:0x8fc3e0,transparent:true,opacity:isGlass?.8:.9}));
+    const top=box(W,isGlass?.02:.035,isGlass?.03:.05,side);top.position.set(0,cy+H/2,plateZ);group.add(top);
+   }else{const plate=box(.95,.8,.08,material);plate.position.set(0,LANE.counterTop+.4,plateZ);group.add(plate);}
    const dim=keep(starTexture(false)),lit=keep(starTexture(true)),shaded=keep(starTexture(false,true));
    const boardMaterial=keep(new THREE.MeshBasicMaterial({map:dim}));
    const board=new THREE.Mesh(keep(new THREE.PlaneGeometry(1,1.12)),boardMaterial);board.position.set(0,LANE.counterTop+.62,boardZ);group.add(board);

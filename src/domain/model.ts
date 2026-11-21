@@ -56,13 +56,15 @@ export interface Save {
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
 export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},makerDrafts:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false}};}
 export function observationId(experiment:Experiment,sampleId:string){return `${experiment}:${sampleId}:standard`;}
+// 2026-11-21 과학 표현 다듬기: 「쉽게·눈에 띄게·잘·거의」를 빼고 관찰한 그대로. 예전 문장은 저장 기록을 읽을 때 새 문장으로 바꾼다(LEGACY_RESULTS).
+export const LEGACY_RESULTS:Record<string,string>={'눈에 띄게 늘어나지 않았어':'당겨도 늘어나지 않았어','빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어':'빛이 통과하지 않아 뒤쪽 표시가 안 보였어','물이 쉽게 스며들지 않았어':'물이 스며들지 않고 방울로 남았어','같은 힘으로 눌러도 모양이 거의 그대로였어':'같은 힘으로 눌러도 모양이 그대로였어'};
 export function resultFor(experiment:Experiment,sampleId:string):string {
  const m=materials.find(x=>x.id===sampleId)!;
  switch(experiment){
- case 'elastic_return':return m.cushioning?'늘어났다가 원래 모습으로 돌아왔어':'눈에 띄게 늘어나지 않았어';
- case 'light_transmission':return m.transparent?'빛이 통과해 뒤쪽 표시가 보였어':'빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어';
- case 'water_absorption':return m.waterResistant?'물이 쉽게 스며들지 않았어':'물이 스며들어 젖은 자리가 생겼어';
- case 'compression_recovery':return m.cushioning?'눌렸다가 놓으니 원래 모습으로 돌아왔어':'같은 힘으로 눌러도 모양이 거의 그대로였어';
+ case 'elastic_return':return m.cushioning?'늘어났다가 원래 모습으로 돌아왔어':'당겨도 늘어나지 않았어';
+ case 'light_transmission':return m.transparent?'빛이 통과해 뒤쪽 표시가 보였어':'빛이 통과하지 않아 뒤쪽 표시가 안 보였어';
+ case 'water_absorption':return m.waterResistant?'물이 스며들지 않고 방울로 남았어':'물이 스며들어 젖은 자리가 생겼어';
+ case 'compression_recovery':return m.cushioning?'눌렸다가 놓으니 원래 모습으로 돌아왔어':'같은 힘으로 눌러도 모양이 그대로였어';
  }
 }
 export function makeObservation(experiment:Experiment,sampleId:string,origin:Origin):Observation {return {id:observationId(experiment,sampleId),experiment,sampleId,conditionId:'standard',result:resultFor(experiment,sampleId),origin};}

@@ -113,7 +113,7 @@ with sync_playwright() as p:
    route(page,'S10/'+phase);page.wait_for_timeout(400);shot(page,f'{width}-{phase}')
   route(page,'world');page.wait_for_timeout(1500);shot(page,f'{width}-world')
   route(page,'home');shot(page,f'{width}-home')
-  page.get_by_role('button',name='시작 이야기 보기').click()
+  page.get_by_role('button',name='설정',exact=True).click();page.get_by_role('button',name='공방을 깨우는 이유 다시 보기').click()
   for story in range(3):
    page.locator('dialog[open]').wait_for();page.wait_for_timeout(250);shot(page,f'{width}-story-{story+1}')
    if story<2:page.get_by_role('button',name=re.compile('이야기 더 듣기')).click()
