@@ -4,12 +4,36 @@
     "src": "/assets/story/intro.mp4",
     "poster": "/assets/story/intro-poster.webp",
     "duration": 32.1,
-    "tagline": "뒤섞인 재료의 비밀, 같이 찾아볼래?",
+    "tagline": "뒤섞인 재료의 비밀, 같이 찾아볼까요?",
     "cues": [
-      {"at": 0.8, "end": 7.9, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-welcome.mp3", "text": "[물질 코어]가 멈추면서 재료 정보가 뒤섞였어요. 친구들과 공방을 다시 움직여 주세요."},
-      {"at": 9.6, "end": 16.8, "who": "모루", "voice": "/assets/audio/npc-elevenlabs/moru-story.mp3", "text": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요."},
-      {"at": 17.6, "end": 25.8, "who": "방울이", "voice": "/assets/audio/npc-elevenlabs/banguli-story.mp3", "text": "마지막에는 나만의 [보관함]을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요."},
-      {"at": 27.5, "end": 31.4, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-film-invite.mp3", "text": "네 도움이 필요해. 같이 [공방]을 깨우러 가자!"}
+      {
+        "at": 0.8,
+        "end": 7.9,
+        "who": "토리",
+        "voice": "/assets/audio/npc-elevenlabs/tori-welcome.mp3",
+        "text": "[물질 코어]가 멈추면서 재료 정보가 뒤섞였어요. 친구들과 공방을 다시 움직여 주세요."
+      },
+      {
+        "at": 9.6,
+        "end": 16.8,
+        "who": "모루",
+        "voice": "/assets/audio/npc-elevenlabs/moru-story.mp3",
+        "text": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요."
+      },
+      {
+        "at": 17.6,
+        "end": 25.8,
+        "who": "방울이",
+        "voice": "/assets/audio/npc-elevenlabs/banguli-story.mp3",
+        "text": "마지막에는 나만의 [보관함]을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요."
+      },
+      {
+        "at": 27.5,
+        "end": 31.4,
+        "who": "토리",
+        "voice": "/assets/audio/npc-elevenlabs/tori-film-invite2.mp3",
+        "text": "도움이 필요해요. 우리 같이 [공방]을 깨우러 가요!"
+      }
     ]
   },
   "outro": {
@@ -17,12 +41,36 @@
     "src": "/assets/story/outro.mp4",
     "poster": "/assets/story/outro-poster.webp",
     "duration": 26.0,
-    "tagline": "임무 완료! 다섯 공방이 다시 깨어났어",
+    "tagline": "임무 완료! 다섯 공방이 다시 깨어났어요",
     "cues": [
-      {"at": 1.0, "end": 4.0, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-ending-0.mp3", "text": "[코어]에 빛이 돌아왔어!"},
-      {"at": 7.5, "end": 10.4, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-ending-1.mp3", "text": "다섯 공방이 다시 움직여!"},
-      {"at": 14.5, "end": 17.6, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-ending-2.mp3", "text": "관찰 기록이 [발명]에 쓰였어!"},
-      {"at": 18.2, "end": 22.4, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-film-thanks.mp3", "text": "고마워! 네 덕분에 [다섯 공방]이 다시 깨어났어!"}
+      {
+        "at": 1.0,
+        "end": 4.0,
+        "who": "토리",
+        "voice": "/assets/audio/npc-elevenlabs/tori-film-ending-0.mp3",
+        "text": "[코어]에 빛이 돌아왔어요!"
+      },
+      {
+        "at": 7.5,
+        "end": 10.4,
+        "who": "토리",
+        "voice": "/assets/audio/npc-elevenlabs/tori-film-ending-1.mp3",
+        "text": "다섯 공방이 다시 움직여요!"
+      },
+      {
+        "at": 14.5,
+        "end": 17.6,
+        "who": "토리",
+        "voice": "/assets/audio/npc-elevenlabs/tori-film-ending-2.mp3",
+        "text": "관찰 기록이 [발명]에 쓰였어요!"
+      },
+      {
+        "at": 18.2,
+        "end": 22.6,
+        "who": "토리",
+        "voice": "/assets/audio/npc-elevenlabs/tori-film-thanks2.mp3",
+        "text": "고마워요! 덕분에 [다섯 공방]이 다시 깨어났어요!"
+      }
     ]
   }
 }
