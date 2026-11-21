@@ -3,7 +3,7 @@
    --part-basis: 줄 폭 중 조각이 차지하는 비율, --part-join: 붙은 연필 모습에서 안쪽으로 당기는 거리. */
 .app .live-activity .challenge-classify .drag-board.parts-board {
   --part-h: clamp(56px, 14vh, 120px);
-  width: min(100%, calc(var(--part-h) * 9.85));
+  width: min(100%, calc(var(--part-h) * 11.35));
   margin-inline: auto; padding: 0; background: transparent; border: 0; box-shadow: none;
 }
 .app .live-activity .challenge-classify .parts-board .drag-tokens {
@@ -16,6 +16,7 @@
   flex: 0 0 var(--part-basis); min-width: 0; max-width: none; min-height: 0; padding: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: clamp(4px, .9vh, 10px);
   background: transparent; border: 0; border-radius: 12px; box-shadow: none; text-align: center; line-height: 1.2;
+  position: relative; z-index: var(--part-z, 1);
   animation: part-split .75s cubic-bezier(.2, .8, .2, 1) .45s both;
 }
 .app .live-activity .challenge-classify .parts-board .drag-token:focus-visible { outline: 3px solid #2f6f4f; outline-offset: 4px; }
@@ -31,13 +32,15 @@
 }
 .app .challenge-classify .parts-board .drag-token.placed .drag-part-art { opacity: .3; filter: grayscale(.7); transform: none; }
 .app .live-activity .challenge-classify .parts-board .drag-part-label {
-  display: block; width: max-content; max-width: calc(100% + 44px); padding: 4px 12px;
+  display: block; width: max-content; max-width: calc(100% + 64px); padding: 4px 12px;
   border-radius: 999px; background: #fffaf0; border: 2px solid #c9b887; color: #2f3a2a;
   font-size: clamp(18px, 1.5vw, 24px); font-weight: 700; line-height: 1.2; word-break: keep-all; overflow-wrap: anywhere;
   animation: part-label .4s ease 1.05s both;
 }
 .app .challenge-classify .parts-board .drag-token.picked .drag-part-label { background: #2f6f4f; border-color: #2f6f4f; color: #fff; }
 .app .challenge-classify .parts-board .drag-token.placed .drag-part-label { background: #eef6df; border-color: #7ea56b; color: #3a4a33; }
+/* 재료 칸은 조각 줄과 같은 폭에 칸 수만큼 */
+.app .live-activity .challenge-classify .parts-board .drop-slots { grid-template-columns: repeat(var(--slot-count, 3), minmax(0, 1fr)); }
 /* 채운 칸과 결과 칸에 조각 그림 */
 .app .challenge-classify .drop-slot-art { display: flex; justify-content: center; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
 .app .challenge-classify .drop-slot-art img { height: clamp(26px, 5.5vh, 52px); width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .22)); }
