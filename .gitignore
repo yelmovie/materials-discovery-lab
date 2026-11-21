@@ -17,3 +17,6 @@ docs/reviews/**/*.png
 # HyperFrames 작업 캐시·스냅샷(렌더 산출물은 TMPDIR)
 films/**/.hyperframes/
 films/**/renders/
+
+# Meshy 원본 GLB(수십 MB). 기록은 references/models/meshy-*/README.md
+references/models/meshy-*/*.glb
