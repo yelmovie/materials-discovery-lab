@@ -1,6 +1,6 @@
 import {normalizeMapHits} from '../map-encounters.js';
 import {mapEncounterIds} from '../domain/model';
-import {validDelivery} from '../domain/maker';
+import {validDelivery,cleanDraft} from '../domain/maker';
 import {activityToResume, canAccess, canFinalize, freshSave, materials, experiments, screens, parts, tests, resultFor, observationId, type Save, type Design, type Observation, type TestResult} from '../domain/model';
 import {challenges,correctChallenge,retiredChallengeIds} from '../domain/challenges';
 export const SAVE_KEY='material-workshop-mission.student.v1';
@@ -18,6 +18,8 @@ export function decodeSave(raw:string):Save {
  const s=parsed as unknown as Save;const fresh=freshSave();
  // Older MVP saves retain earned progress. New transfer tasks start unfilled.
  s.deliveries=Object.fromEntries(Object.entries(object(s.deliveries)?s.deliveries:{}).filter(([k,v])=>object(v)&&object(v.parts)&&Object.values(v.parts).every(x=>typeof x==='string')&&validDelivery(k,v.parts as Record<string,string>)&&Number.isInteger(v.attempts)&&Number(v.attempts)>0));
+ // Placed but undelivered maker parts (B14). Older saves have none; unknown screens, slots or parts are dropped.
+ s.makerDrafts=Object.fromEntries(Object.entries(object(s.makerDrafts)?s.makerDrafts:{}).map(([k,v])=>[k,cleanDraft(k,v)] as const).filter(([k,v])=>Object.keys(v).length>0&&!s.deliveries[k]));
  if(s.challengeResults===undefined)s.challengeResults=[];
  // Cards replaced in a content update are dropped; finished activities stay finished.
  if(array(s.challengeResults))s.challengeResults=s.challengeResults.filter(r=>!(object(r)&&retiredChallengeIds.includes(r.id as string)));
@@ -56,9 +58,35 @@ export function decodeSave(raw:string):Save {
  if(clean.lastPhase==='ending'){clean.lastPhase=clean.coreComplete?'certificate':'report';}
  return clean;
 }
+/** F14: when a record fails the strict check, keep every part that is still valid instead of starting over.
+ * Starts from a fresh record and copies the stored fields back one at a time (list items one by one, in order), keeping a piece
+ * only while the whole record still passes decodeSave. Nothing is invented: a finished screen whose prerequisite is missing is
+ * dropped together with the screens after it. Returns null for unreadable text, another schema or a non-student record. */
+export function salvageSave(raw:string):Save|null{
+ let p:unknown;try{p=JSON.parse(raw);}catch{return null;}
+ if(!object(p)||p.schemaVersion!==1||p.contentVersion!=='mvp-1'||p.origin!=='student')return null;
+ const s=freshSave() as unknown as Record<string,unknown>;
+ const ok=()=>{try{decodeSave(JSON.stringify(s));return true;}catch{return false;}};
+ const keep=(k:string,v:unknown)=>{const before=s[k];s[k]=v;if(!ok())s[k]=before;};
+ const keepItems=(k:string)=>{const v=p[k];if(!array(v))return;const out:unknown[]=[];s[k]=out;for(const item of v){out.push(item);if(!ok())out.pop();}};
+ if(object(p.settings)){const settings={...(s.settings as object)} as Record<string,unknown>;s.settings=settings;for(const [k,v] of Object.entries(p.settings)){const before=settings[k];settings[k]=v;if(!ok())settings[k]=before;}}
+ for(const k of ['name','predictions','initialPredictions','deliveries','makerDrafts'])if(k in p)keep(k,p[k]);
+ if(object(p.checkpoints)){const c={...(s.checkpoints as object)} as Record<string,unknown>;s.checkpoints=c;for(const [k,v] of Object.entries(p.checkpoints)){if(!(k in c))continue;const before=c[k];c[k]=v;if(!ok())c[k]=before;}}
+ for(const k of ['completedScreens','observations','evidence','challengeResults'])keepItems(k);
+ if('design' in p)keep('design',p.design);
+ keepItems('testResults');
+ for(const k of ['reportedRevision','coreComplete'])if(k in p)keep(k,p[k]);
+ keepItems('completionArchive');
+ for(const k of ['restoration','mapHits','lastRoute','lastPhase','resumeActivity'])if(k in p)keep(k,p[k]);
+ try{return decodeSave(JSON.stringify(s));}catch{return null;}
+}
 export function loadSave(storage:StorageLike):{save:Save;notice:string;blocked:boolean;expectedRaw:string|null}{
  let raw:string|null=null;
- try{raw=storage.getItem(SAVE_KEY);if(!raw)return {save:freshSave(),notice:'',blocked:false,expectedRaw:raw};const header=JSON.parse(raw);if(object(header)&&(Number(header.schemaVersion)>1||header.contentVersion!=='mvp-1'))return {save:freshSave(),notice:'다른 버전의 저장 기록이 있어. 원본을 보존했어. 새로 시작을 확인하기 전에는 이번 진행이 저장되지 않아.',blocked:true,expectedRaw:raw};return {save:decodeSave(raw),notice:'',blocked:false,expectedRaw:raw};}
+ try{raw=storage.getItem(SAVE_KEY);if(!raw)return {save:freshSave(),notice:'',blocked:false,expectedRaw:raw};const header=JSON.parse(raw);if(object(header)&&(Number(header.schemaVersion)>1||header.contentVersion!=='mvp-1'))return {save:freshSave(),notice:'다른 버전의 저장 기록이 있어. 원본을 보존했어. 새로 시작을 확인하기 전에는 이번 진행이 저장되지 않아.',blocked:true,expectedRaw:raw};let save:Save;try{save=decodeSave(raw);}catch(error){const kept=salvageSave(raw);if(!kept)throw error;
+  // Keep the untouched original beside the salvaged record, exactly as a fully damaged record is kept.
+  try{storage.setItem(RECOVERY_KEY,raw);}catch{return {save:kept,notice:'저장 기록 일부가 손상돼서 그 부분만 건너뛰고 이어서 할게. 원본은 그대로 두고, 이번 진행은 저장되지 않아.',blocked:true,expectedRaw:raw};}
+  return {save:kept,notice:'저장 기록 일부가 손상돼서 그 부분만 건너뛰고 나머지 진행을 살렸어. 원본은 복구용으로 보관했어.',blocked:false,expectedRaw:raw};}
+ return {save,notice:'',blocked:false,expectedRaw:raw};}
  catch{if(raw){try{storage.setItem(RECOVERY_KEY,raw);}catch{/* Keep the original slot if recovery cannot be written. */return {save:freshSave(),notice:'저장 기록을 읽지 못했고 복구본도 저장하지 못했어. 기존 기록을 보존하며 임시로 진행할게.',blocked:true,expectedRaw:raw};}}return {save:freshSave(),notice:raw?'손상된 저장 기록을 복구용으로 보관했어. 새 기록으로 시작할게.':'이 브라우저에서는 자동 저장을 사용할 수 없어. 창을 닫으면 이번 진행이 사라질 수 있어.',blocked:!raw,expectedRaw:raw};}
 }
 export function clearSave(storage:StorageLike){storage.removeItem(RECOVERY_KEY);storage.removeItem(SAVE_KEY);}

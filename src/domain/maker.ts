@@ -42,3 +42,9 @@ export function evaluateOrder(order:MakerOrder,parts:Record<string,string>){
  return order.slots.map(slot=>{const pass=slot.accept.includes(parts[slot.id]);return {id:slot.id,pass,feedback:pass?slot.observed:slot.failure};});
 }
 export function validDelivery(screen:string,parts:Record<string,string>){const order=makerOrders.find(o=>o.screen===screen);return !!order&&order.slots.every(s=>s.choices.some(c=>c.id===parts[s.id]))&&evaluateOrder(order,parts).every(r=>r.pass);}
+
+/** Parts placed on a bench but not delivered yet (B14). Keeps only known slots and choices of a real order; anything else is dropped. */
+export function cleanDraft(screen:string,parts:unknown):Record<string,string>{
+ const order=makerOrders.find(o=>o.screen===screen);if(!order||!parts||typeof parts!=='object'||Array.isArray(parts))return {};
+ return Object.fromEntries(Object.entries(parts as Record<string,unknown>).filter(([slot,id])=>typeof id==='string'&&!!order.slots.find(s=>s.id===slot)?.choices.some(c=>c.id===id))) as Record<string,string>;
+}

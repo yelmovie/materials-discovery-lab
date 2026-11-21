@@ -14,7 +14,8 @@ export function MakerMission({screen,onGuide}:{screen:string;onGuide?:Guide}){
 
 function Bench({order,onGuide}:{order:MakerOrder;onGuide?:Guide}){
  const {save,dispatch}=useGame(),old=save.deliveries?.[order.screen];
- const [parts,setParts]=useState<Record<string,string>>(old?.parts??{});
+ // Parts placed before a reload come back from the record (B14); a delivered order shows what was delivered.
+ const [parts,setParts]=useState<Record<string,string>>(old?.parts??save.makerDrafts?.[order.screen]??{});
  const [selected,setSelected]=useState<{slot:string;id:string}|null>(null);
  const [lookingAt,setLookingAt]=useState<string|null>(null);
  const [phase,setPhase]=useState<'build'|'running'|'result'>(old?'result':'build');
@@ -38,7 +39,8 @@ function Bench({order,onGuide}:{order:MakerOrder;onGuide?:Guide}){
   setSelected(null);
   setLookingAt(null);
   if(parts[slot]===id)return;
-  setParts(v=>({...v,[slot]:id}));setPhase('build');setDelivered(false);playSound('drop');
+  const next={...parts,[slot]:id};setParts(next);setPhase('build');setDelivered(false);playSound('drop');
+  dispatch({type:'makerDraft',screen:order.screen,parts:next});
  }
  function run(){if(!ready||selected||running||pending.current)return;pending.current=true;setLookingAt(null);setAttempts(n=>n+1);setPhase('running');playSound('experiment');}
  function deliver(){
