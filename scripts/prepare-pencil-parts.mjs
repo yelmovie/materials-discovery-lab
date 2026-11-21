@@ -26,6 +26,6 @@ for (const [i, [x0, x1]] of runs.entries()) {
     const [r, g, b, a] = [part[d], part[d + 1], part[d + 2], part[d + 3]];
     if (names[i] !== 'eraser' && a < 240 && r > g + 60 && r > b + 60) part[d + 3] = 0;
   }
-  await sharp(part, { raw: { width: box.width, height: box.height, channels: 4 } }).resize({ height: 160, withoutEnlargement: true }).webp({ quality: 88, alphaQuality: 95 }).toFile(at(`public/assets/generated/pencil/pencil-${names[i]}.webp`));
+  await sharp(part, { raw: { width: box.width, height: box.height, channels: 4 } }).resize({ height: 160, withoutEnlargement: true }).webp({ quality: 88, alphaQuality: 95 }).toFile(at(`public/assets/generated/pencil/pencil4-${names[i]}.webp`));
 }
 console.log(JSON.stringify(boxes));

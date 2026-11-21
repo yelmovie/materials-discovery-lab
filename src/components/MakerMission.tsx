@@ -64,7 +64,7 @@ function Bench({order,onGuide}:{order:MakerOrder;onGuide?:Guide}){
     })}</div>
    </div>
    <div className="maker-controls">
-    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row" data-choose={!running&&!selected&&nextChoice?.id===s.id||undefined}><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} data-fitted={parts[s.id]===c.id||undefined} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>{setLookingAt(s.id);setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id});}}><i style={chipStyle(s.id,c.id,c.color)} aria-hidden="true"/><span>{c.label}</span>{parts[s.id]===c.id&&<b className="maker-fitted-mark" aria-label="끼움">✓</b>}</button>)}</div></fieldset>)}{phase==='result'&&!pass&&<div className="maker-fix-list" aria-live="polite">{resultDetails}<div className="maker-failure-compact"><p>고칠 부품 {failed.length}개</p><button onClick={()=>setDetail('result')}>원인 보기</button></div></div>}</div>
+    <div className="maker-fields">{order.slots.map(s=><fieldset key={s.id}><legend className="sr-only">{s.label}</legend><div className="maker-choice-row" data-choose={!running&&!selected&&nextChoice?.id===s.id||undefined}><span className="maker-choice-label" aria-hidden="true">{s.label}</span>{s.choices.map(c=><button key={c.id} data-fitted={parts[s.id]===c.id||undefined} draggable={!running} disabled={running} aria-pressed={selected?.slot===s.id&&selected.id===c.id} onDragStart={e=>e.dataTransfer.setData('text/plain',`${s.id}:${c.id}`)} onClick={()=>{setLookingAt(s.id);setSelected(current=>current?.slot===s.id&&current.id===c.id?null:{slot:s.id,id:c.id});}}>{order.screen==='S02'&&choiceArt[`${s.id}:${c.id}`]?<img className="maker-choice-art" src={choiceArt[`${s.id}:${c.id}`]} alt="" aria-hidden="true" draggable={false}/>:<i style={chipStyle(s.id,c.id,c.color)} aria-hidden="true"/>}<span>{c.label}</span>{parts[s.id]===c.id&&<b className="maker-fitted-mark" aria-label="끼움">✓</b>}</button>)}</div></fieldset>)}{phase==='result'&&!pass&&<div className="maker-fix-list" aria-live="polite">{resultDetails}<div className="maker-failure-compact"><p>고칠 부품 {failed.length}개</p><button onClick={()=>setDetail('result')}>원인 보기</button></div></div>}</div>
     <div className="maker-actions">{phase==='result'&&pass?<button className="primary maker-deliver" disabled={delivered||!canDeliver||!!selected} data-next-action={!delivered&&canDeliver&&!selected&&!lookingAt||undefined} onClick={deliver}>{delivered?'주민에게 납품했어 ✓':!canDeliver?'먼저 탐구 기록을 완성해 줘':'주민에게 전달하기 →'}</button>:<button className="primary" disabled={!ready||running||!!selected} data-next-action={ready&&phase==='build'&&!selected&&!lookingAt||undefined} onClick={run}>{running?'시험 중…':order.trial}</button>}<button className="secondary" disabled={running||(!selected&&missing===order.slots.length)} onClick={()=>{setParts({});setPhase('build');setDelivered(false);setSelected(null);setLookingAt(null);}}>부품 비우기</button></div>
    </div>
   </div>
@@ -73,7 +73,7 @@ function Bench({order,onGuide}:{order:MakerOrder;onGuide?:Guide}){
 }
 
 // Painted swatches for choices that are real materials. Neutral A/B choices (cups, tubes) stay plain so the picture does not give the answer away.
-const choiceArt:Record<string,string>={'roof:cloth':'/assets/generated/maker/cloth.webp','roof:plastic':'/assets/generated/maker/plastic-sheet.webp','support:rubber':'/assets/generated/materials/rubber_soft.webp','support:metal':'/assets/generated/materials/metal_plate.webp','tray:solid':'/assets/generated/materials/wood_raw.webp'};
+const choiceArt:Record<string,string>={'roof:cloth':'/assets/generated/cards/maker-cloth.webp','roof:plastic':'/assets/generated/cards/maker-plastic.webp','support:rubber':'/assets/generated/cards/maker-rubber.webp','support:metal':'/assets/generated/cards/maker-metal.webp','tray:solid':'/assets/generated/materials/wood_raw.webp'};
 const chipStyle=(slot:string,id:string,color:string)=>{const src=choiceArt[`${slot}:${id}`];return src?{background:`${color} url(${src}) center/cover`}:{background:color};};
 
 function Apparatus({order,parts,active}:{order:MakerOrder;parts:Record<string,string>;active:boolean}){
@@ -81,16 +81,23 @@ function Apparatus({order,parts,active}:{order:MakerOrder;parts:Record<string,st
  const color=(slot:string)=>order.slots.find(s=>s.id===slot)?.choices.find(c=>c.id===parts[slot])?.color??'#eff7ed';
  const star='M250 125 L259 147 L283 149 L265 165 L270 189 L250 177 L230 189 L235 165 L217 149 L241 147Z';
  if(order.screen==='S02'){
-  const bends=active&&parts.support==='rubber',leaks=active&&parts.roof==='cloth';
-  return <svg className="maker-apparatus" viewBox="0 0 500 260" role="img" aria-label="지붕 아래 전시품과 지붕을 받치는 막대">
+  // 2026-11-21: 실제 재료 그림(scripts/prepare-picture-cards.mjs)으로 지붕과 받침을 그린다. 플라스틱 판은 비쳐 보이게, 막대는 막대 그림으로(고무는 시험 때 휜다).
+  // 지붕 아래에는 젖으면 안 되는 연구 수첩을 둔다(전에는 별 장식이라 무엇을 지키는지 알 수 없었다).
+  const bends=active&&parts.support==='rubber',leaks=active&&parts.roof==='cloth',bent='M151 222 Q168 171 140 114 M351 222 Q370 169 339 137';
+  const rod=parts.support?`/assets/generated/cards/maker-${parts.support}-v.webp`:null,roof='M105 103 L250 49 L395 103 L387 119 H113Z';
+  return <svg className="maker-apparatus" viewBox="0 0 500 260" role="img" aria-label="지붕 아래 젖으면 안 되는 연구 수첩과 지붕을 받치는 막대">
    <ellipse cx="250" cy="230" rx="187" ry="16" fill="#557d5a" opacity=".16"/>
-   <defs>{(['roof','support'] as const).map(slot=>art(slot)&&<pattern key={slot} id={`maker-tex-${slot}`} patternUnits="userSpaceOnUse" width="500" height="260"><image href={art(slot)} width="500" height="260" preserveAspectRatio="xMidYMid slice"/></pattern>)}</defs>
+   <defs>{art('roof')&&<pattern id="maker-tex-roof" patternUnits="userSpaceOnUse" width="500" height="260"><image href={art('roof')} x="95" y="40" width="310" height="90" preserveAspectRatio="xMidYMid slice"/></pattern>}<clipPath id="maker-roof-clip"><path d={roof}/></clipPath></defs>
    <image href="/assets/generated/maker/plank.webp" x="80" y="204" width="340" height="52" preserveAspectRatio="none"/>
-   <path d={bends?'M151 222 Q168 171 140 114 M351 222 Q370 169 339 137':'M151 222 V113 M351 222 V113'} fill="none" stroke="#54706b" strokeWidth="18" strokeLinecap="round"/>
-   <path d={bends?'M151 222 Q168 171 140 114 M351 222 Q370 169 339 137':'M151 222 V113 M351 222 V113'} fill="none" stroke={color('support')} strokeWidth="12" strokeLinecap="round"/>
-   {art('support')&&<path d={bends?'M151 222 Q168 171 140 114 M351 222 Q370 169 339 137':'M151 222 V113 M351 222 V113'} fill="none" stroke="url(#maker-tex-support)" strokeWidth="12" strokeLinecap="round" opacity=".85"/>}
-   <path d="M105 103 L250 49 L395 103 L387 119 H113Z" fill={art('roof')?'url(#maker-tex-roof)':color('roof')} stroke="#54706b" strokeWidth="6" strokeLinejoin="round" transform={bends?'rotate(7 250 113)':undefined}/>
-   <image href="/assets/generated/maker/star-pedestal.webp" x="212" y="132" width="76" height="86"/>
+   <image href="/assets/generated/cards/notebook.webp" x="219" y="138" width="62" height="86" preserveAspectRatio="xMidYMax meet" opacity={leaks?.75:1}/>
+   <text x="250" y="133" textAnchor="middle" fontSize="13" fontWeight="700" fill="#3a4a33" stroke="#fffaf0" strokeWidth="4" paintOrder="stroke">연구 수첩 · 젖으면 안 돼요</text>
+   {bends||!rod?<><path d={bends?bent:'M151 222 V113 M351 222 V113'} fill="none" stroke="#54706b" strokeWidth="18" strokeLinecap="round"/><path d={bends?bent:'M151 222 V113 M351 222 V113'} fill="none" stroke={color('support')} strokeWidth="12" strokeLinecap="round"/></>
+    :<>{[151,351].map(x=><image key={x} href={rod} x={x-11} y="110" width="22" height="114" preserveAspectRatio="none"/>)}</>}
+   <g transform={bends?'rotate(7 250 113)':undefined}>
+    {parts.roof==='plastic'?<><path d={roof} fill="#dff3f8" fillOpacity=".5"/><path d={roof} fill="url(#maker-tex-roof)" opacity=".75"/><path d="M140 96 L250 58 M175 104 L262 72" stroke="#fff" strokeWidth="4" strokeLinecap="round" opacity=".8" clipPath="url(#maker-roof-clip)"/></>
+     :<path d={roof} fill={art('roof')?'url(#maker-tex-roof)':color('roof')}/>}
+    <path d={roof} fill="none" stroke="#54706b" strokeWidth="5" strokeLinejoin="round"/>
+   </g>
    {active&&<><path className="maker-flow-line" d="M155 5 V80 M219 0 V58 M284 0 V60 M349 5 V83" stroke="#458cb5" strokeWidth="5" strokeLinecap="round" strokeDasharray="11 15"/>{leaks?<><path className="maker-flow-line" d="M215 121 V219 M285 121 V219" stroke="#4faed8" strokeWidth="6" strokeDasharray="8 17"/><ellipse cx="250" cy="224" rx="54" ry="6" fill="#65badb" opacity=".7"/></>:<path className="maker-flow-line" d="M112 122 V195 M389 122 V195" stroke="#4faed8" strokeWidth="5" strokeDasharray="8 17"/>}</>}
   </svg>;
  }

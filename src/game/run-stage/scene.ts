@@ -65,7 +65,7 @@ export async function buildScene(maxAnisotropy:number):Promise<RunScene> {
  const sampleIds=[...new Set(runStations.map(s=>s.sampleId))];
  const [floorArt,wallArt,cabinetArt,torchArt,pipetteArt,postArt,plantArt,jarsArt,crateArt,guideArt,patrolRight,patrolLeft,...sampleArt]=await Promise.all([
   optional('floor-tile.webp'),optional('backdrop-wall.webp'),optional('cabinet-front.webp'),optional('prop-torch.webp'),optional('prop-pipette.webp'),optional('prop-post.webp'),
-  optional('decor-plant.webp'),optional('decor-jars.webp'),optional('decor-crate.webp'),loadTexture('/assets/characters/dandani.webp').then(keep,()=>null),
+  optional('decor-plant.webp'),optional('decor-jars.webp'),optional('decor-crate.webp'),optional('dandani-cheer.webp'),
   loadTexture('/assets/map-encounter/map-villain-right.webp').then(keep,()=>null),loadTexture('/assets/map-encounter/map-villain-left.webp').then(keep,()=>null),
   ...sampleIds.map(id=>optional(`material-${id}.webp`)),
  ]);
@@ -194,7 +194,7 @@ export async function buildScene(maxAnisotropy:number):Promise<RunScene> {
  }
  // The lab keeper waits behind the counter at the far end.
  const guide=new THREE.Vector3(runCourse.endX-.3,LANE.counterTop-.2,-1.5);
- if(guideArt){const sprite=new THREE.Sprite(keep(new THREE.SpriteMaterial({map:guideArt,transparent:true,alphaTest:.4})));const image=guideArt.image as {width:number;height:number};sprite.center.set(.5,0);sprite.scale.set(1.3*image.width/image.height,1.3,1);sprite.position.copy(guide);scene.add(sprite);}
+ if(guideArt){const sprite=new THREE.Sprite(keep(new THREE.SpriteMaterial({map:guideArt,transparent:true,alphaTest:.4})));const image=guideArt.image as {width:number;height:number};sprite.center.set(.5,0);sprite.scale.set(1.5*image.width/image.height,1.5,1);sprite.position.copy(guide).setY(LANE.counterTop);scene.add(sprite);} // 2026-11-21: 얼굴만 있던 그림이 진열대에 잘려 보여 온몸으로 환호하는 단단이를 진열대 위에 세움
 
  const patrols:Patrol[]=[];
  if(patrolRight&&patrolLeft)for(const x of runCourse.patrols){

@@ -1,0 +1,36 @@
+/* 2026-11-21 그림 카드(DragBoard variant="cards"): 큰 그림 위, 이름 아래. 칸에 놓으면 칸 안에도 같은 그림.
+   끄는 동안 놓일 칸은 초록으로 켜지고(drop-target), 끄는 카드는 손가락 가운데에 있다(parts-board.css의 part-ghost). */
+.app .drag-board.cards-board .drag-tokens { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: clamp(8px, 1.2vw, 16px); }
+.app .live-activity .drag-board.cards-board .drag-token,
+.app .live-activity .drag-board.cards-board .drag-token.picked,
+.app .live-activity .drag-board.cards-board .drag-token.placed {
+  flex: 0 0 auto; width: clamp(104px, 11vw, 168px); max-width: none; min-height: 0; padding: 8px 8px 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px;
+  background: #fffaf0; border: 2px solid #c9b887; border-radius: 14px; box-shadow: 0 4px 10px rgba(40, 58, 40, .14);
+  font-size: inherit; line-height: 1.2; text-align: center;
+}
+.app .live-activity .drag-board.cards-board .drag-token.picked { border-color: #2f6f4f; background: #e9f4e0; box-shadow: 0 0 0 3px rgba(47, 111, 79, .3); }
+.app .live-activity .drag-board.cards-board .drag-token.placed { border-color: #7ea56b; background: #eef6df; }
+.app .drag-board.cards-board .drag-part-art { display: block; width: 100%; height: clamp(60px, 10vh, 112px); object-fit: contain; pointer-events: none; filter: drop-shadow(0 4px 5px rgba(40, 58, 40, .25)); }
+.app .drag-board.cards-board .drag-token.placed .drag-part-art { opacity: .35; filter: grayscale(.6); }
+.app .live-activity .drag-board.cards-board .drag-part-label { display: block; font-size: clamp(17px, 1.4vw, 22px); font-weight: 700; color: #2f3a2a; word-break: keep-all; }
+.app .live-activity .challenge-classify .drag-board.cards-board .drop-slots { grid-template-columns: repeat(var(--slot-count, 2), minmax(0, 1fr)); }
+.app .live-activity .drag-board.cards-board .drop-slot.drop-target,
+.app .live-activity .material-placement-stage .drop-slot.drop-target { border: 3px solid #2f6f4f; background: #e2f1d4; box-shadow: 0 0 0 4px rgba(47, 111, 79, .22); }
+/* 우산 재료 잇기(S02): 오른쪽 좁은 칸에는 그림 왼쪽·이름 오른쪽으로 */
+.app .live-activity .material-placement-stage .drag-board.cards-board .drag-tokens { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.app .live-activity .material-placement-stage .drag-board.cards-board .drag-token { width: 100%; flex-direction: row; justify-content: flex-start; gap: 12px; padding: 6px 12px; min-height: 64px; max-height: none; }
+.app .live-activity .material-placement-stage .drag-board.cards-board .drag-part-art { width: clamp(64px, 8vw, 120px); height: clamp(48px, 8vh, 84px); flex: none; }
+@media (max-height: 520px) {
+  .app .live-activity .drag-board.cards-board .drag-part-art { height: 44px; }
+  .app .live-activity .drag-board.cards-board .drag-token { padding: 4px 6px; gap: 3px; }
+  .app .live-activity .material-placement-stage .drag-board.cards-board .drag-token { min-height: 48px; padding: 3px 8px; }
+  .app .live-activity .material-placement-stage .drag-board.cards-board .drag-part-art { height: 36px; width: 56px; }
+}
+/* 칸에 놓인 카드 그림: 모든 끌어 놓기 칸에서 작게(칸이 커져 다른 그림을 밀어내지 않게) */
+.app .drag-board .drop-slot-art { display: flex; justify-content: center; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
+.app .drag-board .drop-slot-art img { height: clamp(26px, 5vh, 48px); width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .22)); }
+.app .live-activity .material-placement-stage .drop-slot-art img { height: clamp(22px, 4vh, 36px); }
+/* 고르기 보기에 붙는 그림(글 왼쪽) */
+.app .challenge-options .choice .choice-art { width: clamp(56px, 6vw, 96px); height: clamp(44px, 7vh, 80px); object-fit: contain; flex: none; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .22)); }
+@media (max-height: 520px) { .app .challenge-options .choice .choice-art { width: 44px; height: 32px; } }

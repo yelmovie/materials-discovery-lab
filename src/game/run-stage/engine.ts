@@ -226,7 +226,7 @@ export async function createRunStage(root:HTMLElement,canvas:HTMLCanvasElement,l
    updateCamera();
    for(const item of live)placeLabel(labels.get(item.station.id),item.view.label);
    world.zoneSigns.forEach((at,i)=>placeLabel(labels.get(`zone-${i}`),at));
-   placeLabel(labels.get('guide'),anchor.copy(world.guide).setY(world.guide.y+1.5));
+   placeLabel(labels.get('guide'),anchor.copy(world.guide).setY(world.guide.y+1.95));
    renderer.render(scene,camera);
   }
  }

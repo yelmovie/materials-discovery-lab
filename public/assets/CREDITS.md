@@ -65,6 +65,7 @@
 
 - 2026-11-12 유리 용기, 나무토막, 손펌프, 공기주머니의 팽창 전후 그림 5개를 OpenAI 기본 이미지 생성 도구로 새로 제작했어. 원본은 외장 SSD의 `references/generated/science-20261112`에 보존했고 투명 여백을 정리한 WebP를 게임에 적용했어. 생성 프롬프트·크기·사용 화면·변환 기록은 `generated/manifest.json`에 있어. 물높이, 공기 이동, 재료 판정과 글자는 코드가 표현해.
 - 2026-11-21 S01 「연필의 재료 찾기」의 연필 분해도 한 장을 Codex 기본 이미지 도구(GPT 이미지, 유료 요금제)로 새로 만들어 흑연심·나무 몸통·금속 띠·고무 지우개 네 조각(`generated/pencil/*.webp`)으로 잘랐어(같은 날 흑연심을 넣어 한 번 더 생성). 프롬프트와 원본은 `references/generated/pencil-20261121/`, 자르기는 `scripts/prepare-pencil-parts.mjs`. 조각 이름과 재료 칸 글자는 코드가 그려.
+- 2026-11-21 그림 카드: Codex 기본 이미지 도구(GPT 이미지, 유료 요금제)로 재료·부품·물건 그림 5장과 3D 시험 길의 단단이 1장을 새로 만들어 잘라 썼어(`generated/cards/*.webp`, `run-stage/dandani-cheer.webp`). 프롬프트와 원본은 `references/generated/cards-20261121/`, 자르기는 `scripts/prepare-picture-cards.mjs`. 카드 이름 글자는 코드가 그려.
 - 성취기준별 목표, 관찰할 증거, 새 상황 문제, 과학 표현의 범위와 출처를 `docs/screen-spec.json`의 화면별 `learning`에 연결했어. 실제 교사 검토 상태는 별도 항목으로 보존했어.
 
 - 사용자 제공 샘플과 기존 기획을 참고했어. 샘플 화면을 학생의 조작 가능한 UI처럼 배경에 그대로 붙이지 않았어.

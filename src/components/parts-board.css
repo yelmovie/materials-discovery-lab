@@ -45,8 +45,12 @@
 .app .challenge-classify .drop-slot-art { display: flex; justify-content: center; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
 .app .challenge-classify .drop-slot-art img { height: clamp(26px, 5.5vh, 52px); width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .22)); }
 .app .challenge-classify .classification-result .drop-slot-art { margin: 8px 0 0; }
-.drag-ghost.part-ghost { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 14px; }
-.drag-ghost.part-ghost img { height: clamp(36px, 8vh, 80px); width: auto; max-width: 42vw; object-fit: contain; }
+/* 끄는 조각은 손가락 한가운데에 두고(아이가 조각을 칸에 겨누면 그 자리에 놓인다), 칸 하나보다 작게 */
+.drag-ghost.part-ghost { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 12px; transform: translate(-50%, -50%); font-size: 18px; }
+.drag-ghost.part-ghost img { height: auto; max-height: clamp(40px, 7vh, 64px); width: auto; max-width: min(220px, 18vw); object-fit: contain; }
+/* 놓을 칸 미리 보기: 지금 놓으면 들어갈 칸이 초록으로 켜진다 */
+.app .live-activity .challenge-classify .parts-board .drop-slot.drop-target { border: 3px solid #2f6f4f; border-style: solid; background: #e2f1d4; box-shadow: 0 0 0 4px rgba(47, 111, 79, .22); transform: scale(1.02); }
+.app .challenge-classify .parts-board .drop-slot { transition: transform .12s ease, background-color .12s ease, box-shadow .12s ease; }
 @media (max-height: 620px) { .app .live-activity .challenge-classify .parts-board .drag-part-label { font-size: 15px; padding: 2px 9px; } }
 @keyframes part-split { from { transform: translateX(var(--part-join)); } to { transform: none; } }
 @keyframes part-label { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }

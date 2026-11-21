@@ -105,3 +105,8 @@
  .modal.maker-detail-dialog .maker-result-list p { grid-template-columns:5em minmax(0,1fr); align-items:start; gap:6px; font-size:15px; line-height:1.35; }
  .modal.maker-detail-dialog .primary.full { min-height:48px; margin:8px 0 0; padding:6px 8px; font-size:16px; }
 }
+
+/* 2026-11-21 S02 작은 지붕: 부품 단추에 실제 재료 그림을 크게(그림 위·이름 아래) */
+.maker-choice-row button .maker-choice-art { display: block; width: 100%; max-width: 150px; height: clamp(40px, 7vh, 76px); object-fit: contain; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .25)); }
+.maker-choice-row button:has(.maker-choice-art) { flex-direction: column; gap: 3px; padding: 6px; }
+@media (max-height: 520px) { .maker-choice-row button .maker-choice-art { height: 30px; } }
