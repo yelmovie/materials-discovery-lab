@@ -88,3 +88,15 @@
  .app .live-activity .transfer-workspace,.app .final-activity :is(.final-card,.ending-panel) { background:#fffdf3; }
  *,*::before,*::after,::backdrop { backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
 }
+
+/* 시연 도구줄 글자 18px(2026-11-21, E): 교사 시연 활동 화면 아래·마무리 화면 위 도구줄의 「n / 14」·「다음 공방」이 14~15px였다.
+   가로 1200px·높이 621px 이상에서만 18px로 올린다. 1024처럼 좁은 화면에서는 넓어진 도구줄이 학생의 「모루의 힌트」 버튼을 가려서(check:layout 33곳)
+   교사 도구줄은 원래 크기로 두고, 폰 가로처럼 낮은 화면도 그대로 둔다. */
+@media screen and (min-width:1200px) and (min-height:621px) {
+ .app .live-activity>.demo-toolbar .demo-step-pad span,.app .live-activity>.demo-toolbar .demo-step-pad b { font-size:18px; }
+ .app .live-activity>.demo-toolbar .demo-step-pad span { min-width:58px; }
+ .app .live-activity>.demo-toolbar>.demo-next-stage { font-size:18px; max-width:156px; }
+ .app .final-toprail .demo-step-pad span,.app .final-toprail .demo-step-pad b { font-size:18px; }
+ .app .final-toprail .demo-step-pad span { min-width:58px; }
+ .app .final-toprail .demo-toolbar>.demo-next-stage { font-size:18px; }
+}

@@ -115,8 +115,18 @@ export default function App(){
  useEffect(()=>{if(previousDemo.current!==demo){history.current=[];cancelMapWalk();pendingReveal.current=null;setReveal(null);previousDemo.current=demo;}},[demo]);
  useEffect(()=>{window.scrollTo(0,0);cancelMapWalk();setDirection(null);setGuide(false);setHand(false);setOverview(false);if(route!=='world'){setReveal(null);setClearCore(false);}else if(pendingReveal.current!==null){setReveal(pendingReveal.current);pendingReveal.current=null;}else if(pendingCoreDialogue.current){setClearCore(true);pendingCoreDialogue.current=false;}},[route,phase]);
  useEffect(()=>{if(modal){setDirection(null);if(guidedDoor.current!==null)cancelMapWalk();}},[modal]);
- useEffect(()=>{const hash=()=>{const [r,p]=location.hash.slice(1).split('/');if(['home','world',...screens.map(s=>s.id)].includes(r))dispatch({type:'navigate',route:r as Route,phase:(['report','core','ending','certificate'].includes(p)?p:'activity') as Phase});};hash();window.addEventListener('hashchange',hash);return()=>window.removeEventListener('hashchange',hash);},[]);
- useEffect(()=>{if(!demo)window.history.replaceState(null,'',`#${route}${route==='S10'&&phase!=='activity'?'/'+phase:''}`);},[route,phase,demo]);
+ useEffect(()=>{const hash=(e?:Event)=>{const [r,p]=location.hash.slice(1).split('/');if(['home','world',...screens.map(s=>s.id)].includes(r)){if(e)setModal(null);dispatch({type:'navigate',route:r as Route,phase:(['report','core','ending','certificate'].includes(p)?p:'activity') as Phase});}};hash();window.addEventListener('hashchange',hash);return()=>window.removeEventListener('hashchange',hash);},[]);
+ // Browser back stays in the app: history holds one entry per level (home 0 → map 1 → activity 2), so back goes activity → map → home,
+ // and back on home leaves as usual. Same-level moves replace the entry; moving up in the app rewinds the history to that level.
+ useEffect(()=>{
+  if(demo)return;
+  const url=`#${route}${route==='S10'&&phase!=='activity'?'/'+phase:''}`,depth=route==='home'?0:route==='world'?1:2;
+  const h=window.history,at=(h.state as {appDepth?:number}|null)?.appDepth;
+  if(at===undefined){h.replaceState({appDepth:0},'',depth?'#home':url);if(depth===2)h.pushState({appDepth:1},'','#world');if(depth)h.pushState({appDepth:depth},'',url);return;}
+  if(depth===at){if(location.hash!==url)h.replaceState({appDepth:depth},'',url);return;}
+  if(depth>at){if(at===0&&depth===2)h.pushState({appDepth:1},'','#world');h.pushState({appDepth:depth},'',url);return;}
+  h.go(depth-at);
+ },[route,phase,demo]);
  useEffect(()=>{if(!toast)return;const t=setTimeout(()=>setToast(''),5000);return()=>clearTimeout(t);},[toast]);
  function finish(){if(!screen||!canComplete(save,screen.id as Screen))return;if(screen.next==='world'&&stage&&!save.evidence.some(e=>e.id===`E0${stage.id}`))pendingReveal.current=stage.id-1;dispatch({type:'complete',screen:screen.id as Screen});clickSound(true,true);setConceptAdvance(true);setModal('concept');}
  function continueAfterConcept(){if(!screen)return;setConceptAdvance(false);if(screen.next==='world')setModal('reward');else navigate(screen.next as Route);}
