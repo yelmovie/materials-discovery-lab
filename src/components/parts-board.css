@@ -1,0 +1,51 @@
+/* 2026-11-21 S01-c 연필 조각 끌어 놓기(DragBoard variant="parts").
+   한 줄의 폭을 그림 높이에 맞춰 정하고, 조각 줄과 재료 칸 줄을 같은 폭·같은 가장자리로 맞춘다.
+   --part-basis: 줄 폭 중 조각이 차지하는 비율, --part-join: 붙은 연필 모습에서 안쪽으로 당기는 거리. */
+.app .live-activity .challenge-classify .drag-board.parts-board {
+  --part-h: clamp(56px, 14vh, 120px);
+  width: min(100%, calc(var(--part-h) * 9.85));
+  margin-inline: auto; padding: 0; background: transparent; border: 0; box-shadow: none;
+}
+.app .live-activity .challenge-classify .parts-board .drag-tokens {
+  display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: flex-start;
+  gap: 0; padding: 0; margin: 0 0 clamp(10px, 2.2vh, 22px); background: none; border: 0; box-shadow: none;
+}
+.app .live-activity .challenge-classify .parts-board .drag-token,
+.app .live-activity .challenge-classify .parts-board .drag-token.picked,
+.app .live-activity .challenge-classify .parts-board .drag-token.placed {
+  flex: 0 0 var(--part-basis); min-width: 0; max-width: none; min-height: 0; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: clamp(4px, .9vh, 10px);
+  background: transparent; border: 0; border-radius: 12px; box-shadow: none; text-align: center; line-height: 1.2;
+  animation: part-split .75s cubic-bezier(.2, .8, .2, 1) .45s both;
+}
+.app .live-activity .challenge-classify .parts-board .drag-token:focus-visible { outline: 3px solid #2f6f4f; outline-offset: 4px; }
+.app .challenge-classify .parts-board .drag-part-art {
+  display: block; width: 100%; height: auto; pointer-events: none;
+  filter: drop-shadow(0 5px 6px rgba(40, 58, 40, .28));
+  transition: transform .16s ease, filter .16s ease, opacity .2s ease;
+}
+.app .challenge-classify .parts-board .drag-token:hover .drag-part-art { transform: translateY(-3px); }
+.app .challenge-classify .parts-board .drag-token.picked .drag-part-art {
+  transform: translateY(-6px);
+  filter: drop-shadow(0 0 2px #2f7d5b) drop-shadow(0 0 2px #2f7d5b) drop-shadow(0 8px 8px rgba(40, 58, 40, .3));
+}
+.app .challenge-classify .parts-board .drag-token.placed .drag-part-art { opacity: .3; filter: grayscale(.7); transform: none; }
+.app .live-activity .challenge-classify .parts-board .drag-part-label {
+  display: block; width: max-content; max-width: calc(100% + 44px); padding: 4px 12px;
+  border-radius: 999px; background: #fffaf0; border: 2px solid #c9b887; color: #2f3a2a;
+  font-size: clamp(18px, 1.5vw, 24px); font-weight: 700; line-height: 1.2; word-break: keep-all; overflow-wrap: anywhere;
+  animation: part-label .4s ease 1.05s both;
+}
+.app .challenge-classify .parts-board .drag-token.picked .drag-part-label { background: #2f6f4f; border-color: #2f6f4f; color: #fff; }
+.app .challenge-classify .parts-board .drag-token.placed .drag-part-label { background: #eef6df; border-color: #7ea56b; color: #3a4a33; }
+/* 채운 칸과 결과 칸에 조각 그림 */
+.app .challenge-classify .drop-slot-art { display: flex; justify-content: center; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
+.app .challenge-classify .drop-slot-art img { height: clamp(26px, 5.5vh, 52px); width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 3px 4px rgba(40, 58, 40, .22)); }
+.app .challenge-classify .classification-result .drop-slot-art { margin: 8px 0 0; }
+.drag-ghost.part-ghost { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 14px; }
+.drag-ghost.part-ghost img { height: clamp(36px, 8vh, 80px); width: auto; max-width: 42vw; object-fit: contain; }
+@media (max-height: 620px) { .app .live-activity .challenge-classify .parts-board .drag-part-label { font-size: 15px; padding: 2px 9px; } }
+@keyframes part-split { from { transform: translateX(var(--part-join)); } to { transform: none; } }
+@keyframes part-label { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+html[data-reduced="true"] .app .challenge-classify .parts-board .drag-token,
+html[data-reduced="true"] .app .challenge-classify .parts-board .drag-part-label { animation: none; }
