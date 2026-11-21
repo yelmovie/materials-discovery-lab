@@ -25,7 +25,8 @@ export function ConceptVideo({screen,onClose,onContinue,continueLabel}:{screen:S
  const narrate=useCallback((i:number)=>{spoken.current=i;playLine(voiceFor(concept.cues[i]),()=>{const v=video.current;if(holding.current&&v){holding.current=false;v.play().catch(()=>{});}});},[concept]);
  const resetNarration=()=>{const wasHolding=holding.current;holding.current=false;spoken.current=-1;stopLine();if(wasHolding)setPlayback('paused');};
  useEffect(()=>{if(playback!=='playing'||cue===spoken.current)return;const v=video.current;if(v&&spoken.current>=0&&cue===spoken.current+1&&linePlaying()){holding.current=true;v.pause();v.currentTime=Math.max(0,cue*CONCEPT_CHAPTER_SECONDS-.35);setTime(v.currentTime);return;}narrate(cue);},[cue,playback,narrate]);
- useEffect(()=>{if(ended||failed)playLine(voiceFor(concept.summary));},[ended,failed,concept]);
+ // 2026-11-21 (사용자 요청) 영상이 끝난 뒤의 정리 문장과 목소리는 뺀다. 영상을 못 틀 때만 정리 문장을 읽어 준다.
+ useEffect(()=>{if(failed)playLine(voiceFor(concept.summary));},[failed,concept]);
  useEffect(()=>()=>{holding.current=false;stopLine();},[]);
  const play=useCallback((v:HTMLVideoElement)=>{setPlayback('loading');void v.play().catch(error=>{if(v.isConnected&&error.name!=='AbortError')setPlayback(error.name==='NotAllowedError'?'paused':'failed');});},[]);
  useEffect(()=>{setMediaQuiet('clip',true);const v=video.current;if(v&&!reduced)play(v);const visibility=()=>{if(document.hidden)v?.pause();};document.addEventListener('visibilitychange',visibility);return()=>{document.removeEventListener('visibilitychange',visibility);if(v){v.pause();v.removeAttribute('src');v.querySelectorAll('source').forEach(s=>s.removeAttribute('src'));v.load();}setMediaQuiet('clip',false);};},[]);
@@ -46,7 +47,7 @@ export function ConceptVideo({screen,onClose,onContinue,continueLabel}:{screen:S
   </div>
   <div className={`concept-bottom${burned?' is-burned':''}`}>
    {!burned&&focus}
-   <div className="concept-caption" aria-live="polite"><img src="/assets/generated/companion.webp" alt=""/><p><Highlight text={failed||ended?concept.summary:concept.cues[cue]} terms={termMap[screen]}/></p><span>{ended?'발견 완료 ✓':`${cue+1} / 3`}</span></div>
+   {!ended&&<div className="concept-caption" aria-live="polite"><img src="/assets/generated/companion.webp" alt=""/><p><Highlight text={failed||ended?concept.summary:concept.cues[cue]} terms={termMap[screen]}/></p><span>{`${cue+1} / 3`}</span></div>}
   </div>
  </Modal>;
 }

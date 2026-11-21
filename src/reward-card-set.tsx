@@ -80,7 +80,7 @@ export function earnRewardCard(id:string,hits:Hits,reduced:boolean,anywhere=fals
   // It is the card's turn from here, also while it waits for a dialog.
   due.add(index);held.delete(index);
   // A dialog opened in the meantime goes first.
-  if(appRoot()?.inert||document.querySelector('dialog[open],.story-film')){window.setTimeout(open,300);return;}
+  if(appRoot()?.inert||document.querySelector('dialog[open]')||document.querySelector('.story-film')){window.setTimeout(open,300);return;}
   void rewardCards().reveal(index,origin,ownedRewardCards(hits)).finally(()=>{flying.delete(index);due.delete(index);});
  };
  window.setTimeout(open,ready-CLEAR-earned);
