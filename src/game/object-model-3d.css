@@ -1,0 +1,11 @@
+/* 3D study model inside .object-model-layer (ObjectModel3D.tsx). The 2D picture stays underneath until the model is ready. */
+.learning-object .object-model-3d { position:absolute; inset:0; z-index:1; touch-action:none; cursor:grab; }
+.learning-object .object-model-3d:active { cursor:grabbing; }
+.learning-object .object-model-3d canvas { display:block; width:100%; height:100%; }
+.learning-object .object-model-3d .turn-hint { position:absolute; left:50%; bottom:4px; transform:translateX(-50%); padding:3px 10px; border-radius:999px; background:#fffce8e6; color:#455c3c; font-size:13px; font-weight:700; pointer-events:none; white-space:nowrap; transition:opacity .4s; }
+.learning-object .object-model-3d.turned .turn-hint { opacity:0; }
+.learning-object .has-3d .object-2d-art { visibility:hidden; }
+/* The flat picture keeps its 10:7 frame; the 3D model can use the whole study area. */
+.learning-object .object-canvas.has-3d .object-scene { position:absolute; inset:0; width:auto; height:auto; }
+.learning-object .has-3d .object-hotspots { pointer-events:none; }
+.learning-object .has-3d .object-hotspots .object-marker { pointer-events:auto; }
