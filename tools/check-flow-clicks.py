@@ -143,6 +143,10 @@ def main():
         model = page.evaluate("async()=>{const m=await import('/src/domain/model.ts');const r={};for(const e of m.experiments){r[e]={};for(const x of m.materials)r[e][m.shortNames[x.id]]=m.resultFor(e,x.id);}return {results:r,names:m.experimentNames}}")
         try:
             tap(page.get_by_role('button', name=re.compile('실험 바로 시작')))
+            # 2026-11-21: 처음 시작하면 인트로 영상이 전체 화면으로 뜬다. 조금 본 뒤 건너뛴다.
+            page.wait_for_selector('.story-film-intro', timeout=8000); page.wait_for_timeout(1500)
+            page.screenshot(path=str(OUT / 'intro-film.png'))
+            tap(page.locator('.story-film-skip'))
             to_next(page, 'S01')
             # S01
             for name in ['우산 천', '금속 살', '손잡이']:
@@ -249,6 +253,10 @@ def main():
             if 'ending' in route(page):
                 page.wait_for_timeout(3600); page.screenshot(path=str(OUT / 'ending.png'))
                 tap(page.get_by_role('button', name=re.compile('연출 건너뛰기')))
+            # 2026-11-21: 처음 인증서에 오면 아웃트로 영상이 뜬다. 건너뛰면 인증서가 그대로 있어야 한다.
+            page.wait_for_selector('.story-film-outro', timeout=10000); page.wait_for_timeout(1500)
+            page.screenshot(path=str(OUT / 'outro-film.png'))
+            tap(page.locator('.story-film-skip'))
             page.wait_for_selector('#certificate', timeout=10000)
             page.screenshot(path=str(OUT / 'certificate.png'))
         except Exception:

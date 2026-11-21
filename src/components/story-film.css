@@ -1,0 +1,16 @@
+/* 2026-11-21 인트로·아웃트로 이야기 영상: 전체 화면, 검은 바탕, contain(자막이 잘리지 않게).
+   아래쪽 22%는 영상 속 자막 자리라 버튼을 위쪽에만 둔다. 가운데 「영상 보기」는 재생 전·일시 정지 때만 보인다. */
+.story-film { position: fixed; inset: 0; z-index: 400; width: 100dvw; height: 100dvh; background: #000; display: grid; place-items: center; }
+.story-film-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.story-film-top { position: absolute; top: max(12px, env(safe-area-inset-top)); right: max(12px, env(safe-area-inset-right)); display: flex; gap: 10px; }
+.story-film-top button, .story-film-start {
+  min-height: 48px; padding: 10px 20px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, .55);
+  background: rgba(20, 28, 22, .72); color: #fff; font: inherit; font-size: 18px; font-weight: 700; cursor: pointer;
+}
+.story-film-top button:focus-visible, .story-film-start:focus-visible { outline: 3px solid #ffd35c; outline-offset: 3px; }
+.story-film-start { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-height: 64px; padding: 14px 34px; font-size: 22px; background: rgba(47, 111, 79, .92); }
+.story-film-fallback { position: absolute; inset: auto 50% 50% auto; transform: translate(50%, 50%); width: min(720px, calc(100vw - 32px)); max-height: calc(100dvh - 120px); overflow: auto;
+  padding: 24px 28px; border-radius: 18px; background: #fffaf0; color: #2f3a2a; font-size: 18px; line-height: 1.5; }
+.story-film-fallback ol { margin: 12px 0 18px; padding-left: 1.2em; }
+.story-film-fallback li span { font-weight: 700; color: #2f6f4f; }
+@media (max-height: 520px) { .story-film-top button { min-height: 44px; padding: 6px 14px; font-size: 16px; } }

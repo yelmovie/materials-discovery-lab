@@ -1,0 +1,24 @@
+{
+  "intro": {
+    "title": "공방을 깨우는 이야기",
+    "src": "/assets/story/intro.mp4",
+    "poster": "/assets/story/intro-poster.webp",
+    "duration": 26.1,
+    "cues": [
+      {"at": 0.8, "end": 7.9, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-welcome.mp3", "text": "[물질 코어]가 멈추면서 재료 정보가 뒤섞였어요. 친구들과 공방을 다시 움직여 주세요."},
+      {"at": 9.3, "end": 16.4, "who": "모루", "voice": "/assets/audio/npc-elevenlabs/moru-story.mp3", "text": "한 번에 한 가지를 바꿔 실험해요. 무엇이 달라졌는지 기록해 친구의 새 부탁을 해결해요."},
+      {"at": 16.7, "end": 25.4, "who": "방울이", "voice": "/assets/audio/npc-elevenlabs/banguli-story.mp3", "text": "마지막에는 나만의 [보관함]을 만들어요. 관찰 기록으로 재료를 고르고, 시험 결과를 보고 고쳐요."}
+    ]
+  },
+  "outro": {
+    "title": "공방이 다시 깨어난 이야기",
+    "src": "/assets/story/outro.mp4",
+    "poster": "/assets/story/outro-poster.webp",
+    "duration": 22.5,
+    "cues": [
+      {"at": 1.0, "end": 4.0, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-ending-0.mp3", "text": "[코어]에 빛이 돌아왔어!"},
+      {"at": 7.5, "end": 10.4, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-ending-1.mp3", "text": "다섯 공방이 다시 움직여!"},
+      {"at": 14.0, "end": 17.4, "who": "토리", "voice": "/assets/audio/npc-elevenlabs/tori-ending-2.mp3", "text": "관찰 기록이 [발명]에 쓰였어!"}
+    ]
+  }
+}
