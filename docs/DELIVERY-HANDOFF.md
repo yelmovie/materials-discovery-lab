@@ -9,7 +9,7 @@
 | 프로젝트 | 물질 공방 대작전 (패키지 이름 `material-workshop-mission` 1.0.0) |
 | 운영 주소 | https://materials-discovery-lab.yelsam.workers.dev/ |
 | 저장소 | https://github.com/yelmovie/materials-discovery-lab (브랜치 `main`) |
-| 앱 코드 마지막 커밋 | `0491e31` (2026-11-22, A4 가로 인증서·빈칸·PNG) |
+| 앱 코드 마지막 커밋 | `9363137` (2026-11-22, 인증서 진행 숫자 미표시·굵은 제목) |
 
 ## 2. 폴더 구조
 
