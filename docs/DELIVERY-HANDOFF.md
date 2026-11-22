@@ -86,3 +86,8 @@ npm run check:layout  # python tools/check-experience.py (화면 겹침·넘침 
 - 권리 장부: 근거 약함 4줄(키아트, 걷기 프레임, `map-finale.mp4`의 시스템 글꼴, Higgsfield 목소리 2개), 3D 모형 약관·요금제 화면은 사용자 자료 대기.
 - 설정 화면의 저작권 문구(`src/settingsContent.ts`)가 현재 빌드와 다릅니다(배경 음악은 Suno, 효과음에 Freesound CC0 추가, ElevenLabs 목소리). 코드 수정은 이 작업 범위가 아니어서 보고만 했습니다.
 - `public/assets/CREDITS.md`에 빠진 파일 항목이 있습니다(`docs/RIGHTS-LEDGER-20261121.md`의 「기록끼리 맞지 않는 곳」).
+
+## 운영 대조 기록 (2026-11-22 12:56)
+
+- 조율 세션이 운영 주소의 `index`와 스크립트·스타일 파일 14개를 저장소 `origin/main`과 대조했습니다. 결과는 모두 일치입니다(불일치 0).
+- 위 본문에 「운영 반영 확인 필요」로 적힌 칸은 이 대조로 확인된 것입니다. 이후 앱을 다시 배포하면 `_scratch/final-recheck-20261120/prodcmp.sh 09`로 다시 대조합니다.
