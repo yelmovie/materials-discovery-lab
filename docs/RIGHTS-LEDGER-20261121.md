@@ -80,7 +80,7 @@
 
 ## 기록끼리 맞지 않는 곳 (고치지 않고 보고만 함)
 
-1. `src/settingsContent.ts`의 `copyright` 문구가 지금 빌드와 다르다. 「배경 음악은 직접 합성했어요」(지금은 Suno 곡), 「효과음은 Kenney Interface Sounds(CC0)」(지금은 Freesound CC0도 있음), ElevenLabs 목소리 언급 없음.
+1. (2026-11-22 정리됨) `src/settingsContent.ts`의 `copyright` 문구는 현재 빌드와 일치한다. 배경 음악 Suno, Kenney·Freesound CC0 효과음, ElevenLabs 목소리와 Codex 인증서 테두리를 안내한다.
 2. `public/assets/CREDITS.md`에 다음 실림 파일의 항목이 없다: `run-stage/` 16개, `map-encounter/` 6개(+번들 사본 2), `map-encounters/map-finale.mp4`, `generated/glass-tank.webp`·`material-core.webp`, `icons/app-*.png`.
 3. CREDITS 2026-10-22 절의 「자체 개념 클립: 직접 작성한 도형」은 2026-11-09 HyperFrames 교체 이전 설명이라 지금 영상(게임 그림 재사용)과 다르다.
 4. `_shared/voice-provenance-20261118.md`의 9번 표(토리 5+3, 모루·단단이·방울이·바람이 16+2)는 `docs/VOICE-FILL-20261118.json`(2026-11-18 159줄: 모루 121, 재료 바꿔치기 봇 30 등)과 개수가 맞지 않고 악당 목소리 줄이 빠져 있다.

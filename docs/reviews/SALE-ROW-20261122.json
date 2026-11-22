@@ -14,7 +14,7 @@
   "minutes": null,
   "stages": 10,
   "thumbnail": "9 things/thumbnails/thumbnail-16x8.png",
-  "appCommit": "7afe823",
+  "appCommit": "9363137",
   "host": "workers",
   "consistency": {
     "creditLine": {
@@ -124,5 +124,13 @@
   },
   "gradeRepo": "3~4학년군",
   "unitRepo": null,
-  "gradeUnitSource": "운영 시트 「이예리 선생님」 탭, 2026-11-22 확인"
+  "gradeUnitSource": "운영 시트 「이예리 선생님」 탭, 2026-11-22 확인",
+  "production": {
+    "checkedAt": "2026-11-22 20:23 KST",
+    "appCommit": "9363137",
+    "workerVersion": "a1880b02-c114-424c-97ee-149e2a7f4bbf",
+    "url": "https://materials-discovery-lab.yelsam.workers.dev/",
+    "sha256MatchFiles": 18,
+    "result": "공식 운영 주소의 index·JS/CSS·서비스워커·인증서 핵심 파일이 최신 검증 빌드와 모두 일치. 앱 재배포 없이 기존 활성 버전 유지."
+  }
 }
