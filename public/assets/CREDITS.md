@@ -250,3 +250,7 @@ THE SOFTWARE.
 | audio/open-shine.mp3 | 위 소리 0.12초 뒤 작은 종소리 | sfx/twinkle-03.mp3 | Fantasy_ui_Button_2 · ZenithInfinitiveStudios | https://freesound.org/people/ZenithInfinitiveStudios/sounds/376746 |
 
 발자국은 재생할 때마다 속도를 ±6% 안에서 바꾼다(파일은 그대로). 음소거·효과음 크기·탭 숨김을 따르고, 인물 목소리가 나오는 동안에는 절반 크기로 난다.
+
+### 인증서 테두리 · 2026-11-22
+
+`certificate-frame-20261122.webp`는 Codex 기본 이미지 도구(GPT 이미지)로 생성했습니다. 공방 도구·재료병·천·나무·금속을 넣은 글자 없는 테두리이며, 생성 1회입니다. 원본과 프롬프트는 `references/generated/certificate-20261122/`에 보관합니다. 인증서 글자·빈칸·도장은 앱 코드로 표시합니다.
