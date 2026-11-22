@@ -9,7 +9,7 @@
 | 프로젝트 | 물질 공방 대작전 (패키지 이름 `material-workshop-mission` 1.0.0) |
 | 운영 주소 | https://materials-discovery-lab.yelsam.workers.dev/ |
 | 저장소 | https://github.com/yelmovie/materials-discovery-lab (브랜치 `main`) |
-| 앱 코드 마지막 커밋 | `7afe823` (2026-11-21, `src` 기준) |
+| 앱 코드 마지막 커밋 | `0491e31` (2026-11-22, A4 가로 인증서·빈칸·PNG) |
 
 ## 2. 폴더 구조
 
@@ -91,3 +91,10 @@ npm run check:layout  # python tools/check-experience.py (화면 겹침·넘침 
 
 - 조율 세션이 운영 주소의 `index`와 스크립트·스타일 파일 14개를 저장소 `origin/main`과 대조했습니다. 결과는 모두 일치입니다(불일치 0).
 - 위 본문에 「운영 반영 확인 필요」로 적힌 칸은 이 대조로 확인된 것입니다. 이후 앱을 다시 배포하면 `_scratch/final-recheck-20261120/prodcmp.sh 09`로 다시 대조합니다.
+
+## 인증서 운영 반영 (2026-11-22)
+
+- 그림 `4490d62`, 앱 `0491e31`, 안내·장부 `28f2eca`. 공방 소재 테두리, A4 가로 한 장, 손으로 쓰는 학교·학년·반·번호·이름 빈칸, 2400×1697 PNG 저장을 적용했습니다.
+- 기존 Worker `materials-discovery-lab` 버전 `9fea77ef-4191-43da-843e-2fbbe3d0cba8`에 반영했습니다. 공식 운영 주소는 바꾸지 않았습니다.
+- 타입 검사·단위 시험177개·빌드 통과. 운영 세 화면 크기에서 종이 전체·버튼 표시, 콘솔 오류0, PDF1쪽(A4 가로), 학교54.9mm·이름68.3mm·칸 높이11.3mm, PNG 저장을 확인했습니다. 운영 index·코드/스타일15개·새 테두리 SHA-256이 배포 빌드와 일치합니다.
+- 전후·05 기준·운영 PNG 비교 그림은 `.tmp/cert-design-20261122/compare.png`입니다. 저장 형식과 기존 완료 기록은 보존했습니다.
