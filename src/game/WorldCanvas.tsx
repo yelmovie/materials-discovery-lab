@@ -338,7 +338,7 @@ export default function WorldCanvas(props:Props){
     if(live.current.clearStage)this.clearStage=live.current.clearStage;
     if(!encounters){
      const p=live.current;
-     encounters=mountMapEncounters({requiredFoes:6,host:element,clearStage:()=>this.clearStage,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-next-stack')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
+     encounters=mountMapEncounters({requiredFoes:0,host:element,clearStage:()=>this.clearStage,controls:element.closest('.world-page')?.querySelector<HTMLElement>('.map-next-stack')??element,stages:mapVillainStages.filter(stage=>p.encounterIds.includes(stage.id)),progress:p.mapHits,
       // rewardCardDue: an achievement card is waiting to open (or open), so the villains and their finale wait behind it.
       blocked:()=>this.isPaused()||!!live.current.overview||!!live.current.hand||!!this.reveal||this.path.length>0||rewardCardDue(),
       reduced:()=>live.current.reduced,onSave:patch=>{for(const [id,hits] of Object.entries(patch))if(hits>(live.current.mapHits?.[id]??0))live.current.onMapHit(id,hits);},
