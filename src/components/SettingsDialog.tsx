@@ -6,7 +6,7 @@ import type {FilmKind} from './StoryFilm';
 import {screens as activitySpecs} from '../../docs/screen-spec.json';
 // The effect level that was the only "on" value before the volume slider: 100% keeps the balance as it was.
 const SFX_FULL=.4;
-export function SettingsDialog({onClose,onStory,onEvidence,onReset,onFinal,onFilm}:{onClose:()=>void;onStory:()=>void;onEvidence:()=>void;onReset:()=>void;onFinal:(phase:Phase)=>void;onFilm:(kind:FilmKind)=>void}){
+export function SettingsDialog({onClose,onStory,onEvidence,onReset,onMap,onFinal,onFilm}:{onClose:()=>void;onStory:()=>void;onEvidence:()=>void;onReset:()=>void;onMap:()=>void;onFinal:(phase:Phase)=>void;onFilm:(kind:FilmKind)=>void}){
  const {save,demo,dispatch}=useGame();const s=save.settings,sfxPercent=Math.round(s.sfx/SFX_FULL*20)*5;
  return <Modal title="설정" className="settings-dialog" onClose={onClose}>
  <div data-science-settings=""><h2 className="science-settings-title">설정</h2>
@@ -21,7 +21,9 @@ export function SettingsDialog({onClose,onStory,onEvidence,onReset,onFinal,onFil
  </div><div className="settings-shortcuts science-settings-actions"><button className="secondary full" onClick={onEvidence}>나의 연구 수첩 펼치기</button><button className="secondary full" onClick={onStory}>공방을 깨우는 이유 다시 보기</button><button className="secondary full" onClick={()=>onFilm('intro')}>인트로 영상 다시 보기</button>
  <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFinal('ending')}>{save.coreComplete||demo?'공방 복구 이야기 다시 보기':'끝까지 마치면 복구 이야기가 열려요'}</button>
  <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFilm('outro')}>{save.coreComplete||demo?'마무리 영상 다시 보기':'끝까지 마치면 마무리 영상이 열려요'}</button>
- <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFinal('certificate')}>{save.coreComplete||demo?'연구원 인증서 받기':'공방을 모두 복구하면 인증서가 열려요'}</button></div>
+ <button className="secondary full" disabled={!save.coreComplete&&!demo} onClick={()=>onFinal('certificate')}>{save.coreComplete||demo?'연구원 인증서 받기':'공방을 모두 복구하면 인증서가 열려요'}</button>
+ {/* 2026-11-22 첫 화면에서 옮겨 온 지도 입구: 「앱 정보 · 배움과 보상」 바로 위 한 줄. */}
+ <button className="secondary full science-settings-full" onClick={onMap}>공방 지도 보기</button></div>
  <details className="settings-section"><summary>앱 정보 · 배움과 보상</summary><p><b>탐구 목적</b> {text.purpose}</p><p><b>미션 보상</b> {text.reward}</p><p><b>남는 배움</b> {text.learning}</p><p className="settings-note">물질 공방 대작전 v{text.version}<br/>기획·제작: 옐샘 & ⓒ 아이스크림미디어</p></details>
  <details className="settings-section"><summary>학생용 가이드</summary><p>살펴보기 → 시험하기 → 새 의뢰에 써 보기 순서로 진행해요. 기록은 자동 저장돼요.</p>{text.student.map(t=><p key={t}>{t}</p>)}<p>재료를 바꿔치기하는 봇에게 가까이 가면 원형 버튼이나 스페이스바로 공격할 수 있어요.</p></details>
  <details className="settings-section"><summary>교사용 가이드</summary>{text.teacher.map(t=><p key={t}>{t}</p>)}

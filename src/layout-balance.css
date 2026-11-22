@@ -100,3 +100,18 @@
  .app .final-toprail .demo-step-pad span { min-width:58px; }
  .app .final-toprail .demo-toolbar>.demo-next-stage { font-size:18px; }
 }
+
+/* 2026-11-22 첫 화면을 1번 우당탕 양식으로(START-SCREEN-UDANGTANG): 그림 + 가운데 위 로고 + 아래 가운데 버튼 두 개.
+   로고 원본이 900px이라 그보다 키우지 않는다. 왼쪽 글 받침 그늘 대신 위·아래만 살짝 어둡게. */
+.app .home-page.home-dressed .home-hero { background: linear-gradient(180deg, #0b241a66 0%, transparent 26%, transparent 64%, #0b241a8c 100%), url('/assets/generated/title-keyart.webp') 72% center/cover; }
+.app .home-page .home-hero { display: block; height: 100dvh; min-height: 0; padding: 0; }
+.app .home-page .hero-copy.home-title { position: absolute; inset: 0; max-width: none; margin: 0; pointer-events: none; }
+.app .home-page .home-logo-title { margin: 0; font-size: 0; line-height: 0; }
+.app .home-page .home-title .game-logo { position: absolute; left: 50%; top: clamp(64px, 13dvh, 130px); transform: translateX(-50%); width: min(78vw, 900px, 150dvh); height: auto; margin: 0; }
+.app .home-page .home-title .hero-actions { position: absolute; left: 50%; bottom: clamp(32px, 7dvh, 72px); transform: translateX(-50%); margin: 0; display: flex; flex-wrap: nowrap; justify-content: center; gap: 20px; pointer-events: auto; }
+.app .home-page .home-title .hero-actions > button { min-width: 200px; min-height: 64px; padding: 12px 34px; border-radius: 18px; font-size: 24px; justify-content: center; white-space: nowrap; }
+.app .home-page .home-title .hero-actions .ghost:disabled { opacity: .62; cursor: default; background: rgba(255,252,240,.78); }
+@media (max-height: 500px) {
+  .app .home-page .home-title .hero-actions { gap: 14px; }
+  .app .home-page .home-title .hero-actions > button { min-width: 170px; min-height: 54px; padding: 10px 26px; font-size: 21px; }
+}

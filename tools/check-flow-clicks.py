@@ -153,7 +153,7 @@ def main():
         orders = page.evaluate("async()=>(await import('/src/domain/maker.ts')).makerOrders")
         model = page.evaluate("async()=>{const m=await import('/src/domain/model.ts');const r={};for(const e of m.experiments){r[e]={};for(const x of m.materials)r[e][m.shortNames[x.id]]=m.resultFor(e,x.id);}return {results:r,names:m.experimentNames}}")
         try:
-            tap(page.get_by_role('button', name=re.compile('실험 바로 시작')))
+            tap(page.get_by_role('button', name=re.compile('^시작하기')))
             # 2026-11-21: 처음 시작하면 인트로 영상이 전체 화면으로 뜬다. 조금 본 뒤 건너뛴다.
             page.wait_for_selector('.story-film-intro', timeout=8000); page.wait_for_timeout(1500)
             page.screenshot(path=str(OUT / 'intro-film.png'))
