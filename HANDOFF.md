@@ -1,3 +1,8 @@
+# 인계 · 2026-11-22 (파이널 영상 한 번)
+지침 `_shared/FINALE-ONCE-20261122.md` 09번 줄. 여섯 악당을 다 물리쳐도 지도 피날레(`map-finale.mp4`)가 열리지 않게 `src/game/WorldCanvas.tsx` `requiredFoes` 6 → 0. 마무리 영상(`story/outro.mp4`)은 기존대로 코어 복구 뒤 인증서에서 한 번, 다시 보기는 `coreComplete` 기준 그대로. 성취 카드는 공방(코어 포함)을 마칠 때 받으므로 악당 격퇴에는 새 카드가 없다.
+검증: typecheck·테스트 176개·빌드 통과. 헤드리스 `.tmp/finale-once-20261122/finale.mjs` 로컬 시나리오 1·2·3(영상 0·1·합계 1회)·운영 1·2 통과.
+배포: 2026-11-22 Workers `materials-discovery-lab` 버전 3c12eb2e-974c-4004-9168-bf45640303d3(커밋 9e6ed8f, `KEEP_DOCS=1 deploy.sh 09 "9 things" worker-cfg materials-discovery-lab`, `cfg/09.json`). `cmp.sh` WorldCanvas 청크·index MATCH, sw.js 일치, outro.mp4 Range 206.
+
 # 인계 · 2026-11-20 (제작·저작권 표기)
 지침 `_shared/CREDIT-LINE-20261120.md` 09번 줄. 시작 화면(`route==='home'`, `src/App.tsx` `.home-hero` 안 `.home-credit`) 우측 하단에 「기획·제작: 옐샘 & ⓒ 아이스크림미디어」 한 줄. 스타일은 `src/experience.css` `.home-hero .home-credit`: 오른쪽 22px·아래 12px(+safe-area), `clamp(10px,.9vw,13px)`·700, 반투명 바탕 `#0b241ab3`, `pointer-events:none`. 시작 화면에서만 그려진다. 설정 창의 제작 줄·저작권 줄은 `bb2bf68`에서 같은 문구로 바뀌어 있다.
 검증: 테스트 163개·typecheck·빌드 통과. 헤드리스 `.tmp/credit-line-20261120/check.mjs` 로컬 38/38·운영 39/39(1280×800 11.52px, 1024×768·844×390 10px, 1920×1080 13px, 뷰포트 안·조작 요소 겹침 0, 글자 자리 대비 최소 6.08, 「이어서 실험하기」 상태 같은 자리, S01·지도에서는 없음, 콘솔 오류 0).
