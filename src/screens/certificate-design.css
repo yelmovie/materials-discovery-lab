@@ -42,3 +42,6 @@ html[data-reduced=true] .app .certificate-design .cert-paper,html[data-reduced=t
  .cert-stamp{animation:none!important}
  .app .certificate-design .certificate-actions,.app .certificate-design .cert-note,.app .certificate-design>.small-note,.cert-error{display:none!important}
 }
+
+/* 제목을 굵게 읽고, 진행·성취 숫자는 인증서 종이에 표시하지 않는다. */
+.app .certificate-design .cert-title { font-weight:900; -webkit-text-stroke:.045cqw currentColor; }
