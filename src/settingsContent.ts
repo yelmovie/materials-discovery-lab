@@ -12,6 +12,6 @@ export const settingsContent={
  '[4과05-03] 다양한 물질의 성질을 이용하여 쓰임새 있는 물체를 설계할 수 있다.'
  ],
  source:'경기도교육청, 초등 깊이있는 수업 프레임워크 부록(2024), 77쪽 · 2022 개정 과학과 교육과정',
- copyright:['앱 글꼴은 나눔스퀘어 네오(NAVER, SIL Open Font License 1.1)를 사용해요.','배경·캐릭터는 사용자 제공 이미지와 이번 프로젝트에서 생성한 AI 이미지를 활용했어요.','효과음은 Kenney Interface Sounds(CC0)를 사용하고, 배경 음악은 직접 합성했어요.','이미지는 학습을 돕기 위한 재현 그림이며 실제 실험 결과의 증거가 아니에요.','상세한 사용 내역과 권리 확인 상태는 프로젝트의 assets/CREDITS.md에 기록했어요.'],
+ copyright:['앱 글꼴은 나눔스퀘어 네오(NAVER, SIL Open Font License 1.1), 영상 자막 글꼴은 주아체(우아한형제들, SIL Open Font License 1.1)를 사용해요.','배경·캐릭터는 사용자 제공 그림이고, 실험 도구·재료·카드 그림은 AI 이미지 생성 도구로 만들었어요. 우산·보관함 3D 관찰 모형은 Meshy로 만들었어요.','배경 음악은 Suno로 만들었고, 효과음은 Kenney Interface Sounds(CC0)와 Freesound의 CC0 효과음을 사용해요.','캐릭터 목소리는 ElevenLabs 음성 합성으로 만들었어요.','개념 영상은 HyperFrames로 직접 만들었고, 이야기 영상 장면은 AI 동영상 생성 도구(Veo)로 움직였어요.','이미지는 학습을 돕기 위한 재현 그림이며 실제 실험 결과의 증거가 아니에요.','상세한 사용 내역은 프로젝트의 assets/CREDITS.md에 기록했어요.'],
 };
 
