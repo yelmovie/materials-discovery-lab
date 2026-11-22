@@ -8,7 +8,7 @@ import {screens as activitySpecs} from '../../docs/screen-spec.json';
 const SFX_FULL=.4;
 export function SettingsDialog({onClose,onStory,onEvidence,onReset,onMap,onFinal,onFilm}:{onClose:()=>void;onStory:()=>void;onEvidence:()=>void;onReset:()=>void;onMap:()=>void;onFinal:(phase:Phase)=>void;onFilm:(kind:FilmKind)=>void}){
  const {save,demo,dispatch}=useGame();const s=save.settings,sfxPercent=Math.round(s.sfx/SFX_FULL*20)*5;
- return <Modal title="설정" className="settings-dialog" onClose={onClose}>
+ return <Modal title="설정" className="settings-dialog" onClose={onClose} closeButton={false}>
  <div data-science-settings=""><h2 className="science-settings-title">설정</h2>
  <div className="settings-body science-settings-body"><div className="science-settings-audio">
  <label className="setting-toggle"><span>배경 음악</span><input type="checkbox" role="switch" checked={s.bgm>0&&!s.muted} onChange={e=>dispatch({type:'settings',value:e.target.checked?{bgm:.2,muted:false}:{bgm:0}})}/></label>
