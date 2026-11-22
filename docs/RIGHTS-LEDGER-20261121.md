@@ -120,3 +120,15 @@
 9. **Suno Premier 증빙**: 2026-11-17 생성 당시 구독 화면 또는 영수증(지금은 사용자 확인 문구만 있음).
 10. **`map-finale.mp4`의 Apple SD Gothic Neo**: Apple 시스템 글꼴을 영상에 구워 배포해도 되는지 판단 자료. 어렵다면 OFL 글꼴(NanumSquare Neo·Jua)로 다시 만드는 쪽을 결정해 달라.
 11. 글꼴 라이선스는 둘 다 원문이 있어 추가 자료가 필요 없다.
+
+## 2026-11-22 추가: 3D 모형 (위 표를 고치지 않고 덧붙임)
+
+운영 빌드에 실리는 3D 모형 두 개의 줄이 장부에 없어 추가한다(`docs/MESHY-3D-OBJECT-PLAN-20261121.md`에서 「장부 줄 추가는 미룸」으로 남겨 둔 것).
+
+| 파일(묶음) | 개수 | 만든 곳 | 만든 날·기록 위치 | 이용 조건 | 근거 파일 경로 | 상태 |
+|---|---|---|---|---|---|---|
+| `models/umbrella.glb`, `models/box.glb` (S01·S02 우산, S09·S10 보관함 3D 관찰 모형) | 2 | Meshy 웹 작업 공간 Image to 3D(Meshy 7.1, 표준, 텍스처 2K). 입력 그림은 Codex(GPT 이미지) 생성본 `references/generated/umbrella.png`·`invention.png`. 원본 GLB를 Blender로 부품별 메시로 나누고 gltfpack으로 줄임 | 2026-11-21. 작업 ID·모델명·크레딧·SHA-256은 `references/models/meshy-20261121/README.md`(원본 GLB는 Git 제외, 외장 SSD 보관). 부품 나누기·줄이기 `scripts/meshy/` | 기록상 Meshy 사용자 계정 Premium 연간 구독, 라이선스 「비공식적인」(비공개, CC BY 아님). 입력 그림은 Codex 유료 요금제 생성(사용자 확인). **Meshy 약관 원문과 요금제 화면은 확인하지 않음** | `references/models/meshy-20261121/README.md`, `docs/MESHY-3D-OBJECT-PLAN-20261121.md`, `scripts/meshy/` | 근거 약함(Meshy 약관 원문 미확인) |
+
+- 요약 보정: 전체 36줄, 확인됨 31줄, 근거 약함 5줄, 출처 미확인 0줄.
+- 사용자 자료 대기: Meshy 요금제 화면(Premium 연간)과 상업 이용 약관 확인(위 「사용자가 줘야 하는 자료」 12번으로 추가).
+- 같은 날 확인: 이야기 영상 줄은 이미 임시 장면 0개로 맞춰져 있어 고치지 않았다(`docs/story-films-20261121/README.md`).
