@@ -1,4 +1,5 @@
-/* 2026-11-22 16곳 맞추기(SALE-UNIFY): 인증서 아래쪽에 완료 날짜와 제작 표기 한 줄. 인쇄에도 나온다. */
-.app .certificate .certificate-date { margin: 6px 0 0; font-size: clamp(14px, 1.2vw, 17px); color: #4d6646; text-align: center; }
-.app .certificate .certificate-credit { margin: 4px 0 0; font-size: 12px; color: #6b7a63; text-align: center; letter-spacing: .02em; }
-@media print { .certificate .certificate-date { font-size: 14px; color: #333; } .certificate .certificate-credit { font-size: 10px; color: #555; } }
+/* 2026-11-22 16곳 맞추기(SALE-UNIFY): 완료 날짜는 서명 줄 가운데, 제작 표기는 인증서 테두리 안 아래 여백에 겹쳐 놓아 인증서 높이를 늘리지 않는다. 인쇄에도 나온다. */
+.app .certificate .certificate-border { position: relative; }
+.app .certificate .certificate-sign .certificate-date { color: #4d6646; }
+.app .certificate .certificate-credit { position: absolute; left: 0; right: 0; bottom: 3px; margin: 0; font-size: 11px; line-height: 1.2; color: #6b7a63; text-align: center; letter-spacing: .02em; pointer-events: none; }
+@media print { .certificate .certificate-border { position: relative; } .certificate .certificate-credit { position: absolute; left: 0; right: 0; bottom: 4px; font-size: 10px; color: #555; text-align: center; } }
