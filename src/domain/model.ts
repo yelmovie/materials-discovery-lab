@@ -56,13 +56,13 @@ export interface Save {
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
 export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},makerDrafts:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false}};}
 export function observationId(experiment:Experiment,sampleId:string){return `${experiment}:${sampleId}:standard`;}
-// 2026-11-21 과학 표현 다듬기: 「쉽게·눈에 띄게·잘·거의」를 빼고 관찰한 그대로. 예전 문장은 저장 기록을 읽을 때 새 문장으로 바꾼다(LEGACY_RESULTS).
-export const LEGACY_RESULTS:Record<string,string>={'눈에 띄게 늘어나지 않았어':'당겨도 늘어나지 않았어','빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어':'빛이 통과하지 않아 뒤쪽 표시가 안 보였어','물이 쉽게 스며들지 않았어':'물이 스며들지 않고 방울로 남았어','같은 힘으로 눌러도 모양이 거의 그대로였어':'같은 힘으로 눌러도 모양이 그대로였어'};
+// Read both earlier wording versions without losing observations or design links.
+export const LEGACY_RESULTS:Record<string,string>={'눈에 띄게 늘어나지 않았어':'이 힘에서는 눈에 띄게 늘어나지 않았어','당겨도 늘어나지 않았어':'이 힘에서는 눈에 띄게 늘어나지 않았어','빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어':'이 시료 뒤의 표시가 보이지 않았어','빛이 통과하지 않아 뒤쪽 표시가 안 보였어':'이 시료 뒤의 표시가 보이지 않았어','물이 쉽게 스며들지 않았어':'물이 스며들지 않고 방울로 남았어','같은 힘으로 눌러도 모양이 거의 그대로였어':'같은 힘으로 눌러도 모양이 그대로였어'};
 export function resultFor(experiment:Experiment,sampleId:string):string {
  const m=materials.find(x=>x.id===sampleId)!;
  switch(experiment){
- case 'elastic_return':return m.cushioning?'늘어났다가 원래 모습으로 돌아왔어':'당겨도 늘어나지 않았어';
- case 'light_transmission':return m.transparent?'빛이 통과해 뒤쪽 표시가 보였어':'빛이 통과하지 않아 뒤쪽 표시가 안 보였어';
+ case 'elastic_return':return m.cushioning?'늘어났다가 원래 모습으로 돌아왔어':'이 힘에서는 눈에 띄게 늘어나지 않았어';
+ case 'light_transmission':return m.transparent?'빛이 통과해 뒤쪽 표시가 보였어':'이 시료 뒤의 표시가 보이지 않았어';
  case 'water_absorption':return m.waterResistant?'물이 스며들지 않고 방울로 남았어':'물이 스며들어 젖은 자리가 생겼어';
  case 'compression_recovery':return m.cushioning?'눌렸다가 놓으니 원래 모습으로 돌아왔어':'같은 힘으로 눌러도 모양이 그대로였어';
  }
@@ -147,6 +147,19 @@ function reviseDesign(s:Save,forceNewAttempt=false){
  }else s.design.revision++;
  s.reportedRevision=null;s.coreComplete=false;
 }
+/** Later observations fill missing evidence for placed parts, keeping every material.
+ * Invalidate earlier tests once, only when a new link was actually added. */
+function refreshPlacedEvidence(s:Save){
+ let changed=false;
+ for(const part of s.design.needs){
+  const choice=s.design.parts[part];
+  for(const experiment of requiredLinks[part]){
+   const observation=s.observations.find(o=>o.sampleId===choice.sampleId&&o.experiment===experiment&&o.origin===s.origin);
+   if(observation&&!choice.observationIds.includes(observation.id)){choice.observationIds.push(observation.id);changed=true;}
+  }
+ }
+ if(changed)reviseDesign(s);
+}
 export function reduceSave(original:Save,a:Action,admin=false):Save {
  const s=structuredClone(original);const c=s.checkpoints;
  switch(a.type){
@@ -159,12 +172,13 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  }break;}
  case 'navigate':if(admin||canAccess(s,a.route,a.phase)){
   s.lastRoute=a.route;s.lastPhase=a.phase??'activity';
+  if(a.route==='S09')refreshPlacedEvidence(s);
   if(s.lastPhase==='activity'&&a.route!=='home'&&a.route!=='world')s.resumeActivity=a.route;
   if(a.route==='world'&&s.resumeActivity&&s.completedScreens.includes(s.resumeActivity))s.resumeActivity=null;
  }break;
  case 'inspect':if(s.lastRoute==='S01')c.inspected=add(c.inspected,a.part);break;
  case 'match':if(s.lastRoute==='S02'&&c.inspected.includes(a.evidence)&&a.evidence===a.part&&a.material===({canopy:'천',frame:'금속',handle:'나무'}[a.part]))c.matched=add(c.matched,a.part);break;
- case 'observe':if(s.lastRoute==='S03'&&materials.some(m=>m.id===a.sampleId)&&a.answer===resultFor(a.experiment,a.sampleId)){const o=makeObservation(a.experiment,a.sampleId,s.origin);s.observations=s.observations.filter(x=>x.id!==o.id).concat(o);}break;
+ case 'observe':if(s.lastRoute==='S03'&&materials.some(m=>m.id===a.sampleId)&&a.answer===resultFor(a.experiment,a.sampleId)){const o=makeObservation(a.experiment,a.sampleId,s.origin);s.observations=s.observations.filter(x=>x.id!==o.id).concat(o);refreshPlacedEvidence(s);}break;
  case 'assignment':{const m=materials.find(m=>m.id===a.sampleId);const e=a.part==='window'?'light_transmission':'compression_recovery';if(s.lastRoute==='S04'&&m&&(a.part==='window'?m.transparent&&a.property==='transparent':m.cushioning&&a.property==='cushioning')&&s.observations.some(o=>o.id===a.observationId&&o.sampleId===a.sampleId&&o.experiment===e&&o.origin===s.origin))c.assignments=add(c.assignments,a.part);break;}
  case 'prediction':
   if(!['S05','S06','solidConclusion','liquidConclusion','sandConclusion'].includes(a.key)||!(a.key==='sandConclusion'?['solid','liquid']:['same','change']).includes(a.value))break;

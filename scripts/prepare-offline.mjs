@@ -19,7 +19,7 @@ async function walk(dir,prefix=''){
  }
  return result;
 }
-const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3|m4a)$/.test(p)&&!/^assets\/fonts\/jua-/.test(p)).sort();
+const files=(await walk(dist)).filter(p=>p==='index.html'||p==='manifest.webmanifest'||p.startsWith('assets/')&&/\.(js|css|webp|png|json|md|woff2|txt|mp4|webm|mp3|m4a|glb)$/.test(p)&&!/^assets\/fonts\/jua-/.test(p)).sort();
 // Jua is kept in public/ for burned-in concept captions only; the app never loads it, so do not precache it.
 if(!files.includes('index.html')||!files.includes('manifest.webmanifest')||!files.some(p=>p.endsWith('.js')))throw new Error('Build the app before preparing offline assets.');
 // A worker logic change also needs a fresh cache, even if the app files did not change.
@@ -49,12 +49,15 @@ self.addEventListener('fetch',event=>{
   event.respondWith((async()=>{const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),4000);try{const response=await fetch(request,{signal:controller.signal});if(response.ok)return response;throw new Error('Navigation unavailable');}catch{const cached=await caches.open(CACHE_NAME);return await cached.match(indexURL,{ignoreVary:true})||new Response('실험을 처음 준비하려면 인터넷에 연결해 주세요.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8'}});}finally{clearTimeout(timeout);}})());return;
  }
  // Only the reviewed static build is cached. No API, cross-origin or runtime data.
- if(!precached.has(url.href))return;
+ // Model URLs carry only a build version (v). Resolve that reviewed file to its precached bytes.
+ const cacheURL=new URL(url.href);
+ if(cacheURL.pathname.endsWith('.glb')&&[...cacheURL.searchParams.keys()].every(key=>key==='v'))cacheURL.search='';
+ if(!precached.has(cacheURL.href))return;
  // A module's Origin header can differ from addAll's request (Vary: Origin on
  // preview/static hosts). These exact, same-origin, content-versioned files are
  // reviewed static resources, so header variation must not turn a hit into a
  // network request. Unknown URLs and APIs never reach this branch.
- event.respondWith((async()=>{const cache=await caches.open(CACHE_NAME);const response=await cache.match(url.href,{ignoreVary:true});if(!response)return fetch(request);
+ event.respondWith((async()=>{const cache=await caches.open(CACHE_NAME);const response=await cache.match(cacheURL.href,{ignoreVary:true});if(!response)return fetch(request);
   const range=request.headers.get('Range');if(!range)return response;
   const match=/^bytes=(\\d*)-(\\d*)$/.exec(range);if(!match||(!match[1]&&!match[2]))return new Response(null,{status:416});
   const bytes=await response.arrayBuffer(),length=bytes.byteLength;
