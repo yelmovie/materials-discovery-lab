@@ -20,6 +20,14 @@ describe('an achievement card waits for the villain\'s parting line',()=>{
  beforeEach(()=>{vi.useFakeTimers();vi.setSystemTime(100000);reveals.length=0;page.map=true;page.dialog=false;});
  afterEach(()=>{reveals.forEach(r=>r.close());vi.useRealTimers();});
 
+
+ it.each([0,1,2])('does not reveal a card or hold the map after only %i hits',async hits=>{
+  const {earnRewardCard,rewardCardDue}=await import('../src/reward-card-set');
+  earnRewardCard('materials',{materials:hits},false);
+  await vi.advanceTimersByTimeAsync(10000);
+  expect(reveals).toHaveLength(0);expect(rewardCardDue()).toBe(false);
+ });
+
  it('no voice (sound off): the card follows the exit animation as before',async()=>{
   const {earnRewardCard,rewardCardDue}=await import('../src/reward-card-set');
   const t0=Date.now();
@@ -75,5 +83,40 @@ describe('an achievement card waits for the villain\'s parting line',()=>{
   page.map=false;vi.advanceTimersByTime(200);
   expect(reveals).toHaveLength(0);expect(rewardCardDue()).toBe(false);
   audio.setMediaQuiet('line',false);
+ });
+});
+
+describe('workshop recovery and villain cards use separate progress',()=>{
+ it('completing a workshop lights it without crediting a villain defeat',async()=>{
+  const {freshSave,reduceSave}=await import('../src/domain/model');
+  const {challengesFor}=await import('../src/domain/challenges');
+  const {ownedRewardCards}=await import('../src/reward-card-set');
+  let s=freshSave();s.lastRoute='S01';s.checkpoints.inspected=['canopy','frame','handle'];
+  for(const c of challengesFor('S01'))s=reduceSave(s,{type:'challenge',id:c.id,answer:[...c.answer]});
+  s=reduceSave(s,{type:'complete',screen:'S01'});
+  s=reduceSave(s,{type:'navigate',route:'S02'});s.checkpoints.matched=['canopy','frame','handle'];
+  for(const c of challengesFor('S02'))s=reduceSave(s,{type:'challenge',id:c.id,answer:[...c.answer]});
+  s=reduceSave(s,{type:'complete',screen:'S02'});
+  expect(s.evidence.map(e=>e.id)).toEqual(['E01']);
+  expect(s.mapHits).toEqual({});expect(ownedRewardCards(s.mapHits)).toEqual([false,false,false,false,false,false]);
+  s=reduceSave(s,{type:'navigate',route:'world'});
+  for(const hits of [1,2]){
+   s=reduceSave(s,{type:'mapHit',id:'materials',hits});
+   expect(ownedRewardCards(s.mapHits).some(Boolean)).toBe(false);
+  }
+  s=reduceSave(s,{type:'mapHit',id:'materials',hits:3});
+  expect(ownedRewardCards(s.mapHits)).toEqual([true,false,false,false,false,false]);
+  const {decodeSave}=await import('../src/services/storage');
+  const restored=decodeSave(JSON.stringify(s));
+  expect(restored.mapHits).toEqual({materials:3});
+  expect(ownedRewardCards(restored.mapHits)).toEqual(ownedRewardCards(s.mapHits));
+  expect(reduceSave(restored,{type:'mapHit',id:'materials',hits:3})).toEqual(restored);
+ });
+ it('finishing all workshops and the core does not manufacture the six defeat cards',async()=>{
+  const {freshSave,demoSave,reduceSave}=await import('../src/domain/model');
+  const {ownedRewardCards}=await import('../src/reward-card-set');
+  const s=reduceSave(demoSave(freshSave().settings),{type:'core'});
+  expect(s.evidence).toHaveLength(5);expect(s.coreComplete).toBe(true);
+  expect(ownedRewardCards(s.mapHits)).toEqual([false,false,false,false,false,false]);
  });
 });

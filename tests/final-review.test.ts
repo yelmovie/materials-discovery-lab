@@ -56,6 +56,7 @@ describe('wording compatibility',()=>{
  it.each([
   ['elastic_return','metal_plate','당겨도 늘어나지 않았어'],
   ['elastic_return','metal_plate','눈에 띄게 늘어나지 않았어'],
+  ['elastic_return','metal_plate','이 힘에서는 눈에 띄게 늘어나지 않았어'],
   ['light_transmission','wood_raw','빛이 통과하지 않아 뒤쪽 표시가 안 보였어'],
   ['light_transmission','wood_raw','빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어'],
  ] as const)('keeps %s / %s from an earlier wording version', (experiment,sampleId,old)=>{
