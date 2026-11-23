@@ -50,11 +50,11 @@ export interface Save {
  makerDrafts:Record<string,Record<string,string>>;
  mapHits:Record<string,number>;restoration:Record<string,number>;completedScreens:Screen[];observations:Observation[];evidence:Evidence[];
  challengeResults:{id:string;answer:string[]}[];
- checkpoints:{assignmentMaterials?:Partial<Record<'window'|'bumper',string>>;inspected:UmbrellaPart[];matched:UmbrellaPart[];assignments:string[];solid:number[];liquidStep:number;sand:boolean;closed:AirTrial|null;open:AirTrial|null;inflated:boolean;airCompared:boolean};
+ checkpoints:{assignmentMaterials?:Partial<Record<'window'|'bumper',string>>;inspected:UmbrellaPart[];matched:UmbrellaPart[];assignments:string[];solid:number[];liquidStep:number;sandStep?:number;sand:boolean;closed:AirTrial|null;open:AirTrial|null;inflated:boolean;airCompared:boolean};
  initialPredictions:Partial<Record<'S05'|'S06',string>>;predictions:Record<string,string>;design:Design;testResults:TestResult[];reportedRevision:number|null;coreComplete:boolean;completionArchive:Archive[];name:string;settings:Settings;
 }
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
-export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},makerDrafts:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false}};}
+export function freshSave(origin:Origin='student'):Save {return {schemaVersion:1,contentVersion:'mvp-1',origin,lastRoute:'home',lastPhase:'activity',resumeActivity:null,deliveries:{},makerDrafts:{},mapHits:{},restoration:{},completedScreens:[],observations:[],evidence:[],challengeResults:[],checkpoints:{inspected:[],matched:[],assignments:[],solid:[],liquidStep:0,sandStep:0,sand:false,closed:null,open:null,inflated:false,airCompared:false},initialPredictions:{},predictions:{},design:newDesign(),testResults:[],reportedRevision:null,coreComplete:false,completionArchive:[],name:'',settings:{muted:false,bgm:.18,sfx:.4,voice:true,reducedMotion:false}};}
 export function observationId(experiment:Experiment,sampleId:string){return `${experiment}:${sampleId}:standard`;}
 // Read both earlier wording versions without losing observations or design links.
 export const LEGACY_RESULTS:Record<string,string>={'눈에 띄게 늘어나지 않았어':'당겨도 늘어나지 않았어','이 힘에서는 눈에 띄게 늘어나지 않았어':'당겨도 늘어나지 않았어','빛이 잘 통과하지 않아 뒤쪽 표시가 안 보였어':'이 시료 뒤의 표시가 보이지 않았어','빛이 통과하지 않아 뒤쪽 표시가 안 보였어':'이 시료 뒤의 표시가 보이지 않았어','물이 쉽게 스며들지 않았어':'물이 스며들지 않고 방울로 남았어','같은 힘으로 눌러도 모양이 거의 그대로였어':'같은 힘으로 눌러도 모양이 그대로였어'};
@@ -110,7 +110,7 @@ export function canCompleteInvestigation(s:Save,id:Screen){const c=s.checkpoints
  case 'S03':return experiments.every(e=>requiredComparisons[e].every(m=>s.observations.some(o=>o.id===observationId(e,m))));
  case 'S04':return c.assignments.length===2;
  case 'S05':return !!s.predictions.S05&&c.solid.length===3&&s.predictions.solidConclusion==='same';
- case 'S06':return !!s.predictions.S06&&c.liquidStep===3&&c.sand&&s.predictions.liquidConclusion==='same'&&s.predictions.sandConclusion==='solid';
+ case 'S06':return !!s.predictions.S06&&c.liquidStep===3&&c.sand&&(c.sandStep===3||c.sandStep===undefined&&s.completedScreens.includes('S06'))&&s.predictions.liquidConclusion==='same'&&s.predictions.sandConclusion==='solid';
  case 'S07':return !!c.closed;
  case 'S08':return comparableAir(c.closed,c.open)&&c.airCompared&&c.inflated;
  case 'S09':return designReady(s);
@@ -129,7 +129,7 @@ export type Action =
  |{type:'prediction';key:string;value:string}
  |{type:'solid';container:number}
  |{type:'liquid';step:number}
- |{type:'sand'}|{type:'repeatLiquid'}|{type:'air';open:boolean}|{type:'airCompare'}|{type:'inflate'}
+ |{type:'sandTransfer';step:number}|{type:'repeatSand'}|{type:'sand'}|{type:'repeatLiquid'}|{type:'air';open:boolean}|{type:'airCompare'}|{type:'inflate'}
  |{type:'need';part:Part;enabled:boolean}
  |{type:'material';part:Part;sampleId:string}
  |{type:'link';part:Part;id:string;enabled:boolean}
@@ -186,8 +186,10 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
   s.predictions[a.key]=a.value;break;
  case 'solid':if(s.lastRoute==='S05'&&s.predictions.S05&&[0,1,2].includes(a.container))c.solid=add(c.solid,a.container);break;
  case 'liquid':if(s.lastRoute==='S06'&&s.predictions.S06&&a.step===c.liquidStep+1&&a.step<=3)c.liquidStep=a.step;break;
- case 'sand':if(s.lastRoute==='S06')c.sand=true;break;
- case 'repeatLiquid':if(s.lastRoute==='S06'){c.liquidStep=0;c.sand=false;delete s.predictions.liquidConclusion;delete s.predictions.sandConclusion;}break;
+ case 'sandTransfer':if(s.lastRoute==='S06'&&c.liquidStep===3&&s.predictions.liquidConclusion==='same'&&Number.isInteger(a.step)&&a.step===(c.sandStep??0)+1&&a.step<=3){c.sandStep=a.step;c.sand=false;delete s.predictions.sandConclusion;}break;
+ case 'repeatSand':if(s.lastRoute==='S06'){c.sandStep=0;c.sand=false;delete s.predictions.sandConclusion;}break;
+ case 'sand':if(s.lastRoute==='S06'&&(c.sandStep===3||c.sandStep===undefined&&s.completedScreens.includes('S06')))c.sand=true;break;
+ case 'repeatLiquid':if(s.lastRoute==='S06'){c.liquidStep=0;c.sandStep=0;c.sand=false;delete s.predictions.liquidConclusion;delete s.predictions.sandConclusion;}break;
  case 'air':if((!a.open&&s.lastRoute==='S07')||(a.open&&s.lastRoute==='S08'&&c.closed)){if(a.open)c.open=airTrial(true);else c.closed=airTrial(false);}break;
  case 'airCompare':if(comparableAir(c.closed,c.open))c.airCompared=true;break;
  case 'inflate':if(c.airCompared)c.inflated=true;break;
@@ -210,7 +212,7 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
 export function demoSave(settings:Settings):Save {
  const s=freshSave('demo');s.settings=settings;s.lastRoute='world';s.completedScreens=screens.map(x=>x.id as Screen);
  s.observations=experiments.flatMap(e=>materials.map(m=>makeObservation(e,m.id,'demo')));
- s.checkpoints={inspected:['canopy','frame','handle'],matched:['canopy','frame','handle'],assignments:['window','bumper'],solid:[0,1,2],liquidStep:3,sand:true,closed:airTrial(false),open:airTrial(true),inflated:true,airCompared:true};
+ s.checkpoints={inspected:['canopy','frame','handle'],matched:['canopy','frame','handle'],assignments:['window','bumper'],solid:[0,1,2],liquidStep:3,sandStep:3,sand:true,closed:airTrial(false),open:airTrial(true),inflated:true,airCompared:true};
  s.initialPredictions={S05:'same',S06:'same'};
  s.predictions={S05:'same',S06:'same',solidConclusion:'same',liquidConclusion:'same',sandConclusion:'solid'};
  s.design.needs=[...parts];for(const p of parts)s.design.parts[p].observationIds=requiredLinks[p].map(e=>observationId(e,s.design.parts[p].sampleId));

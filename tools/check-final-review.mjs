@@ -147,6 +147,8 @@ async function fullFlow(view){
  await tap(p.locator('.stage-conclusion-options .choice').filter({hasText:'물의 양도 달라져'}));
  check(!m.canCompleteInvestigation(await saved(p),'S06'),'wrong liquid conclusion accepted');
  await tap(p.locator('.stage-conclusion-options .choice').filter({hasText:'물의 양은 같아'}));
+ await tap(role(p,/모래 옮겨 붓기/));
+ for(let i=0;i<3;i++){await tap(role(p,'모래 붓기'));await p.waitForFunction(a=>JSON.parse(localStorage.getItem(a.key)).checkpoints.sandStep>a.i,{key:KEY,i},{timeout:15000});}
  await tap(role(p,/모래알 확대 관찰하기/));await tap(role(p,/모래는 흘러도/));
  await snapshot('S06');await finish(p,'S06',dir,run);await next(p,'S07');
  where=view+' S07';console.log(where);

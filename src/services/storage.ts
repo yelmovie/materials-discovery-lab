@@ -38,6 +38,7 @@ export function decodeSave(raw:string):Save {
  if(c.assignmentMaterials!==undefined)c.assignmentMaterials=Object.fromEntries(Object.entries(object(c.assignmentMaterials)?c.assignmentMaterials:{}).filter(([part,id])=>typeof id==='string'&&c.assignments?.includes(part)&&materials.some(m=>m.id===id&&(part==='window'?m.transparent:part==='bumper'&&m.cushioning))&&s.observations.some(o=>o.sampleId===id&&o.experiment===(part==='window'?'light_transmission':'compression_recovery'))));
  for(const k of ['inspected','matched'] as const)assert(array(c[k])&&unique(c[k])&&c[k].every(p=>['canopy','frame','handle'].includes(p)));
  assert(array(c.assignments)&&unique(c.assignments)&&c.assignments.every(x=>['window','bumper'].includes(x))&&array(c.solid)&&unique(c.solid)&&c.solid.every(x=>[0,1,2].includes(x))&&[0,1,2,3].includes(c.liquidStep));
+ assert(c.sandStep===undefined||[0,1,2,3].includes(c.sandStep));
  for(const k of ['sand','inflated','airCompared'] as const)assert(typeof c[k]==='boolean');
  for(const k of ['closed','open'] as const){const t=c[k];assert(t===null||(object(t)&&t.cupId==='cup-1'&&t.depth===80&&t.orientation==='inverted'&&t.ventOpen===(k==='open')&&t.waterInside===(k==='open'?90:12)&&t.tissueWet===(k==='open')));}
  assert(object(s.predictions)&&Object.values(s.predictions).every(v=>typeof v==='string'&&v.length<500));
