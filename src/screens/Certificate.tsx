@@ -1,10 +1,13 @@
-import {useRef,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
+import {mountCertificateWax} from '../certificate-wax.js';
+import {playSound} from '../services/audio';
 import {useGame} from '../state/GameContext';
 import {saveCertificatePng} from '../services/certificate-png';
 import './certificate-design.css';
 
 export default function Certificate(){
  const {save,demo,dispatch}=useGame();const paper=useRef<HTMLElement>(null);const [busy,setBusy]=useState(false),[error,setError]=useState('');
+ useEffect(()=>{if(paper.current)return mountCertificateWax(paper.current,{label:'물질 공방\n탐구 인증',reduced:save.settings.reducedMotion,onImpact:()=>playSound('map-hit-2')});},[save.settings.reducedMotion]);
  const archive=save.completionArchive.at(-1),date=new Date(archive?.date||Date.now());
  const dateText=`${date.getFullYear()}. ${date.getMonth()+1}. ${date.getDate()}.`;
  async function download(){if(!paper.current||busy)return;setBusy(true);setError('');try{await saveCertificatePng(paper.current,'물질-공방-연구원-인증서.png');}catch{setError('PNG를 저장하지 못했어. 다시 눌러 줘.');}finally{setBusy(false);}}
