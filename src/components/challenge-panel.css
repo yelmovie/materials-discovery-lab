@@ -11,6 +11,9 @@
 }
 .app .live-activity .transfer-workspace.has-hero:not(.transfer-complete) { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: clamp(14px, 3vw, 48px); }
 .app .live-activity .transfer-workspace.has-hero > .challenge-hero { flex: none; width: clamp(170px, 26vw, 420px); max-width: none; max-height: 82%; margin: 0; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(40, 58, 40, .28)); }
+/* Align the four existing parts as a whole pencil in the first S01 request. */
+.challenge-pencil-parts { display: flex; justify-content: space-between; align-items: center; transform: rotate(-14deg) translateX(-9.6%) scale(1.18); }
+.challenge-pencil-parts img { flex: none; height: auto; }
 .app .live-activity .transfer-workspace.has-hero > .challenge-body { flex: 0 1 auto; width: auto; max-width: min(780px, 100%); margin: 0; }
 :root[data-low-power=true] .app .live-activity .transfer-workspace .challenge-body { background: #fffdf3; backdrop-filter: none; -webkit-backdrop-filter: none; }
 @media (prefers-reduced-transparency: reduce) { .app .live-activity .transfer-workspace .challenge-body { background: #fffdf3; backdrop-filter: none; -webkit-backdrop-filter: none; } }
