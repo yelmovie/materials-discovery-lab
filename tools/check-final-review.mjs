@@ -244,7 +244,8 @@ async function regressions(data){
  ({ctx,p}=await seeded(data.final,'S03',{serviceWorkers:'allow'}));
  await p.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:60000});
  const cacheInfo=await p.evaluate(async()=>{const names=(await caches.keys()).filter(n=>n.startsWith('material-workshop-offline-'));const c=await caches.open(names[0]);return {name:names[0],files:(await c.keys()).length,status:document.querySelector('.offline-status')?.textContent};});
- check(cacheInfo.files===443,'offline cache incomplete: '+cacheInfo.files);check(cacheInfo.status?.includes('준비'),'offline readiness not announced');
+ const offlineFiles=JSON.parse(readFileSync('dist/sw.js','utf8').match(/^const FILES=(\[.*\]);$/m)[1]);
+ check(cacheInfo.files===offlineFiles.length,'offline cache incomplete: '+cacheInfo.files+' / '+offlineFiles.length);check(cacheInfo.status?.includes('준비'),'offline readiness not announced');
  await screenshot(p,OUT,'offline-ready');await ctx.setOffline(true);
  const models=await p.evaluate(async()=>Promise.all(['umbrella','box'].map(async model=>{const r=await fetch('/assets/models/'+model+'.glb?v=qa');const bytes=new Uint8Array(await r.arrayBuffer());return {model,status:r.status,bytes:bytes.length,magic:String.fromCharCode(...bytes.slice(0,4))};})));
  check(models.every(model=>model.status===200&&model.bytes>12&&model.magic==='glTF'),'offline versioned GLB failed');

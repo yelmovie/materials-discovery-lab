@@ -50,7 +50,7 @@ export interface Save {
  makerDrafts:Record<string,Record<string,string>>;
  mapHits:Record<string,number>;restoration:Record<string,number>;completedScreens:Screen[];observations:Observation[];evidence:Evidence[];
  challengeResults:{id:string;answer:string[]}[];
- checkpoints:{inspected:UmbrellaPart[];matched:UmbrellaPart[];assignments:string[];solid:number[];liquidStep:number;sand:boolean;closed:AirTrial|null;open:AirTrial|null;inflated:boolean;airCompared:boolean};
+ checkpoints:{assignmentMaterials?:Partial<Record<'window'|'bumper',string>>;inspected:UmbrellaPart[];matched:UmbrellaPart[];assignments:string[];solid:number[];liquidStep:number;sand:boolean;closed:AirTrial|null;open:AirTrial|null;inflated:boolean;airCompared:boolean};
  initialPredictions:Partial<Record<'S05'|'S06',string>>;predictions:Record<string,string>;design:Design;testResults:TestResult[];reportedRevision:number|null;coreComplete:boolean;completionArchive:Archive[];name:string;settings:Settings;
 }
 export function newDesign():Design {return {attemptId:crypto.randomUUID(),revision:1,needs:[],parts:{body:{sampleId:'metal_plate',observationIds:[]},window:{sampleId:'plastic_clear',observationIds:[]},bumper:{sampleId:'rubber_soft',observationIds:[]}}};}
@@ -179,7 +179,7 @@ export function reduceSave(original:Save,a:Action,admin=false):Save {
  case 'inspect':if(s.lastRoute==='S01')c.inspected=add(c.inspected,a.part);break;
  case 'match':if(s.lastRoute==='S02'&&c.inspected.includes(a.evidence)&&a.evidence===a.part&&a.material===({canopy:'천',frame:'금속',handle:'나무'}[a.part]))c.matched=add(c.matched,a.part);break;
  case 'observe':if(s.lastRoute==='S03'&&materials.some(m=>m.id===a.sampleId)&&a.answer===resultFor(a.experiment,a.sampleId)){const o=makeObservation(a.experiment,a.sampleId,s.origin);s.observations=s.observations.filter(x=>x.id!==o.id).concat(o);refreshPlacedEvidence(s);}break;
- case 'assignment':{const m=materials.find(m=>m.id===a.sampleId);const e=a.part==='window'?'light_transmission':'compression_recovery';if(s.lastRoute==='S04'&&m&&(a.part==='window'?m.transparent&&a.property==='transparent':m.cushioning&&a.property==='cushioning')&&s.observations.some(o=>o.id===a.observationId&&o.sampleId===a.sampleId&&o.experiment===e&&o.origin===s.origin))c.assignments=add(c.assignments,a.part);break;}
+ case 'assignment':{const m=materials.find(m=>m.id===a.sampleId);const e=a.part==='window'?'light_transmission':'compression_recovery';if(s.lastRoute==='S04'&&m&&(a.part==='window'?m.transparent&&a.property==='transparent':m.cushioning&&a.property==='cushioning')&&s.observations.some(o=>o.id===a.observationId&&o.sampleId===a.sampleId&&o.experiment===e&&o.origin===s.origin)){c.assignments=add(c.assignments,a.part);c.assignmentMaterials={...c.assignmentMaterials,[a.part]:a.sampleId};}break;}
  case 'prediction':
   if(!['S05','S06','solidConclusion','liquidConclusion','sandConclusion'].includes(a.key)||!(a.key==='sandConclusion'?['solid','liquid']:['same','change']).includes(a.value))break;
   if((a.key==='S05'||a.key==='S06')&&!s.initialPredictions[a.key]&&!s.predictions[a.key])s.initialPredictions[a.key]=a.value;

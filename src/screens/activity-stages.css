@@ -191,3 +191,27 @@ html[data-reduced=true] .design-model.is-pressing .bumper-press-tool.can-compres
 @media (max-height:560px) and (min-width:601px) {
   .app.route-S10 .object-area.learning-object .live-design { transform:scale(1.2); }
 }
+
+/* S04: the picture itself is the only placement surface. */
+.app .live-activity .assignment-stage>.workspace { grid-template-columns:minmax(0,1.25fr) minmax(180px,1fr); grid-template-rows:auto minmax(0,1fr); gap:10px; padding:12px; }
+.app .live-activity .assignment-stage .assignment-task { grid-column:1/-1; grid-row:1; display:flex; align-items:center; gap:12px; padding:9px 14px; min-height:48px; background:#fff8df; border:2px solid #d3ad4f; border-radius:12px; text-align:left; color:#315a4a; font-size:clamp(16px,1.2vw,21px); line-height:1.4; }
+.assignment-task b { flex:none; color:#226b59; }
+.app .live-activity .assignment-stage .assignment-visual { grid-column:1; grid-row:2; width:100%; min-width:0; }
+.app .live-activity .assignment-stage .drag-tokens { grid-column:2; grid-row:2; align-content:center; }
+.app .live-activity .assignment-stage .drag-token { min-height:72px; }
+.app .live-activity .assignment-stage .drag-token:focus-visible { outline:4px solid #ae7518; outline-offset:3px; }
+.object-area.learning-object .object-marker.object-drop-target { width:42%; height:30%; min-width:88px; min-height:62px; border:3px dashed #377d6c; border-radius:18px; background:#f4ffe919; box-shadow:0 0 0 4px #fffbe75c; }
+.object-area.learning-object .object-marker.object-drop-target[data-drop-slot=bumper] { width:21%; height:20%; border-radius:20px; }
+.object-drop-target .attachment-label { position:absolute; left:50%; top:100%; transform:translate(-50%,6px); display:grid; gap:2px; width:max-content; max-width:190px; padding:5px 10px; border:2px solid #477c69; border-radius:10px; background:#fffdf2f5; color:#244e40; box-shadow:0 3px 9px #243e2a29; line-height:1.2; pointer-events:none; }
+.object-drop-target .attachment-label b { font-size:clamp(14px,1.15vw,19px); }
+.object-drop-target .attachment-label small { font-size:clamp(12px,.95vw,16px); }
+.object-area.learning-object .object-marker.object-drop-target.selected { border-color:#ad7316; background:#ffdb6a26; box-shadow:0 0 0 4px #ffd36f77; }
+.object-area.learning-object .object-marker.object-drop-target.awaiting { border-style:solid; background:#f6ffdb4d; box-shadow:0 0 0 5px #edc96088; }
+.object-area.learning-object .object-marker.object-drop-target.drop-target { border-style:solid; border-color:#1a805f; background:#b6e8ba5c; box-shadow:0 0 0 7px #ecce6c99; }
+.object-area.learning-object .object-marker.object-drop-target:disabled { opacity:1; border-style:solid; border-color:#598252; background:#d9efce14; cursor:default; }
+.object-drop-target:disabled .attachment-label { background:#edf6df; border-color:#598252; }
+.object-area.learning-object .object-marker.object-drop-target:focus-visible { outline:4px solid #af721c; outline-offset:4px; }
+.assignment-feedback { padding:10px; margin:8px 0; background:#fff1d5; border-left:4px solid #bc7b21; border-radius:8px; font-size:clamp(15px,1.1vw,19px); line-height:1.4; }
+.app .assignment-stage .selected-material { display:flex; flex-wrap:wrap; gap:6px; line-height:1.3; }
+@media(max-width:1100px) { .app .live-activity .assignment-stage>.workspace { grid-template-columns:minmax(0,1.15fr) minmax(160px,1fr); padding:7px; gap:7px; } .app .live-activity .assignment-stage .drag-board.cards-board .drag-tokens { grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; } .app .live-activity .assignment-stage .drag-board.cards-board .drag-part-art { height:52px; } .app .live-activity .assignment-stage .drag-board.cards-board .drag-part-label { font-size:15px; } .app .live-activity .assignment-stage .assignment-task { flex-wrap:wrap; gap:3px 8px; padding:7px 10px; } }
+@media(max-height:600px) { .app .live-activity .assignment-stage>.workspace { gap:4px; padding:5px; } .app .live-activity .assignment-stage .assignment-task { min-height:42px; padding:4px 8px; } .app .live-activity .assignment-stage .drag-board.cards-board .drag-part-art { height:36px; } .app .live-activity .assignment-stage .drag-token { min-height:52px; } .object-drop-target .attachment-label { padding:3px 6px; } }

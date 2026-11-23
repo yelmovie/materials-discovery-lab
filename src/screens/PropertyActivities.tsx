@@ -39,18 +39,51 @@ export function Samples(){
  <div className="comparison-progress">{requiredComparisons[experiment].map(m=><span className={save.observations.some(o=>o.id===observationId(experiment,m))?'done':''} key={m}>{shortNames[m]} {save.observations.some(o=>o.id===observationId(experiment,m))?'✓':'○'}</span>)}</div></Panel></div>{extra&&<Modal title="다른 재료도 시험하기" className="stage-detail-modal" onClose={()=>setExtra(false)}><h2>다른 재료도 시험하기</h2><div className="sample-grid">{materials.map(m=><Choice key={m.id} selected={sample===m.id} onClick={()=>choose(experiment,m.id,true)}><MaterialThumb id={m.id}/>{shortNames[m.id]}</Choice>)}</div></Modal>}</div>;
 }
 export function Assignments({onMessage}:{onMessage:(s:string)=>void}){
- const {save,dispatch}=useGame();const [part,setPart]=useState<'window'|'bumper'>('window'),[sample,setSample]=useState(''),[property,setProperty]=useState(''),[placed,setPlaced]=useState<Record<string,string>>({});
- const done=save.checkpoints.assignments;
- const relevant=save.observations.filter(o=>o.sampleId===sample&&o.experiment===(part==='window'?'light_transmission':'compression_recovery'));
- const evidence=relevant[0];
- useActivityGuide(done.length===2?'창과 보호대 재료를 모두 정했어요!':!sample?'재료 카드를 끌어 관찰창이나 보호대 칸에 놓아요.':!evidence?'이 재료는 이 시험 기록이 없어요. 다른 재료를 놓아 봐요.':'이 부품에 필요한 성질을 눌러요.',!sample?'재료 카드':!evidence?'다른 재료':'필요한 성질');
+ type Target='window'|'bumper';
+ const {save,dispatch}=useGame(),done=save.checkpoints.assignments;
+ // Older saves kept the decision but not its material. A later S09 draft can contain an unsuitable material.
+ // Use a valid observed candidate for that older preview, while new saves retain the exact accepted choice.
+ function previousMaterial(p:Target){
+  const fits=(id:string)=>materials.some(m=>m.id===id&&(p==='window'?m.transparent:m.cushioning))&&save.observations.some(o=>o.sampleId===id&&o.experiment===(p==='window'?'light_transmission':'compression_recovery'));
+  return save.checkpoints.assignmentMaterials?.[p]??(fits(save.design.parts[p].sampleId)?save.design.parts[p].sampleId:materials.find(m=>fits(m.id))?.id??(p==='window'?'plastic_clear':'rubber_soft'));
+ }
+ const initial=Object.fromEntries((['window','bumper'] as const).filter(p=>done.includes(p)).map(p=>[p,previousMaterial(p)]));
+ const first:Target=done.includes('window')&&!done.includes('bumper')?'bumper':'window';
+ const [part,setPart]=useState<Target>(first),[sample,setSample]=useState(initial[first]??''),[property,setProperty]=useState(''),[placed,setPlaced]=useState<Record<string,string>>(initial),[feedback,setFeedback]=useState(''),[retryMaterial,setRetryMaterial]=useState(false);
+ const evidence=save.observations.find(o=>o.sampleId===sample&&o.experiment===(part==='window'?'light_transmission':'compression_recovery'));
+ const finished=done.length===2;
+ useActivityGuide(finished?'창과 보호대 재료를 모두 정했어요!':!sample||retryMaterial?'재료를 고른 뒤 그림의 붙일 곳을 눌러요.':!evidence?'관찰 기록이 있는 다른 재료로 바꿔 붙여요.':'관찰 기록을 보고 이 부품에 필요한 성질을 눌러요.',!sample||retryMaterial?'재료 고르기':!evidence?'다른 재료':'필요한 성질');
+ function choosePart(next:Target){setPart(next);setSample(placed[next]??'');setProperty('');setFeedback('');setRetryMaterial(false);}
+ function place(m:string,p:string){const next=p as Target;if(done.includes(next))return;setPart(next);setSample(m);setPlaced(v=>({...v,[next]:m}));setProperty('');setFeedback('');setRetryMaterial(false);}
  const previewDesign={...save.design,parts:{...save.design.parts,window:{...save.design.parts.window,sampleId:placed.window??save.design.parts.window.sampleId},bumper:{...save.design.parts.bumper,sampleId:placed.bumper??save.design.parts.bumper.sampleId}}};
- // The only record that fits the placed card is shown as evidence; the student decides which property matters.
- function decide(value:string){if(!sample||!evidence||done.includes(part))return;setProperty(value);const m=materials.find(m=>m.id===sample)!;if(part==='window'?m.transparent&&value==='transparent':m.cushioning&&value==='cushioning'){dispatch({type:'assignment',part,sampleId:sample,property:value,observationId:evidence.id});onMessage(part==='window'?'창에 필요한 성질을 관찰 기록에서 찾았어요!':'눌렸다 돌아오는 재료를 보호대 후보로 골랐어요!');playSound('success');const other=part==='window'?'bumper':'window';if(!done.includes(other)){setPart(other);setSample(placed[other]??'');setProperty('');}}else{onMessage(value===(part==='window'?'transparent':'cushioning')?'관찰 기록을 다시 봐요. 이 재료가 그 성질을 보여 줬나요?':`${partNames[part]}의 쓰임을 다시 생각해 봐요. 무엇이 꼭 필요할까요?`);playSound('retry');}}
+ function decide(value:string){
+  if(!sample||!evidence||done.includes(part))return;
+  setProperty(value);
+  const m=materials.find(m=>m.id===sample)!,needed=part==='window'?'transparent':'cushioning',fits=part==='window'?m.transparent:m.cushioning;
+  if(fits&&value===needed){
+   dispatch({type:'assignment',part,sampleId:sample,property:value,observationId:evidence.id});
+   onMessage(partNames[part]+' 재료와 성질을 확인했어요!');playSound('success');
+   const other=part==='window'?'bumper':'window';
+   if(!done.includes(other)){setPart(other);setSample(placed[other]??'');setProperty('');}
+   setFeedback('');setRetryMaterial(false);
+  }else{
+   setRetryMaterial(value===needed&&!fits);
+   setFeedback(value===needed&&!fits?'관찰 기록에서 이 재료가 그 성질을 보였는지 다시 봐요. 다른 재료로 바꿔 붙여요.':partNames[part]+'의 쓰임을 보고 필요한 성질을 다시 골라요.');
+   playSound('retry');
+  }
+ }
  const props=[['transparent','빛이 통과한다'],['cushioning','눌렸다가 돌아온다'],['rigid','모양을 단단히 유지한다']];
- return <div className="activity-grid assignment-stage material-placement-stage"><div className="workspace request-workspace"><div className="assignment-visual"><div className="assignment-model"><ObjectViewport kind="box" design={previewDesign} selected={part} onSelect={p=>{if(p==='window'||p==='bumper')setPart(p);}}/></div><p>{part==='window'?'관찰창: 안쪽이 보여야 해요.':'모서리 보호대: 부딪힐 때를 대비해요.'}</p></div><DragBoard variant="cards" label="재료 카드를 끌어 부품 칸에 놓아요 (눌러서 옮겨도 돼요)" tokens={materials.map(m=>({id:m.id,label:shortNames[m.id],color:sampleColors[m.id],image:`/assets/generated/materials/${m.id}.webp`}))} slots={(['window','bumper'] as const).map(p=>({id:p,label:partNames[p],detail:done.includes(p)?'결정 ✓':p==='window'?'안쪽이 보여야 해요':'부딪힘에 대비해요',filled:placed[p]?shortNames[placed[p]]:done.includes(p)?shortNames[save.design.parts[p].sampleId]:undefined,images:placed[p]?[`/assets/generated/materials/${placed[p]}.webp`]:done.includes(p)?[`/assets/generated/materials/${save.design.parts[p].sampleId}.webp`]:undefined}))} onPlace={(m,p)=>{const next=p as 'window'|'bumper';setPart(next);setSample(m);setPlaced(v=>({...v,[p]:m}));setProperty('');}}/></div><div className="tools"><Panel title={`${partNames[part]} 재료 정하기`}><div className="selected-material">{sample&&<MaterialThumb id={sample}/>}선택 재료 <b>{sample?shortNames[sample]:'카드를 놓아 봐요'}</b></div>
- {sample&&(evidence?<div className="evidence-card"><small>내가 남긴 관찰 기록</small><p>{evidence.result}</p></div>:<p className="evidence-card missing">이 재료의 {part==='window'?'빛 비추기':'누르고 놓기'} 기록이 없어요. 다른 재료를 놓아 봐요.</p>)}
- <div className="property-choices" role="group" aria-label="필요한 성질" data-next-action={!!evidence&&!done.includes(part)||undefined}><small>{partNames[part]}에 꼭 필요한 성질은?</small>{props.map(([value,label])=><Choice key={value} disabled={!evidence||done.includes(part)} selected={property===value} onClick={()=>decide(value)}>{label}</Choice>)}</div>
- <div className="mini-progress" aria-hidden="true">{(['window','bumper'] as const).map(p=><span key={p} className={done.includes(p)?'done':''}>{partNames[p]} {done.includes(p)?'✓':'○'}</span>)}</div>
+ const targets=(['window','bumper'] as const).map(p=>({id:p,label:partNames[p],filled:placed[p]?shortNames[placed[p]]:undefined,done:done.includes(p)}));
+ const instruction=finished?'두 부품 완성! 다음 의뢰로 가요.':!sample||retryMaterial?'재료를 고른 뒤 그림에 붙여요.':!evidence?'다른 재료의 관찰 기록을 비교해요.':'관찰 기록을 보고 필요한 성질을 골라요.';
+ return <div className="activity-grid assignment-stage material-placement-stage"><div className="workspace request-workspace">
+ <DragBoard variant="cards" label="재료를 고른 뒤 그림의 관찰창이나 모서리 보호대에 붙여요." tokens={materials.map(m=>({id:m.id,label:shortNames[m.id],color:sampleColors[m.id],image:'/assets/generated/materials/'+m.id+'.webp'}))} slots={targets.map(t=>({...t,disabled:t.done}))} onPlace={place} renderTargets={({picked,place:attach})=><>
+  <div className="assignment-task" role="status"><b>{finished?'✓ 두 부품 완성':picked?'2 그림에 붙이기':!sample||retryMaterial?'1 재료 고르기':'3 성질 확인하기'}</b><span>{picked?shortNames[picked]+' → 그림의 붙일 곳을 눌러요':instruction}</span></div>
+  <div className="assignment-visual"><div className="assignment-model"><ObjectViewport kind="box" design={previewDesign} selected={part} reduced={save.settings.reducedMotion} placement={{targets,picked:picked?shortNames[picked]:null}} onSelect={p=>{if(p!=='window'&&p!=='bumper')return;if(picked)attach(p);else choosePart(p);}}/></div></div>
+ </>}/></div><div className="tools"><Panel title={partNames[part]+' 재료 정하기'}>
+ <div className="selected-material">{sample&&<MaterialThumb id={sample}/>}<span>붙인 재료</span><b>{sample?shortNames[sample]:'재료를 골라 그림에 붙여요'}</b></div>
+ {sample&&(evidence?<div className="evidence-card"><small>내가 남긴 관찰 기록</small><p>{evidence.result}</p></div>:<p className="evidence-card missing">이 재료의 {part==='window'?'빛 비추기':'누르고 놓기'} 기록이 없어요. 기록이 있는 다른 재료를 붙여요.</p>)}
+ <div className="property-choices" role="group" aria-label="필요한 성질" data-next-action={!!evidence&&!done.includes(part)&&!retryMaterial||undefined}><small>{partNames[part]}에 꼭 필요한 성질은?</small>{props.map(([value,label])=><Choice key={value} disabled={!evidence||done.includes(part)} selected={property===value||done.includes(part)&&value===(part==='window'?'transparent':'cushioning')} onClick={()=>decide(value)}>{label}</Choice>)}</div>
+ {feedback&&<p className="assignment-feedback" role="alert">{feedback}</p>}
+ <div className="mini-progress" aria-label="재료 결정 현황">{(['window','bumper'] as const).map(p=><span key={p} className={done.includes(p)?'done':''}>{partNames[p]} {done.includes(p)?'✓':'○'}</span>)}</div>
  </Panel></div></div>;
 }

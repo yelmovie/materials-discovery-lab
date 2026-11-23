@@ -5,11 +5,12 @@ import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {materials,sampleColors,type Design} from '../domain/model';
 import './object-model-3d.css';
+import {windowPanelSurface} from './window-panel';
 
 /** 3D study model for S01·S02 (umbrella) and S09·S10 (box). Meshy-made learning model, split into named parts
  *  (scripts/meshy). It only changes how the object looks: records, checks and test results stay in the game state. */
 export type Anchors=Record<string,[number,number]>;
-interface Props {kind:'umbrella'|'box';selected:string;exploded:number;zoom:number;design?:Design;pressing?:boolean;reduced?:boolean;
+interface Props {placement?:boolean;kind:'umbrella'|'box';selected:string;exploded:number;zoom:number;design?:Design;pressing?:boolean;reduced?:boolean;
  onAnchors:(a:Anchors)=>void;onSelect:(part:string)=>void;onReady:()=>void;onFail:()=>void}
 const MODEL_VERSION='20261121';
 const partList={umbrella:['canopy','frame','handle'],box:['body','lid','window','handle','bumper']} as const;
@@ -62,7 +63,8 @@ export default function ObjectModel3D(props:Props){
    const q=parts[name];if(!q)return center.clone();const b=q.box,c=b.getCenter(new THREE.Vector3());
    if(kind==='umbrella'){if(name==='canopy')return new THREE.Vector3(c.x+(b.max.x-c.x)*.55,b.min.y+(b.max.y-b.min.y)*.62,c.z+(b.max.z-c.z)*.35);if(name==='frame'){const cb=parts.canopy?.box;return new THREE.Vector3(c.x,cb?cb.min.y-(cb.max.y-cb.min.y)*.08:c.y,c.z);}return c;}
    if(name==='handle'||name==='lid')return new THREE.Vector3(c.x,b.max.y,c.z);
-   if(name==='bumper')return edge(b,1,-1,b.min.y+(b.max.y-b.min.y)*.12);
+   if(name==='window'&&winPanel.center)return winPanel.center.clone();
+   if(name==='bumper')return live.current.placement?edge(b,1,.85,b.max.y-(b.max.y-b.min.y)*.12):edge(b,1,-1,b.min.y+(b.max.y-b.min.y)*.12);
    if(name==='body')return edge(b,1,.8,c.y);
    return c;
   }
@@ -92,16 +94,15 @@ export default function ObjectModel3D(props:Props){
    const b=q.box,soft=live.current.design?.parts.bumper.sampleId==="rubber_soft",r=radius*.12;
    presser.scale.setScalar(r);presser.position.copy(edge(b,1,-1,b.max.y+r*.09+radius*.32*(1-press)-(soft?radius*.035:0)*press)).addScaledVector(front,-r*.7).addScaledVector(right,r*.7);
   }
-  // 2026-11-21: 창의 별은 모형 모양 자체에 들어 있어서, 불투명한 재료(나무·금속·고무·불투명 플라스틱)를 고르면 창을 앞뒤(두께) 방향으로 납작하게 눌러 별 볼록함을 없앤다(창 가운데를 기준으로).
+  // Opaque materials use a flat insert in front of the original glass and star relief.
   let winFlat=false;
-  // 불투명한 창: 창 모형(테두리·유리·볼록한 별) 앞에 유리·별 자리만큼(가로 90%·세로 70%) 재료 색의 판을 얹어 별을 완전히 가린다. 창 테두리는 그대로 보인다.
-  const winPanel:{mesh?:THREE.Mesh;mat?:THREE.MeshStandardMaterial;home:THREE.Vector3}={home:new THREE.Vector3()};
+  // The opaque insert follows the original window silhouette, including its clipped corners, instead of an undersized rectangle.
+  const winPanel:{mesh?:THREE.Mesh;mat?:THREE.MeshStandardMaterial;home:THREE.Vector3;center?:THREE.Vector3}={home:new THREE.Vector3()};
   function panelFor(id:string){
    const w=parts.window;if(!w)return;
-   if(!winPanel.mesh){const b=w.box,size=b.getSize(new THREE.Vector3()),c=b.getCenter(new THREE.Vector3()),ax=Math.abs(front.x)>.5?'x':'z',depth=size[ax];
-    const ow=.9,oh=.7;const geo=new THREE.BoxGeometry(ax==='x'?depth*.25:size.x*ow,size.y*oh,ax==='z'?depth*.25:size.z*ow);
-    winPanel.mat=new THREE.MeshStandardMaterial({roughness:.6});winPanel.mesh=new THREE.Mesh(geo,winPanel.mat);
-    winPanel.home.copy(c).addScaledVector(front,depth*.55);w.mesh.parent!.add(winPanel.mesh);}
+   if(!winPanel.mesh){const surface=windowPanelSurface(w.mesh,front);
+    winPanel.mat=new THREE.MeshStandardMaterial({roughness:.6,side:THREE.DoubleSide});winPanel.mesh=new THREE.Mesh(surface.geometry,winPanel.mat);
+    winPanel.home.copy(surface.position);winPanel.center=surface.center;w.mesh.parent!.add(winPanel.mesh);}
    const f=finish[id]??{roughness:.6,metalness:0};winPanel.mat!.color.set(sampleColors[id]);winPanel.mat!.roughness=id==='plastic_opaque'?.2:f.roughness;winPanel.mat!.metalness=f.metalness;
   }
   const winMaps:{map?:THREE.Texture|null;rough?:THREE.Texture|null;metal?:THREE.Texture|null;ao?:THREE.Texture|null;saved?:boolean}={};
@@ -111,7 +112,7 @@ export default function ObjectModel3D(props:Props){
   }
   function applyLook(){
    const p=live.current;
-   const winId=p.design?.parts.window.sampleId,winOpaque=!!winId&&!materials.find(x=>x.id===winId)?.transparent;if(winOpaque)panelFor(winId!);if(winFlat!==winOpaque){winFlat=winOpaque;}placeParts();
+   const winId=p.design?.parts.window.sampleId,winOpaque=!!winId&&!materials.find(x=>x.id===winId)?.transparent;if(winId)panelFor(winId);if(winFlat!==winOpaque){winFlat=winOpaque;}placeParts();
    for(const [name,q] of Object.entries(parts)){
     const m=q.material;const on=p.selected===name;
     // In the design screens the part colour is the material, so the highlight stays faint there to keep the colour honest.
