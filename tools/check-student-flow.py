@@ -95,7 +95,7 @@ with sync_playwright() as p:
  finish(page,'S10')
  page.evaluate("location.hash='S10/report'");page.get_by_role('button',name='연구 보고서 전달하기').click()
  for button in page.locator('.core-panel .stack .choice').all():button.click()
- button=page.get_by_role('button',name='길게 눌러 코어 재가동');a=button.bounding_box();page.mouse.move(a['x']+a['width']/2,a['y']+a['height']/2);page.mouse.down();page.wait_for_timeout(1600);page.mouse.up();page.get_by_role('button',name='연출 건너뛰기').click()
+ button=page.get_by_role('button',name='코어 연결하기');a=button.bounding_box();page.mouse.move(a['x']+a['width']/2,a['y']+a['height']/2);page.mouse.down();page.wait_for_timeout(1600);page.mouse.up();page.get_by_role('button',name='연출 건너뛰기').click()
  assert page.locator('#certificate input').count()==0 and page.locator('#certificate .cert-blank').count()==5
  page.screenshot(path=str(OUT/'student-certificate.jpg'),type='jpeg',quality=85)
  saved=page.evaluate("JSON.parse(localStorage.getItem('material-workshop-mission.student.v1'))")

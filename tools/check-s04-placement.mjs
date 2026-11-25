@@ -43,6 +43,9 @@ try {
   await p.goto(BASE+'/#S04');await p.waitForSelector('.assignment-model .has-3d',{timeout:30000});
   await p.screenshot({path:dir+'/01-start.png'});
   check(await p.locator('.assignment-stage .drop-slots').count()===0,'separate lower drop slots remain');
+  check(await p.locator('.property-choices').count()===0,'property choices shown before placement');
+  const modelLabel=await p.locator('.assignment-model .design-model').getAttribute('aria-label');
+  check(modelLabel.includes('관찰창 재료 미정')&&modelLabel.includes('모서리 보호대 재료 미정'),'unassigned parts reveal the default materials');
   check(await p.locator('.assignment-model [data-drop-slot]').count()===2,'picture has ambiguous extra markers');
   for(const id of ['window','bumper']){
    const box=await target(p,id).boundingBox();check(box&&box.width>=44&&box.height>=44,'picture target too small');
@@ -73,7 +76,7 @@ try {
   await p.locator('.property-choices .choice').filter({hasText:'빛이 통과한다'}).click();
   check((await saved(p)).checkpoints.assignments.length===0,'opaque wood was accepted as transparent');
   await p.locator('.assignment-feedback').waitFor();
-  check((await p.locator('.assignment-task').innerText()).includes('재료 고르기'),'wrong material did not guide retry');
+  check((await p.locator('.activity-footer .next-step').innerText()).includes('재료를 고르고'),'wrong material did not guide retry');
   await p.screenshot({path:dir+'/02-wrong-material.png'});
   await attach(p,'glass_clear','window');
   await p.locator('.property-choices .choice').filter({hasText:'모양을 단단히 유지한다'}).click();
@@ -81,7 +84,8 @@ try {
   await p.locator('.property-choices .choice').filter({hasText:'빛이 통과한다'}).click();
   check((await saved(p)).checkpoints.assignmentMaterials.window==='glass_clear','accepted window material not saved');
   check(await target(p,'window').isDisabled(),'completed window remains editable');
-  check((await p.locator('.tools .tool-panel h3').allTextContents()).join('').includes('모서리 보호대'),'next part not selected');
+  check(await target(p,'bumper').getAttribute('aria-pressed')==='true','next part not selected');
+  check(await p.locator('.property-choices').count()===0,'property choices shown before a material is attached');
   await attach(p,'metal_plate','bumper');
   await p.locator('.property-choices .choice').filter({hasText:'눌렸다가 돌아온다'}).click();
   check((await saved(p)).checkpoints.assignments.length===1,'metal accepted as cushioning');

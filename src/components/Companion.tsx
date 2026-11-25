@@ -11,7 +11,7 @@ export function Companion({screen}:{screen:Screen}){
  // 모루가 지금 보이는 힌트를 읽고, 말풍선을 닫으면 멈춘다.
  useEffect(()=>{if(!open)return;playLine(voiceFor(hints[level]));return stopLine;},[open,level,hints[level]]);
  return <div className="companion-dock">
-  <button className="companion-button" aria-label="다람쥐 모루에게 힌트 묻기" aria-expanded={open} onClick={()=>{setOpen(!open);setLevel(0);playSound('hint');}}><img src="/assets/generated/companion.webp" alt=""/><span><b>모루의 힌트</b><small>막히면 나를 눌러!</small></span></button>
+  <button className="companion-button" aria-label="다람쥐 모루에게 힌트 묻기" aria-expanded={open} onClick={()=>{setOpen(!open);setLevel(0);playSound('hint');}}><img src="/assets/generated/companion.webp" alt=""/><span><b>힌트</b></span></button>
   {open&&<section className="companion-bubble" aria-label="모루의 단계별 힌트"><div><b>함께 생각해 보자 · {level+1}/3</b><button aria-label="힌트 닫기" onClick={()=>setOpen(false)}>×</button></div><p role="status">{hints[level]}</p>{level<2&&<button className="secondary" onClick={()=>{setLevel(level+1);playSound('hint');}}>조금 더 알려 줘 →</button>}</section>}
  </div>;
 }

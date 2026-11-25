@@ -40,7 +40,7 @@ export function ConceptVideo({screen,onClose,onContinue,continueLabel}:{screen:S
   </div>
   <div className="concept-top">
    <div className="concept-timeline" aria-hidden="true"><i style={{width:`${Math.min(100,time/CONCEPT_SECONDS*100)}%`}}/></div>
-   <header className="concept-header"><span className="eyebrow">모루의 발견 극장 · 활동 {Number(screen.slice(1))}</span><h2>{concept.title}</h2></header>
+   <header className="concept-header"><h2>{concept.title}</h2></header>
    <footer className="concept-actions"><button className={`secondary ${playing?'concept-pause':'concept-play'}`} aria-disabled={loading||undefined} onClick={togglePlayback} aria-label={playback==='ready'?`${CONCEPT_SECONDS}초 개념 영상 보기`:playing?'개념 영상 일시 정지':undefined}>{playbackLabel}</button><button ref={next} className="primary" disabled={!!onContinue&&!canLeave} onClick={onContinue??onClose}>{onContinue?(canLeave?(ended||failed||reduced?continueLabel:`건너뛰고 ${continueLabel}`):'첫 장면을 보고 넘어가요'):'활동으로 돌아가기'} →</button></footer>
    <nav className="concept-chapters" aria-label="개념 장면 선택">{concept.cues.map((text,i)=><button key={i} disabled={failed} aria-current={cue===i?'step':undefined} aria-label={`${i+1}번째 장면: ${text}`} onClick={()=>{resetNarration();if(video.current)video.current.currentTime=i*CONCEPT_CHAPTER_SECONDS;setTime(i*CONCEPT_CHAPTER_SECONDS);if(ended)setPlayback('paused');}}>{i+1} · {['관찰하기','비교하기','기억하기'][i]}</button>)}</nav>
    {burned&&!playing&&!loading&&focus}

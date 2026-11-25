@@ -5,6 +5,7 @@ import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {materials,sampleColors,type Design} from '../domain/model';
 import './object-model-3d.css';
+import {unassignedColor} from './DesignModel';
 import {windowPanelSurface} from './window-panel';
 
 /** 3D study model for S01·S02 (umbrella) and S09·S10 (box). Meshy-made learning model, split into named parts
@@ -103,7 +104,7 @@ export default function ObjectModel3D(props:Props){
    if(!winPanel.mesh){const surface=windowPanelSurface(w.mesh,front);
     winPanel.mat=new THREE.MeshStandardMaterial({roughness:.6,side:THREE.DoubleSide});winPanel.mesh=new THREE.Mesh(surface.geometry,winPanel.mat);
     winPanel.home.copy(surface.position);winPanel.center=surface.center;w.mesh.parent!.add(winPanel.mesh);}
-   const f=finish[id]??{roughness:.6,metalness:0};winPanel.mat!.color.set(sampleColors[id]);winPanel.mat!.roughness=id==='plastic_opaque'?.2:f.roughness;winPanel.mat!.metalness=f.metalness;
+   const f=finish[id]??{roughness:.6,metalness:0};winPanel.mat!.color.set(sampleColors[id]??unassignedColor);winPanel.mat!.roughness=id==='plastic_opaque'?.2:f.roughness;winPanel.mat!.metalness=f.metalness;
   }
   const winMaps:{map?:THREE.Texture|null;rough?:THREE.Texture|null;metal?:THREE.Texture|null;ao?:THREE.Texture|null;saved?:boolean}={};
   function windowMaps(m:THREE.MeshStandardMaterial,id:string|null){
@@ -112,7 +113,7 @@ export default function ObjectModel3D(props:Props){
   }
   function applyLook(){
    const p=live.current;
-   const winId=p.design?.parts.window.sampleId,winOpaque=!!winId&&!materials.find(x=>x.id===winId)?.transparent;if(winId)panelFor(winId);if(winFlat!==winOpaque){winFlat=winOpaque;}placeParts();
+   const winId=p.design?.parts.window.sampleId,winOpaque=winId!==undefined&&!materials.find(x=>x.id===winId)?.transparent;if(winId!==undefined)panelFor(winId);if(winFlat!==winOpaque){winFlat=winOpaque;}placeParts();
    for(const [name,q] of Object.entries(parts)){
     const m=q.material;const on=p.selected===name;
     // In the design screens the part colour is the material, so the highlight stays faint there to keep the colour honest.
@@ -120,6 +121,11 @@ export default function ObjectModel3D(props:Props){
     const designPart=name==='lid'?'body':name;
     const id=p.design&&(designPart==='body'||designPart==='window'||designPart==='bumper')?p.design.parts[designPart].sampleId:null;
     q.flat.value=0;q.milk.value=0;if(name==='window'){m.normalScale.set(1,1);if(winMaps.saved)windowMaps(m,null);}
+    if(id===''){
+     m.color.set(unassignedColor);q.tint.value=0;q.milk.value=1;
+     m.roughness=.8;m.metalness=0;m.transparent=false;m.opacity=1;m.needsUpdate=true;
+     continue;
+    }
     if(!id){m.color.set(0xffffff);q.tint.value=0;m.roughness=q.rough;m.metalness=q.metal;m.transparent=false;m.opacity=1;m.needsUpdate=true;continue;}
     const see=!!materials.find(x=>x.id===id)?.transparent;
     const f=finish[id]??{roughness:.6,metalness:0};m.roughness=f.roughness;m.metalness=f.metalness;

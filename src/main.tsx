@@ -13,3 +13,4 @@ createRoot(document.getElementById('root')!).render(<ErrorBoundary><GameProvider
 import './glass-surfaces.css';
 import './flow-polish.css';
 import './layout-balance.css';
+import './workshop-ui.css';

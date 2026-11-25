@@ -133,7 +133,7 @@ def inspect_liquid_precision(page, size):
     }''')
     sample.update({'size': size, 'screen': 'S06', 'screenshot': screenshot(page, f'{size}-S06-decimals')})
     REPORT['checks'].append(sample)
-    assert sample['amounts'] == ['95.5%', '4.5%', '0%'] and sample['total'] == '총량 100%', sample
+    assert sample['amounts'] == ['95.5%', '4.5%', '0%'] and sample['total'] == '흘리거나 더하지 않아요', sample
     assert sample['contained'] and not sample['overlaps'], sample
     assert '처음 컵 95.5, 넓은 용기 4.5' in sample['accessible'], sample
 

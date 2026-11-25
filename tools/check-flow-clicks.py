@@ -256,7 +256,7 @@ def main():
             page.wait_for_function('()=>{const b=document.querySelector(".map-next-action");return b&&!b.disabled}', timeout=30000)
             tap(page.locator('.map-next-action'))
             tap(page.get_by_role('button', name=re.compile('연구 보고서 전달하기')))
-            hold = page.get_by_role('button', name='길게 눌러 코어 재가동')
+            hold = page.get_by_role('button', name='코어 연결하기')
             hold.wait_for(); box = hold.bounding_box()
             page.mouse.move(box['x'] + 20, box['y'] + 10); page.mouse.down(); page.wait_for_timeout(1900); page.mouse.up()
             clicks[where] += 1

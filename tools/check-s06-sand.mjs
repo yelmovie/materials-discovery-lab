@@ -27,6 +27,8 @@ try{
   await p.locator('.prediction-inline .choice').filter({hasText:'모양은 달라지고 양은 같을'}).click();
   check(await p.locator('.sand-entry').count()===0,'sand offered before water comparison');
   for(const step of[1,2,3]){await button(p,'끝까지 붓기').click();await p.waitForFunction(({KEY,step})=>JSON.parse(localStorage.getItem(KEY)).checkpoints.liquidStep===step,{KEY,step});}
+  const balance=await p.locator('.water-balance').innerText();
+  check(balance.includes('흘리거나 더하지 않아요')&&!balance.includes('%'),'decision displays water quantities before an answer');
   await p.locator('.stage-conclusion-options .choice').filter({hasText:'물의 양도 달라져'}).click();
   check(await p.locator('.sand-entry').count()===0,'wrong water comparison unlocks sand');
   await p.locator('.stage-conclusion-options .choice').filter({hasText:'물의 양은 같아'}).click();
@@ -38,9 +40,8 @@ try{
   const footer=p.locator('.activity-footer>button'),next=button(p,'다음');
   check(await footer.count()===0,'a disabled footer button competes with the task');
   for(const step of[1,2,3]){
-   const heading=p.getByRole('heading',{name:`${step}/3 ${destinations[step-1]}`,exact:true});
-   await heading.waitFor();
-   check((await p.locator('.sand-transfer-progress [aria-current="step"]').innerText())===destinations[step-1],'progress names the wrong vessel');
+   const destination=p.locator('.sand-transfer-progress [aria-current="step"]').filter({hasText:destinations[step-1]});
+   await destination.waitFor();
    if(width!==1024){
     const receivingVessel=[1,2,0][step-1];
     await p.waitForFunction(i=>Number(document.querySelector(`[data-sand-vessel="${i}"]`)?.dataset.sandAmount)>=380,receivingVessel);
@@ -99,7 +100,7 @@ try{
    await footer.click();await p.getByText('모래는 고체일까',{exact:true}).waitFor();
    await button(p,'알갱이 하나하나는 모양이 그대로예요').click();check(await footer.isDisabled(),'partial answer unlocked continuation');
    await button(p,'더미 모양이 바뀌는 건 알갱이 자리가 바뀌어서예요').click();check((await footer.innerText()).includes('적용 의뢰 마무리'),'missing request wrap-up');
-   await footer.click();await p.getByText('새로운 상황에도 적용했어요!',{exact:true}).waitFor();
+   await footer.click();await p.getByText('두 의뢰를 해결했어요!',{exact:true}).waitFor();
    await footer.click();const concept=p.locator('.concept-actions .primary');await concept.waitFor();await concept.click({timeout:15000});
    await p.getByRole('button',{name:/불이 켜진 공방/}).click();
    await p.waitForURL('**/#world');

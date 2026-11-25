@@ -422,7 +422,7 @@ def run_flow(page):
     page.get_by_role('button', name=re.compile('연구 보고서 전달하기')).click()
     for button in page.locator('.core-panel .stack .choice').all():
         button.click()
-    button = page.get_by_role('button', name='길게 눌러 코어 재가동', exact=True)
+    button = page.get_by_role('button', name='코어 연결하기', exact=True)
     button.scroll_into_view_if_needed()
     a = button.bounding_box()
     page.mouse.move(a['x']+a['width']/2, a['y']+a['height']/2)

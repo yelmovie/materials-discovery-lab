@@ -25,7 +25,7 @@ function Water({prediction,onSand}:{prediction:ReactNode;onSand:()=>void}){
  const correct=save.predictions.liquidConclusion==='same',wrong=save.predictions.liquidConclusion==='change';
  const sandStep=save.checkpoints.sandStep??0;
  const sandEntry=save.checkpoints.sand||sandStep===3?'모래알 관찰로 돌아가기':sandStep>0?'모래 붓기 이어서 보기':'모래 붓기 시작';
- useActivityGuide(!save.predictions.S06?'먼저 예상을 골라요.':step<3?'「끝까지 붓기」를 누르거나 「누르는 동안 붓기」를 꾹 눌러 물을 옮겨요.':wrong?'처음 컵에 돌아온 물을 점선과 다시 비교해요.':!correct?'처음 컵의 점선과 물높이를 보고 골라요.':'이제 모래가 어떻게 쌓이는지 봐요.',!save.predictions.S06?'예상':step<3?'끝까지 붓기':!correct?'점선':sandEntry);
+ useActivityGuide(!save.predictions.S06?'먼저 예상을 골라요.':step<3?'물줄기와 받는 용기를 봐요.':wrong?'처음 컵에 돌아온 물을 점선과 다시 비교해요.':!correct?'처음 컵의 점선과 물높이를 보고 골라요.':'이제 모래가 어떻게 쌓이는지 봐요.',!save.predictions.S06?'예상':step<3?'끝까지 붓기':!correct?'점선':sandEntry);
  useEffect(()=>{setVolumes(settled(step));setPouring(false);},[step]);
  useEffect(()=>{if(step<3&&volumes[sequence[step][1]]===1000){setPouring(false);dispatch({type:'liquid',step:step+1});}},[volumes,step]);
  useEffect(()=>{
@@ -39,7 +39,10 @@ function Water({prediction,onSand}:{prediction:ReactNode;onSand:()=>void}){
   for(let stage=step;stage<3;stage++){const [from,to]=sequence[stage];while(current[from]>0){if(flow.isStopped())return;current=transfer(current,from,to,100);setVolumes([...current]);await flow.wait(save.settings.reducedMotion?45:90);}await flow.wait(180);}
  }});
  return <div className="activity-grid liquid-stage"><div className="workspace"><ExperimentCanvas kind="liquid" volumes={volumes} reduced={save.settings.reducedMotion}/>
- <div className="water-balance" aria-live="off">{vesselNames.map((n,i)=><span key={n}>{n} <b>{volumes[i]/10}%</b></span>)}<strong>총량 100% · 흘리거나 더하지 않아요</strong></div>
+ {save.predictions.S06&&<div className="water-balance" aria-live="off">
+  {(step<3||correct)&&vesselNames.map((name,i)=><span key={name}>{name} <b>{volumes[i]/10}%</b></span>)}
+  <strong>{correct?'총량 100%':'흘리거나 더하지 않아요'}</strong>
+ </div>}
  </div><div className="tools">{prediction}{!save.predictions.S06?null:step<3||held?<Panel title={step<3?`${step+1}/3 ${pourActions[step]}`:'옮기기 완료! 손을 떼고 비교해'}>
  <div className="stage-action-pair"><button className="secondary full" onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);setHeld(true);setPouring(true);playSound('pour');}} onPointerUp={()=>{setPouring(false);setHeld(false);}} onPointerCancel={()=>{setPouring(false);setHeld(false);}} onLostPointerCapture={()=>{setPouring(false);setHeld(false);}} onKeyDown={e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();setHeld(true);setPouring(true);}}} onKeyUp={()=>{setPouring(false);setHeld(false);}} onBlur={()=>{setPouring(false);setHeld(false);}}>누르는 동안 붓기</button>
  <button className="primary full" data-next-action={!pouring||undefined} disabled={pouring} onClick={()=>{setPouring(true);playSound('pour');}}>끝까지 붓기</button></div></Panel>:<Panel title="처음 컵에 돌아온 물의 양은?">
@@ -122,8 +125,8 @@ function SandTransfer({startPour,onNext,onWater}:{startPour:boolean;onNext?:()=>
   }finally{setAutomatic(false);}
  }});
 
- const guide=zoom?(correct?'모래알은 각각 모양을 유지하는 고체예요.':'확대한 모래알의 모양을 봐요.')
-  :step===3?'처음 컵에 모래가 돌아왔어요.':busy?'모래가 용기에 따라 어떻게 쌓이는지 봐요.':'버튼 한 번으로 모래를 차례로 옮겨요.';
+ const guide=zoom?(correct?'':'확대한 모래알의 모양을 봐요.')
+  :step===3?'처음 컵에 모래가 돌아왔어요.':busy?'모래가 어떻게 쌓이는지 봐요.':'';
  useActivityGuide(guide);
 
  function restart(){
@@ -137,9 +140,8 @@ function SandTransfer({startPour,onNext,onWater}:{startPour:boolean;onNext?:()=>
   <div className="sand-transfer-progress" aria-label="모래를 붓는 순서">
    {legacy?<span>이전에 남긴 모래알 관찰 기록</span>:pourActions.map((action,i)=><span key={action} aria-current={step===i?'step':undefined} className={step>i?'done':''}>{action}{step>i?' ✓':''}</span>)}
   </div>
- </div><div className="tools"><Panel title={zoom?'모래알 하나는 고체일까요, 액체일까요?':step<3?`${step+1}/3 ${pourActions[step]}`:'처음 컵으로 돌아왔어요'}>
+ </div><div className="tools"><Panel title={zoom?'모래알 하나는 고체일까요, 액체일까요?':'모래 옮기기'}>
   {!zoom&&step<3?<>
-   <p className="sand-cue">{busy?'세 용기로 차례로 옮기고 모래알을 확대해요.':'한 번 누르면 남은 용기로 차례로 옮겨요.'}</p>
    {automatic?<p role="status">모래를 붓고 있어요.</p>:<button className={`${running?'secondary':'primary'} full sand-pour-button`} data-next-action={!running||undefined} onClick={()=>setRunning(!running)}>{running?'잠깐 멈추기':pourLabel}</button>}
   </>:!zoom?<p role="status">모래알을 확대하고 있어요.</p>:<>
    <div className="stage-conclusion-options" ref={answers} tabIndex={-1} role="group" aria-label="모래알의 상태 고르기" data-next-action={!correct||undefined}>

@@ -1,0 +1,354 @@
+/* Leave the painted rooms visible around experiments and give locally readable text a solid surface. */
+@media screen {
+ .app {
+  --workshop-paper: #fffdf2;
+  --workshop-ink: #234537;
+  --scrim: #10281e38;
+  --workshop-focus: #eab94c;
+  --workshop-outline: #8a5e12;
+  --workshop-reading: clamp(18px, 1.32vw, 24px);
+  --workshop-control: clamp(18px, 1.45vw, 25px);
+  --workshop-title: clamp(21px, 1.85vw, 34px);
+  --workshop-depth: 0 5px 16px #173d3029;
+  --workshop-stage-shade: linear-gradient(180deg, #152f2944, transparent 22%, transparent 79%, #152f2966);
+ }
+
+ .app .activity-shell { background: var(--workshop-stage-shade), var(--stage-bg) center / cover; }
+ .app .live-activity > .activity-heading { justify-content: center; }
+ .app .live-activity .activity-heading > div:first-child {
+  justify-content: center;
+  gap: 7px 12px;
+  max-height: none;
+  padding: 6px 14px;
+  background: var(--workshop-paper);
+  border: 0;
+  border-radius: 12px;
+  box-shadow: var(--workshop-depth);
+  backdrop-filter: none;
+ }
+ .app .live-activity .activity-heading h1 { font-size: var(--workshop-title); }
+ .app .live-activity .activity-heading .stage-badge { display: none; }
+ .app .live-activity .activity-heading .activity-number {
+  color: var(--workshop-ink);
+  font-size: var(--workshop-reading);
+  font-variant-numeric: tabular-nums;
+ }
+
+ .app .live-activity .activity-toolbar { justify-content: center; align-items: center; }
+ .app .live-activity .learning-rail,
+ .app .live-activity .learning-rail:has(> button:nth-of-type(4)) {
+  display: flex;
+  flex: 0 1 auto;
+  padding: 0;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+ }
+ .app .live-activity .learning-rail > span { display: none; }
+ .app .live-activity .learning-rail button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 8px;
+  border: 1px solid #fffdf288;
+  border-radius: 12px;
+  background: var(--workshop-paper);
+  color: var(--workshop-ink);
+  box-shadow: none;
+  backdrop-filter: none;
+ }
+ .app .live-activity .learning-rail button:disabled {
+  opacity: 1;
+  background: #15352dda;
+  color: #fffdf2;
+ }
+ .app .live-activity .learning-rail button[aria-current=step] {
+  border-color: #d6e0c4;
+  background: #1c5742;
+  color: #fffdf2;
+ }
+ .app .live-activity .learning-rail button b {
+  background: transparent;
+  color: inherit;
+  font-size: var(--workshop-reading);
+ }
+ .app .live-activity .learning-rail .rail-label { font-size: var(--workshop-reading); }
+ .app .live-activity .learning-rail button:not([aria-current=step]) .rail-label { display: none; }
+
+ .app .live-activity .activity-grid > .workspace,
+ .app .live-activity :is(.maker-scene, .transfer-workspace.transfer-complete),
+ .app .final-activity :is(.final-card, .ending-panel) {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+ }
+ .app .live-activity .activity-grid .object-area.learning-object {
+  background: radial-gradient(ellipse at 50% 62%, #fffdf2af, #fffdf24d 48%, transparent 74%);
+ }
+ .app .live-activity .activity-grid .object-canvas { background-image: none; }
+ .app .live-activity .activity-grid .object-selected-badge {
+  background: var(--workshop-paper);
+  font-size: var(--workshop-reading);
+ }
+ .app .live-activity .maker-controls { background: var(--workshop-paper); }
+ .app .live-activity .maker-order {
+  justify-self: center;
+  flex-wrap: wrap;
+  border: 0;
+  background: var(--workshop-paper);
+ }
+ .app .live-activity .maker-order h2 { flex: 0 1 auto; }
+ .app .live-activity .maker-choice-row[data-choose=true] { outline: 2px solid var(--workshop-focus); box-shadow: none; }
+ .app .live-activity .maker-choice-label,
+ .app .live-activity .maker-choice-row button,
+ .app .live-activity .maker-socket b { font-size: var(--workshop-reading); }
+ .app .live-activity .activity-grid .object-study-heading { background: transparent; border: 0; box-shadow: none; }
+ .app .live-activity .activity-grid .object-study-heading .canvas-label { display: none; }
+ .app .live-activity .activity-grid .workspace-note,
+ .app .live-activity .activity-grid .lab-metric {
+  align-self: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--workshop-paper);
+  color: var(--workshop-ink);
+  font-size: var(--workshop-reading);
+ }
+ .app .live-activity .activity-grid > .tools > .tool-panel {
+  background: var(--workshop-paper);
+  border: 0;
+  box-shadow: var(--workshop-depth);
+  border-radius: 14px;
+  backdrop-filter: none;
+ }
+ .app .live-activity .tool-panel h3 {
+  padding-bottom: 0;
+  border: 0;
+  font-size: var(--workshop-title);
+ }
+ .app .live-activity .tool-panel :is(p, small, .stage-count) { font-size: var(--workshop-reading); }
+ .app .live-activity :is(.tools, .transfer-workspace) :is(.choice, .activity-choice-label, button.full) { font-size: var(--workshop-reading); }
+ .app .live-activity .challenge-prompt { font-size: var(--workshop-control); }
+ .app .live-activity .tool-panel[data-next-action=true] { outline-offset: -2px; }
+
+ .app .live-activity .activity-footer {
+  height: auto;
+  min-height: 48px;
+  grid-template-columns: auto minmax(0,1fr) auto;
+ }
+ .app .live-activity .activity-footer > button[hidden],
+ .app .live-activity .activity-footer > .next-step:empty { display: none; }
+ .app .live-activity .activity-footer > .next-step {
+  justify-self: center;
+  width: fit-content;
+  min-width: 0;
+  padding: 6px 12px;
+  color: var(--workshop-ink);
+  background: var(--workshop-paper);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: var(--workshop-depth);
+  backdrop-filter: none;
+  text-align: center;
+  font-size: var(--workshop-reading);
+ }
+ .app .live-activity .activity-footer > .next-step .guide-focus {
+  color: inherit;
+  background: none;
+  font-size: inherit;
+ }
+ .app .live-activity .activity-footer > .primary {
+  grid-column: 3;
+  justify-self: end;
+  font-size: var(--workshop-control);
+ }
+ .app .live-activity .companion-button {
+  min-width: 48px;
+  min-height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--workshop-paper);
+  box-shadow: var(--workshop-depth);
+  backdrop-filter: none;
+ }
+ .app .live-activity .companion-button b { font-size: var(--workshop-reading); }
+
+ .app .live-activity:not(:has(.activity-footer > .primary[data-next-action=true])) button[data-next-action=true]:not(:disabled,.choice),
+ .app .live-activity .activity-footer > .primary[data-next-action=true],
+ .app .final-activity button[data-next-action=true]:not(:disabled) {
+  background: var(--workshop-focus);
+  border-color: var(--workshop-outline);
+  color: #322610;
+  box-shadow: 0 5px 14px #35290845;
+ }
+ .app .live-activity [data-next-action=true]:not(button) {
+  outline: 2px solid var(--workshop-focus);
+  outline-offset: 3px;
+ }
+ .app .live-activity :is(.stage-conclusion-options, .challenge-options, .property-choices)[data-next-action=true] {
+  border-radius: 10px;
+  outline-offset: 4px;
+ }
+
+ #root .app .live-activity .assignment-stage > .workspace { grid-template-rows: minmax(0,1fr); }
+ #root .app .live-activity .assignment-stage :is(.assignment-visual, .drag-tokens) { grid-row: 1; }
+ #root .app .live-activity .assignment-stage .drag-tokens { max-width: 100%; }
+ #root .app .live-activity .assignment-stage:has(.tools:empty) .drag-tokens:not(:has(.picked)) {
+  outline: 2px solid var(--workshop-focus);
+ }
+ #root .app .live-activity .assignment-stage .attachment-label {
+  font-size: var(--workshop-reading);
+ }
+ #root .app .live-activity .assignment-stage .attachment-label b { font-size: inherit; }
+ #root .app .live-activity .assignment-stage [data-drop-slot=window] .attachment-label {
+  top: auto;
+  bottom: 100%;
+  transform: translate(-50%,-6px);
+ }
+ .app .live-activity .loading {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #fffdf2;
+  text-shadow: 0 1px 4px #152f29, 0 1px 6px #152f29;
+ }
+ #root .app .live-activity .assignment-stage .object-drop-target.awaiting:not(.drop-target) {
+  border-color: #367b65;
+  background: #e9f9dc45;
+  box-shadow: 0 0 0 4px #fbf1c988;
+ }
+ .app .live-activity .umbrella-stage .part-observation-card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid #dce4d5;
+ }
+ .app .live-activity .umbrella-stage .part-notebook .part-observation-card.is-empty { padding-block: 6px; }
+ .app .live-activity .umbrella-stage .part-observation-card.is-current {
+  border-radius: 10px;
+  background: #edf4e4;
+ }
+ .app .live-activity .sand-transfer-progress {
+  align-self: center;
+  border: 0;
+  background: transparent;
+  font-size: var(--workshop-reading);
+ }
+ .app .live-activity .transfer-workspace .challenge-body {
+  background: var(--workshop-paper);
+  border: 0;
+  border-radius: 14px;
+  box-shadow: var(--workshop-depth);
+  backdrop-filter: none;
+  padding: clamp(14px, 2.5vw, 30px);
+ }
+ .app .live-activity .transfer-workspace.transfer-complete h2,
+ .app .final-activity .ending-panel h1 {
+  width: fit-content;
+  margin-inline: auto;
+  border-radius: 10px;
+  background: var(--workshop-paper);
+  color: var(--workshop-ink);
+  padding: 8px 14px;
+ }
+
+ .app .home-page .home-title .hero-actions .ghost {
+  min-width: 136px;
+  min-height: 48px;
+  padding: 8px 16px;
+  font-size: var(--workshop-reading);
+  background: #fffdf2ee;
+ }
+ .app.route-world .map-goal:not(.reveal) { background: #17382ee6; color: #fffdf2; box-shadow: none; }
+ .route-world .map-goal b { font-size: var(--workshop-reading); }
+ .app .final-activity .report .report-art {
+  display: block;
+  width: min(100%, 120px);
+  height: clamp(50px, 12dvh, 104px);
+  margin: 0 auto 4px;
+  object-fit: contain;
+ }
+ .app .final-activity .report .evidence-report article {
+  min-height: 0;
+  background: var(--workshop-paper);
+  border: 0;
+  border-radius: 14px;
+ }
+ .app .final-activity .core-links li {
+  display: flex;
+  align-items: center;
+  background: var(--workshop-paper);
+ }
+ .app .final-activity .core-links li.lit { background: #e4f1d4; }
+ .app .final-activity .core-links li .material-thumb { width: 40px; height: 34px; }
+ .app .final-activity .core-layout .core-step { justify-content: center; }
+ .app .final-activity #core-gesture {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 4px 12px;
+  border-radius: 10px;
+  color: var(--workshop-ink);
+  background: var(--workshop-paper);
+  font-size: var(--workshop-reading);
+ }
+ .app .final-activity .core-device > .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  background: none;
+ }
+ .app .final-activity .ending-panel .restored-buildings > div {
+  background: var(--workshop-paper);
+  border: 0;
+  box-shadow: none;
+ }
+}
+
+@media screen and (min-width: 1150px) {
+ .app .live-activity .learning-rail button:not(:disabled) .rail-label { display: inline; }
+}
+
+@media screen and (max-height: 525px) and (min-width: 601px) {
+ .app .final-activity .report .report-art { height: 44px; }
+}
+
+@media screen and (max-width: 699px) {
+ .app .live-activity > .activity-heading { flex: 0 0 auto; height: auto; min-height: 48px; justify-content: start; }
+ .app .live-activity .activity-heading > div:first-child { justify-content: flex-start; padding-inline: 8px; }
+ .app .live-activity .activity-heading h1 { font-size: 20px; }
+ .app .live-activity .activity-heading .activity-number { font-size: 18px; }
+ .app .live-activity .activity-footer { grid-template-columns: 48px minmax(0,1fr); }
+ .app .live-activity .activity-footer > .primary { grid-column: 2; }
+ .app .live-activity .activity-footer > .next-step:not(:empty) {
+  display: block;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: stretch;
+  text-align: left;
+ }
+ .app .live-activity .activity-footer:has(> .primary:not([hidden])) > .next-step:not(:empty) { grid-column: 1 / -1; }
+ .app .live-activity .activity-footer:has(> .primary:not([hidden])) > .next-step:not(:empty) ~ .primary { grid-row: 2; }
+ .app .live-activity .activity-footer:has(> .primary:not([hidden])):has(> .next-step:not(:empty)) > .companion-dock { grid-row: 2; }
+ .app .live-activity .activity-footer:not(:has(> .primary:not([hidden]))) > .companion-dock { grid-row: 1; }
+ #root .app .live-activity .assignment-stage:has(.tools:empty) { grid-template-rows: minmax(0,1fr); }
+ #root .app .live-activity .assignment-stage:has(.tools:empty) > .workspace { grid-column: 1 / -1; }
+ #root .app .live-activity .assignment-stage > .workspace { grid-template-columns: minmax(0,1fr); grid-template-rows: minmax(0,1fr) auto; }
+ #root .app .live-activity .assignment-stage .drag-board.cards-board .drag-tokens {
+  grid-column: 1;
+  grid-row: 2;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+ }
+ #root .app .live-activity .assignment-stage .assignment-visual { min-height: 0; }
+ #root .app .live-activity .assignment-stage [data-drop-slot=bumper] .attachment-label {
+  top: auto;
+  bottom: 0;
+  transform: translate(-50%, 0);
+ }
+ #root .app .live-activity .assignment-stage .turn-hint { display: none; }
+ .app .home-page .home-title .hero-actions { flex-wrap: wrap; width: min(100% - 24px, 420px); }
+ .app .home-page .home-title .hero-actions > button { min-width: 136px; padding-inline: 14px; }
+}
