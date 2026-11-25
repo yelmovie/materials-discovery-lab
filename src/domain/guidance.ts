@@ -18,7 +18,15 @@ export function guidance(s:Save,id:Screen):[string,string,string]{
   }
   case 'S04':return ['재료를 고르고 관찰창이나 보호대 자리를 눌러요.','그 부품이 해야 할 일을 먼저 생각해 봐요.',concept.observe];
   case 'S05':return [!s.predictions.S05?'「먼저 예상해 보자」를 눌러요.':s.checkpoints.solid.length<3?'아직 안 가 본 용기를 눌러 토막을 옮겨요.':'옮기기 전후의 토막 모양과 크기를 비교해요.','토막을 끌거나 용기를 눌러 옮길 수 있어요.',concept.observe];
-  case 'S06':return [!s.predictions.S06?'「먼저 예상해 보자」를 눌러요.':s.checkpoints.liquidStep<3?'「조금씩 붓기」를 눌러 물을 옮겨요.':'처음 컵에 돌아온 물을 눈금과 비교해요.','「누르는 동안 붓기」는 손을 떼면 멈춰요.',concept.observe];
+  case 'S06':{
+   const c=s.checkpoints;
+   if(s.predictions.liquidConclusion==='same'&&c.liquidStep===3){
+    if(c.sand&&(c.sandStep===3||c.sandStep===undefined&&s.completedScreens.includes('S06')))return ['확대한 모래알의 모양을 비교해 봐요.','용기가 바뀌면 알갱이 하나의 모양도 바뀌었나요?','고체는 담는 곳이 바뀌어도 모양을 유지해요.'];
+    if(c.sandStep===3)return ['「모래알 확대 관찰하기」를 눌러요.','더미에서 알갱이 하나를 골라 살펴봐요.','옮기기 전후에 알갱이 하나의 모양이 달라졌는지 확인해요.'];
+    return [c.sandStep?'「모래 붓기」를 눌러 다음 용기로 옮겨요.':'물을 비교했어요. 모래도 다른 용기로 옮겨 봐요.','모래가 떨어져 쌓일 때 더미의 모양을 살펴봐요.','모래를 처음 컵으로 돌려보낸 다음 알갱이를 확대해 봐요.'];
+   }
+   return [!s.predictions.S06?'먼저 물의 모양과 양을 예상해요.':c.liquidStep<3?'「끝까지 붓기」를 눌러 물을 옮겨요.':'처음 컵에 돌아온 물을 눈금과 비교해요.','「누르는 동안 붓기」는 손을 떼면 멈춰요.',concept.observe];
+  }
   case 'S07':return ['마른 휴지를 확인하고 컵을 물속에 넣어요.','「공기 위치 표시 켜기」에서 공기가 있는 곳을 봐요.',concept.observe];
   case 'S08':return [!s.checkpoints.open?'배출구를 열고 컵 안을 살펴봐요.':!s.checkpoints.airCompared?'닫힌 컵과 열린 컵에서 달라진 것을 비교해요.':'펌프를 세 번 눌러 주머니를 관찰해요.','같은 컵을 같은 깊이로 넣었어요. 이번에 바꾼 것은 배출구예요.',concept.observe];
   case 'S09':{

@@ -10,7 +10,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
 const BASE=(process.argv[2]||'http://127.0.0.1:5399').replace(/\/$/,'');
 if(!['127.0.0.1','localhost'].includes(new URL(BASE).hostname))throw Error('Local build only');
 const views=(process.argv[3]||'1280x800,1024x768').split(',');
-const OUT=resolve('.tmp/final-review');mkdirSync(OUT,{recursive:true});
+const OUT=resolve(process.env.QA_OUTPUT||'.tmp/final-review');mkdirSync(OUT,{recursive:true});
 const KEY='material-workshop-mission.student.v1',VIEW='material-workshop-mission.s03-view';
 const vite=await createServer({server:{middlewareMode:true},optimizeDeps:{noDiscovery:true,entries:[]},appType:'custom',logLevel:'error'});
 const [m,t,maker]=await Promise.all(['model','challenges','maker'].map(n=>vite.ssrLoadModule('/src/domain/'+n+'.ts')));
@@ -75,11 +75,12 @@ async function finish(p,id,dir,run){
    for(const a of c.answer){const [token,slot]=a.split(':');await tap(p.locator('.challenge-classify .drag-token').filter({hasText:label(token)}));await tap(p.locator('.challenge-classify [data-drop-slot="'+slot+'"]'));}
   }else for(const a of c.answer)await tap(p.locator('.challenge-options .choice').filter({hasText:label(a)}));
   await p.locator('.challenge-feedback.success').waitFor();
-  if((id==='S01'||id==='S02')&&i===0){
+  if((id==='S01'||id==='S02'||id==='S06')&&i===0){
    await p.waitForTimeout(3000);check(await p.locator('#challenge-title').textContent()===c.title,'correct answer advanced automatically');
    await screenshot(p,dir,id+'-feedback-wait');await tap(footer(p));
   }
  }
+ if(id==='S06'){await waitFooter(p,'적용 의뢰 마무리');await tap(footer(p));await p.locator('.transfer-complete').waitFor();}
  await waitFooter(p,'개념 보고');await tap(footer(p));
  const leave=p.locator('.concept-actions .primary');await leave.waitFor();
  await p.waitForFunction(()=>{const b=document.querySelector('.concept-actions .primary');return b&&!b.disabled;},null,{timeout:30000});
@@ -249,6 +250,11 @@ async function regressions(data){
  const offlineFiles=JSON.parse(readFileSync('dist/sw.js','utf8').match(/^const FILES=(\[.*\]);$/m)[1]);
  check(cacheInfo.files===offlineFiles.length,'offline cache incomplete: '+cacheInfo.files+' / '+offlineFiles.length);check(cacheInfo.status?.includes('준비'),'offline readiness not announced');
  await screenshot(p,OUT,'offline-ready');await ctx.setOffline(true);
+ const sandTexture=await p.evaluate(async()=>{
+  const response=await fetch('/assets/generated/sand-quartz.webp');
+  return response.ok&&response.headers.get('content-type')?.includes('image/webp')&&(await response.blob()).size>0;
+ });
+ check(sandTexture,'offline sand texture unavailable');
  const models=await p.evaluate(async()=>Promise.all(['umbrella','box'].map(async model=>{const r=await fetch('/assets/models/'+model+'.glb?v=qa');const bytes=new Uint8Array(await r.arrayBuffer());return {model,status:r.status,bytes:bytes.length,magic:String.fromCharCode(...bytes.slice(0,4))};})));
  check(models.every(model=>model.status===200&&model.bytes>12&&model.magic==='glTF'),'offline versioned GLB failed');
  const unknownQueryBlocked=await p.evaluate(async()=>{try{await fetch('/assets/models/box.glb?unreviewed=1');return false;}catch{return true;}});check(unknownQueryBlocked,'unreviewed model query was cached');

@@ -44,7 +44,7 @@ const CHOICE_ART:Record<string,Record<string,string>>={
 };
 // 문제 옆 큰 그림(고르기 문제). 없으면 공방 의뢰 그림을 크게 쓴다. 분류 문제는 카드 자체가 그림이라 옆 그림을 두지 않는다.
 const HERO_ART:Record<string,string>={'S04-c':'/assets/generated/cards/boots.webp'};
-export interface ChallengeControls {label:string;enabled:boolean;action:()=>void;cue?:string}
+export interface ChallengeControls {label:string;enabled:boolean;action:()=>void;cue?:string;awaitingWrapUp:boolean}
 export function ChallengePanel({screen,onControlsChange}:{screen:Screen;onControlsChange?:(controls:ChallengeControls)=>void}){
  const {save,dispatch}=useGame();const list=challengesFor(screen),done=list.filter(c=>save.challengeResults.some(r=>r.id===c.id));
  const [celebrate,setCelebrate]=useState<string|null>(null),[answer,setAnswer]=useState<string[]>([]),[feedback,setFeedback]=useState(''),[wrong,setWrong]=useState(false);
@@ -56,14 +56,16 @@ export function ChallengePanel({screen,onControlsChange}:{screen:Screen;onContro
  useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current);},[]);
  useEffect(()=>{setAnswer([]);setFeedback('');setWrong(false);},[current?.id]);
  const complete=(c:typeof current,a:string[])=>!!c&&(c.mode==='choice'?a.length===1:c.mode==='multi'?a.length===c.answer.length:a.length===c.options.length);
- // S01/S02 keep correct-answer feedback until the learner presses Next.
- function check(a:string[]){if(!current||celebrate)return;if(correctChallenge(current,a)){dispatch({type:'challenge',id:current.id,answer:a});setCelebrate(current.id);setWrong(false);setFeedback(current.success);playSound('success');const last=done.length+1>=list.length;if(!last&&screen!=='S01'&&screen!=='S02'){if(timer.current)clearTimeout(timer.current);timer.current=setTimeout(advance,save.settings.reducedMotion?900:2200);}}else{setWrong(true);setFeedback(current.hint);playSound('retry');if(current.mode==='sequence')setAnswer([]);}}
+ // Keep these explanations visible until the learner presses Next.
+ const manualAdvance=screen==='S01'||screen==='S02'||screen==='S06';
+ function check(a:string[]){if(!current||celebrate)return;if(correctChallenge(current,a)){dispatch({type:'challenge',id:current.id,answer:a});setCelebrate(current.id);setWrong(false);setFeedback(current.success);playSound('success');const last=done.length+1>=list.length;if(!last&&!manualAdvance){if(timer.current)clearTimeout(timer.current);timer.current=setTimeout(advance,save.settings.reducedMotion?900:2200);}}else{setWrong(true);setFeedback(current.hint);playSound('retry');if(current.mode==='sequence')setAnswer([]);}}
  function select(id:string){if(!current||celebrate)return;const next=current.mode==='choice'?[id]:answer.includes(id)?answer.filter(x=>x!==id):[...answer,id];setAnswer(next);setFeedback('');setWrong(false);if(complete(current,next))check(next);}
  function place(id:string,group:string){if(!current||celebrate)return;const next=answer.filter(x=>!x.startsWith(id+':')).concat(id+':'+group);setAnswer(next);setFeedback('');setWrong(false);if(complete(current,next))check(next);}
  function advance(){if(timer.current)clearTimeout(timer.current);timer.current=null;setCelebrate(null);setAnswer([]);setFeedback('');setWrong(false);}
  // How to answer is said once, in the activity footer's guide row.
  const instruction=!current?'':current.mode==='choice'?'알맞은 설명 하나를 골라요.':current.mode==='multi'?`맞는 설명 ${current.answer.length}개를 골라요.`:current.mode==='sequence'?'먼저 할 일부터 차례로 눌러요. 다시 누르면 뺄 수 있어요.':'카드를 끌어 놓거나, 카드와 칸을 차례로 눌러요.';
- useLayoutEffect(()=>{onControlsChange?.({label:celebrate?(done.length===list.length?'적용 의뢰 마무리':'다음 의뢰로'):'답 고르기',enabled:!!celebrate,action:celebrate?advance:()=>{},cue:instruction});},[current?.id,celebrate,done.length,onControlsChange,instruction]);
+ const awaitingWrapUp=!!celebrate&&done.length===list.length;
+ useLayoutEffect(()=>{onControlsChange?.({label:celebrate?(awaitingWrapUp?'적용 의뢰 마무리':'다음 의뢰로'):'답 고르기',enabled:!!celebrate,action:celebrate?advance:()=>{},cue:instruction,awaitingWrapUp});},[current?.id,celebrate,awaitingWrapUp,onControlsChange,instruction]);
  if(!current)return <section className="transfer-workspace transfer-complete"><MissionBurst/><span className="eyebrow">DISCOVERY COMPLETE</span><h2>새로운 상황에도 적용했어요!</h2><p>직접 관찰한 내용으로 두 가지 의뢰를 해결했어요.<br/>아래 버튼으로 다음 활동을 이어 가요.</p><div className="progress-chips"><span className="done">직접 탐구 ✓</span><span className="done">적용 의뢰 1 ✓</span><span className="done">적용 의뢰 2 ✓</span></div></section>;
  const questArt=`/assets/generated/quests/quest-${Math.ceil(Number(screen.slice(1))/2)}.webp`;
  const pencilHero=current.id==='S01-a';
