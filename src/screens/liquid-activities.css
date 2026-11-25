@@ -1,5 +1,15 @@
 .sand-entry { margin-top:10px; }
-.sand-secondary { display:grid; gap:8px; margin-top:14px; }
+.sand-secondary { display:grid; gap:8px; padding-bottom:3px; }
+.app .live-activity .liquid-lab-footer { grid-template-columns:auto minmax(0,1fr); }
+.sand-replay { margin-top:8px; }
+.sand-replay summary {
+ min-height:44px;
+ width:fit-content;
+ padding:10px 4px;
+ cursor:pointer;
+ color:#315b44;
+}
+.sand-replay summary:focus-visible { outline:2px solid #32745d; outline-offset:1px; }
 .sand-transfer-progress {
  display:flex;
  flex-wrap:wrap;
@@ -27,7 +37,7 @@
 .sand-feedback { background:#fff1d5; }
 .sand-result { background:#e6f0da; border-left-color:#5b8e68; color:#2e5e47; }
 @media(max-height:600px){
- .sand-secondary { margin-top:7px; gap:5px; }
+ .sand-secondary { gap:5px; }
  .sand-transfer-progress { padding:4px; font-size:13px; }
  .sand-transfer-progress span { padding:2px 5px; }
 }

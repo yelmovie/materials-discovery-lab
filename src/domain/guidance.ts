@@ -22,8 +22,8 @@ export function guidance(s:Save,id:Screen):[string,string,string]{
    const c=s.checkpoints;
    if(s.predictions.liquidConclusion==='same'&&c.liquidStep===3){
     if(c.sand&&(c.sandStep===3||c.sandStep===undefined&&s.completedScreens.includes('S06')))return ['확대한 모래알의 모양을 비교해 봐요.','용기가 바뀌면 알갱이 하나의 모양도 바뀌었나요?','고체는 담는 곳이 바뀌어도 모양을 유지해요.'];
-    if(c.sandStep===3)return ['「모래알 확대 관찰하기」를 눌러요.','더미에서 알갱이 하나를 골라 살펴봐요.','옮기기 전후에 알갱이 하나의 모양이 달라졌는지 확인해요.'];
-    return [c.sandStep?'「모래 붓기」를 눌러 다음 용기로 옮겨요.':'물을 비교했어요. 모래도 다른 용기로 옮겨 봐요.','모래가 떨어져 쌓일 때 더미의 모양을 살펴봐요.','모래를 처음 컵으로 돌려보낸 다음 알갱이를 확대해 봐요.'];
+    if(c.sandStep===3)return ['모래가 처음 컵에 돌아오면 모래알이 확대돼요.','더미에서 알갱이 하나를 골라 살펴봐요.','옮기기 전후에 알갱이 하나의 모양이 달라졌는지 확인해요.'];
+    return [c.sandStep?'「계속 붓기」를 누르면 남은 용기로 옮겨요.':'「모래 붓기 시작」을 누르면 세 용기로 차례로 옮겨요.','모래가 떨어져 쌓일 때 더미의 모양을 살펴봐요.','모래를 처음 컵으로 돌려보낸 다음 알갱이를 확대해 봐요.'];
    }
    return [!s.predictions.S06?'먼저 물의 모양과 양을 예상해요.':c.liquidStep<3?'「끝까지 붓기」를 눌러 물을 옮겨요.':'처음 컵에 돌아온 물을 눈금과 비교해요.','「누르는 동안 붓기」는 손을 떼면 멈춰요.',concept.observe];
   }
